@@ -1,41 +1,67 @@
-import React, { useState } from 'react';
-import '../../Components/FormStyles.css';
+import React from "react";
+import "../../Components/FormStyles.css";
+import { ErrorMessage, Form, Formik } from "formik";
+import * as Yup from "yup";
 
 const NewsForm = () => {
-    const [initialValues, setInitialValues] = useState({
-        title: '',
-        content: '',
-        category: ''
-    });
+  return (
+    <Formik
+      initialValues={initialValues}
+      validationSchema={validationNewSchema}
+      onSubmit={(formData) => console.log(formData)}
+    >
+      {(formik) => (
+        <Form className="form-container" onSubmit={formik.handleSubmit}>
+          <input
+            className="input-field"
+            type="text"
+            placeholder="Título..."
+            {...formik.getFieldProps("title")}
+          ></input>
+          <ErrorMessage
+            name="title"
+            className="formik_error"
+            component="span"
+          />
+          <input
+            className="input-field"
+            type="text"
+            placeholder="Contenido..."
+            {...formik.getFieldProps("content")}
+          ></input>
+          <ErrorMessage
+            name="content"
+            className="formik_error"
+            component="span"
+          />
+          <select
+            className="select-field"
+            {...formik.getFieldProps("category")}
+          >
+            <option value="" disabled>
+              Select category
+            </option>
+            <option value="1">Demo option 1</option>
+            <option value="2">Demo option 2</option>
+            <option value="3">Demo option 3</option>
+          </select>
+          <button className="submit-btn" type="submit">
+            Send
+          </button>
+        </Form>
+      )}
+    </Formik>
+  );
+};
 
-    const handleChange = (e) => {
-        if(e.target.name === 'title'){
-            setInitialValues({...initialValues, title: e.target.value})
-        } if(e.target.name === 'content'){
-            setInitialValues({...initialValues, content: e.target.value})
-        } if(e.target.name === 'category') {
-            setInitialValues({...initialValues, category: e.target.value})
-        }
-    }
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(initialValues);
-    }
-
-    return (
-        <form className="form-container" onSubmit={handleSubmit}>
-            <input className="input-field" type="text" name="title" value={initialValues.title || ''} onChange={handleChange}></input>
-            <input className="input-field" type="text" name="content" value={initialValues.content || ''} onChange={handleChange}></input>
-            <select className="select-field" name="category" value={initialValues.category || ''} onChange={handleChange}>
-                <option value="" disabled>Select category</option>
-                <option value="1">Demo option 1</option>
-                <option value="2">Demo option 2</option>
-                <option value="3">Demo option 3</option>
-            </select>
-            <button className="submit-btn" type="submit">Send</button>
-        </form>
-    );
-}
- 
 export default NewsForm;
+
+const initialValues = {
+  title: "",
+  content: "",
+  category: "",
+};
+const validationNewSchema = Yup.object({
+  title: Yup.string().required("El titulo es obligatorio"),
+  content: Yup.string().required("El contenido es obligatorio"),
+});
