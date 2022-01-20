@@ -6,8 +6,6 @@ import store from './app/store';
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 
-window.process = {}; //For fixing bug, related info: https://github.com/facebook/create-react-app/issues/11773
-
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
