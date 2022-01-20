@@ -24,18 +24,18 @@ function App() {
       <BrowserRouter>
         <Switch>
           {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
-          <Route path="/create-activity" component={ActivitiesForm} />
-          <Route path="/create-category" component={CategoriesForm} />
-          <Route path="/create-news" component={NewsForm} />
-          <Route path="/backoffice/create-slide" component={SlidesForm} />
-          <Route path="/backoffice/organization" component={Organization} />
-          <Route path="/create-testimonials" component={TestimonialForm} />
-          <Route path="/create-user" component={UserForm} />
-          <Route path="/create-member" component={MembersForm} />
-          <Route path="/create-project" component={ProjectsForm} />
-          <Route path="/school-campaign" component={SchoolCampaign} />
-          <Route path="/toys-campaign" component={ToysCampaign} />
-          <Route path="/register" component={RegisterForm} />
+          <Route exact path="/create-activity" component={ActivitiesForm} />
+          <Route exact path="/create-category" component={CategoriesForm} />
+          <Route exact path="/create-news" component={NewsForm} />
+          <Route exact path="/backoffice/create-slide" component={SlidesForm} />
+          <Route exact path="/backoffice/organization" component={Organization} />
+          <Route exact path="/create-testimonials" component={TestimonialForm} />
+          <Route exact path="/create-user" component={UserForm} />
+          <Route exact path="/create-member" component={MembersForm} />
+          <Route exact path="/create-project" component={ProjectsForm} />
+          <Route exact path="/school-campaign" component={SchoolCampaign} />
+          <Route exact path="/toys-campaign" component={ToysCampaign} />
+          <Route exact path="/register" component={RegisterForm} />
         </Switch>
       </BrowserRouter>
     <div className="App">
