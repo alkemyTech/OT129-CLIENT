@@ -31,7 +31,7 @@ const LoginForm = () => {
         value={initialValues.name}
         onChange={handleChange}
         placeholder="Enter email"
-      ></input>
+      />
       <input
         className="input-field"
         type="text"
@@ -39,7 +39,7 @@ const LoginForm = () => {
         value={initialValues.password}
         onChange={handleChange}
         placeholder="Enter password"
-      ></input>
+      />
       <button className="submit-btn" type="submit">
         Log In
       </button>

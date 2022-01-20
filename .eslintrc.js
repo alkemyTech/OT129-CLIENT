@@ -21,5 +21,9 @@ module.exports = {
     "import/no-useless-path-segments": "off",
     "react/function-component-definition": "off",
     "react/jsx-one-expression-per-line": "off",
+    "comma-dangle": "off",
+    "implicit-arrow-linebreak": "off",
+    "react/jsx-curly-newline": "off",
+    "no-param-reassign": "off",
   },
 };
