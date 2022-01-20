@@ -22,14 +22,10 @@ const NewsForm = () => {
                 placeholder="Ingrese un título"
                 {...formik.getFieldProps("title")}
               ></input>
-              <ErrorMessage
-                name="title"
-                className="formik_error"
-                component="span"
-              />
+              <ErrorMessage name="title" component="span" />
             </div>
             <div className="mb-1">
-              <label className="form-label">Contenido</label>
+              <label className="form-label mt-1">Contenido</label>
               <input
                 className="form-control form-control-sm"
                 type="text"
@@ -37,45 +33,32 @@ const NewsForm = () => {
                 {...formik.getFieldProps("content")}
               ></input>
             </div>
-            <ErrorMessage
-              name="content"
-              className="formik_error"
-              component="span"
-            />
+            <ErrorMessage name="content" component="span" />
 
             <div className="mb-1">
-              <label className="form-label">Categoría</label>
+              <label className="form-label mt-1">Categoría</label>
               <select
-                class="form-select form-select-sm"
+                className="form-select form-select-sm"
                 aria-label="Default select example"
                 {...formik.getFieldProps("category")}
               >
-                <option selected>Selecciona una categoria</option>
+                <option value>Selecciona una categoria</option>
                 <option value="1">One</option>
                 <option value="2">Two</option>
                 <option value="3">Three</option>
               </select>
             </div>
-            <ErrorMessage
-              name="category"
-              className="formik_error"
-              component="span"
-            />
+            <ErrorMessage name="category" component="span" />
 
             <div className="mb-1">
-              <label className="form-label">Imagen</label>
+              <label className="form-label mt-1">Imagen</label>
               <input
                 className="form-control form-control-sm"
                 type="file"
-                placeholder="imagen..."
                 {...formik.getFieldProps("image")}
               ></input>
             </div>
-            <ErrorMessage
-              name="image"
-              className="formik_error"
-              component="span"
-            />
+            <ErrorMessage name="image" component="span" />
 
             <button className="btn btn-primary w-100 mt-2" type="submit">
               Agregar novedad
