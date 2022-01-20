@@ -23,7 +23,6 @@ const validationSchema = Yup.object({
 })
 
 const RegisterForm = () => {
-    console.log("render");
     return (
         <Container>
             <Formik
