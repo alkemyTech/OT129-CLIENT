@@ -8,32 +8,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 import '../FormStyles.css';
 
-// const validate = (values) => {
-//     const errors = {};
-//     if (!values.email) {
-//         errors.email = "The field is required"
-//     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-//         errors.email = "This is not a valid email format"
-//     }
-
-//     if (!values.password) {
-//         errors.password = "The field is required"
-//     } else if (values.password.length < 6) {
-//         errors.password = "Password must be at least 6 characters"
-//     } else if (!/^[a-zA-Z0-9 ]*$/.test(values.password)) {
-//         errors.password = "Password must have at least one special character"
-//     } else if (values.password !== values.passwordConfirm) {
-//         errors.passwordConfirm = "Passwords do not match"
-//     }
-
-//     if (!values.confirmPassword) {
-//         errors.confirmPassword = "The field is required"
-//     } else if (values.confirmPassword.length < 6) {
-//         errors.confirmPassword = "Password must be at least 6 characters"
-//     } else if (!/^[a-zA-Z0-9 ]*$/.test(values.confirmPassword)) {
-//         errors.confirmPassword = "Password must have at least one special character"
-//     }
-// }
+const PASSWORD_REGEX = new RegExp("(?=.*[A-Za-z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{6,})");
 
 const RegisterForm = () => {
 
@@ -45,8 +20,8 @@ const RegisterForm = () => {
 
     const validationSchema = Yup.object({
         email: Yup.string().required('The field is required').email('This is not a valid email format'),
-        password: Yup.string().required('The field is required').min(6, 'Password must be at least 6 characters').matches(/^[A-Za-z!@#$%^&*()_+]$/, 'Password must have at least one special character'),
-        confirmPassword: Yup.string().required('The field is required').min(6, 'Password must be at least 6 characters').matches(!/^[A-Za-z!@#$%^&*()_+]$/, 'Password must have at least one special character')
+        password: Yup.string().required('The field is required').min(6, 'Password must be at least 6 characters').matches(PASSWORD_REGEX, 'Password must have at least one special character and a number'),
+        confirmPassword: Yup.string().required('The field is required').min(6, 'Password must be at least 6 characters').matches(PASSWORD_REGEX, 'Password must have at least one special character and a number').oneOf([Yup.ref('password'), null], 'Passwords must match')
     })
 
     return (
