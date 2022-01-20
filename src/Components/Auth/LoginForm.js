@@ -4,20 +4,6 @@ import { Formik, ErrorMessage, Field, errors } from "formik";
 import * as Yup from "yup";
 
 const LoginForm = () => {
-  //   ALOJA EL TOKEN UNA VEZ AUTENTICADO EL USUARIO
-  //   PENDIENTE A LA PETICIÓN HTTP
-  //
-  //   const handleLogin = (values) => {
-  //     const url = ""
-  //     const body = {
-  //       email: values.email,
-  //       password: values.password,
-  //     };
-  //     axios.post(url, body).then((response) => {
-  //       localStorage.setItem("token", response.data.token);
-  //     });
-  //   };
-
   const startValues = {
     email: "",
     password: "",
@@ -29,7 +15,8 @@ const LoginForm = () => {
       validationSchema={Yup.object().shape({
         email: Yup.string().required("Field Required"),
         password: Yup.string()
-          .max(6, "Password must have at least 6 characters")
+          .min(6, "Password must have at least 6 characters")
+          .max(8, "Password must have at least 8 characters")
           .required("Field required")
           .matches(
             /[!@#$%^&*]/,
