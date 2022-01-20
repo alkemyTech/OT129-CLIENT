@@ -10,20 +10,20 @@ import '../FormStyles.css';
 
 const PASSWORD_REGEX = new RegExp("(?=.*[A-Za-z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{6,})");
 
+const initialValues = {
+    email: '',
+    password: '',
+    confirmPassword: ''
+}
+
+const validationSchema = Yup.object({
+    email: Yup.string().required('The field is required').email('This is not a valid email format'),
+    password: Yup.string().required('The field is required').min(6, 'Password must be at least 6 characters').matches(PASSWORD_REGEX, 'Password must have at least one special character and a number'),
+    confirmPassword: Yup.string().required('The field is required').min(6, 'Password must be at least 6 characters').matches(PASSWORD_REGEX, 'Password must have at least one special character and a number').oneOf([Yup.ref('password'), null], 'Passwords must match')
+})
+
 const RegisterForm = () => {
-
-    const initialValues = {
-        email: '',
-        password: '',
-        confirmPassword: ''
-    }
-
-    const validationSchema = Yup.object({
-        email: Yup.string().required('The field is required').email('This is not a valid email format'),
-        password: Yup.string().required('The field is required').min(6, 'Password must be at least 6 characters').matches(PASSWORD_REGEX, 'Password must have at least one special character and a number'),
-        confirmPassword: Yup.string().required('The field is required').min(6, 'Password must be at least 6 characters').matches(PASSWORD_REGEX, 'Password must have at least one special character and a number').oneOf([Yup.ref('password'), null], 'Passwords must match')
-    })
-
+    console.log("render");
     return (
         <Container>
             <Formik
