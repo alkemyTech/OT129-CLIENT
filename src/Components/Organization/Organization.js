@@ -1,9 +1,9 @@
 import React from 'react';
 import { Container} from 'react-bootstrap'
-import "./ScreenData.css"
+import "./Organization.css"
 import mockLogo from "./LOGO-SOMOS-MAS.png"
 import { Link } from 'react-router-dom';
-const ScreenData = () => {
+const Organization = () => {
   //datos mockups hasta armar la estructura definitiva
     const dataMock = {
       name: "Somos Más",
@@ -32,4 +32,4 @@ const ScreenData = () => {
     </div>
   );
 };
-export default ScreenData
+export default Organization
