@@ -2,7 +2,7 @@ import React from "react";
 import "../FormStyles.css";
 import { Formik, ErrorMessage, Field, errors } from "formik";
 import * as Yup from "yup";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 
 const LoginForm = () => {
@@ -12,16 +12,16 @@ const LoginForm = () => {
   };
 
   const handleLogin = (values) => {
-        const url = ""
-        const body = {
-          email: values.email,
-          password: values.password,
-        };
-        console.log(body);
-        axios.post(url, body).then((response) => {
-          localStorage.setItem("token", response.data.token);
-        });
-      };
+    const url = "";
+    const body = {
+      email: values.email,
+      password: values.password,
+    };
+    console.log(body);
+    axios.post(url, body).then((response) => {
+      localStorage.setItem("token", response.data.token);
+    });
+  };
 
   return (
     <Formik
@@ -35,11 +35,9 @@ const LoginForm = () => {
             /[!@#$%^&*]/,
             "Password must have at least one special character"
           ),
-
-          
       })}
       onSubmit={(values) => {
-        handleLogin(values)
+        handleLogin(values);
       }}
     >
       {({ errors, handleSubmit }) => (
