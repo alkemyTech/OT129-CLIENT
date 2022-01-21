@@ -23,6 +23,7 @@ const ActivitiesForm = ({ activities }) => {
         image: activities?.image || "",
     }
 
+
     return (
         <Formik
             initialValues={initialValues}
