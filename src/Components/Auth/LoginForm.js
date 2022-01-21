@@ -2,12 +2,25 @@ import React from "react";
 import "../FormStyles.css";
 import { Formik, ErrorMessage, Field, errors } from "formik";
 import * as Yup from "yup";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const LoginForm = () => {
   const startValues = {
     email: "",
     password: "",
   };
+
+  const handleLogin = (values) => {
+        const url = ""
+        const body = {
+          email: values.email,
+          password: values.password,
+        };
+        console.log(body);
+        axios.post(url, body).then((response) => {
+          localStorage.setItem("token", response.data.token);
+        });
+      };
 
   return (
     <Formik
@@ -16,7 +29,6 @@ const LoginForm = () => {
         email: Yup.string().required("Field Required"),
         password: Yup.string()
           .min(6, "Password must have at least 6 characters")
-          .max(8, "Password must have at least 8 characters")
           .required("Field required")
           .matches(
             /[!@#$%^&*]/,
@@ -24,7 +36,7 @@ const LoginForm = () => {
           ),
       })}
       onSubmit={(values) => {
-        console.log(values);
+        handleLogin(values)
       }}
     >
       {({ errors, handleSubmit }) => (
