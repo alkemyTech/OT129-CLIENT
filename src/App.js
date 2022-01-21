@@ -1,23 +1,3 @@
-<<<<<<< HEAD
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import ActivitiesForm from './Components/Activities/ActivitiesForm';
-import CategoriesForm from './Components/Categories/CategoriesForm';
-import NewsForm from './Components/News/NewsForm';
-import SlidesForm from './Components/Slides/SlidesForm';
-import TestimonialForm from './Components/Testimonials/TestimonialsForm';
-import UserForm from './Components/Users/UsersForm';
-import SchoolCampaign from './Campaigns/School/SchoolCampaign';
-import ToysCampaign from './Campaigns/Toys/ToysCampaign';
-import MembersForm from './Components/Members/MembersForm';
-import ProjectsForm from './Components/Projects/ProjectsForm';
-import Organization from './Components/Organization/Organization';
-import EditForm from './Components/EditForm/EditForm';
-=======
 import React from "react";
 import logo from "./logo.svg";
 import Counter from "./features/counter/Counter";
@@ -35,7 +15,6 @@ import ToysCampaign from "./Campaigns/Toys/ToysCampaign";
 import MembersForm from "./Components/Members/MembersForm";
 import ProjectsForm from "./Components/Projects/ProjectsForm";
 import Organization from "./Components/Organization/Organization";
->>>>>>> 4df9e3f570fa8bb9903b8150354b000830e66840
 
 function App() {
   return (
