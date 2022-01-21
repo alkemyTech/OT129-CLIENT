@@ -53,7 +53,7 @@ const HomeForm = () => {
                             <img src={image1} className="img-fluid" alt="example placeholder"/>
                         </div>
                         <div className="d-flex justify-content-center">
-                            <button className="btn btn-primary btn-rounded float-left">
+                            <button className="btn btn-primary ">
                                 <span>Choose file</span>
                                 <input 
                                     type="file" 
