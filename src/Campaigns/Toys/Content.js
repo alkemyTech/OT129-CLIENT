@@ -1,11 +1,7 @@
 import React from 'react';
 
-const Content = () => {
-  return (
-    <div>
+const Content = () => (
+  <div />
+);
 
-    </div>
-  );
-}
- 
 export default Content;
