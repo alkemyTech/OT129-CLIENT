@@ -3,6 +3,7 @@ import "../FormStyles.css";
 import { Formik, ErrorMessage, Field, errors } from "formik";
 import * as Yup from "yup";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import axios from "axios";
 
 const LoginForm = () => {
   const startValues = {
@@ -34,6 +35,8 @@ const LoginForm = () => {
             /[!@#$%^&*]/,
             "Password must have at least one special character"
           ),
+
+          
       })}
       onSubmit={(values) => {
         handleLogin(values)
@@ -50,7 +53,7 @@ const LoginForm = () => {
           <ErrorMessage
             name="email"
             component={() => (
-              <div class="alert alert-danger" role="alert">
+              <div className="alert alert-danger" role="alert">
                 {errors.email}
               </div>
             )}
@@ -64,7 +67,7 @@ const LoginForm = () => {
           <ErrorMessage
             name="password"
             component={() => (
-              <div class="alert alert-danger" role="alert">
+              <div className="alert alert-danger" role="alert">
                 {errors.password}
               </div>
             )}
