@@ -12,7 +12,7 @@ const data = {
 const OrganizationContainer = () => {
     return (
         <>
-            <Organization organizationData={organizationData}/>
+            <Organization data={data}/>
         </>    
     );
 };
