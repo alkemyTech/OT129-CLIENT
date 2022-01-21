@@ -1,16 +1,34 @@
-import React from "react";
-import "../../Components/FormStyles.css";
+import React, { useEffect, useState } from "react";
+import ContainerFormCard from "../ContainerFormCard";
+import { getCategories } from "../../Services/getCategories";
 import { ErrorMessage, Form, Formik } from "formik";
 import * as Yup from "yup";
-import ContainerFormCard from "../ContainerFormCard";
+import { createNews } from "../../Services/createNews";
 
-const NewsForm = () => {
+const NewsForm = (news = { one: 1, two: 2, three: 3 }) => {
+  const [categories, setCategories] = useState([]);
+  useEffect(() => {
+    const data = async () => {
+      const result = await getCategories();
+      setCategories(result);
+    };
+    data();
+  }, []);
+
   return (
     <ContainerFormCard>
       <Formik
         initialValues={initialValues}
         validationSchema={validationNewSchema}
-        onSubmit={(formData) => console.log(formData)}
+        onSubmit={(formData) => {
+          //Validamos si el objeto novedad esta vacio o no
+          if (Object.entries(news).length !== 0) {
+            const result = createNews({ formData });
+            console.log(result);
+          } else {
+            console.log("hacemos el metodo patch");
+          }
+        }}
       >
         {(formik) => (
           <Form className="p-4" onSubmit={formik.handleSubmit}>
@@ -42,10 +60,12 @@ const NewsForm = () => {
                 aria-label="Default select example"
                 {...formik.getFieldProps("category")}
               >
-                <option value>Selecciona una categoria</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+                <option defaultValue>Seleccione una categoria</option>
+                {categories?.map((categorie) => (
+                  <option key={categorie.id} value={categorie.id}>
+                    {categorie.name}
+                  </option>
+                ))}
               </select>
             </div>
             <ErrorMessage name="category" component="span" />
@@ -54,14 +74,16 @@ const NewsForm = () => {
               <label className="form-label mt-1">Imagen</label>
               <input
                 className="form-control form-control-sm"
-                type="file"
+                type="text"
                 {...formik.getFieldProps("image")}
               ></input>
             </div>
             <ErrorMessage name="image" component="span" />
 
             <button className="btn btn-primary w-100 mt-2" type="submit">
-              Agregar novedad
+              {Object.entries(news).length !== 0
+                ? "AGREGAR NOTICIA"
+                : "EDITAR NOTICIA"}
             </button>
           </Form>
         )}
@@ -71,11 +93,11 @@ const NewsForm = () => {
 };
 
 export default NewsForm;
-
 const initialValues = {
   title: "",
   content: "",
   category: "",
+  image: "",
 };
 const validationNewSchema = Yup.object({
   title: Yup.string()
@@ -83,4 +105,5 @@ const validationNewSchema = Yup.object({
     .required("El titulo es obligatorio"),
   content: Yup.string().required("El contenido es obligatorio"),
   category: Yup.string().required("La categoría es obligatoria"),
+  image: Yup.string().required("La imagen es obligatoria"),
 });
