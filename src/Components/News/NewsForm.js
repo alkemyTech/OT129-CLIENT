@@ -5,7 +5,7 @@ import { ErrorMessage, Form, Formik } from "formik";
 import * as Yup from "yup";
 import { createNews } from "../../Services/createNews";
 
-const NewsForm = (news = { one: 1, two: 2, three: 3 }) => {
+const NewsForm = (news) => {
   const [categories, setCategories] = useState([]);
   useEffect(() => {
     const data = async () => {
@@ -22,9 +22,10 @@ const NewsForm = (news = { one: 1, two: 2, three: 3 }) => {
         validationSchema={validationNewSchema}
         onSubmit={(formData) => {
           //Validamos si el objeto novedad esta vacio o no
-          if (Object.entries(news).length !== 0) {
-            const result = createNews({ formData });
-            console.log(result);
+          if (Object.entries(news).length === 0) {
+            // const result = createNews({ formData });
+            // console.log(result);
+            console.log("hacemos el metodo post");
           } else {
             console.log("hacemos el metodo patch");
           }
@@ -81,7 +82,7 @@ const NewsForm = (news = { one: 1, two: 2, three: 3 }) => {
             <ErrorMessage name="image" component="span" />
 
             <button className="btn btn-primary w-100 mt-2" type="submit">
-              {Object.entries(news).length !== 0
+              {Object.entries(news).length === 0
                 ? "AGREGAR NOTICIA"
                 : "EDITAR NOTICIA"}
             </button>
