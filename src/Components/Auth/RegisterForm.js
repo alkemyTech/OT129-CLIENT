@@ -19,7 +19,7 @@ const validationSchema = Yup.object({
     email: Yup.string().required('The field is required').email('This is not a valid email format'),
     password: Yup.string().required('The field is required').min(6, 'Password must be at least 6 characters').matches(PASSWORD_REGEX, 'Password must have at least one special character and a number'),
     confirmPassword: Yup.string().required('The field is required').min(6, 'Password must be at least 6 characters').matches(PASSWORD_REGEX, 'Password must have at least one special character and a number').oneOf([Yup.ref('password'), null], 'Passwords must match')
-})
+});
 
 const Alert = ({children}) => {
     return (
@@ -27,7 +27,8 @@ const Alert = ({children}) => {
             {children}
         </div>
     )
-}
+};
+
 const RegisterForm = () => {
     return (
         <div className="container">
@@ -80,6 +81,6 @@ const RegisterForm = () => {
             </Formik>
         </div>
     )
-}
+};
  
 export default RegisterForm;
