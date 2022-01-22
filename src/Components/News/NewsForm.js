@@ -12,9 +12,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import PropTypes from "prop-types";
 
-const NewsForm = ({
-  id, name, content, image, category_id
-}) => {
+const NewsForm = ({ id, name, content, image, category_id }) => {
   const initialValues = {
     name,
     content,
@@ -27,7 +25,7 @@ const NewsForm = ({
       .required("El titulo es obligatorio"),
     content: Yup.string().required("El contenido es obligatorio"),
     category_id: Yup.string().required("La categoría es obligatoria"),
-    image: Yup.string().required("La imagen es obligatoriaaaaaa"),
+    image: Yup.string().required("La imagen es obligatoria"),
   });
 
   const [categories, setCategories] = useState([]);

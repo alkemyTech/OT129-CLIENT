@@ -28,5 +28,11 @@ module.exports = {
     "no-param-reassign": "off",
     "arrow-body-style": "off",
     "jsx-quotes": "off",
+    camelcase: "off",
+    "no-shadow": "off",
+    "react/jsx-props-no-spreading": "off",
+    "jsx-a11y/label-has-associated-control": "off",
+    "react/require-default-props": "off",
+    "object-curly-newline": "off",
   },
 };
