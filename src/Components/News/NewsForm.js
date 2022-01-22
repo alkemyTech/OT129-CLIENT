@@ -10,8 +10,24 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { toBase64 } from "../../utils/toBase64";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import PropTypes from "prop-types";
 
-const NewsForm = ({ id, titulo }) => {
+const NewsForm = ({ id, name, content, image, category_id }) => {
+  const initialValues = {
+    name: name,
+    content: content,
+    image: image,
+    category_id: category_id,
+  };
+  const validationNewSchema = Yup.object({
+    name: Yup.string()
+      .min(4, "Debe contener al menos 4 caracteres")
+      .required("El titulo es obligatorio"),
+    content: Yup.string().required("El contenido es obligatorio"),
+    category_id: Yup.string().required("La categoría es obligatoria"),
+    image: Yup.string().required("La imagen es obligatoriaaaaaa"),
+  });
+
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(false);
   //ejecuta la funcion getCategories para traer y mostrar todas las categorias
@@ -86,7 +102,7 @@ const NewsForm = ({ id, titulo }) => {
                 category_id: formData.category_id,
                 image: resultbase,
               };
-              const result = await editNew({ data }, id);
+              const result = await editNew({ data }, category_id);
               if (result.data.success) {
                 setLoading(false);
                 toast.success("Novedad editada con éxito", {
@@ -120,10 +136,9 @@ const NewsForm = ({ id, titulo }) => {
               <div className="mb-1">
                 <label className="form-label fw-bold">Título</label>
                 <input
-                  value={titulo}
                   className="form-control form-control-sm w-100"
                   type="text"
-                  placeholder="Ingrese un título"
+                  // placeholder="Ingrese un título"
                   {...formik.getFieldProps("name")}
                 />
                 <ErrorMessage
@@ -207,18 +222,12 @@ const NewsForm = ({ id, titulo }) => {
   );
 };
 
-export default NewsForm;
-const initialValues = {
-  name: "",
-  content: "",
-  image: "",
-  category_id: "",
+NewsForm.propTypes = {
+  id: PropTypes.number,
+  name: PropTypes.string,
+  content: PropTypes.string,
+  image: PropTypes.string,
+  category_id: PropTypes.number,
 };
-const validationNewSchema = Yup.object({
-  name: Yup.string()
-    .min(4, "Debe contener al menos 4 caracteres")
-    .required("El titulo es obligatorio"),
-  content: Yup.string().required("El contenido es obligatorio"),
-  category_id: Yup.string().required("La categoría es obligatoria"),
-  image: Yup.string().required("La imagen es obligatoriaaaaaa"),
-});
+
+export default NewsForm;
