@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as yup from "yup";
+
 import { newsletterSchema } from "./formValidation";
 import "../FormStyles.css";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
@@ -12,8 +12,6 @@ const FooterForm = () => {
   const [valueName, setValueName] = useLocalStorage("nombre", "");
   const [valueSurname, setValueSurname] = useLocalStorage("apellido", "");
   const [valueEmail, setValueEmail] = useLocalStorage("correo", "");
-
-  console.log(newsletterSchema);
 
   //funcion para cambiar la clase del form para que no se muestre
   const formDisplayToggle = () => {
@@ -46,7 +44,10 @@ const FooterForm = () => {
         }}
       >
         {({ errors, isValid }) => (
-          <Form className={formSend ? "formNotDisplay" : "form-container"}>
+          <Form
+            className={formSend ? "formNotDisplay" : "form-container"}
+            noValidate
+          >
             <div className="mt-3">
               <label htmlFor="name" className="form-label">
                 Nombre
@@ -56,7 +57,7 @@ const FooterForm = () => {
                 id="name"
                 name="name"
                 placeholder="Nombre"
-                className={`form-control ${error && "is-invalid"}`}
+                className="form-control"
               />
               <ErrorMessage
                 name="name"
@@ -114,36 +115,3 @@ const FooterForm = () => {
 };
 
 export default FooterForm;
-
-// validate={(valores) => {
-//   let errores = {};
-
-//   //Validacion nombre
-//   if (!valores.name) {
-//     errores.name = "Por favor ingrese un nombre";
-//   } else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(valores.name)) {
-//     errores.name = "El nombre solo puede contener letras y espacios";
-//   }
-
-//   //Validacion apellido
-//   if (!valores.surname) {
-//     errores.surname = "Por favor ingrese un apellido";
-//   } else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(valores.surname)) {
-//     errores.surname =
-//       "El apellido solo puede contener letras y espacios";
-//   }
-
-//   //Validacion correo
-//   if (!valores.email) {
-//     errores.email = "Por favor ingrese un correo electronico";
-//   } else if (
-//     !/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(
-//       valores.email
-//     )
-//   ) {
-//     errores.email =
-//       "El correo solo puede contener letras, numeros, puntos, guines y guion bajo";
-//   }
-
-//   return errores;
-// }}
