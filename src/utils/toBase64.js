@@ -1,4 +1,4 @@
-//Funcion para convertir una imagen en un archivo base64
+// Funcion para convertir una imagen en un archivo base64
 export const toBase64 = (file) =>
   new Promise((resolve, reject) => {
     const reader = new FileReader();

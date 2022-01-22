@@ -26,5 +26,7 @@ module.exports = {
     "implicit-arrow-linebreak": "off",
     "react/jsx-curly-newline": "off",
     "no-param-reassign": "off",
+    "arrow-body-style": "off",
+    "jsx-quotes": "off",
   },
 };
