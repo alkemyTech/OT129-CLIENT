@@ -5,12 +5,12 @@ import * as Yup from "yup";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 
-const LoginForm = () => {
-  const startValues = {
-    email: "",
-    password: "",
-  };
+const startValues = {
+  email: "",
+  password: "",
+};
 
+const LoginForm = () => {
   const handleLogin = (values) => {
     const url = "";
     const body = {
