@@ -16,7 +16,7 @@ import MembersForm from "./Components/Members/MembersForm";
 import ProjectsForm from "./Components/Projects/ProjectsForm";
 import Organization from "./Components/Organization/Organization";
 
-import RegisterForm from './Components/Auth/RegisterForm'; 
+import RegisterForm from './Components/Auth/RegisterForm';
 import EditForm from "./Components/EditForm/EditForm";
 
 function App() {

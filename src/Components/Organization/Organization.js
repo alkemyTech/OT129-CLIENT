@@ -1,5 +1,4 @@
 import React from "react";
-import { Container } from "react-bootstrap";
 import "./Organization.css";
 import mockLogo from "./LOGO-SOMOS-MAS.png";
 import { Link } from "react-router-dom";
@@ -15,7 +14,7 @@ const Organization = () => {
 
   return (
     <div className="container-bg">
-      <Container className="card-bg">
+      <div className="container card-bg">
         <h1 className="pb-2">Organización</h1>
         <div className="d-flex flex-column align-items-start">
           <h5 className="text-center">
@@ -44,7 +43,7 @@ const Organization = () => {
             Editar
           </Link>
         </div>
-      </Container>
+      </div>
     </div>
   );
 };
