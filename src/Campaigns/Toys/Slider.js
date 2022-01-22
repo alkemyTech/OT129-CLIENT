@@ -1,11 +1,7 @@
 import React from 'react';
 
-const Slider = () => {
-  return (
-    <div>
-      
-    </div>
-  );
-}
- 
+const Slider = () => (
+  <div />
+);
+
 export default Slider;

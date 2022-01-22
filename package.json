@@ -14,7 +14,6 @@
     "formik": "^2.2.9",
     "prop-types": "^15.8.1",
     "react": "^17.0.2",
-    "react-bootstrap": "^2.1.1",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.4",
     "react-router-dom": "^5.2.0",
@@ -26,7 +25,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint --ext .js,.jsx .",
+    "lint:fix": "eslint --fix --ext .js,.jsx ."
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -42,5 +43,14 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint": "^8.7.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-jest": "^25.7.0",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.28.0",
+    "eslint-plugin-react-hooks": "^4.3.0"
   }
 }
