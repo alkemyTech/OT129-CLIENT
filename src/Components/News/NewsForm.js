@@ -6,25 +6,11 @@ import * as Yup from "yup";
 import { createNews } from "../../Services/createNews";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import { number } from "yup";
+import { toBase64 } from "../../utils/toBase64";
 
 const NewsForm = ({ id = "", titulo }) => {
-  const convertBase64 = (file) => {
-    return new Promise((resolve, reject) => {
-      const fileReader = new FileReader();
-      fileReader.readAsDataURL(file);
-
-      fileReader.onload = () => {
-        resolve(fileReader.result);
-      };
-
-      fileReader.onerror = (error) => {
-        reject(error);
-      };
-    });
-  };
-
   const [categories, setCategories] = useState([]);
+  //ejecuta la funcion getCategories para traer y mostrar todas las categorias
   useEffect(() => {
     const data = async () => {
       const result = await getCategories();
@@ -40,17 +26,17 @@ const NewsForm = ({ id = "", titulo }) => {
         validationSchema={validationNewSchema}
         onSubmit={async (formData) => {
           console.log(formData);
+          const resultbase = await toBase64(formData.image);
           const data = {
             name: formData.name,
             content: formData.content,
             category_id: formData.category_id,
+            image: resultbase,
           };
-          const resultbase = await convertBase64(formData.image);
-          console.log(resultbase);
           //Validamos si el objeto novedad esta vacio o no
           if (id === "") {
-            // const result = await createNews({ data });
-            // console.log(result);
+            const result = await createNews({ data });
+            console.log(result.data.success);
           } else {
             // const result = editNews({ formData }, id);
             // console.log("hacemos el metodo patch");
@@ -76,16 +62,13 @@ const NewsForm = ({ id = "", titulo }) => {
             </div>
             <div className="mb-1">
               <label className="form-label fw-bold mt-1">Contenido</label>
-              {/* <CKEditor
+              <CKEditor
+                id="content"
                 editor={ClassicEditor}
-                // {...formik.getFieldProps("content")}
-              /> */}
-              <input
-                className="form-control form-control-sm"
-                type="text"
-                placeholder="Contenido..."
-                {...formik.getFieldProps("content")}
-              ></input>
+                onChange={(event, editor) =>
+                  formik.setFieldValue("content", editor.getData())
+                }
+              />
             </div>
             <ErrorMessage
               name="content"
@@ -118,8 +101,11 @@ const NewsForm = ({ id = "", titulo }) => {
               <label className="form-label fw-bold mt-1">Imagen</label>
               <input
                 className="form-control form-control-sm"
+                name="image"
                 type="file"
-                {...formik.getFieldProps("image")}
+                onChange={(event) => {
+                  formik.setFieldValue("image", event.currentTarget.files[0]);
+                }}
               />
             </div>
             <ErrorMessage
@@ -132,7 +118,7 @@ const NewsForm = ({ id = "", titulo }) => {
               className="btn btn-primary w-100 mt-2 fw-bold"
               type="submit"
             >
-              {id === "" ? "AGREGAR NOTICIA" : "EDITAR NOTICIA"}
+              {id === "" ? "AGREGAR NOVEDAD" : "EDITAR NOTICIA"}
             </button>
           </Form>
         )}
@@ -146,7 +132,7 @@ const initialValues = {
   name: "",
   content: "",
   image: "",
-  category_id: 120,
+  category_id: "",
 };
 const validationNewSchema = Yup.object({
   name: Yup.string()
@@ -154,5 +140,5 @@ const validationNewSchema = Yup.object({
     .required("El titulo es obligatorio"),
   content: Yup.string().required("El contenido es obligatorio"),
   category_id: Yup.string().required("La categoría es obligatoria"),
-  image: Yup.string().required("La imagen es obligatoria"),
+  image: Yup.string().required("La imagen es obligatoriaaaaaa"),
 });
