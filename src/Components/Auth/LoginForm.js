@@ -10,6 +10,14 @@ const startValues = {
   password: "",
 };
 
+const validationSchema = Yup.object().shape({
+  email: Yup.string().required("Field Required"),
+  password: Yup.string()
+    .min(6, "Password must have at least 6 characters")
+    .required("Field required")
+    .matches(/[!@#$%^&*]/, "Password must have at least one special character"),
+});
+
 const LoginForm = () => {
   const handleLogin = (values) => {
     const url = "";
@@ -26,16 +34,7 @@ const LoginForm = () => {
   return (
     <Formik
       initialValues={startValues}
-      validationSchema={Yup.object().shape({
-        email: Yup.string().required("Field Required"),
-        password: Yup.string()
-          .min(6, "Password must have at least 6 characters")
-          .required("Field required")
-          .matches(
-            /[!@#$%^&*]/,
-            "Password must have at least one special character"
-          ),
-      })}
+      validationSchema={validationSchema}
       onSubmit={(values) => {
         handleLogin(values);
       }}
