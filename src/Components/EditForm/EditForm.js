@@ -1,4 +1,7 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React from "react";
+
+import PropTypes from 'prop-types';
 
 import { Formik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
@@ -86,5 +89,9 @@ const EditForm = () => (
     </Formik>
   </div>
 );
+
+Alert.propTypes = {
+  children: PropTypes.string.isRequired
+};
 
 export default EditForm;
