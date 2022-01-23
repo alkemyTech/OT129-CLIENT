@@ -4,15 +4,13 @@ import Slider from './Slider';
 import Content from './Content';
 import Footer from './Footer';
 
-const ToysCampaign = () => {
-  return (
-    <>
-      <Header />
-      <Slider />
-      <Content />
-      <Footer />
-    </>
-  );
-}
- 
+const ToysCampaign = () => (
+  <>
+    <Header />
+    <Slider />
+    <Content />
+    <Footer />
+  </>
+);
+
 export default ToysCampaign;
