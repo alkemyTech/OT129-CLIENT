@@ -6,6 +6,7 @@ import {
 import PropTypes from 'prop-types';
 import * as Yup from 'yup';
 import '../FormStyles.css';
+import axios from 'axios';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
@@ -16,6 +17,28 @@ const toBase64 = (file) =>
     reader.onloadend = () => resolve(reader.result);
     reader.onerror = reject;
   });
+const createNewActivity = async (data) => {
+  axios
+    .post("http://ongapi.alkemy.org/api/activities", data, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+    .then((res) => {
+      console.log(res, 'Actividad creada correctamente');
+    });
+};
+const updateActivity = async (data) => {
+  axios
+    .put(`http://ongapi.alkemy.org/api/activities/${data.id}`, data, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+    .then((res) => {
+      console.log(res, 'Modificación aprobada correctamente');
+    });
+};
 
 const ActivitiesForm = ({ activity = {} }) => {
   const initialValues = {
@@ -42,11 +65,22 @@ const ActivitiesForm = ({ activity = {} }) => {
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
-        onSubmit={async (formData) => {
-          console.log(formData);
+        onSubmit={async (formData, { setStatus, resetForm }) => {
           const resultBase = await toBase64(formData.image);
           const newActivity = { ...formData, image: resultBase };
-          console.log(newActivity);
+          if (activity.id === undefined) {
+            const result = await createNewActivity(newActivity);
+            console.log(result);
+            try {
+              resetForm({});
+              setStatus({ success: true });
+            } catch (error) {
+              setStatus({ success: false });
+            }
+          } else {
+            const result = await updateActivity(newActivity);
+            console.log(result);
+          }
         }}
       >
         {(formik) => (
@@ -66,6 +100,8 @@ const ActivitiesForm = ({ activity = {} }) => {
                 <CKEditor
                   id="description"
                   editor={ClassicEditor}
+                  config={{ placeholder: "Descripción" }}
+                  name="description"
                   onChange={(event, editor) => {
                     const data = editor.getData();
                     formik.setFieldValue("description", data);
