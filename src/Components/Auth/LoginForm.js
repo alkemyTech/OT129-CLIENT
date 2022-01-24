@@ -3,6 +3,7 @@ import "../FormStyles.css";
 import { Formik, ErrorMessage, Field, errors } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
+
 import Alert from "../Container/Alert";
 
 const startValues = {
@@ -49,26 +50,26 @@ const LoginForm = () => {
         {({ handleSubmit }) => (
           <form className="form" onSubmit={handleSubmit}>
             <div className="mb-3">
-              <label htmlFor="email" className="form-label">
+              <label className="form-label" htmlFor="email">
                 Email:
               </label>
-              <Field className="form-control mb-3" name="email" type="email" placeholder="Email" />
-              <ErrorMessage name="email" component={Alert} className="alert-danger" />
+              <Field className="form-control mb-3" name="email" placeholder="Email" type="email" />
+              <ErrorMessage className="alert-danger" component={Alert} name="email" />
             </div>
             <div className="form-group mb-3">
-              <label htmlFor="password" className="form-label">
+              <label className="form-label" htmlFor="password">
                 Password:
               </label>
               <Field
                 className="form-control mb-3"
                 name="password"
-                type="password"
                 placeholder="Password"
+                type="password"
               />
-              <ErrorMessage name="password" component={Alert} className="alert-danger" />
+              <ErrorMessage className="alert-danger" component={Alert} name="password" />
             </div>
-            <div className="">
-              <button className="btn btn-primary w-100 " type="submit">
+            <div className="mb-3">
+              <button className="btn btn-primary w-100" type="submit">
                 Log in
               </button>
             </div>
