@@ -26,19 +26,19 @@ const LoginForm = () => {
     <form className="form-container" onSubmit={handleSubmit}>
       <input
         className="input-field"
-        type="text"
         name="email"
+        placeholder="Enter email"
+        type="text"
         value={initialValues.name}
         onChange={handleChange}
-        placeholder="Enter email"
       />
       <input
         className="input-field"
-        type="text"
         name="password"
+        placeholder="Enter password"
+        type="text"
         value={initialValues.password}
         onChange={handleChange}
-        placeholder="Enter password"
       />
       <button className="submit-btn" type="submit">
         Log In
