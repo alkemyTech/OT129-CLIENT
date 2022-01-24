@@ -39,11 +39,12 @@
     ]
   },
   "devDependencies": {
+    "eslint-config-prettier": "^7.2.0",
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-jest": "^25.7.0",
+    "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
-    "eslint-config-prettier": "^7.2.0",
-    "eslint-plugin-prettier": "^3.4.0"
+    "prettier": "^2.5.1"
   }
 }
