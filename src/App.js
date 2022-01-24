@@ -1,5 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
 
 import Counter from "./features/counter/Counter";
 import logo from "./logo.svg";
@@ -14,15 +16,8 @@ import ToysCampaign from "./Campaigns/Toys/ToysCampaign";
 import MembersForm from "./Components/Members/MembersForm";
 import ProjectsForm from "./Components/Projects/ProjectsForm";
 import Organization from "./Components/Organization/Organization";
-<<<<<<< HEAD
-import RegisterForm from './Components/Auth/RegisterForm';
-import HomeForm from "./Components/Home/HomeForm";
-=======
 import RegisterForm from "./Components/Auth/RegisterForm";
-
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./App.css";
->>>>>>> development
+import HomeForm from "./Components/Home/HomeForm";
 
 function App() {
   return (
