@@ -1,9 +1,8 @@
 import React from "react";
-import logo from "./logo.svg";
-import Counter from "./features/counter/Counter";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./App.css";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+
+import Counter from "./features/counter/Counter";
+import logo from "./logo.svg";
 import ActivitiesForm from "./Components/Activities/ActivitiesForm";
 import CategoriesForm from "./Components/Categories/CategoriesForm";
 import NewsForm from "./Components/News/NewsForm";
@@ -15,9 +14,12 @@ import ToysCampaign from "./Campaigns/Toys/ToysCampaign";
 import MembersForm from "./Components/Members/MembersForm";
 import ProjectsForm from "./Components/Projects/ProjectsForm";
 import Organization from "./Components/Organization/Organization";
+import RegisterForm from "./Components/Auth/RegisterForm";
 
 import RegisterForm from './Components/Auth/RegisterForm';
 import EditForm from "./Components/EditForm/EditForm";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
 
 function App() {
   return (
@@ -42,7 +44,7 @@ function App() {
       </BrowserRouter>
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+          <img alt="logo" className="App-logo" src={logo} />
           <Counter />
           <p>
             Edit <code>src/App.js</code> and save to reload.
@@ -52,8 +54,8 @@ function App() {
             <a
               className="App-link"
               href="https://reactjs.org/"
-              target="_blank"
               rel="noopener noreferrer"
+              target="_blank"
             >
               React
             </a>
@@ -61,8 +63,8 @@ function App() {
             <a
               className="App-link"
               href="https://redux.js.org/"
-              target="_blank"
               rel="noopener noreferrer"
+              target="_blank"
             >
               Redux
             </a>
@@ -70,8 +72,8 @@ function App() {
             <a
               className="App-link"
               href="https://redux-toolkit.js.org/"
-              target="_blank"
               rel="noopener noreferrer"
+              target="_blank"
             >
               Redux Toolkit
             </a>
@@ -79,8 +81,8 @@ function App() {
             <a
               className="App-link"
               href="https://react-redux.js.org/"
-              target="_blank"
               rel="noopener noreferrer"
+              target="_blank"
             >
               React Redux
             </a>

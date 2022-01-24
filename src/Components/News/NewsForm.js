@@ -29,15 +29,15 @@ const NewsForm = () => {
     <form className="form-container" onSubmit={handleSubmit}>
       <input
         className="input-field"
-        type="text"
         name="title"
+        type="text"
         value={initialValues.title || ""}
         onChange={handleChange}
       />
       <input
         className="input-field"
-        type="text"
         name="content"
+        type="text"
         value={initialValues.content || ""}
         onChange={handleChange}
       />
@@ -47,7 +47,7 @@ const NewsForm = () => {
         value={initialValues.category || ""}
         onChange={handleChange}
       >
-        <option value="" disabled>
+        <option disabled value="">
           Select category
         </option>
         <option value="1">Demo option 1</option>

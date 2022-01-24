@@ -8,8 +8,15 @@ import * as Yup from 'yup';
 
 import 'bootstrap/dist/css/bootstrap.css';
 
+const initialValues = {
+  name: 'defaultName',
+  logo: 'defaultLogo',
+  shortDescription: 'defaultShortDescription',
+  longDescription: 'defaultLongDescription'
+};
+
 const validationSchema = Yup.object({
-  name: Yup.string().required('The field is required'),
+  name: Yup.string().required('The field is required').min(3, 'The field must be at least 3 characters'),
   logo: Yup.string().required('The field is required'),
   shortDescription: Yup.string().required('The field is required'),
   longDescription: Yup.string().required('The field is required')
@@ -21,75 +28,76 @@ const Alert = ({ children }) => (
   </div>
 );
 
-const EditForm = ({
-  name, logo, shortDescription, longDescription
-}) => (
-  <div className="container">
-    <div className="alert alert-warning text-center mt-3">Editar organización</div>
-    <Formik
-      validationSchema={validationSchema}
-      onSubmit={(formData) => console.log(formData)}
-    >
-      {((formik) => (
-        <form
-          noValidate
-          className="mt-3"
-          onSubmit={formik.handleSubmit}
-        >
-          <div className="form-group">
-            <label htmlFor="name">Edit Name:</label>
-            <input
-              type="text"
-              className="form-control mb-3"
-              id="name"
-              onChange={formik.handleChange}
-              value={name ?? 'testValue'}
-            />
-            <ErrorMessage name="password" component={Alert} className="alert-danger" />
-          </div>
-          <div className="form-group">
-            <label htmlFor="logo">Edit Logo:</label>
-            <input
-              type="text"
-              className="form-control mb-3"
-              id="logo"
-              onChange={formik.handleChange}
-              value={logo ?? 'testValue'}
-            />
-            <ErrorMessage name="password" component={Alert} className="alert-danger" />
-          </div>
-          <div className="form-group">
-            <label htmlFor="shortDescription">Edit Short Description:</label>
-            <textarea
-              className="form-control mb-3"
-              id="shortDescription"
-              onChange={formik.handleChange}
-              value={shortDescription ?? 'testValue'}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="longDescription">Edit Long Description:</label>
-            <textarea
-              className="form-control mb-3"
-              id="longDescription"
-              onChange={formik.handleChange}
-              value={longDescription ?? 'testValue'}
-            />
-            <ErrorMessage name="password" component={Alert} className="alert-danger" />
-          </div>
-          <button type="submit" className="btn btn-primary">Submit</button>
-        </form>
-      ))}
-    </Formik>
-  </div>
-);
-
-EditForm.propTypes = {
-  name: PropTypes.string.isRequired,
-  logo: PropTypes.string.isRequired,
-  shortDescription: PropTypes.string.isRequired,
-  longDescription: PropTypes.string.isRequired
+const EditForm = () => {
+  const handleSubmit = (formData) => console.log(formData);
+  return (
+    <div className="container">
+      <div className="alert alert-warning text-center mt-3">Editar organización</div>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={handleSubmit}
+      >
+        {((formik) => (
+          <form
+            noValidate
+            className="mt-3"
+            onSubmit={formik.handleSubmit}
+          >
+            <div className="form-group mb-3">
+              <label htmlFor="name">Edit Name:</label>
+              <input
+                type="text"
+                className="form-control mb-3"
+                id="name"
+                onChange={formik.handleChange}
+                value={formik.values.name}
+              />
+              <ErrorMessage name="password" component={Alert} className="alert-danger" />
+            </div>
+            <div className="form-group mb-3">
+              <label htmlFor="logo">Edit Logo:</label>
+              <input
+                type="text"
+                className="form-control mb-3"
+                id="logo"
+                onChange={formik.handleChange}
+                value={formik.values.logo}
+              />
+              <ErrorMessage name="password" component={Alert} className="alert-danger" />
+            </div>
+            <div className="form-group mb-3">
+              <label htmlFor="shortDescription">Edit Short Description:</label>
+              <textarea
+                className="form-control mb-3"
+                id="shortDescription"
+                onChange={formik.handleChange}
+                value={formik.values.shortDescription}
+              />
+            </div>
+            <div className="form-group mb-3">
+              <label htmlFor="longDescription">Edit Long Description:</label>
+              <textarea
+                className="form-control mb-3"
+                id="longDescription"
+                onChange={formik.handleChange}
+                value={formik.values.longDescription}
+              />
+              <ErrorMessage name="password" component={Alert} className="alert-danger" />
+            </div>
+            <button type="submit" className="btn btn-primary">Submit</button>
+          </form>
+        ))}
+      </Formik>
+    </div>
+  );
 };
+// EditForm.propTypes = {
+  //   name: PropTypes.string.isRequired,
+  //   logo: PropTypes.string.isRequired,
+  //   shortDescription: PropTypes.string.isRequired,
+  //   longDescription: PropTypes.string.isRequired
+  // };
 
 Alert.propTypes = {
   children: PropTypes.string.isRequired
