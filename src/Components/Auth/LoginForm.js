@@ -2,13 +2,15 @@ import React from "react";
 import "../FormStyles.css";
 import { Formik, ErrorMessage, Field, errors } from "formik";
 import * as Yup from "yup";
-import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
+import Alert from "../Container/Alert";
 
 const startValues = {
   email: "",
   password: "",
 };
+
+const isDesktop = window.innerWidth > 768;
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required("Field Required"),
@@ -25,56 +27,55 @@ const LoginForm = () => {
       email: values.email,
       password: values.password,
     };
-    console.log(body);
+
     axios.post(url, body).then((response) => {
       localStorage.setItem("token", response.data.token);
     });
   };
 
   return (
-    <Formik
-      initialValues={startValues}
-      validationSchema={validationSchema}
-      onSubmit={(values) => {
-        handleLogin(values);
-      }}
+    <div
+      className={`${
+        isDesktop ? "w-25" : "w-75"
+      } mt-5 m-auto border border-light shadow-lg rounded px-4 py-4`}
     >
-      {({ errors, handleSubmit }) => (
-        <form className="form-container" onSubmit={handleSubmit}>
-          <Field
-            className="input-field"
-            type="email"
-            name="email"
-            placeholder="Enter email"
-          />
-          <ErrorMessage
-            name="email"
-            component={() => (
-              <div className="alert alert-danger" role="alert">
-                {errors.email}
-              </div>
-            )}
-          />
-          <Field
-            className="input-field"
-            type="password"
-            name="password"
-            placeholder="Enter password"
-          />
-          <ErrorMessage
-            name="password"
-            component={() => (
-              <div className="alert alert-danger" role="alert">
-                {errors.password}
-              </div>
-            )}
-          />
-          <button className="submit-btn" type="submit">
-            Log In
-          </button>
-        </form>
-      )}
-    </Formik>
+      <Formik
+        initialValues={startValues}
+        validationSchema={validationSchema}
+        onSubmit={(values) => {
+          handleLogin(values);
+        }}
+      >
+        {({ handleSubmit }) => (
+          <form className="form" onSubmit={handleSubmit}>
+            <div className="mb-3">
+              <label htmlFor="email" className="form-label">
+                Email:
+              </label>
+              <Field className="form-control mb-3" name="email" type="email" placeholder="Email" />
+              <ErrorMessage name="email" component={Alert} className="alert-danger" />
+            </div>
+            <div className="form-group mb-3">
+              <label htmlFor="password" className="form-label">
+                Password:
+              </label>
+              <Field
+                className="form-control mb-3"
+                name="password"
+                type="password"
+                placeholder="Password"
+              />
+              <ErrorMessage name="password" component={Alert} className="alert-danger" />
+            </div>
+            <div className="">
+              <button className="btn btn-primary w-100 " type="submit">
+                Log in
+              </button>
+            </div>
+          </form>
+        )}
+      </Formik>
+    </div>
   );
 };
 
