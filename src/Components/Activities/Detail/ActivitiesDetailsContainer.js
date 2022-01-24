@@ -17,11 +17,7 @@ const data = {
 };
 
 const ActivitiesDetailsContainer = () => {
-  return (
-    <>
-      <ActivitiesDetail data={data} />
-    </>
-  );
+  return <ActivitiesDetail data={data} />;
 };
 
 export default ActivitiesDetailsContainer;
