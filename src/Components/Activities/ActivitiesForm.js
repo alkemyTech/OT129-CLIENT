@@ -23,11 +23,6 @@ const ActivitiesForm = () => {
 
   return (
     <form className="form-container" onSubmit={handleSubmit}>
-<<<<<<< HEAD
-      <input className="input-field" type="text" name="name" value={initialValues.name} onChange={handleChange} placeholder="Activity Title" />
-      <input className="input-field" type="text" name="description" value={initialValues.description} onChange={handleChange} placeholder="Write some activity description" />
-      <button className="submit-btn" type="submit">Send</button>
-=======
       <input
         className="input-field"
         name="name"
@@ -47,7 +42,6 @@ const ActivitiesForm = () => {
       <button className="submit-btn" type="submit">
         Send
       </button>
->>>>>>> development
     </form>
   );
 };

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+
 import {
   decrement,
   increment,
@@ -18,11 +19,6 @@ export default function Counter() {
     <div>
       <div className={styles.row}>
         <button
-<<<<<<< HEAD
-          type="button"
-          className={styles.button}
-=======
->>>>>>> development
           aria-label="Increment value"
           className={styles.button}
           type="button"
@@ -32,11 +28,6 @@ export default function Counter() {
         </button>
         <span className={styles.value}>{count}</span>
         <button
-<<<<<<< HEAD
-          type="button"
-          className={styles.button}
-=======
->>>>>>> development
           aria-label="Decrement value"
           className={styles.button}
           type="button"
@@ -53,7 +44,6 @@ export default function Counter() {
           onChange={(e) => setIncrementAmount(e.target.value)}
         />
         <button
-          type="button"
           className={styles.button}
           type="button"
           onClick={() => dispatch(incrementByAmount(Number(incrementAmount) || 0))}
@@ -61,7 +51,6 @@ export default function Counter() {
           Add Amount
         </button>
         <button
-          type="button"
           className={styles.asyncButton}
           type="button"
           onClick={() => dispatch(incrementAsync(Number(incrementAmount) || 0))}

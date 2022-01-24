@@ -7,7 +7,7 @@ module.exports = {
   },
   extends: ["plugin:react/recommended"],
   parserOptions: {
-    ecmaVersion: "latest",
+    ecmaVersion: 12,
     sourceType: "module",
     ecmaFeatures: {
       jsx: true,
