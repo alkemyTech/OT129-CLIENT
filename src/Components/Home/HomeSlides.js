@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Carousel from 'bootstrap';
-import "./HomeSlides.css"
 
 const HomeSlides = ({data = []}) => {
   return (
