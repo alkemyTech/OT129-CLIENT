@@ -4,6 +4,7 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import * as Yup from "yup";
 
+import { isValidUrl } from "../../utils/isValidUrl";
 import ContainerFormCard from "../ContainerFormCard";
 
 import "../FormStyles.css";
@@ -82,16 +83,7 @@ const initialValues = {
   image: "",
   link: "",
 };
-//Funcion para validar la url
-const isValidUrl = (url) => {
-  try {
-    new URL(url);
-  } catch (e) {
-    return false;
-  }
 
-  return true;
-};
 const SUPPORTED_FORMATS = ["image/jpg", "image/png"]; //Formatos soportados
 const validationMemberSchema = Yup.object({
   name: Yup.string()
