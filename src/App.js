@@ -27,7 +27,7 @@ function App() {
           {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
           <Route exact component={ActivitiesForm} path="/create-activity" />
           <Route exact component={CategoriesForm} path="/create-category" />
-          <Route exact component={NewsForm} path="/create-news" />
+          <Route exact component={NewsForm} path="/backoffice/create-news" />
           <Route exact component={SlidesForm} path="/backoffice/create-slide" />
           <Route exact component={Organization} path="/backoffice/organization" />
           <Route exact component={TestimonialForm} path="/create-testimonials" />
