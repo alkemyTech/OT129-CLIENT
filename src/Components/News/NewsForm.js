@@ -20,19 +20,12 @@ const NewsForm = ({ id, name, content, image, category_id }) => {
     image,
     category_id,
   };
-  const validationNewSchema = Yup.object({
-    name: Yup.string()
-      .min(4, "Debe contener al menos 4 caracteres")
-      .required("El titulo es obligatorio"),
-    content: Yup.string().required("El contenido es obligatorio"),
-    category_id: Yup.string().required("La categoría es obligatoria"),
-    image: Yup.string().required("La imagen es obligatoria"),
-  });
 
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(false);
 
   // ejecuta la funcion getCategories para traer y mostrar todas las categorias
+
   useEffect(() => {
     const data = async () => {
       const result = await getCategories();
@@ -145,6 +138,7 @@ const NewsForm = ({ id, name, content, image, category_id }) => {
                 <input
                   className="form-control form-control-sm w-100"
                   type="text"
+                  value="hola que tal"
                   // placeholder="Ingrese un título"
                   {...formik.getFieldProps("name")}
                 />
@@ -205,6 +199,14 @@ const NewsForm = ({ id, name, content, image, category_id }) => {
     </>
   );
 };
+const validationNewSchema = Yup.object({
+  name: Yup.string()
+    .min(4, "Debe contener al menos 4 caracteres")
+    .required("El titulo es obligatorio"),
+  content: Yup.string().required("El contenido es obligatorio"),
+  category_id: Yup.string().required("La categoría es obligatoria"),
+  image: Yup.string().required("La imagen es obligatoria"),
+});
 
 NewsForm.propTypes = {
   id: PropTypes.number,
