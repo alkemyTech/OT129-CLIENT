@@ -5,16 +5,23 @@ module.exports = {
     node: true,
     jest: true,
   },
-  extends: ["plugin:react/recommended", "airbnb"],
+  extends: ["plugin:react/recommended"],
   parserOptions: {
-    ecmaFeatures: {
-      jsx: true,
-    },
     ecmaVersion: "latest",
     sourceType: "module",
+    ecmaFeatures: {
+      jsx: true,
+      modules: true,
+    },
   },
-  plugins: ["react"],
+  settings: {
+    react: {
+      version: "detect",
+    },
+  },
+  plugins: ["react", "react-hooks", "prettier", "import"],
   rules: {
+<<<<<<< HEAD
     quotes: "off",
     "linebreak-style": "off",
     "react/jsx-filename-extension": "off",
@@ -34,5 +41,51 @@ module.exports = {
     "jsx-a11y/label-has-associated-control": "off",
     "react/require-default-props": "off",
     "object-curly-newline": "off",
+=======
+    "no-console": "warn",
+    "prettier/prettier": [
+      "error",
+      {
+        singleQuote: false,
+        traillingComma: "all",
+        semi: true,
+        tabWidth: 2,
+        printWidth: 100,
+        bracketSpacing: true,
+        arrowParens: "always",
+        endOfLine: "auto",
+      },
+    ],
+    "no-unused-vars": [
+      "warn",
+      {
+        args: "after-used",
+        ignoreRestSiblings: false,
+        argsIgnorePattern: "^_.*?$",
+      },
+    ],
+    "import/order": ["warn", { "newlines-between": "always" }],
+    "react/self-closing-comp": "warn",
+    "react-hooks/rules-of-hooks": "warn",
+    "react/jsx-sort-props": [
+      "warn",
+      {
+        callbacksLast: true,
+        shorthandFirst: true,
+        noSortAlphabetically: false,
+        reservedFirst: true,
+      },
+    ],
+    "padding-line-between-statements": [
+      "error",
+      { blankLine: "always", prev: "*", next: "return" },
+      { blankLine: "always", prev: ["const", "let", "var"], next: "*" },
+      {
+        blankLine: "any",
+        prev: ["const", "let", "var"],
+        next: ["const", "let", "var"],
+      },
+    ],
+>>>>>>> 2ef509bde12f3834ad27713c285679a1ef8b6c7e
   },
 };

@@ -1,7 +1,5 @@
-import React from 'react';
+import React from "react";
 
-const Content = () => (
-  <div />
-);
+const Content = () => <div />;
 
 export default Content;

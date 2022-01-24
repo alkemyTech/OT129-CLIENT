@@ -25,19 +25,19 @@ const SlidesForm = () => {
     <form className="form-container" onSubmit={handleSubmit}>
       <input
         className="input-field"
-        type="text"
         name="name"
+        placeholder="Slide Title"
+        type="text"
         value={initialValues.name}
         onChange={handleChange}
-        placeholder="Slide Title"
       />
       <input
         className="input-field"
-        type="text"
         name="description"
+        placeholder="Write the description"
+        type="text"
         value={initialValues.description}
         onChange={handleChange}
-        placeholder="Write the description"
       />
       <button className="submit-btn" type="submit">
         Send

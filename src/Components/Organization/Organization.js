@@ -1,19 +1,12 @@
 import React from "react";
 import "./Organization.css";
-import mockLogo from "./LOGO-SOMOS-MAS.png";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
-const Organization = () => {
-  // datos mockups hasta armar la estructura definitiva
-  const dataMock = {
-    name: "Somos Más",
-    image: mockLogo,
-    shortDescription:
-      "Desde 1997 en Somos Más trabajamos con los chicos y chicas, mamás y papás, abuelos y vecinos del barrio La Cava generando procesos de crecimiento y debinserción social.",
-  };
-
+const Organization = ({ data }) => {
   return (
     <div className="container-bg">
+<<<<<<< HEAD
       <div className="container card-bg">
         <h1 className="pb-2">Organización</h1>
         <div className="d-flex flex-column align-items-start">
@@ -26,20 +19,25 @@ const Organization = () => {
               <b>Imágen: </b>
             </h5>
             <img src={dataMock.image} alt={dataMock.name} />
+=======
+      <h1 className="pb-2">Organización</h1>
+      <div className="container card-bg">
+        <div className="d-flex flex-column">
+          <h2 className="text-center">{data.name}</h2>
+          <div className="d-flex justify-content-center">
+            <img alt={data.name} src={data.image} />
+>>>>>>> 2ef509bde12f3834ad27713c285679a1ef8b6c7e
           </div>
-          <h5>
-            <b>Descripción corta: </b>
-          </h5>
-          <h5>{dataMock.shortDescription}</h5>
+          <h5 className="text-center">{data.shortDescription}</h5>
         </div>
         <div className="d-flex justify-content-between my-3">
           <Link
-            to="falta agregar la ruta o algún método para volver"
             className="btn btn-secondary "
+            to={"falta agregar la ruta o algún método para volver"}
           >
             Volver
           </Link>
-          <Link to="/backoffice/organization/edit" className="btn btn-primary ">
+          <Link className="btn btn-primary " to="/backoffice/organization/edit">
             Editar
           </Link>
         </div>
@@ -47,4 +45,13 @@ const Organization = () => {
     </div>
   );
 };
+
+Organization.propTypes = {
+  data: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    shortDescription: PropTypes.string.isRequired,
+  }).isRequired,
+};
+
 export default Organization;
