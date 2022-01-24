@@ -8,19 +8,12 @@ import * as Yup from 'yup';
 
 import 'bootstrap/dist/css/bootstrap.css';
 
-const validationSchema = Yup.object().shape({
+const validationSchema = Yup.object({
   name: Yup.string().required('The field is required'),
   logo: Yup.string().required('The field is required'),
   shortDescription: Yup.string().required('The field is required'),
   longDescription: Yup.string().required('The field is required')
 });
-
-const initialValues = {
-  name: '',
-  logo: '',
-  shortDescription: '',
-  longDescription: ''
-};
 
 const Alert = ({ children }) => (
   <div className="alert alert-danger">
@@ -28,11 +21,12 @@ const Alert = ({ children }) => (
   </div>
 );
 
-const EditForm = () => (
+const EditForm = ({
+  name, logo, shortDescription, longDescription
+}) => (
   <div className="container">
-    <h1>Editar Organización</h1>
+    <div className="alert alert-warning text-center mt-3">Editar organización</div>
     <Formik
-      initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={(formData) => console.log(formData)}
     >
@@ -49,7 +43,7 @@ const EditForm = () => (
               className="form-control mb-3"
               id="name"
               onChange={formik.handleChange}
-              value={formik.values.name}
+              value={name ?? 'testValue'}
             />
             <ErrorMessage name="password" component={Alert} className="alert-danger" />
           </div>
@@ -60,7 +54,7 @@ const EditForm = () => (
               className="form-control mb-3"
               id="logo"
               onChange={formik.handleChange}
-              value={formik.values.logo}
+              value={logo ?? 'testValue'}
             />
             <ErrorMessage name="password" component={Alert} className="alert-danger" />
           </div>
@@ -70,7 +64,7 @@ const EditForm = () => (
               className="form-control mb-3"
               id="shortDescription"
               onChange={formik.handleChange}
-              value={formik.values.shortDescription}
+              value={shortDescription ?? 'testValue'}
             />
           </div>
           <div className="form-group">
@@ -79,7 +73,7 @@ const EditForm = () => (
               className="form-control mb-3"
               id="longDescription"
               onChange={formik.handleChange}
-              value={formik.values.longDescription}
+              value={longDescription ?? 'testValue'}
             />
             <ErrorMessage name="password" component={Alert} className="alert-danger" />
           </div>
@@ -89,6 +83,13 @@ const EditForm = () => (
     </Formik>
   </div>
 );
+
+EditForm.propTypes = {
+  name: PropTypes.string.isRequired,
+  logo: PropTypes.string.isRequired,
+  shortDescription: PropTypes.string.isRequired,
+  longDescription: PropTypes.string.isRequired
+};
 
 Alert.propTypes = {
   children: PropTypes.string.isRequired
