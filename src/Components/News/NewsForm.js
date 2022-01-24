@@ -101,7 +101,7 @@ const NewsForm = ({ id, name, content, image, category_id }) => {
                 category_id: formData.category_id,
                 image: resultbase,
               };
-              const result = await editNew({ data }, category_id);
+              const result = await editNew({ data }, id);
 
               if (result.data.success) {
                 setLoading(false);
