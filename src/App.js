@@ -15,8 +15,6 @@ import MembersForm from "./Components/Members/MembersForm";
 import ProjectsForm from "./Components/Projects/ProjectsForm";
 import Organization from "./Components/Organization/Organization";
 import RegisterForm from "./Components/Auth/RegisterForm";
-
-import RegisterForm from './Components/Auth/RegisterForm';
 import EditForm from "./Components/EditForm/EditForm";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
@@ -27,19 +25,19 @@ function App() {
       <BrowserRouter>
         <Switch>
           {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
-          <Route exact path="/create-activity" component={ActivitiesForm} />
-          <Route exact path="/create-category" component={CategoriesForm} />
-          <Route exact path="/create-news" component={NewsForm} />
-          <Route exact path="/backoffice/create-slide" component={SlidesForm} />
-          <Route exact path="/backoffice/organization" component={Organization} />
-          <Route exact path="/backoffice/organization/edit" component={EditForm} />
-          <Route exact path="/create-testimonials" component={TestimonialForm} />
-          <Route exact path="/create-user" component={UserForm} />
-          <Route exact path="/create-member" component={MembersForm} />
-          <Route exact path="/create-project" component={ProjectsForm} />
-          <Route exact path="/school-campaign" component={SchoolCampaign} />
-          <Route exact path="/toys-campaign" component={ToysCampaign} />
-          <Route exact path="/register" component={RegisterForm} />
+          <Route exact component={ActivitiesForm} path="/create-activity" />
+          <Route exact component={CategoriesForm} path="/create-category" />
+          <Route exact component={NewsForm} path="/create-news" />
+          <Route exact component={SlidesForm} path="/backoffice/create-slide" />
+          <Route exact component={Organization} path="/backoffice/organization" />
+          <Route exact component={EditForm} path="/backoffice/organization/edit" />
+          <Route exact component={TestimonialForm} path="/create-testimonials" />
+          <Route exact component={UserForm} path="/create-user" />
+          <Route exact component={MembersForm} path="/create-member" />
+          <Route exact component={ProjectsForm} path="/create-project" />
+          <Route exact component={SchoolCampaign} path="/school-campaign" />
+          <Route exact component={ToysCampaign} path="/toys-campaign" />
+          <Route exact component={RegisterForm} path="/register" />
         </Switch>
       </BrowserRouter>
       <div className="App">
