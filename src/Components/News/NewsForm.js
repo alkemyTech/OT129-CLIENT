@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
-import ContainerFormCard from "../ContainerFormCard";
-import { getCategories } from "../../Services/getCategories";
 import { ErrorMessage, Form, Formik } from "formik";
 import * as Yup from "yup";
-import { createNews } from "../../Services/createNews";
-import { editNew } from "../../Services/editNew";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import { toBase64 } from "../../utils/toBase64";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import PropTypes from "prop-types";
+import { ToastContainer, toast } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
+import { toBase64 } from "../../utils/toBase64";
+import ContainerFormCard from "../ContainerFormCard";
+import { editNew } from "../../Services/editNew";
+import { createNews } from "../../Services/createNews";
+import { getCategories } from "../../Services/getCategories";
 
 const NewsForm = ({ id, name, content, image, category_id }) => {
   const initialValues = {
@@ -30,27 +31,30 @@ const NewsForm = ({ id, name, content, image, category_id }) => {
 
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(false);
+
   // ejecuta la funcion getCategories para traer y mostrar todas las categorias
   useEffect(() => {
     const data = async () => {
       const result = await getCategories();
+
       setCategories(result);
     };
+
     data();
   }, []);
 
   return (
     <>
       <ToastContainer
-        position="top-center"
+        closeOnClick
+        draggable
+        pauseOnFocusLoss
+        pauseOnHover
         autoClose={5000}
         hideProgressBar={false}
         newestOnTop={false}
-        closeOnClick
+        position="top-center"
         rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
       />
       <ContainerFormCard>
         <Formik
@@ -66,9 +70,11 @@ const NewsForm = ({ id, name, content, image, category_id }) => {
               category_id: formData.category_id,
               image: resultbase,
             };
+
             // Validamos si el objeto novedad esta vacio o no
             if (id === undefined) {
               const result = await createNews({ data });
+
               if (result.data.success) {
                 setLoading(false);
                 toast.success("Novedad creada con éxito", {
@@ -103,6 +109,7 @@ const NewsForm = ({ id, name, content, image, category_id }) => {
                 image: resultbase,
               };
               const result = await editNew({ data }, category_id);
+
               if (result.data.success) {
                 setLoading(false);
                 toast.success("Novedad editada con éxito", {
@@ -141,33 +148,23 @@ const NewsForm = ({ id, name, content, image, category_id }) => {
                   // placeholder="Ingrese un título"
                   {...formik.getFieldProps("name")}
                 />
-                <ErrorMessage
-                  name="name"
-                  component="span"
-                  className="text-danger"
-                />
+                <ErrorMessage className="text-danger" component="span" name="name" />
               </div>
               <div className="mb-1">
                 <label className="form-label fw-bold mt-1">Contenido</label>
                 <CKEditor
-                  id="content"
                   editor={ClassicEditor}
-                  onChange={(event, editor) =>
-                    formik.setFieldValue("content", editor.getData())
-                  }
+                  id="content"
+                  onChange={(event, editor) => formik.setFieldValue("content", editor.getData())}
                 />
               </div>
-              <ErrorMessage
-                name="content"
-                component="span"
-                className="text-danger"
-              />
+              <ErrorMessage className="text-danger" component="span" name="content" />
 
               <div className="mb-1">
                 <label className="form-label fw-bold mt-1">Categoría</label>
                 <select
-                  className="form-select form-select-sm"
                   aria-label="Default select example"
+                  className="form-select form-select-sm"
                   {...formik.getFieldProps("category_id")}
                 >
                   <option defaultValue>Seleccione una categoria</option>
@@ -178,11 +175,7 @@ const NewsForm = ({ id, name, content, image, category_id }) => {
                   ))}
                 </select>
               </div>
-              <ErrorMessage
-                name="category_id"
-                component="span"
-                className="text-danger"
-              />
+              <ErrorMessage className="text-danger" component="span" name="category_id" />
 
               <div className="mb-1">
                 <label className="form-label fw-bold mt-1">Imagen</label>
@@ -195,22 +188,13 @@ const NewsForm = ({ id, name, content, image, category_id }) => {
                   }}
                 />
               </div>
-              <ErrorMessage
-                name="image"
-                component="span"
-                className="text-danger"
-              />
+              <ErrorMessage className="text-danger" component="span" name="image" />
 
-              <button
-                className="btn btn-primary w-100 mt-2 fw-bold"
-                type="submit"
-              >
+              <button className="btn btn-primary w-100 mt-2 fw-bold" type="submit">
                 <span
-                  className={
-                    loading ? "spinner-border spinner-border-sm" : null
-                  }
-                  role="status"
                   aria-hidden="true"
+                  className={loading ? "spinner-border spinner-border-sm" : null}
+                  role="status"
                 />
                 {id === undefined ? "AGREGAR NOVEDAD" : "EDITAR NOTICIA"}
               </button>
