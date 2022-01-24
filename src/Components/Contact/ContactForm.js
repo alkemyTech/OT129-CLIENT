@@ -1,26 +1,26 @@
 import React from "react";
-import {
-  Formik, Form, Field, ErrorMessage
-} from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import "../FormStyles.css";
 import * as Yup from "yup";
+import PropTypes from "prop-types";
 
-const ErrorComponent = (props) => (
-  <p>{props.children}</p>
-);
+const ErrorComponent = (props) => <p>{props.children}</p>;
 
 const initialValues = {
   name: "",
   email: "",
   phone: "",
-  message: ""
+  message: "",
 };
 
 const validationSchema = Yup.object({
   name: Yup.string().required("Requerido"),
   email: Yup.string().email("Formato de email incorrecto").required("Requerido"),
-  phone: Yup.string().matches(/^\d+$/, "Formato incorrecto").min(8, "Debe ingresar un mínimo de 8 números.").required("Requerido"),
-  message: Yup.string().required("Requerido")
+  phone: Yup.string()
+    .matches(/^\d+$/, "Formato incorrecto")
+    .min(8, "Debe ingresar un mínimo de 8 números.")
+    .required("Requerido"),
+  message: Yup.string().required("Requerido"),
 });
 
 const ContactForm = () => {
@@ -29,44 +29,31 @@ const ContactForm = () => {
   };
 
   return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={validationSchema}
-      onSubmit={onSubmit}
-    >
+    <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
       <Form className="form-container">
-        <Field
-          type="text"
-          name="name"
-          placeholder="Nombre"
-          className="input-field"
-        />
-        <ErrorMessage name="name" component={ErrorComponent} />
-        <Field
-          type="text"
-          name="email"
-          placeholder="Email"
-          className="input-field"
-        />
-        <ErrorMessage name="email" component={ErrorComponent} />
-        <Field
-          type="tel"
-          name="phone"
-          placeholder="Teléfono"
-          className="input-field"
-        />
-        <ErrorMessage name="phone" component={ErrorComponent} />
+        <Field className="input-field" name="name" placeholder="Nombre" type="text" />
+        <ErrorMessage component={ErrorComponent} name="name" />
+        <Field className="input-field" name="email" placeholder="Email" type="text" />
+        <ErrorMessage component={ErrorComponent} name="email" />
+        <Field className="input-field" name="phone" placeholder="Teléfono" type="tel" />
+        <ErrorMessage component={ErrorComponent} name="phone" />
         <Field
           as="textarea"
+          className="input-field"
           name="message"
           placeholder="Escribe tu mensaje"
-          className="input-field"
         />
-        <ErrorMessage name="message" component={ErrorComponent} />
-        <button type="submit" className="submit-btn">Enviar</button>
+        <ErrorMessage component={ErrorComponent} name="message" />
+        <button className="submit-btn" type="submit">
+          Enviar
+        </button>
       </Form>
     </Formik>
   );
+};
+
+ErrorComponent.propTypes = {
+  children: PropTypes.string.isRequired,
 };
 
 export default ContactForm;
