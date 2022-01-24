@@ -1,18 +1,17 @@
 /* eslint-disable no-console */
-import React from 'react';
-import {
-  Formik, Field, Form, ErrorMessage
-} from 'formik';
-import PropTypes from 'prop-types';
-import * as Yup from 'yup';
-import '../FormStyles.css';
-import axios from 'axios';
-import { CKEditor } from '@ckeditor/ckeditor5-react';
+import React from "react";
+import { Formik, Field, Form, ErrorMessage } from "formik";
+import PropTypes from "prop-types";
+import * as Yup from "yup";
+import "../FormStyles.css";
+import axios from "axios";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 const toBase64 = (file) =>
   new Promise((resolve, reject) => {
     const reader = new FileReader();
+
     reader.readAsDataURL(file);
     reader.onloadend = () => resolve(reader.result);
     reader.onerror = reject;
@@ -25,7 +24,7 @@ const createNewActivity = async (data) => {
       },
     })
     .then((res) => {
-      console.log(res, 'Actividad creada correctamente');
+      console.log(res, "Actividad creada correctamente");
     });
 };
 const updateActivity = async (data) => {
@@ -36,9 +35,20 @@ const updateActivity = async (data) => {
       },
     })
     .then((res) => {
-      console.log(res, 'Modificación aprobada correctamente');
+      console.log(res, "Modificación aprobada correctamente");
     });
 };
+
+const validationSchema = Yup.object({
+  name: Yup.string().required("El nombre de la actividad es obligatorio"),
+  image: Yup.mixed()
+    .required("Debe adjuntar una imagen")
+    .test("fileType", "La extensión del archivo no es soportado", (value) => {
+      if (value) return ["image/jpeg", "image/png"].includes(value.type);
+
+      return true;
+    }),
+});
 
 const ActivitiesForm = ({ activity = {} }) => {
   const initialValues = {
@@ -47,18 +57,6 @@ const ActivitiesForm = ({ activity = {} }) => {
     description: activity?.description || "",
     image: activity?.image || "",
   };
-  const validationSchema = Yup.object({
-    name: Yup
-      .string()
-      .required('El nombre de la actividad es obligatorio'),
-    image: Yup
-      .mixed()
-      .required('Debe adjuntar una imagen')
-      .test('fileType', "La extensión del archivo no es soportado", (value) => {
-        if (value) return ["image/jpeg", "image/png"].includes(value.type);
-        return true;
-      })
-  });
 
   return (
     <div className="container mt-4">
@@ -68,8 +66,10 @@ const ActivitiesForm = ({ activity = {} }) => {
         onSubmit={async (formData, { setStatus, resetForm }) => {
           const resultBase = await toBase64(formData.image);
           const newActivity = { ...formData, image: resultBase };
+
           if (activity.id === undefined) {
             const result = await createNewActivity(newActivity);
+
             console.log(result);
             try {
               resetForm({});
@@ -79,6 +79,7 @@ const ActivitiesForm = ({ activity = {} }) => {
             }
           } else {
             const result = await updateActivity(newActivity);
+
             console.log(result);
           }
         }}
@@ -104,6 +105,7 @@ const ActivitiesForm = ({ activity = {} }) => {
                   name="description"
                   onChange={(event, editor) => {
                     const data = editor.getData();
+
                     formik.setFieldValue("description", data);
                   }}
                   className="p-2 w-75"
@@ -122,7 +124,9 @@ const ActivitiesForm = ({ activity = {} }) => {
                 />
                 <ErrorMessage name="image" className="alert-danger" />
               </div>
-              <button className="submit-btn" type="submit">{activity?.id ? "EDITAR" : "CREAR"}</button>
+              <button className="submit-btn" type="submit">
+                {activity?.id ? "EDITAR" : "CREAR"}
+              </button>
             </div>
           </Form>
         )}
