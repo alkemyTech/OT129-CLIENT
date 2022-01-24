@@ -13,9 +13,9 @@ import SchoolCampaign from "./Campaigns/School/SchoolCampaign";
 import ToysCampaign from "./Campaigns/Toys/ToysCampaign";
 import MembersForm from "./Components/Members/MembersForm";
 import ProjectsForm from "./Components/Projects/ProjectsForm";
-import Organization from "./Components/Organization/Organization";
+import OrganizationContainer from "./Containers/Organization/OrganizationContainer";
 import RegisterForm from "./Components/Auth/RegisterForm";
-import EditForm from "./Components/EditForm/EditForm";
+import EditOrganizationContainer from "./Containers/EditOrganization/EditOrganizationContainer";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
@@ -29,8 +29,8 @@ function App() {
           <Route exact component={CategoriesForm} path="/create-category" />
           <Route exact component={NewsForm} path="/create-news" />
           <Route exact component={SlidesForm} path="/backoffice/create-slide" />
-          <Route exact component={Organization} path="/backoffice/organization" />
-          <Route exact component={EditForm} path="/backoffice/organization/edit" />
+          <Route exact component={OrganizationContainer} path="/backoffice/organization" />
+          <Route exact component={EditOrganizationContainer} path="/backoffice/organization/edit" />
           <Route exact component={TestimonialForm} path="/create-testimonials" />
           <Route exact component={UserForm} path="/create-user" />
           <Route exact component={MembersForm} path="/create-member" />
