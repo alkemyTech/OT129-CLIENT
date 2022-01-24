@@ -39,3 +39,7 @@
 .formNotDisplay {
   display: none;
 }
+.form-label span::after {
+  content: "*";
+  color: red;
+}

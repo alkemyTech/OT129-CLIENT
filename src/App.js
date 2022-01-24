@@ -79,7 +79,7 @@ function App() {
           </a>
         </span>
       </header> */}
-        <FooterForm />
+        <TestimonialForm />
       </div>
     </>
   );
