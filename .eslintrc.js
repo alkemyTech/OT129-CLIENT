@@ -7,7 +7,7 @@ module.exports = {
   },
   extends: ["plugin:react/recommended"],
   parserOptions: {
-    ecmaVersion: "latest",
+    ecmaVersion: 12,
     sourceType: "module",
     ecmaFeatures: {
       jsx: true,
@@ -21,6 +21,7 @@ module.exports = {
   },
   plugins: ["react", "react-hooks", "prettier", "import"],
   rules: {
+    "react/prop-types": "off",
     "no-console": "warn",
     "prettier/prettier": [
       "error",
