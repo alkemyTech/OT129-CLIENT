@@ -5,8 +5,6 @@ import * as Yup from "yup";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
-import "bootstrap/dist/css/bootstrap.css";
-
 const IMG_FORMAT_REGEX = new RegExp(".(jpg|png)$");
 
 const validationSchema = Yup.object({
@@ -24,21 +22,13 @@ const validationSchema = Yup.object({
 const Alert = ({ children }) => <div className="alert alert-danger">{children}</div>;
 
 const EditForm = ({ data }) => {
-  const initialValues = {
-    name: data.name,
-    logo: data.logo,
-    shortDescription: data.shortDescription,
-    longDescription: data.longDescription,
-    emailLink: data.emailLink,
-    instagramLink: data.instagramLink,
-    twitterLink: data.twitterLink,
-  };
+  const initialValues = { data };
 
   const IMG_PREVIEW = data.logo;
 
   return (
     <Formik
-      initialValues={initialValues}
+      initialValues={initialValues.data}
       validationSchema={validationSchema}
       onSubmit={(formData) => console.log(formData)} //Enviar la info al store, redireccionar a backoffice/organization
     >
