@@ -15,6 +15,9 @@ const validationSchema = Yup.object({
     .matches(IMG_FORMAT_REGEX, "Only .png and .jpg images are allowed"),
   shortDescription: Yup.string().required("The field is required"),
   longDescription: Yup.string().required("The field is required"),
+  facebookLink: Yup.string().url("Invalid URL"),
+  instagramLink: Yup.string().url("Invalid URL"),
+  twitterLink: Yup.string().url("Invalid URL"),
 });
 
 const Alert = ({ children }) => <div className="alert alert-danger">{children}</div>;
