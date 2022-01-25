@@ -1,8 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-import Counter from "./features/counter/Counter";
-import logo from "./logo.svg";
 import ActivitiesForm from "./Components/Activities/ActivitiesForm";
 import CategoriesForm from "./Components/Categories/CategoriesForm";
 import NewsForm from "./Components/News/NewsForm";
@@ -40,53 +38,6 @@ function App() {
           <Route exact component={RegisterForm} path="/register" />
         </Switch>
       </BrowserRouter>
-      <div className="App">
-        <header className="App-header">
-          <img alt="logo" className="App-logo" src={logo} />
-          <Counter />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <span>
-            <span>Learn </span>
-            <a
-              className="App-link"
-              href="https://reactjs.org/"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              React
-            </a>
-            <span>, </span>
-            <a
-              className="App-link"
-              href="https://redux.js.org/"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              Redux
-            </a>
-            <span>, </span>
-            <a
-              className="App-link"
-              href="https://redux-toolkit.js.org/"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              Redux Toolkit
-            </a>
-            ,<span> and </span>
-            <a
-              className="App-link"
-              href="https://react-redux.js.org/"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              React Redux
-            </a>
-          </span>
-        </header>
-      </div>
     </>
   );
 }
