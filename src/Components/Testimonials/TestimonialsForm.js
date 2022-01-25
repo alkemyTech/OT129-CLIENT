@@ -9,6 +9,7 @@ import { v4 as uuid } from "uuid";
 
 import axios from "../../api/testimonialapi";
 
+import PreviewImage from "./PreviewImage";
 import { testimonialSchema } from "./formValidation";
 
 const TestimonialForm = () => {
@@ -22,18 +23,19 @@ const TestimonialForm = () => {
           id: uuid(),
           name: "",
           description: "",
+          file: null,
         }}
         validationSchema={testimonialSchema}
-        onSubmit={async (valores, { resetForm }) => {
+        onSubmit={async (values, { resetForm }) => {
           resetForm();
           // eslint-disable-next-line no-console
-          console.log(valores);
+          console.log(values);
           //Eleccion de ruta para crear o editar
-          if (!valores.id || valores.id === undefined) {
+          if (!values.id || values.id === undefined) {
             try {
               const createdTestimonial = await axios.post(
                 "/testimonials",
-                valores
+                values
               );
 
               setFormSend(true);
@@ -42,8 +44,8 @@ const TestimonialForm = () => {
           } else {
             try {
               const updatedTestimonial = await axios.put(
-                `/testimonials/${valores.id}`,
-                valores
+                `/testimonials/${values.id}`,
+                values
               );
 
               Console.log(updatedTestimonial);
@@ -51,7 +53,7 @@ const TestimonialForm = () => {
           }
         }}
       >
-        {({ errors, isValid, setFieldValue }) => (
+        {({ values, errors, isValid, setFieldValue }) => (
           <Form className="form-container">
             <div className="mt-3">
               <label className="form-label" htmlFor="name">
@@ -98,17 +100,18 @@ const TestimonialForm = () => {
               <input
                 accept="image/png, image/jpeg"
                 className="form-control"
-                id="image"
-                name="image"
+                id="file"
+                name="file"
                 type="file"
                 onChange={(event) => {
-                  setFieldValue("image", event.target.files[0]);
+                  setFieldValue("file", event.target.files[0]);
                 }}
               />
               <ErrorMessage
-                component={() => <p className="error">{errors.image}</p>}
-                name="image"
+                component={() => <p className="error">{errors.file}</p>}
+                name="file"
               />
+              {values.file && <PreviewImage file={values.file} />}
             </div>
             <button
               className="btn btn-primary"
