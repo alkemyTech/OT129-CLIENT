@@ -2,7 +2,7 @@ import * as yup from "yup";
 
 const SUPPORTED_FORMATS = ["image/jpg", "image/png"];
 
-export const newsletterSchema = yup.object({
+export const testimonialSchema = yup.object({
   name: yup
     .string()
     .min(4, "El nombre tiene que tener al menos 4 caracteres")

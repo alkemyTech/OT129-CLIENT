@@ -9,7 +9,7 @@ import { v4 as uuid } from "uuid";
 
 import axios from "../../api/testimonialapi";
 
-import { newsletterSchema } from "./formValidation";
+import { testimonialSchema } from "./formValidation";
 
 const TestimonialForm = () => {
   const [formSend, setFormSend] = useState(false);
@@ -23,7 +23,7 @@ const TestimonialForm = () => {
           name: "",
           description: "",
         }}
-        validationSchema={newsletterSchema}
+        validationSchema={testimonialSchema}
         onSubmit={async (valores, { resetForm }) => {
           resetForm();
           // eslint-disable-next-line no-console
