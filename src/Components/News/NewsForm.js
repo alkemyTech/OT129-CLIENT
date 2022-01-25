@@ -94,6 +94,7 @@ const NewsForm = ({ id, name, content, image, category_id }) => {
               <div className="mb-1">
                 <label className="form-label fw-bold mt-1">Contenido</label>
                 <CKEditor
+                  data={content}
                   editor={ClassicEditor}
                   id="content"
                   onChange={(event, editor) => formik.setFieldValue("content", editor.getData())}
