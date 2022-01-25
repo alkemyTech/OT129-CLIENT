@@ -15,7 +15,7 @@ const validationSchema = Yup.object({
     .matches(IMG_FORMAT_REGEX, "Only .png and .jpg images are allowed"),
   shortDescription: Yup.string().required("The field is required"),
   longDescription: Yup.string().required("The field is required"),
-  facebookLink: Yup.string().url("Invalid URL"),
+  emailLink: Yup.string().email("Invalid email address"),
   instagramLink: Yup.string().url("Invalid URL"),
   twitterLink: Yup.string().url("Invalid URL"),
 });
@@ -28,7 +28,7 @@ const EditForm = ({ data }) => {
     logo: data.logo,
     shortDescription: data.shortDescription,
     longDescription: data.longDescription,
-    facebookLink: data.facebookLink,
+    emailLink: data.emailLink,
     instagramLink: data.instagramLink,
     twitterLink: data.twitterLink,
   };
@@ -43,7 +43,7 @@ const EditForm = ({ data }) => {
         <form noValidate className="mt-3" id="editOrganizationForm" onSubmit={formik.handleSubmit}>
           <div className="form-group mb-3">
             <label className="form-label" htmlFor="name">
-              Edit Name:
+              Name:
             </label>
             <input
               className="form-control mb-3"
@@ -57,7 +57,7 @@ const EditForm = ({ data }) => {
           </div>
           <div className="form-group mb-3">
             <label className="form-label" htmlFor="logo">
-              Edit Logo:
+              Logo:
             </label>
             <input
               className="form-control mb-3"
@@ -72,7 +72,7 @@ const EditForm = ({ data }) => {
           </div>
           <div className="form-group mb-3">
             <label className="form-label" htmlFor="shortDescription">
-              Edit Short Description:
+              Short Description:
             </label>
             <input
               className="form-control mb-3"
@@ -85,7 +85,7 @@ const EditForm = ({ data }) => {
           </div>
           <div className="form-group mb-3">
             <label className="form-label" htmlFor="longDescription">
-              Edit Long Description:
+              Long Description:
             </label>
             <input
               className="form-control mb-3"
@@ -97,22 +97,22 @@ const EditForm = ({ data }) => {
             <ErrorMessage className="alert-danger" component={Alert} name="longDescription" />
           </div>
           <div className="form-group mb-3">
-            <label className="form-label" htmlFor="facebookLink">
-              Edit Facebook link:{" "}
+            <label className="form-label" htmlFor="emailLink">
+              Email:{" "}
             </label>
             <input
               className="form-control mb-3"
-              id="facebookLink"
-              name="facebookLink"
-              type="url"
-              value={formik.values.facebookLink}
+              id="emailLink"
+              name="emailLink"
+              type="email"
+              value={formik.values.emailLink}
               onChange={formik.handleChange}
             />
-            <ErrorMessage className="alert-danger" component={Alert} name="facebookLink" />
+            <ErrorMessage className="alert-danger" component={Alert} name="emailLink" />
           </div>
           <div className="form-group mb-3">
             <label className="form-label" htmlFor="instagramLink">
-              Edit Instagram link:{" "}
+              Instagram:{" "}
             </label>
             <input
               className="form-control mb-3"
@@ -126,7 +126,7 @@ const EditForm = ({ data }) => {
           </div>
           <div className="form-group mb-3">
             <label className="form-label" htmlFor="twitterLink">
-              Edit Twitter link:{" "}
+              Twitter:{" "}
             </label>
             <input
               className="form-control mb-3"
@@ -156,7 +156,7 @@ EditForm.propTypes = {
     logo: PropTypes.string.isRequired,
     shortDescription: PropTypes.string.isRequired,
     longDescription: PropTypes.string.isRequired,
-    facebookLink: PropTypes.string.isRequired,
+    emailLink: PropTypes.string.isRequired,
     instagramLink: PropTypes.string.isRequired,
     twitterLink: PropTypes.string.isRequired,
   }).isRequired,
