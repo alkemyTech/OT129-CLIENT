@@ -4,9 +4,7 @@ import * as Yup from "yup";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import PropTypes from "prop-types";
-import { ToastContainer, toast } from "react-toastify";
 
-import "react-toastify/dist/ReactToastify.css";
 import { toBase64 } from "../../utils/toBase64";
 import ContainerFormCard from "../ContainerFormCard";
 import { editNew } from "../../Services/editNew";
@@ -25,7 +23,6 @@ const NewsForm = ({ id, name, content, image, category_id }) => {
   const [loading, setLoading] = useState(false);
 
   // ejecuta la funcion getCategories para traer y mostrar todas las categorias
-
   useEffect(() => {
     const data = async () => {
       const result = await getCategories();
@@ -38,17 +35,6 @@ const NewsForm = ({ id, name, content, image, category_id }) => {
 
   return (
     <>
-      <ToastContainer
-        closeOnClick
-        draggable
-        pauseOnFocusLoss
-        pauseOnHover
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        position="top-center"
-        rtl={false}
-      />
       <ContainerFormCard>
         <Formik
           initialValues={initialValues}
@@ -70,28 +56,8 @@ const NewsForm = ({ id, name, content, image, category_id }) => {
 
               if (result.data.success) {
                 setLoading(false);
-                toast.success("Novedad creada con éxito", {
-                  theme: "colored",
-                  position: "top-center",
-                  autoClose: 5000,
-                  hideProgressBar: false,
-                  closeOnClick: true,
-                  pauseOnHover: true,
-                  draggable: true,
-                  progress: undefined,
-                });
               } else {
                 setLoading(false);
-                toast.error("Ocurrio un error al intentar crear una novedad", {
-                  theme: "colored",
-                  position: "top-center",
-                  autoClose: 5000,
-                  hideProgressBar: false,
-                  closeOnClick: true,
-                  pauseOnHover: true,
-                  draggable: true,
-                  progress: undefined,
-                });
               }
             } else {
               const resultbase = await toBase64(formData.image);
@@ -105,28 +71,8 @@ const NewsForm = ({ id, name, content, image, category_id }) => {
 
               if (result.data.success) {
                 setLoading(false);
-                toast.success("Novedad editada con éxito", {
-                  theme: "colored",
-                  position: "top-center",
-                  autoClose: 5000,
-                  hideProgressBar: false,
-                  closeOnClick: true,
-                  pauseOnHover: true,
-                  draggable: true,
-                  progress: undefined,
-                });
               } else {
                 setLoading(false);
-                toast.error("Ocurrio un error al intentar editar la novedad", {
-                  theme: "colored",
-                  position: "top-center",
-                  autoClose: 5000,
-                  hideProgressBar: false,
-                  closeOnClick: true,
-                  pauseOnHover: true,
-                  draggable: true,
-                  progress: undefined,
-                });
               }
             }
           }}
