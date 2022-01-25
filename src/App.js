@@ -1,7 +1,5 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./App.css";
 
 import Counter from "./features/counter/Counter";
 import logo from "./logo.svg";
@@ -18,6 +16,11 @@ import ProjectsForm from "./Components/Projects/ProjectsForm";
 import Organization from "./Components/Organization/Organization";
 import RegisterForm from "./Components/Auth/RegisterForm";
 import HomeForm from "./Components/Home/HomeForm";
+import ContactForm from "./Components/Contact/ContactForm";
+
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
+
 
 function App() {
   return (
@@ -38,6 +41,7 @@ function App() {
           <Route exact component={SchoolCampaign} path="/school-campaign" />
           <Route exact component={ToysCampaign} path="/toys-campaign" />
           <Route exact component={RegisterForm} path="/register" />
+          <Route exact component={ContactForm} path="/contact" />
         </Switch>
       </BrowserRouter>
       <div className="App">
