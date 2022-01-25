@@ -1,33 +1,35 @@
-import React, { useParams, useEffect, useState } from "react";
-import ActivitiesForm from "../../Components/Activities/ActivitiesForm"
-
-const getActivity = (id) => {
-    axios
-        .get(`http://ongapi.alkemy.org/api/activities/${id}`)
-        .then((response) =>{
-            console.log(response);
-        })
-        .catch((error) => {
-            console.log(error)
-        })
-};
+import React, { /* useParams ,*/ useEffect, useState } from "react";
+import ActivitiesForm from "../../Components/Activities/ActivitiesForm";
+import axios from "axios";
 
 const ActivitiesFormContainer = () => {
-    const [activity, setActivity] = useState({})
-    const {id} = useParams()
+  const [activity, setActivity] = useState({});
+  /* const {id} = useParams() */
 
-    useEffect(() => {
-      
+  useEffect(() => {
+    if (id) {
+      axios.get(`http://ongapi.alkemy.org/api/activities/${id}`).then((response) => {
+        const result = response.data.data;
 
-      
-    }, [id]);
-    
+        setActivity(result);
+      });
 
-    return(
+      console.log(activity);
+    } else {
+      setActivity({
+        name: "",
+        description: "",
+        image: "",
+      });
+    }
+  }, [id]);
+
+  return (
     <div>
-        <ActivitiesForm activity/>
+      <h1>{activity?.name}</h1>
+      <ActivitiesForm activity={activity} />
     </div>
-    )
+  );
 };
 
 export default ActivitiesFormContainer;
