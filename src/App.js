@@ -15,9 +15,12 @@ import MembersForm from "./Components/Members/MembersForm";
 import ProjectsForm from "./Components/Projects/ProjectsForm";
 import Organization from "./Components/Organization/Organization";
 import RegisterForm from "./Components/Auth/RegisterForm";
+import HomeForm from "./Components/Home/HomeForm";
 import ContactForm from "./Components/Contact/ContactForm";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+
 
 function App() {
   return (
@@ -30,6 +33,7 @@ function App() {
           <Route exact component={NewsForm} path="/create-news" />
           <Route exact component={SlidesForm} path="/backoffice/create-slide" />
           <Route exact component={Organization} path="/backoffice/organization" />
+          <Route exact component={HomeForm} path="/backoffice/home" />
           <Route exact component={TestimonialForm} path="/create-testimonials" />
           <Route exact component={UserForm} path="/create-user" />
           <Route exact component={MembersForm} path="/create-member" />
