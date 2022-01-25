@@ -24,6 +24,7 @@ const MembersForm = () => {
             <div className="mb-1">
               <label className="form-label fw-bold">Nombre</label>
               <input
+                autoComplete="off"
                 className="form-control form-control-sm w-100"
                 type="text"
                 // placeholder="Ingrese un título"
@@ -44,6 +45,7 @@ const MembersForm = () => {
             <div className="mb-1">
               <label className="form-label fw-bold mt-1">Imagen</label>
               <input
+                autoComplete="off"
                 className="form-control form-control-sm"
                 name="image"
                 type="file"
@@ -57,6 +59,7 @@ const MembersForm = () => {
             <div className="mb-1">
               <label className="form-label fw-bold">Link de su red social</label>
               <input
+                autoComplete="off"
                 className="form-control form-control-sm w-100"
                 type="text"
                 // placeholder="Ingrese un título"
