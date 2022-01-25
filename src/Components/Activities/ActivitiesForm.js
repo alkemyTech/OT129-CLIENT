@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import React from "react";
-import { Formik, Field, Form, ErrorMessage } from "formik";
+import { Formik, Field, Form, ErrorMessage, useFormikContext } from "formik";
 import PropTypes from "prop-types";
 import * as Yup from "yup";
 import "../FormStyles.css";
@@ -8,7 +8,7 @@ import axios from "axios";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
-const toBase64 = (file) =>
+const toBase64 = async (file) =>
   new Promise((resolve, reject) => {
     const reader = new FileReader();
 
@@ -35,7 +35,8 @@ const updateActivity = async (data) => {
       },
     })
     .then((res) => {
-      console.log(res, "Modificación aprobada correctamente");
+      console.log(res);
+      console.log("La modificación fue exitosa");
     });
 };
 
@@ -52,7 +53,6 @@ const validationSchema = Yup.object({
 
 const ActivitiesForm = ({ activity = {} }) => {
   const initialValues = {
-    id: activity?.id || "",
     name: activity?.name || "",
     description: activity?.description || "",
     image: activity?.image || "",
@@ -63,22 +63,17 @@ const ActivitiesForm = ({ activity = {} }) => {
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
-        onSubmit={async (formData, { setStatus, resetForm }) => {
+        onSubmit={async (formData) => {
           const resultBase = await toBase64(formData.image);
           const newActivity = { ...formData, image: resultBase };
 
+          console.log(newActivity);
           if (activity.id === undefined) {
             const result = await createNewActivity(newActivity);
 
             console.log(result);
-            try {
-              resetForm({});
-              setStatus({ success: true });
-            } catch (error) {
-              setStatus({ success: false });
-            }
           } else {
-            const result = await updateActivity(newActivity);
+            const result = await updateActivity({ ...newActivity, id: activity.id });
 
             console.log(result);
           }
@@ -136,12 +131,11 @@ const ActivitiesForm = ({ activity = {} }) => {
 };
 
 ActivitiesForm.propTypes = {
-  // eslint-disable-next-line react/require-default-props
   activity: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
+    id: PropTypes.number,
+    name: PropTypes.string,
     description: PropTypes.string,
-    image: PropTypes.string.isRequired,
+    image: PropTypes.string,
   }),
 };
 
