@@ -15,7 +15,7 @@ import MembersForm from "./Components/Members/MembersForm";
 import ProjectsForm from "./Components/Projects/ProjectsForm";
 import Organization from "./Components/Organization/Organization";
 import RegisterForm from "./Components/Auth/RegisterForm";
-
+import ContactForm from "./Components/Contact/ContactForm";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
@@ -37,6 +37,7 @@ function App() {
           <Route exact component={SchoolCampaign} path="/school-campaign" />
           <Route exact component={ToysCampaign} path="/toys-campaign" />
           <Route exact component={RegisterForm} path="/register" />
+          <Route exact component={ContactForm} path="/contact" />
         </Switch>
       </BrowserRouter>
       <div className="App">
