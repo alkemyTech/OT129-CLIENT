@@ -67,7 +67,7 @@ const EditForm = ({ data }) => {
               value={formik.values.logo}
               onChange={formik.handleChange}
             />
-            <img src={formik.values.logo} alt="logo" className="img-thumbnail" loading="lazy" />
+            <img alt="logo" className="img-thumbnail" loading="lazy" src={formik.values.logo} />
             <ErrorMessage className="alert-danger" component={Alert} name="logo" />
           </div>
           <div className="form-group mb-3">
