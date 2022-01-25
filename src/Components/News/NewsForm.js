@@ -136,6 +136,7 @@ const NewsForm = ({ id, name, content, image, category_id }) => {
               <div className="mb-1">
                 <label className="form-label fw-bold">Título</label>
                 <input
+                  autoComplete="off"
                   className="form-control form-control-sm w-100"
                   type="text"
                   value="hola que tal"
@@ -174,6 +175,7 @@ const NewsForm = ({ id, name, content, image, category_id }) => {
               <div className="mb-1">
                 <label className="form-label fw-bold mt-1">Imagen</label>
                 <input
+                  autoComplete="off"
                   className="form-control form-control-sm"
                   name="image"
                   type="file"
