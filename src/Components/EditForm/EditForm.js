@@ -5,17 +5,16 @@ import * as Yup from "yup";
 
 import "bootstrap/dist/css/bootstrap.css";
 
+const IMG_FORMAT_REGEX = new RegExp(".(jpg|png)$");
+
 const validationSchema = Yup.object({
   name: Yup.string().required("The field is required"),
-  logo: Yup.string().required("The field is required").url("Invalid URL"),
-  shortDescription: Yup.string()
+  logo: Yup.string()
     .required("The field is required")
-    .min(10, "Too short")
-    .max(40, "Too long"),
-  longDescription: Yup.string()
-    .required("The field is required")
-    .min(40, "Too short")
-    .max(200, "Too long"),
+    .url("Invalid URL")
+    .matches(IMG_FORMAT_REGEX, "Only .png and .jpg images are allowed"),
+  shortDescription: Yup.string().required("The field is required"),
+  longDescription: Yup.string().required("The field is required"),
 });
 
 const Alert = ({ children }) => <div className="alert alert-danger">{children}</div>;
@@ -26,6 +25,9 @@ const EditForm = ({ data }) => {
     logo: data.logo,
     shortDescription: data.shortDescription,
     longDescription: data.longDescription,
+    facebookLink: data.facebookLink,
+    instagramLink: data.instagramLink,
+    twitterLink: data.twitterLink,
   };
 
   return (
@@ -90,6 +92,48 @@ const EditForm = ({ data }) => {
             />
             <ErrorMessage className="alert-danger" component={Alert} name="longDescription" />
           </div>
+          <div className="form-group mb-3">
+            <label className="form-label" htmlFor="facebookLink">
+              Edit Facebook link:{" "}
+            </label>
+            <input
+              className="form-control mb-3"
+              id="facebookLink"
+              name="facebookLink"
+              type="url"
+              value={formik.values.facebookLink}
+              onChange={formik.handleChange}
+            />
+            <ErrorMessage className="alert-danger" component={Alert} name="facebookLink" />
+          </div>
+          <div className="form-group mb-3">
+            <label className="form-label" htmlFor="instagramLink">
+              Edit Instagram link:{" "}
+            </label>
+            <input
+              className="form-control mb-3"
+              id="instagramLink"
+              name="instagramLink"
+              type="url"
+              value={formik.values.instagramLink}
+              onChange={formik.handleChange}
+            />
+            <ErrorMessage className="alert-danger" component={Alert} name="instagramLink" />
+          </div>
+          <div className="form-group mb-3">
+            <label className="form-label" htmlFor="twitterLink">
+              Edit Twitter link:{" "}
+            </label>
+            <input
+              className="form-control mb-3"
+              id="twitterLink"
+              name="twitterLink"
+              type="url"
+              value={formik.values.twitterLink}
+              onChange={formik.handleChange}
+            />
+            <ErrorMessage className="alert-danger" component={Alert} name="twitterLink" />
+          </div>
           <button className="btn btn-primary" type="submit">
             Submit
           </button>
@@ -108,6 +152,9 @@ EditForm.propTypes = {
     logo: PropTypes.string.isRequired,
     shortDescription: PropTypes.string.isRequired,
     longDescription: PropTypes.string.isRequired,
+    facebookLink: PropTypes.string.isRequired,
+    instagramLink: PropTypes.string.isRequired,
+    twitterLink: PropTypes.string.isRequired,
   }).isRequired,
 };
 export default EditForm;

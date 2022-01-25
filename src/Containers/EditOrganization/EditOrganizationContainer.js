@@ -11,6 +11,9 @@ const data = {
     "Desde 1997 en Somos Más trabajamos con los chicos y chicas, mamás y papás, abuelos y vecinos del barrio La Cava generando procesos de crecimiento y debinserción social.",
   longDescription:
     "Desde 1997 en Somos Más trabajamos con los chicos y chicas, mamás y papás, abuelos y vecinos del barrio La Cava generando procesos de crecimiento y debinserción social. Desde 1997 en Somos Más trabajamos con los chicos y chicas, mamás y papás, abuelos y vecinos del barrio La Cava generando procesos de crecimiento y debinserción social. Desde 1997 en Somos Más trabajamos con los chicos y chicas, mamás y papás, abuelos y vecinos del barrio La Cava generando procesos de crecimiento y debinserción social.",
+  facebookLink: "https://www.facebook.com",
+  instagramLink: "https://www.instagram.com",
+  twitterLink: "https://www.twitter.com",
 };
 const EditOrganizationContainer = () => {
   return (
