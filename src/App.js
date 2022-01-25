@@ -15,11 +15,14 @@ import MembersForm from "./Components/Members/MembersForm";
 import ProjectsForm from "./Components/Projects/ProjectsForm";
 import Organization from "./Components/Organization/Organization";
 import RegisterForm from "./Components/Auth/RegisterForm";
+import ActivitiesDetailsContainer from "./Components/Activities/Detail/ActivitiesDetailsContainer";
+
 import HomeForm from "./Components/Home/HomeForm";
 import ContactForm from "./Components/Contact/ContactForm";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+
 
 
 function App() {
@@ -29,6 +32,7 @@ function App() {
         <Switch>
           {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
           <Route exact component={ActivitiesForm} path="/create-activity" />
+          <Route exact component={ActivitiesDetailsContainer} path="/activities/:id" />
           <Route exact component={CategoriesForm} path="/create-category" />
           <Route exact component={NewsForm} path="/create-news" />
           <Route exact component={SlidesForm} path="/backoffice/create-slide" />
