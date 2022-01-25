@@ -52,13 +52,9 @@ const NewsForm = ({ id, name, content, image, category_id }) => {
 
             // Validamos si el objeto novedad esta vacio o no
             if (id === undefined) {
-              const result = await createNews({ data });
+              await createNews({ data });
 
-              if (result.data.success) {
-                setLoading(false);
-              } else {
-                setLoading(false);
-              }
+              setLoading(false);
             } else {
               const resultbase = await toBase64(formData.image);
               const data = {
