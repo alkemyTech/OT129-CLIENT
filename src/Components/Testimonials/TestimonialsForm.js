@@ -1,6 +1,5 @@
 /* eslint-disable prettier/prettier */
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
 import "../FormStyles.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
@@ -13,10 +12,7 @@ import axios from "../../api/testimonialapi";
 import { newsletterSchema } from "./formValidation";
 
 const TestimonialForm = () => {
-  const [formData, setFormData] = useState("");
   const [formSend, setFormSend] = useState(false);
-  const [error, setError] = useState(false);
-  const testimonialId = useParams().id;
 
   return (
     <React.Fragment>
@@ -30,8 +26,9 @@ const TestimonialForm = () => {
         validationSchema={newsletterSchema}
         onSubmit={async (valores, { resetForm }) => {
           resetForm();
-          Console.log("estos son los datos", valores);
-
+          // eslint-disable-next-line no-console
+          console.log(valores);
+          //Eleccion de ruta para crear o editar
           if (!valores.id || valores.id === undefined) {
             try {
               const createdTestimonial = await axios.post(
@@ -41,20 +38,16 @@ const TestimonialForm = () => {
 
               setFormSend(true);
               Console.log(createdTestimonial);
-            } catch (error) {
-              setError(true);
-            }
+            } catch (error) {}
           } else {
             try {
               const updatedTestimonial = await axios.put(
-                `/testimonials/${testimonialId}`,
+                `/testimonials/${valores.id}`,
                 valores
               );
 
               Console.log(updatedTestimonial);
-            } catch (error) {
-              setError(true);
-            }
+            } catch (error) {}
           }
         }}
       >
@@ -109,7 +102,6 @@ const TestimonialForm = () => {
                 name="image"
                 type="file"
                 onChange={(event) => {
-                  Console.log(event);
                   setFieldValue("image", event.target.files[0]);
                 }}
               />
