@@ -1,19 +1,14 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Form, Field, ErrorMessage, FormikProvider, useFormik } from "formik";
 import * as Yup from "yup";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import PropTypes from "prop-types";
+import axios from "axios";
 import "../FormStyles.css";
 
 const ErrorComponent = (props) => {
   return <p>{props.children}</p>;
-};
-
-const initialValues = {
-  name: "",
-  description: "",
-  image: "",
 };
 
 const validationSchema = Yup.object({
@@ -28,7 +23,14 @@ const validationSchema = Yup.object({
   description: Yup.string().required("Requerido"),
 });
 
-const CategoriesForm = () => {
+const CategoriesForm = ({ category }) => {
+  const initialValues = {
+    id: category?.id || "",
+    name: category?.name || "",
+    description: category?.description || "",
+    image: category?.image || "",
+  };
+
   const onSubmit = (values, { resetForm }) => {
     resetForm();
   };
@@ -73,6 +75,15 @@ const CategoriesForm = () => {
 
 ErrorComponent.propTypes = {
   children: PropTypes.string.isRequired,
+};
+
+CategoriesForm.propTypes = {
+  category: PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    description: PropTypes.string,
+    image: PropTypes.string,
+  }),
 };
 
 export default CategoriesForm;
