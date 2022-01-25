@@ -1,9 +1,12 @@
+/* eslint-disable prettier/prettier */
 import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 
-import { newsletterSchema } from "./formValidation";
-import "../FormStyles.css";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
+
+import { newsletterSchema } from "./formValidation";
+
+import "../FormStyles.css";
 import "bootstrap/dist/css/bootstrap.css";
 
 const FooterForm = () => {
@@ -21,16 +24,16 @@ const FooterForm = () => {
   return (
     <React.Fragment>
       <Formik
+        validateOnMount
         initialValues={{
           name: "",
           surname: "",
           email: "",
         }}
         validationSchema={newsletterSchema}
-        validateOnMount
         onSubmit={(valores, { resetForm }) => {
           try {
-            console.log(valores);
+            Console.log(valores);
             setFormSend(true);
             // setTimeout(() => setFormSend(false), 5000); ver validacion
             resetForm();
@@ -45,62 +48,62 @@ const FooterForm = () => {
       >
         {({ errors, isValid }) => (
           <Form
-            className={formSend ? "formNotDisplay" : "form-container"}
             noValidate
+            className={formSend ? "formNotDisplay" : "form-container"}
           >
             <div className="mt-3">
-              <label htmlFor="name" className="form-label">
+              <label className="form-label" htmlFor="name">
                 Nombre
               </label>
               <Field
-                type="text"
+                className="form-control"
                 id="name"
                 name="name"
                 placeholder="Nombre"
-                className="form-control"
+                type="text"
               />
               <ErrorMessage
-                name="name"
                 component={() => <p className="error">{errors.name}</p>}
+                name="name"
               />
             </div>
             <div className="mt-3">
-              <label htmlFor="surname" className="form-label">
+              <label className="form-label" htmlFor="surname">
                 Apellido
               </label>
               <Field
-                type="text"
+                className="form-control"
                 id="surname"
                 name="surname"
                 placeholder="Apellido"
-                className="form-control"
+                type="text"
               />
               <ErrorMessage
-                name="surname"
                 component={() => <p className="error">{errors.surname}</p>}
+                name="surname"
               />
             </div>
             <div className="mt-3">
-              <label htmlFor="email" className="form-label">
+              <label className="form-label" htmlFor="email">
                 Correo
               </label>
               <Field
-                type="text"
+                className="form-control"
                 id="email"
                 name="email"
                 placeholder="Correo"
-                className="form-control"
+                type="text"
               />
               <ErrorMessage
-                name="email"
                 component={() => <p className="error">{errors.email}</p>}
+                name="email"
               />
             </div>
             <button
-              onClick={formDisplayToggle}
-              type="submit"
               className="btn btn-primary"
               disabled={!isValid}
+              type="submit"
+              onClick={formDisplayToggle}
             >
               Enviar
             </button>

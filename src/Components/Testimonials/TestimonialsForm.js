@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from "react";
+/* eslint-disable prettier/prettier */
+import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 import "../FormStyles.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import axios from "../../api/testimonialapi";
 import { v4 as uuid } from "uuid";
+
+import axios from "../../api/testimonialapi";
 
 import { newsletterSchema } from "./formValidation";
 
@@ -13,20 +16,21 @@ const TestimonialForm = () => {
   const [formData, setFormData] = useState("");
   const [formSend, setFormSend] = useState(false);
   const [error, setError] = useState(false);
+  const testimonialId = useParams().id;
 
   return (
     <React.Fragment>
       <Formik
+        validateOnMount
         initialValues={{
           id: uuid(),
           name: "",
           description: "",
         }}
         validationSchema={newsletterSchema}
-        validateOnMount
         onSubmit={async (valores, { resetForm }) => {
           resetForm();
-          console.log("estos son los datos", valores);
+          Console.log("estos son los datos", valores);
 
           if (!valores.id || valores.id === undefined) {
             try {
@@ -34,7 +38,20 @@ const TestimonialForm = () => {
                 "/testimonials",
                 valores
               );
-              console.log(createdTestimonial);
+
+              setFormSend(true);
+              Console.log(createdTestimonial);
+            } catch (error) {
+              setError(true);
+            }
+          } else {
+            try {
+              const updatedTestimonial = await axios.put(
+                `/testimonials/${testimonialId}`,
+                valores
+              );
+
+              Console.log(updatedTestimonial);
             } catch (error) {
               setError(true);
             }
@@ -44,67 +61,67 @@ const TestimonialForm = () => {
         {({ errors, isValid, setFieldValue }) => (
           <Form className="form-container">
             <div className="mt-3">
-              <label htmlFor="name" className="form-label">
+              <label className="form-label" htmlFor="name">
                 Nombre
                 <span>:</span>
               </label>
               <Field
-                type="text"
+                className="form-control"
                 id="name"
                 name="name"
                 placeholder="Testimonio Nombre"
-                className="form-control"
+                type="text"
               />
               <ErrorMessage
-                name="name"
                 component={() => <p className="error">{errors.name}</p>}
+                name="name"
               />
             </div>
             <div className="mt-3">
-              <label htmlFor="description" className="form-label">
+              <label className="form-label" htmlFor="description">
                 Descripción
                 <span>:</span>
               </label>
               <CKEditor
+                editor={ClassicEditor}
                 id="description"
                 name="description"
-                editor={ClassicEditor}
                 onChange={(event, editor) => {
                   const data = editor.getData();
-                  console.log({ event, editor, data });
+
                   setFieldValue("description", data);
                 }}
               />
 
               <ErrorMessage
-                name="description"
                 component={() => <p className="error">{errors.description}</p>}
+                name="description"
               />
 
-              <label htmlFor="image" className="form-label">
+              <label className="form-label" htmlFor="image">
                 Imagen
                 <span>:</span>
               </label>
               <input
-                type="file"
-                id="image"
-                name="image"
                 accept="image/png, image/jpeg"
                 className="form-control"
+                id="image"
+                name="image"
+                type="file"
                 onChange={(event) => {
-                  console.log(event);
+                  Console.log(event);
                   setFieldValue("image", event.target.files[0]);
                 }}
               />
               <ErrorMessage
-                name="image"
                 component={() => <p className="error">{errors.image}</p>}
+                name="image"
               />
             </div>
             <button
-              type="submit"
               className="btn btn-primary"
               disabled={!isValid}
+              type="submit"
             >
               Enviar
             </button>
