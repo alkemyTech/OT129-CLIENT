@@ -1,59 +1,86 @@
 /* eslint-disable prettier/prettier */
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import "../FormStyles.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import { v4 as uuid } from "uuid";
 
 import axios from "../../api/testimonialapi";
 
 import PreviewImage from "./PreviewImage";
 import { testimonialSchema } from "./formValidation";
 
-const TestimonialForm = () => {
+const toBase64 = async (file) =>
+  new Promise((resolve, reject) => {
+    const reader = new FileReader();
+
+    reader.readAsDataURL(file);
+    reader.onloadend = () => resolve(reader.result);
+    reader.onerror = reject;
+  });
+
+const TestimonialForm = ({ testimony = {} }) => {
   const [formSend, setFormSend] = useState(false);
+
+  const [testimonyPost, setTestimonyPost] = useState("");
+
+  const [testimonyImage, setTestimonyImage] = useState("");
+
+  const createNewTestimony = async (data) => {
+    let response = await axios.post("/testimonials", data);
+
+    setTestimonyPost(response);
+
+    // eslint-disable-next-line no-console
+    // return console.log(response);
+  };
+  const updateTestimony = async (data) => {
+    let response = axios.put(`testimonials/${data.id}`, data);
+
+    console.log(response);
+  };
 
   return (
     <React.Fragment>
       <Formik
         validateOnMount
         initialValues={{
-          id: uuid(),
-          name: "",
-          description: "",
-          file: null,
+          name: testimony?.name || "",
+          description: testimony?.description || "",
+          image: testimony?.image || "",
         }}
         validationSchema={testimonialSchema}
-        onSubmit={async (values, { resetForm }) => {
-          resetForm();
+        onSubmit={async (values) => {
           // eslint-disable-next-line no-console
-          console.log(values);
+
           //Eleccion de ruta para crear o editar
-          if (!values.id || values.id === undefined) {
-            try {
-              const createdTestimonial = await axios.post(
-                "/testimonials",
-                values
-              );
 
-              setFormSend(true);
-              Console.log(createdTestimonial);
-            } catch (error) {}
+          if (!testimony.id) {
+            const resultBase = await toBase64(values.image);
+
+            console.log(resultBase);
+            const newTestimony = { ...values, image: resultBase };
+            const result = await createNewTestimony(newTestimony);
+
+            setTestimonyPost(result);
+            setFormSend(true);
+            console.log(testimonyPost);
+            console.log(result);
           } else {
-            try {
-              const updatedTestimonial = await axios.put(
-                `/testimonials/${values.id}`,
-                values
-              );
+            const result = await updateTestimony({
+              ...newTestimony,
+              id: testimony.id,
+            });
 
-              Console.log(updatedTestimonial);
-            } catch (error) {}
+            console.log(result);
           }
+
+          // eslint-disable-next-line no-console
         }}
       >
-        {({ values, errors, isValid, setFieldValue }) => (
+        {({ errors, isValid, setFieldValue }) => (
           <Form className="form-container">
             <div className="mt-3">
               <label className="form-label" htmlFor="name">
@@ -98,20 +125,23 @@ const TestimonialForm = () => {
                 <span>:</span>
               </label>
               <input
-                accept="image/png, image/jpeg"
+                accept="image/png, image/jpg"
                 className="form-control"
-                id="file"
-                name="file"
+                id="image"
+                name="image"
                 type="file"
                 onChange={(event) => {
-                  setFieldValue("file", event.target.files[0]);
+                  setFieldValue("image", event.target.files[0]);
+                  setTestimonyImage(
+                    URL.createObjectURL(event.currentTarget.files[0])
+                  );
                 }}
               />
               <ErrorMessage
                 component={() => <p className="error">{errors.file}</p>}
                 name="file"
               />
-              {values.file && <PreviewImage file={values.file} />}
+              {testimonyImage && <PreviewImage file={testimonyImage} />}
             </div>
             <button
               className="btn btn-primary"
@@ -128,6 +158,15 @@ const TestimonialForm = () => {
       )}
     </React.Fragment>
   );
+};
+
+TestimonialForm.propTypes = {
+  testimony: PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    description: PropTypes.string,
+    image: PropTypes.string,
+  }),
 };
 
 export default TestimonialForm;
