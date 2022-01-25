@@ -10,4 +10,5 @@ const ContainerFormCard = ({ children }) => {
 ContainerFormCard.propTypes = {
   children: PropTypes.node,
 };
+
 export default ContainerFormCard;
