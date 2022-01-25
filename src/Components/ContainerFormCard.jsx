@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const ContainerFormCard = ({ children }) => {
   return (
@@ -6,4 +7,7 @@ const ContainerFormCard = ({ children }) => {
   );
 };
 
+ContainerFormCard.propTypes = {
+  children: PropTypes.node,
+};
 export default ContainerFormCard;
