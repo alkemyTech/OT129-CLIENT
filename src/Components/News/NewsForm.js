@@ -27,7 +27,7 @@ const NewsForm = ({ id, name, content, image, category_id }) => {
     const data = async () => {
       const result = await getCategories();
 
-      setCategories(result);
+      setCategories(result?.data?.data);
     };
 
     data();
@@ -70,8 +70,6 @@ const NewsForm = ({ id, name, content, image, category_id }) => {
               const result = await editNew({ data }, id);
 
               if (result.data.success) {
-                setLoading(false);
-              } else {
                 setLoading(false);
               }
             }
