@@ -1,44 +1,15 @@
 /* eslint-disable no-console */
-import React from "react";
-import { Formik, Field, Form, ErrorMessage, useFormikContext } from "formik";
+import React, { useState, useEffect } from "react";
+import { Formik, Field, Form, ErrorMessage } from "formik";
 import PropTypes from "prop-types";
 import * as Yup from "yup";
 import "../FormStyles.css";
-import axios from "axios";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
-const toBase64 = async (file) =>
-  new Promise((resolve, reject) => {
-    const reader = new FileReader();
-
-    reader.readAsDataURL(file);
-    reader.onloadend = () => resolve(reader.result);
-    reader.onerror = reject;
-  });
-const createNewActivity = async (data) => {
-  axios
-    .post("http://ongapi.alkemy.org/api/activities", data, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-    .then((res) => {
-      console.log(res, "Actividad creada correctamente");
-    });
-};
-const updateActivity = async (data) => {
-  axios
-    .put(`http://ongapi.alkemy.org/api/activities/${data.id}`, data, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-    .then((res) => {
-      console.log(res);
-      console.log("La modificación fue exitosa");
-    });
-};
+import { create } from "../../Services/create";
+import { edit } from "../../Services/edit";
+import { toBase64 } from "../../utils/toBase64";
 
 const validationSchema = Yup.object({
   name: Yup.string().required("El nombre de la actividad es obligatorio"),
@@ -52,11 +23,19 @@ const validationSchema = Yup.object({
 });
 
 const ActivitiesForm = ({ activity = {} }) => {
+  const [activityImage, setActivityImage] = useState("");
+
   const initialValues = {
     name: activity?.name || "",
     description: activity?.description || "",
     image: activity?.image || "",
   };
+
+  useEffect(() => {
+    if (activity.id) {
+      setActivityImage(activity.image);
+    }
+  }, []);
 
   return (
     <div className="container mt-4">
@@ -69,11 +48,11 @@ const ActivitiesForm = ({ activity = {} }) => {
 
           console.log(newActivity);
           if (activity.id === undefined) {
-            const result = await createNewActivity(newActivity);
+            const result = await create("activities", newActivity);
 
             console.log(result);
           } else {
-            const result = await updateActivity({ ...newActivity, id: activity.id });
+            const result = await edit("activities", { ...newActivity, id: activity.id });
 
             console.log(result);
           }
@@ -84,40 +63,44 @@ const ActivitiesForm = ({ activity = {} }) => {
             <div className="col-sm-6 ">
               <div className="input-group mb-3">
                 <Field
+                  className="p-2 w-100"
                   id="name"
-                  type="text"
                   name="name"
                   placeholder="Nombre de la actividad"
-                  className="p-2 w-100"
+                  type="text"
                 />
-                <ErrorMessage name="name" className="alert-danger" />
+                <ErrorMessage className="alert-danger" name="name" />
               </div>
               <div className="input-group mb-3">
                 <CKEditor
-                  id="description"
-                  editor={ClassicEditor}
+                  className="p-2 w-75"
                   config={{ placeholder: "Descripción" }}
-                  name="description"
+                  data={activity?.description || ""}
+                  editor={ClassicEditor}
+                  id="description"
                   onChange={(event, editor) => {
                     const data = editor.getData();
 
                     formik.setFieldValue("description", data);
                   }}
-                  className="p-2 w-75"
                 />
               </div>
               <div className="mb-3">
                 <input
-                  id="image"
-                  type="file"
-                  name="image"
                   accept="image/png, image/jpeg"
                   className="w-100"
+                  id="image"
+                  name="image"
+                  type="file"
                   onChange={(event) => {
                     formik.setFieldValue("image", event.currentTarget.files[0]);
+                    setActivityImage(URL.createObjectURL(event.currentTarget.files[0]));
                   }}
                 />
-                <ErrorMessage name="image" className="alert-danger" />
+                <ErrorMessage className="alert-danger" name="image" />
+                {activityImage ? (
+                  <img alt="Imagen actual" className="current-img" src={activityImage} />
+                ) : null}
               </div>
               <button className="submit-btn" type="submit">
                 {activity?.id ? "EDITAR" : "CREAR"}
