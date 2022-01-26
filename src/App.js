@@ -17,6 +17,7 @@ import EditOrganizationContainer from "./Containers/EditOrganization/EditOrganiz
 import ActivitiesDetailsContainer from "./Components/Activities/Detail/ActivitiesDetailsContainer";
 import HomeForm from "./Components/Home/HomeForm";
 import ContactForm from "./Components/Contact/ContactForm";
+import ActivitiesIndexContainer from "./Components/Activities/Backoffice/ActivitiesIndexContainer";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
@@ -36,6 +37,7 @@ function App() {
           <Route exact component={EditOrganizationContainer} path="/backoffice/organization/edit" />
           <Route exact component={OrganizationContainer} path="/backoffice/organization" />
           <Route exact component={HomeForm} path="/backoffice/home" />
+          <Route exact component={ActivitiesIndexContainer} path="/backoffice/activities" />
           <Route exact component={TestimonialForm} path="/create-testimonials" />
           <Route exact component={UserForm} path="/create-user" />
           <Route exact component={MembersForm} path="/create-member" />
