@@ -5,17 +5,17 @@ import { format } from "date-fns";
 const NewsTableRow = ({ data }) => {
   return (
     <tr>
-      <td>{data.name}</td>
-      <td>{format(new Date(data.created_at), "MM/dd/yyyy")}</td>
-      <td>
+      <td className="align-middle">{data.name}</td>
+      <td className="align-middle">{format(new Date(data.created_at), "dd/MM/yyyy")}</td>
+      <td className="w-25 align-middle">
         <img alt="" className="w-25" src={data.image} />
       </td>
-      <td className="">
-        <button className="btn btn-primary" type="button">
-          Editar
+      <td className="align-middle">
+        <button className="btn btn-primary " type="button">
+          <i className="fas fa-pencil-alt" />
         </button>
-        <button className="btn btn-danger" type="button">
-          Eliminar
+        <button className="btn btn-danger ms-2" type="button">
+          <i className="fas fa-trash-alt" />
         </button>
       </td>
     </tr>
