@@ -121,12 +121,16 @@ const TestimonialForm = ({ testimony = {} }) => {
             >
               Enviar
             </button>
+            {formSend ? (
+              testimony.id ? (
+                <p className="formSubmitted">Formulario editado con éxito</p>
+              ) : (
+                <p className="formSubmitted">Formulario enviado con éxito</p>
+              )
+            ) : null}
           </Form>
         )}
       </Formik>
-      {formSend && (
-        <p className="formSubmitted">Formulario enviado con éxito</p>
-      )}
     </React.Fragment>
   );
 };
