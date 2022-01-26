@@ -27,3 +27,11 @@
     cursor: pointer;
     background-color: #3498DB;
 }
+.ck {
+    width: 100%!important;
+}
+
+.current-img{
+    width: 100px;
+    height: 100px;
+}
