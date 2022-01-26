@@ -1,48 +1,134 @@
-import React, { useState } from "react";
+/* eslint-disable no-console */
+import React, { useState, useEffect } from "react";
+import { Formik, Field, Form, ErrorMessage } from "formik";
+import PropTypes from "prop-types";
+import * as Yup from "yup";
 import "../FormStyles.css";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
-const ActivitiesForm = () => {
-  const [initialValues, setInitialValues] = useState({
-    name: "",
-    description: "",
-  });
+import { create } from "../../Services/create";
+import { edit } from "../../Services/edit";
+import { toBase64 } from "../../utils/toBase64";
 
-  const handleChange = (e) => {
-    if (e.target.name === "name") {
-      setInitialValues({ ...initialValues, name: e.target.value });
-    }
-    if (e.target.name === "description") {
-      setInitialValues({ ...initialValues, description: e.target.value });
-    }
+const validationSchema = Yup.object({
+  name: Yup.string().required("El nombre de la actividad es obligatorio"),
+  image: Yup.mixed()
+    .required("Debe adjuntar una imagen")
+    .test("fileType", "La extensión del archivo no es soportado", (value) => {
+      if (value) return ["image/jpeg", "image/png"].includes(value.type);
+
+      return true;
+    }),
+});
+
+const ActivitiesForm = ({ activity = {} }) => {
+  const [activityImage, setActivityImage] = useState("");
+
+  const initialValues = {
+    name: activity?.name || "",
+    description: activity?.description || "",
+    image: activity?.image || "",
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
+  useEffect(() => {
+    if (activity.id) {
+      setActivityImage(activity.image);
+    }
+  }, []);
 
   return (
-    <form className="form-container" onSubmit={handleSubmit}>
-      <input
-        className="input-field"
-        name="name"
-        placeholder="Activity Title"
-        type="text"
-        value={initialValues.name}
-        onChange={handleChange}
-      />
-      <input
-        className="input-field"
-        name="description"
-        placeholder="Write some activity description"
-        type="text"
-        value={initialValues.description}
-        onChange={handleChange}
-      />
-      <button className="submit-btn" type="submit">
-        Send
-      </button>
-    </form>
+    <div className="container mt-4">
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={async (formData) => {
+          const resultBase = await toBase64(formData.image);
+          const newActivity = { ...formData, image: resultBase };
+
+          console.log(newActivity);
+          if (activity.id === undefined) {
+            const result = await create("activities", newActivity);
+
+            console.log(result);
+          } else {
+            const result = await edit("activities", {
+              ...newActivity,
+              id: activity.id,
+            });
+
+            console.log(result);
+          }
+        }}
+      >
+        {(formik) => (
+          <Form className="row justify-content-center align-items-center">
+            <div className="col-sm-6 ">
+              <div className="input-group mb-3">
+                <Field
+                  className="p-2 w-100"
+                  id="name"
+                  name="name"
+                  placeholder="Nombre de la actividad"
+                  type="text"
+                />
+                <ErrorMessage className="alert-danger" name="name" />
+              </div>
+              <div className="input-group mb-3">
+                <CKEditor
+                  className="p-2 w-75"
+                  config={{ placeholder: "Descripción" }}
+                  data={activity?.description || ""}
+                  editor={ClassicEditor}
+                  id="description"
+                  onChange={(event, editor) => {
+                    const data = editor.getData();
+
+                    formik.setFieldValue("description", data);
+                  }}
+                />
+              </div>
+              <div className="mb-3">
+                <input
+                  accept="image/png, image/jpeg"
+                  className="w-100"
+                  id="image"
+                  name="image"
+                  type="file"
+                  onChange={(event) => {
+                    formik.setFieldValue("image", event.currentTarget.files[0]);
+                    setActivityImage(
+                      URL.createObjectURL(event.currentTarget.files[0])
+                    );
+                  }}
+                />
+                <ErrorMessage className="alert-danger" name="image" />
+                {activityImage ? (
+                  <img
+                    alt="Imagen actual"
+                    className="current-img"
+                    src={activityImage}
+                  />
+                ) : null}
+              </div>
+              <button className="submit-btn" type="submit">
+                {activity?.id ? "EDITAR" : "CREAR"}
+              </button>
+            </div>
+          </Form>
+        )}
+      </Formik>
+    </div>
   );
+};
+
+ActivitiesForm.propTypes = {
+  activity: PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    description: PropTypes.string,
+    image: PropTypes.string,
+  }),
 };
 
 export default ActivitiesForm;

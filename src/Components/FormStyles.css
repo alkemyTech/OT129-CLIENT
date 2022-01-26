@@ -43,3 +43,15 @@
   content: "*";
   color: red;
 }
+.submit-btn:hover {
+  cursor: pointer;
+  background-color: #3498db;
+}
+.ck {
+  width: 100% !important;
+}
+
+.current-img {
+  width: 100px;
+  height: 100px;
+}
