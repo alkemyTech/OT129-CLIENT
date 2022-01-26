@@ -7,40 +7,17 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
-import axios from "../../api/testimonialapi";
+import { toBase64 } from "../../utils/toBase64";
+import { create } from "../../Services/create";
+import { edit } from "../../Services/edit";
 
 import PreviewImage from "./PreviewImage";
 import { testimonialSchema } from "./formValidation";
 
-const toBase64 = async (file) =>
-  new Promise((resolve, reject) => {
-    const reader = new FileReader();
-
-    reader.readAsDataURL(file);
-    reader.onloadend = () => resolve(reader.result);
-    reader.onerror = reject;
-  });
-
 const TestimonialForm = ({ testimony = {} }) => {
   const [formSend, setFormSend] = useState(false);
 
-  const [testimonyPost, setTestimonyPost] = useState("");
-
   const [testimonyImage, setTestimonyImage] = useState("");
-
-  const createNewTestimony = async (data) => {
-    let response = await axios.post("/testimonials", data);
-
-    setTestimonyPost(response);
-
-    // eslint-disable-next-line no-console
-    // return console.log(response);
-  };
-  const updateTestimony = async (data) => {
-    let response = axios.put(`testimonials/${data.id}`, data);
-
-    console.log(response);
-  };
 
   return (
     <React.Fragment>
@@ -53,31 +30,24 @@ const TestimonialForm = ({ testimony = {} }) => {
         }}
         validationSchema={testimonialSchema}
         onSubmit={async (values) => {
-          // eslint-disable-next-line no-console
-
           //Eleccion de ruta para crear o editar
+          const resultBase = await toBase64(values.image);
+          const newTestimony = { ...values, image: resultBase };
 
           if (!testimony.id) {
-            const resultBase = await toBase64(values.image);
+            const result = await create("testimonials", newTestimony);
 
-            console.log(resultBase);
-            const newTestimony = { ...values, image: resultBase };
-            const result = await createNewTestimony(newTestimony);
-
-            setTestimonyPost(result);
-            setFormSend(true);
-            console.log(testimonyPost);
             console.log(result);
+            setFormSend(true);
           } else {
-            const result = await updateTestimony({
+            const result = await edit("testimonials", {
               ...newTestimony,
               id: testimony.id,
             });
 
+            setFormSend(true);
             console.log(result);
           }
-
-          // eslint-disable-next-line no-console
         }}
       >
         {({ errors, isValid, setFieldValue }) => (
@@ -105,6 +75,7 @@ const TestimonialForm = ({ testimony = {} }) => {
                 <span>:</span>
               </label>
               <CKEditor
+                data={testimony.description}
                 editor={ClassicEditor}
                 id="description"
                 name="description"
