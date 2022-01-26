@@ -2,18 +2,16 @@
 import axios from "axios";
 
 export const create = async (route, data) => {
-  axios
-    .post(`http://ongapi.alkemy.org/api/${route}`, data, {
-      headers: {
-        "Content-Type": "application/json",
-        group: "129",
-      },
-    })
-    .then((res) => {
-      if (res.data.success) {
-        console.log(res, "Actividad creada correctamente");
-      } else {
-        console.log(res, "Ocurrió un error al enviar el formulario");
-      }
-    });
+  let result = await axios.post(`http://ongapi.alkemy.org/api/${route}`, data, {
+    headers: {
+      "Content-Type": "application/json",
+      group: "129",
+    },
+  });
+
+  if (result.data.success) {
+    console.log(result, "Actividad creada correctamente");
+  } else {
+    console.log(result, "Ocurrió un error al enviar el formulario");
+  }
 };
