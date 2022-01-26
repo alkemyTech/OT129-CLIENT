@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import "../FormStyles.css";
@@ -64,10 +63,7 @@ const TestimonialForm = ({ testimony = {} }) => {
                 placeholder="Testimonio Nombre"
                 type="text"
               />
-              <ErrorMessage
-                component={() => <p className="error">{errors.name}</p>}
-                name="name"
-              />
+              <ErrorMessage component={() => <p className="error">{errors.name}</p>} name="name" />
             </div>
             <div className="mt-3">
               <label className="form-label" htmlFor="description">
@@ -103,22 +99,13 @@ const TestimonialForm = ({ testimony = {} }) => {
                 type="file"
                 onChange={(event) => {
                   setFieldValue("image", event.target.files[0]);
-                  setTestimonyImage(
-                    URL.createObjectURL(event.currentTarget.files[0])
-                  );
+                  setTestimonyImage(URL.createObjectURL(event.currentTarget.files[0]));
                 }}
               />
-              <ErrorMessage
-                component={() => <p className="error">{errors.file}</p>}
-                name="file"
-              />
+              <ErrorMessage component={() => <p className="error">{errors.file}</p>} name="file" />
               {testimonyImage && <PreviewImage file={testimonyImage} />}
             </div>
-            <button
-              className="btn btn-primary"
-              disabled={!isValid}
-              type="submit"
-            >
+            <button className="btn btn-primary" disabled={!isValid} type="submit">
               Enviar
             </button>
             {formSend ? (
