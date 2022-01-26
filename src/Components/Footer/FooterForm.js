@@ -113,8 +113,6 @@ const FooterForm = () => {
       ) : (
         <p className="formSubmitted">Usuario ingresado al newsletter</p>
       )}
-
-      {formSend && <p className="formSubmitted">Formulario enviado con éxito</p>}
     </>
   );
 };
