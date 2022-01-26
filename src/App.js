@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import ActivitiesForm from "./Components/Activities/ActivitiesForm";
 import CategoriesForm from "./Components/Categories/CategoriesForm";
-import NewsForm from "./Components/News/NewsForm";
+import NewsForm from "./Components/News/NewsForm.jsx";
 import SlidesForm from "./Components/Slides/SlidesForm";
 import TestimonialForm from "./Components/Testimonials/TestimonialsForm";
 import UserForm from "./Components/Users/UsersForm";
@@ -17,6 +17,7 @@ import EditOrganizationContainer from "./Containers/EditOrganization/EditOrganiz
 import ActivitiesDetailsContainer from "./Components/Activities/Detail/ActivitiesDetailsContainer";
 import HomeForm from "./Components/Home/HomeForm";
 import ContactForm from "./Components/Contact/ContactForm";
+import NewsPage from "./Components/News/NewsPage";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
@@ -30,6 +31,7 @@ function App() {
           <Route exact component={ActivitiesForm} path="/create-activity" />
           <Route exact component={ActivitiesDetailsContainer} path="/activities/:id" />
           <Route exact component={CategoriesForm} path="/create-category" />
+          <Route exact component={NewsPage} path="/backoffice/news" />
           <Route exact component={NewsForm} path="/backoffice/create-news" />
           <Route exact component={SlidesForm} path="/backoffice/create-slide" />
           <Route exact component={OrganizationContainer} path="/backoffice/organization" />
