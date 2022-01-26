@@ -1,41 +1,161 @@
-import React, { useState } from 'react';
-import '../../Components/FormStyles.css';
+import React, { useEffect, useState } from "react";
+import { ErrorMessage, Form, Formik } from "formik";
+import * as Yup from "yup";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import PropTypes from "prop-types";
 
-const NewsForm = () => {
-    const [initialValues, setInitialValues] = useState({
-        title: '',
-        content: '',
-        category: ''
-    });
+import { toBase64 } from "../../utils/toBase64";
+import ContainerFormCard from "../ContainerFormCard";
+import { editNew } from "../../Services/editNew";
+import { createNews } from "../../Services/createNews";
+import { getCategories } from "../../Services/getCategories";
 
-    const handleChange = (e) => {
-        if(e.target.name === 'title'){
-            setInitialValues({...initialValues, title: e.target.value})
-        } if(e.target.name === 'content'){
-            setInitialValues({...initialValues, content: e.target.value})
-        } if(e.target.name === 'category') {
-            setInitialValues({...initialValues, category: e.target.value})
-        }
-    }
+const NewsForm = ({ id, name, content, image, category_id }) => {
+  const initialValues = {
+    name,
+    content,
+    image,
+    category_id,
+  };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(initialValues);
-    }
+  const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-    return (
-        <form className="form-container" onSubmit={handleSubmit}>
-            <input className="input-field" type="text" name="title" value={initialValues.title || ''} onChange={handleChange}></input>
-            <input className="input-field" type="text" name="content" value={initialValues.content || ''} onChange={handleChange}></input>
-            <select className="select-field" name="category" value={initialValues.category || ''} onChange={handleChange}>
-                <option value="" disabled>Select category</option>
-                <option value="1">Demo option 1</option>
-                <option value="2">Demo option 2</option>
-                <option value="3">Demo option 3</option>
-            </select>
-            <button className="submit-btn" type="submit">Send</button>
-        </form>
-    );
-}
- 
+  // ejecuta la funcion getCategories para traer y mostrar todas las categorias
+  useEffect(() => {
+    const data = async () => {
+      const result = await getCategories();
+
+      setCategories(result?.data?.data);
+    };
+
+    data();
+  }, []);
+
+  return (
+    <>
+      <ContainerFormCard>
+        <Formik
+          initialValues={initialValues}
+          validationSchema={validationNewSchema}
+          onSubmit={async (formData) => {
+            setLoading(true);
+            // Convertirmos la imagen en formato base64
+            const resultbase = await toBase64(formData.image);
+            const data = {
+              name: formData.name,
+              content: formData.content,
+              category_id: formData.category_id,
+              image: resultbase,
+            };
+
+            // Validamos si el objeto novedad esta vacio o no
+            if (id === undefined) {
+              await createNews({ data });
+
+              setLoading(false);
+            } else {
+              const resultbase = await toBase64(formData.image);
+              const data = {
+                name: formData.name,
+                content: formData.content,
+                category_id: formData.category_id,
+                image: resultbase,
+              };
+
+              await editNew({ data }, id);
+
+              setLoading(false);
+            }
+          }}
+        >
+          {(formik) => (
+            <Form className="p-4" onSubmit={formik.handleSubmit}>
+              <div className="mb-1">
+                <label className="form-label fw-bold">Título</label>
+                <input
+                  autoComplete="off"
+                  className="form-control form-control-sm w-100"
+                  type="text"
+                  value="hola que tal"
+                  // placeholder="Ingrese un título"
+                  {...formik.getFieldProps("name")}
+                />
+                <ErrorMessage className="text-danger" component="span" name="name" />
+              </div>
+              <div className="mb-1">
+                <label className="form-label fw-bold mt-1">Contenido</label>
+                <CKEditor
+                  data={content}
+                  editor={ClassicEditor}
+                  id="content"
+                  onChange={(event, editor) => formik.setFieldValue("content", editor.getData())}
+                />
+              </div>
+              <ErrorMessage className="text-danger" component="span" name="content" />
+
+              <div className="mb-1">
+                <label className="form-label fw-bold mt-1">Categoría</label>
+                <select
+                  aria-label="Default select example"
+                  className="form-select form-select-sm"
+                  {...formik.getFieldProps("category_id")}
+                >
+                  <option defaultValue>Seleccione una categoria</option>
+                  {categories?.map((categorie) => (
+                    <option key={categorie.id} value={categorie.id}>
+                      {categorie.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <ErrorMessage className="text-danger" component="span" name="category_id" />
+
+              <div className="mb-1">
+                <label className="form-label fw-bold mt-1">Imagen</label>
+                <input
+                  autoComplete="off"
+                  className="form-control form-control-sm"
+                  name="image"
+                  type="file"
+                  onChange={(event) => {
+                    formik.setFieldValue("image", event.currentTarget.files[0]);
+                  }}
+                />
+              </div>
+              <ErrorMessage className="text-danger" component="span" name="image" />
+
+              <button className="btn btn-primary w-100 mt-2 fw-bold" type="submit">
+                <span
+                  aria-hidden="true"
+                  className={loading ? "spinner-border spinner-border-sm" : null}
+                  role="status"
+                />
+                {id === undefined ? "AGREGAR NOVEDAD" : "EDITAR NOTICIA"}
+              </button>
+            </Form>
+          )}
+        </Formik>
+      </ContainerFormCard>
+    </>
+  );
+};
+const validationNewSchema = Yup.object({
+  name: Yup.string()
+    .min(4, "Debe contener al menos 4 caracteres")
+    .required("El titulo es obligatorio"),
+  content: Yup.string().required("El contenido es obligatorio"),
+  category_id: Yup.string().required("La categoría es obligatoria"),
+  image: Yup.string().required("La imagen es obligatoria"),
+});
+
+NewsForm.propTypes = {
+  id: PropTypes.number,
+  name: PropTypes.string,
+  content: PropTypes.string,
+  image: PropTypes.string,
+  category_id: PropTypes.number,
+};
+
 export default NewsForm;
