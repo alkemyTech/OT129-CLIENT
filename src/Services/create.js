@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import axios from "axios";
 
 export const create = async (route, data) => {
@@ -9,9 +8,5 @@ export const create = async (route, data) => {
     },
   });
 
-  if (result.data.success) {
-    console.log(result, "Actividad creada correctamente");
-  } else {
-    console.log(result, "Ocurrió un error al enviar el formulario");
-  }
+  return result;
 };
