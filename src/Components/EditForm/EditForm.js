@@ -22,13 +22,11 @@ const validationSchema = Yup.object({
 const Alert = ({ children }) => <div className="alert alert-danger">{children}</div>;
 
 const EditForm = ({ data }) => {
-  const initialValues = { data };
-
   const IMG_PREVIEW = data.logo;
 
   return (
     <Formik
-      initialValues={initialValues.data}
+      initialValues={data}
       validationSchema={validationSchema}
       onSubmit={(formData) => console.log(formData)} //Enviar la info al store, redireccionar a backoffice/organization
     >
@@ -59,11 +57,11 @@ const EditForm = ({ data }) => {
               Logo:
             </label>
             <input
+              accept="image/png, image/jpeg"
               className="form-control mb-3"
               id="logo"
               name="logo"
               type="file"
-              accept="image/png, image/jpeg"
               onChange={formik.handleChange}
             />
             <div className="card" style={{ width: "18rem" }}>
@@ -83,10 +81,10 @@ const EditForm = ({ data }) => {
               <p>{data.shortDescription}</p>
             </div>
             <CKEditor
+              required
               editor={ClassicEditor}
               id="shortDescription"
               name="shortDescription"
-              required
               onChange={(event, editor) => {
                 formik.setFieldValue("shortDescription", editor.getData());
               }}
@@ -101,9 +99,9 @@ const EditForm = ({ data }) => {
               className="form-control mb-3"
               id="longDescription"
               name="longDescription"
+              style={{ maxHeight: "250px", minHeight: "250px" }}
               value={formik.values.longDescription}
               onChange={formik.handleChange}
-              style={{ maxHeight: "250px", minHeight: "250px" }}
             />
             <ErrorMessage className="alert-danger" component={Alert} name="longDescription" />
           </div>
