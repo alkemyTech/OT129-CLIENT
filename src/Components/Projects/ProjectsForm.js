@@ -1,42 +1,14 @@
 /* eslint-disable no-console */
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import PropTypes from "prop-types";
 import * as Yup from "yup";
+
+import { edit } from "../../Services/edit";
+import { create } from "../../Services/create";
+import { toBase64 } from "../../utils/toBase64";
+
 import "../FormStyles.css";
-import axios from "axios";
-
-const toBase64 = async (file) =>
-  new Promise((resolve, reject) => {
-    const reader = new FileReader();
-
-    reader.readAsDataURL(file);
-    reader.onloadend = () => resolve(reader.result);
-    reader.onerror = reject;
-  });
-const createNewProject = async (data) => {
-  axios
-    .post("http://ongapi.alkemy.org/api/projects", data, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-    .then((res) => {
-      console.log(res, "Proyecto creado correctamente");
-    });
-};
-const updateProject = async (data) => {
-  axios
-    .put(`http://ongapi.alkemy.org/api/projects/${data.id}`, data, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-    .then((res) => {
-      console.log(res);
-      console.log("La modificación fue exitosa");
-    });
-};
 
 const validationSchema = Yup.object({
   title: Yup.string().required("El título del proyecto es obligatorio"),
@@ -51,6 +23,8 @@ const validationSchema = Yup.object({
 });
 
 const ProjectsForm = ({ project = {} }) => {
+  const [projectImage, setProjectImage] = useState("");
+
   const initialValues = {
     title: project?.title || "",
     description: project?.description || "",
@@ -58,23 +32,28 @@ const ProjectsForm = ({ project = {} }) => {
     due_date: project?.due_date || "",
   };
 
+  useEffect(() => {
+    if (project.id) {
+      setProjectImage(project.image);
+    }
+  }, []);
+
   return (
     <div className="container mt-4">
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
-        onSubmit={async (formData, { resetForm }) => {
+        onSubmit={async (formData) => {
           const resultBase = await toBase64(formData.image);
           const newProject = { ...formData, image: resultBase };
 
           console.log(newProject);
-          resetForm({ values: "" });
           if (project.id === undefined) {
-            const result = await createNewProject(newProject);
+            const result = await create("projects", newProject);
 
             console.log(result);
           } else {
-            const result = await updateProject({ ...newProject, id: project.id });
+            const result = await edit("projects", { ...newProject, id: project.id });
 
             console.log(result);
           }
@@ -85,38 +64,42 @@ const ProjectsForm = ({ project = {} }) => {
             <div className="col-sm-6 ">
               <div className="input-group mb-3">
                 <Field
-                  type="text"
+                  className="p-2 w-100"
                   name="title"
                   placeholder="Título del Proyecto"
-                  className="p-2 w-100"
+                  type="text"
                 />
-                <ErrorMessage name="title" className="alert-danger" />
+                <ErrorMessage className="alert-danger" name="title" />
               </div>
               <div className="input-group mb-3">
                 <Field
-                  type="text"
-                  placeholder="Descripción"
-                  name="description"
                   className="p-2 w-100"
+                  name="description"
+                  placeholder="Descripción"
+                  type="text"
                 />
-                <ErrorMessage name="description" className="alert-danger" />
+                <ErrorMessage className="alert-danger" name="description" />
               </div>
               <div className="mb-3">
                 <input
-                  type="file"
-                  name="image"
                   accept="image/png, image/jpeg"
+                  className="w-100"
+                  name="image"
+                  type="file"
                   onChange={(event) => {
                     formik.setFieldValue("image", event.currentTarget.files[0]);
+                    setProjectImage(URL.createObjectURL(event.currentTarget.files[0]));
                   }}
-                  className="w-100"
                 />
-                <ErrorMessage name="image" className="alert-danger" />
+                <ErrorMessage className="alert-danger" name="image" />
               </div>
               <div className="input-group mb-3">
-                <Field type="date" name="due_date" className="p-2 w-100" />
-                <ErrorMessage name="due_date" className="alert-danger" />
+                <Field className="p-2 w-100" name="due_date" type="date" />
+                <ErrorMessage className="alert-danger" name="due_date" />
               </div>
+              {projectImage ? (
+                <img alt="Imagen actual" className="row w-25 h-25" src={projectImage} />
+              ) : null}
               <button className="submit-btn" type="submit">
                 {project?.id ? "EDITAR" : "CREAR"}
               </button>
