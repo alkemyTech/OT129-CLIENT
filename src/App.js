@@ -16,7 +16,6 @@ import RegisterForm from "./Components/Auth/RegisterForm";
 import EditOrganizationContainer from "./Containers/EditOrganization/EditOrganizationContainer";
 import ActivitiesDetailsContainer from "./Components/Activities/Detail/ActivitiesDetailsContainer";
 import HomeForm from "./Components/Home/HomeForm";
-import ContactForm from "./Components/Contact/ContactForm";
 import ContactPage from "./Components/Contact/ContactPage";
 
 import "bootstrap/dist/css/bootstrap.min.css";
