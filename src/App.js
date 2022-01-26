@@ -15,13 +15,9 @@ import MembersForm from "./Components/Members/MembersForm";
 import ProjectsForm from "./Components/Projects/ProjectsForm";
 import Organization from "./Components/Organization/Organization";
 import RegisterForm from "./Components/Auth/RegisterForm";
-<<<<<<< HEAD
-import LoginForm from "./Components/Auth/LoginForm";
-=======
 import ActivitiesDetailsContainer from "./Components/Activities/Detail/ActivitiesDetailsContainer";
 import HomeForm from "./Components/Home/HomeForm";
 import ContactForm from "./Components/Contact/ContactForm";
->>>>>>> 7f119f7a692d3168fbac45e0f50c637fee84aadd
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
@@ -46,11 +42,7 @@ function App() {
           <Route exact component={SchoolCampaign} path="/school-campaign" />
           <Route exact component={ToysCampaign} path="/toys-campaign" />
           <Route exact component={RegisterForm} path="/register" />
-<<<<<<< HEAD
-          <Route exact component={LoginForm} path="/login" />
-=======
           <Route exact component={ContactForm} path="/contact" />
->>>>>>> 7f119f7a692d3168fbac45e0f50c637fee84aadd
         </Switch>
       </BrowserRouter>
       <div className="App">
