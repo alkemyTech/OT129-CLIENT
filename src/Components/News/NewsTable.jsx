@@ -17,7 +17,7 @@ const NewsTable = ({ news }) => {
                 <th scope="col">Acciones</th>
               </tr>
             </thead>
-            <tbody style={{ overflowY: "10px" }}>
+            <tbody>
               {news?.map((data) => (
                 <NewsTableRow key={data.id} data={data} />
               ))}

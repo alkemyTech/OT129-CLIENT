@@ -82,37 +82,12 @@ const news = [
     updated_at: "2022-01-04T04:29:33.000000Z",
     deleted_at: null,
   },
-  {
-    id: 1250,
-    name: "Inicia campañas de juguetes",
-    slug: null,
-    content: "<p>Trae tu donativo</p>",
-    image: "http://ongapi.alkemy.org/storage/KIvAkhle7j.jpeg",
-    user_id: null,
-    category_id: 1500,
-    created_at: "2022-01-04T13:26:19.000000Z",
-    updated_at: "2022-01-05T19:45:52.000000Z",
-    deleted_at: null,
-  },
-  {
-    id: 1251,
-    name: "Fin de vacaciones en familia",
-    slug: null,
-    content:
-      "<p>Al llegar el fin de las vacaciones junto con nuestra campa;a para articulos escolares tendremos una peque;a actividad para compartir con chicos y grandes, y asi despdir las vacaciones</p>",
-    image: "http://ongapi.alkemy.org/storage/CtI55FdkKU.jpeg",
-    user_id: null,
-    category_id: null,
-    created_at: "2022-01-04T19:34:14.000000Z",
-    updated_at: "2022-01-04T19:34:14.000000Z",
-    deleted_at: null,
-  },
 ];
 
 const NewsPage = () => {
   return (
     <div className="container">
-      <h1 className="mt-3 mb-3 text-center">Novedades</h1>
+      <h1 className="mt-3 mb-3 text-center">NOVEDADES</h1>
       <Link className="btn btn-primary btn-sm mb-3" to="/backoffice/create-news">
         <i className="fas fa-plus" />
         <span className="ms-2">CREAR NOVEDAD</span>
