@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 
+import { useLocalStorage } from "../../hooks/useLocalStorage";
+
 import { newsletterSchema } from "./formValidation";
 
 import "../FormStyles.css";
-import { useLocalStorage } from "../../hooks/useLocalStorage";
 import "bootstrap/dist/css/bootstrap.css";
 
 const FooterForm = () => {
   const [formSend, setFormSend] = useState(false);
   const [error, setError] = useState(false);
-  const [valueName, setValueName] = useLocalStorage("nombre", "");
-  const [valueSurname, setValueSurname] = useLocalStorage("apellido", "");
+
   const [valueEmail, setValueEmail] = useLocalStorage("correo", "");
 
   //funcion para cambiar la clase del form para que no se muestre
@@ -20,7 +20,7 @@ const FooterForm = () => {
   };
 
   return (
-    <React.Fragment>
+    <>
       <Formik
         validateOnMount
         initialValues={{
@@ -29,23 +29,26 @@ const FooterForm = () => {
           email: "",
         }}
         validationSchema={newsletterSchema}
-        onSubmit={(valores, { resetForm }) => {
+        onSubmit={(values, { resetForm }) => {
           try {
-            console.log(valores);
+            console.log(values);
             setFormSend(true);
             // setTimeout(() => setFormSend(false), 5000); ver validacion
             resetForm();
-            //los valores se colocan en localstorage
-            setValueName(valores.name);
-            setValueSurname(valores.surname);
-            setValueEmail(valores.email);
+            //los values se colocan en localstorage
+
+            setValueEmail(values.email);
           } catch (error) {
             setError(true);
           }
         }}
       >
         {({ errors, isValid }) => (
-          <Form noValidate className={formSend ? "formNotDisplay" : "form-container"}>
+          // eslint-disable-next-line prettier/prettier
+          <Form
+            noValidate
+            className={formSend ? "formNotDisplay" : "form-container"}
+          >
             <div className="mt-3">
               <label className="form-label" htmlFor="name">
                 Nombre
@@ -57,7 +60,11 @@ const FooterForm = () => {
                 placeholder="Nombre"
                 type="text"
               />
-              <ErrorMessage component={() => <p className="error">{errors.name}</p>} name="name" />
+              {/* eslint-disable-next-line prettier/prettier*/}
+              <ErrorMessage
+                component={() => <p className="error">{errors.name}</p>}
+                name="name"
+              />
             </div>
             <div className="mt-3">
               <label className="form-label" htmlFor="surname">
@@ -102,8 +109,11 @@ const FooterForm = () => {
           </Form>
         )}
       </Formik>
-      {formSend && <p className="formSubmitted">Formulario enviado con éxito</p>}
-    </React.Fragment>
+      {/* eslint-disable-next-line prettier/prettier*/}
+      {formSend && (
+        <p className="formSubmitted">Formulario enviado con éxito</p>
+      )}
+    </>
   );
 };
 
