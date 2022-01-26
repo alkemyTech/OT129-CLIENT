@@ -17,6 +17,7 @@ import EditOrganizationContainer from "./Containers/EditOrganization/EditOrganiz
 import ActivitiesDetailsContainer from "./Components/Activities/Detail/ActivitiesDetailsContainer";
 import HomeForm from "./Components/Home/HomeForm";
 import ContactForm from "./Components/Contact/ContactForm";
+import ContactPage from "./Components/Contact/ContactPage";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -44,7 +45,7 @@ function App() {
           <Route exact component={SchoolCampaign} path="/school-campaign" />
           <Route exact component={ToysCampaign} path="/toys-campaign" />
           <Route exact component={RegisterForm} path="/register" />
-          <Route exact component={ContactForm} path="/contact" />
+          <Route exact component={ContactPage} path="/contact" />
         </Switch>
       </BrowserRouter>
     </>
