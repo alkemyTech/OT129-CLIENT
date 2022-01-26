@@ -1,13 +1,63 @@
+:root {
+  --black: #2c2c2c;
+  --white: #ffffff;
+  --blue: #9AC9FB;
+  --dark-blue: #7BA1C9;
+  --grey: #C2C2C2;
+  --red: #DB5752;
+  --width-button: 140px;
+  --heigth-button: 40px;
+  --border-radius: 6px;
+  --font-family: 'Montserrat', sans-serif;
+  --font-size: 15px;
+  --card-shadow: 2px 2px 6px rgb(224, 224, 224);
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: var(--font-family);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* Buttons */
+
+.general-btn {
+  width: var(--width-button);
+  height: var(--heigth-button);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--border-radius);
+  border: none;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.fill-btn {
+  background: var(--blue);
+  color: var(--black);
+}
+
+.fill-btn:hover {
+  background: var(--dark-blue);
+}
+
+.stroke-btn {
+  border: 2px solid var(--blue);
+  color: var(--black);  
+  background: transparent;
+  box-sizing: border-box;
+}
+
+.stroke-btn:hover {
+  border: 2px solid var(--dark-blue);
+  color: var(--dark-blue);
+}
+
+/* Cards */
+
+.card {
+  box-shadow: var(--card-shadow);
 }
