@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { useState, useEffect } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import PropTypes from "prop-types";
@@ -7,6 +6,7 @@ import * as Yup from "yup";
 import { edit } from "../../Services/edit";
 import { create } from "../../Services/create";
 import { toBase64 } from "../../utils/toBase64";
+import { formatDate } from "../../utils/formatDate";
 
 import "../FormStyles.css";
 
@@ -23,10 +23,8 @@ const ProjectsForm = ({ project = {} }) => {
     title: project?.title || "",
     description: project?.description || "",
     image: project?.image || "",
-    due_date: project?.due_date || "",
+    due_date: project?.due_date ? formatDate(project.due_date) : "",
   };
-  // eslint-disable-next-line padding-line-between-statements
-  console.log(initialValues.image);
 
   useEffect(() => {
     if (project.id) {
@@ -43,14 +41,15 @@ const ProjectsForm = ({ project = {} }) => {
           const resultBase = await toBase64(formData.image);
           const newProject = { ...formData, image: resultBase };
 
-          console.log(newProject);
           if (project.id === undefined) {
             const result = await create("projects", newProject);
 
+            // eslint-disable-next-line no-console
             console.log(result);
           } else {
             const result = await edit("projects", { ...newProject, id: project.id });
 
+            // eslint-disable-next-line no-console
             console.log(result);
           }
         }}
