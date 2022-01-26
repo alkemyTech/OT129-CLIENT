@@ -13,13 +13,7 @@ import "../FormStyles.css";
 const validationSchema = Yup.object({
   title: Yup.string().required("El título del proyecto es obligatorio"),
   description: Yup.string().required("La descripción del proyecto es obligatorio"),
-  image: Yup.mixed()
-    .required("Debe adjuntar una imagen")
-    .test("fileType", "La extensión del archivo no es soportado", (value) => {
-      if (value) return ["image/jpeg", "image/png"].includes(value.type);
-
-      return true;
-    }),
+  image: Yup.mixed().required("Debe adjuntar una imagen"),
 });
 
 const ProjectsForm = ({ project = {} }) => {
@@ -31,6 +25,8 @@ const ProjectsForm = ({ project = {} }) => {
     image: project?.image || "",
     due_date: project?.due_date || "",
   };
+  // eslint-disable-next-line padding-line-between-statements
+  console.log(initialValues.image);
 
   useEffect(() => {
     if (project.id) {
