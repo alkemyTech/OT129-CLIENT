@@ -19,6 +19,7 @@ import HomeForm from "./Components/Home/HomeForm";
 import ContactForm from "./Components/Contact/ContactForm";
 
 import "bootstrap/dist/css/bootstrap.min.css";
+
 import "./App.css";
 
 function App() {
