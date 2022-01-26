@@ -1,5 +1,4 @@
 import React from "react";
-
 import "./App.css";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
@@ -14,7 +13,6 @@ import ToysCampaign from "./Campaigns/Toys/ToysCampaign";
 import MembersForm from "./Components/Members/MembersForm";
 import ProjectsForm from "./Components/Projects/ProjectsForm";
 import FooterForm from "./Components/Footer/FooterForm";
-import Organization from "./Components/Organization/Organization";
 import RegisterForm from "./Components/Auth/RegisterForm";
 import EditOrganizationContainer from "./Containers/EditOrganization/EditOrganizationContainer";
 import ActivitiesDetailsContainer from "./Components/Activities/Detail/ActivitiesDetailsContainer";
@@ -35,9 +33,7 @@ function App() {
           <Route exact component={CategoriesForm} path="/create-category" />
           <Route exact component={NewsForm} path="/backoffice/create-news" />
           <Route exact component={SlidesForm} path="/backoffice/create-slide" />
-          <Route exact component={OrganizationContainer} path="/backoffice/organization" />
           <Route exact component={EditOrganizationContainer} path="/backoffice/organization/edit" />
-          <Route exact component={OrganizationContainer} path="/backoffice/organization" />
           <Route exact component={HomeForm} path="/backoffice/home" />
           <Route exact component={TestimonialForm} path="/create-testimonials" />
           <Route exact component={UserForm} path="/create-user" />
@@ -47,11 +43,9 @@ function App() {
           <Route exact component={ToysCampaign} path="/toys-campaign" />
           <Route exact component={RegisterForm} path="/register" />
           <Route exact component={ContactForm} path="/contact" />
+          <Route exact component={FooterForm} path="/footer-form" />
         </Switch>
       </BrowserRouter>
-      <div className="App">
-        <FooterForm />
-      </div>
     </>
   );
 }
