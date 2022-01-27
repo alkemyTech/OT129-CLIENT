@@ -18,7 +18,7 @@ import RegisterForm from "./Components/Auth/RegisterForm";
 import ActivitiesDetailsContainer from "./Components/Activities/Detail/ActivitiesDetailsContainer";
 import HomeForm from "./Components/Home/HomeForm";
 import ContactForm from "./Components/Contact/ContactForm";
-import NewsDetail from "./Components/News/Details/NewsDetails";
+import NewsDetails from "./Components/News/Details/NewsDetails";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
@@ -33,7 +33,7 @@ function App() {
           <Route exact component={ActivitiesDetailsContainer} path="/activities/:id" />
           <Route exact component={CategoriesForm} path="/create-category" />
           <Route exact component={NewsForm} path="/backoffice/create-news" />
-          <Route exact component={NewsDetail} path="/novedades/:id" />
+          <Route exact component={NewsDetails} path="/novedades/:id" />
           <Route exact component={SlidesForm} path="/backoffice/create-slide" />
           <Route exact component={Organization} path="/backoffice/organization" />
           <Route exact component={HomeForm} path="/backoffice/home" />

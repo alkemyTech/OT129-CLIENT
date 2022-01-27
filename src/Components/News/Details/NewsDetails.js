@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
-const NewsDetail = (props) => {
+const NewsDetails = (props) => {
   const [newsDetail, setNewsDetail] = useState(null);
 
   async function getNewsDetail() {
@@ -27,4 +27,4 @@ const NewsDetail = (props) => {
   );
 };
 
-export default NewsDetail;
+export default NewsDetails;
