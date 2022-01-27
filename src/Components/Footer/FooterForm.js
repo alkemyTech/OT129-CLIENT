@@ -10,7 +10,7 @@ import "bootstrap/dist/css/bootstrap.css";
 
 const FooterForm = () => {
   const [formSend, setFormSend] = useState(false);
-  const [error, setError] = useState(false);
+  const [, setError] = useState(false);
 
   const [valueEmail, setValueEmail] = useLocalStorage("correo", "");
 
