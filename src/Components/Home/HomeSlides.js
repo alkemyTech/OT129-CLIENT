@@ -8,7 +8,10 @@ const HomeSlides = ({ data }) => {
       <div className="carousel-inner">
         {data.map((el, index) => {
           return (
-            <div key={el.id} className={index === 0 ? "carousel-item active" : "carousel-item"}>
+            <div
+              key={el.id ?? index}
+              className={index === 0 ? "carousel-item active" : "carousel-item"}
+            >
               <img alt="ong-carousel" className="d-block w-100" src={el.image} />
               <div className="carousel-caption d-md-block">
                 {el.name && <h4>{el.name}</h4>}
@@ -46,7 +49,7 @@ HomeSlides.propTypes = {
       description: PropTypes.string.isRequired,
       image: PropTypes.string.isRequired,
       description: PropTypes.string.isRequired,
-      id: PropTypes.number.isRequired,
+      id: PropTypes.number,
     })
   ).isRequired,
 };
