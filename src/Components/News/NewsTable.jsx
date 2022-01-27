@@ -8,7 +8,7 @@ const NewsTable = ({ news }) => {
     <>
       {news ? (
         <div className="mh-75 overflow-auto">
-          <table className="table table-striped table-hover ">
+          <table className="table table-striped table-hover">
             <thead>
               <tr>
                 <th scope="col">Nombre</th>
