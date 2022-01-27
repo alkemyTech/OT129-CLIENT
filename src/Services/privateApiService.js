@@ -1,4 +1,4 @@
-import axios from "axios";
+import { getService } from "./getService";
 
 const config = {
   headers: {
@@ -7,8 +7,7 @@ const config = {
 };
 
 const Get = () => {
-  axios
-    .get("https://jsonplaceholder.typicode.com/users", config)
+  getService("https://jsonplaceholder.typicode.com/users", config)
     .then((res) => console.log(res))
     .catch((err) => console.log(err));
 };
