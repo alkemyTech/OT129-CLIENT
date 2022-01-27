@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import "bootstrap/js/dist/carousel";
 
 const HomeSlides = ({ data }) => {
   return (
@@ -7,9 +8,10 @@ const HomeSlides = ({ data }) => {
       <div className="carousel-inner">
         {data.map((el, index) => {
           return (
-            <div key={index} className={index === 0 ? "carousel-item active" : "carousel-item"}>
+            <div key={el.id} className={index === 0 ? "carousel-item active" : "carousel-item"}>
               <img alt="ong-carousel" className="d-block w-100" src={el.image} />
               <div className="carousel-caption d-none d-md-block">
+                {el.name && <h4>{el.name}</h4>}
                 <p>{el.description}</p>
               </div>
             </div>
@@ -19,7 +21,7 @@ const HomeSlides = ({ data }) => {
       <button
         className="carousel-control-prev"
         data-bs-slide="prev"
-        data-bs-target="#carouselExampleControls"
+        data-bs-target="#carousel"
         type="button"
       >
         <span aria-hidden="true" className="carousel-control-prev-icon" />
@@ -28,7 +30,7 @@ const HomeSlides = ({ data }) => {
       <button
         className="carousel-control-next"
         data-bs-slide="next"
-        data-bs-target="#carouselExampleControls"
+        data-bs-target="#carousel"
         type="button"
       >
         <span aria-hidden="true" className="carousel-control-next-icon" />
@@ -43,6 +45,8 @@ HomeSlides.propTypes = {
     PropTypes.shape({
       description: PropTypes.string.isRequired,
       image: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired,
     })
   ).isRequired,
 };
