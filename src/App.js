@@ -3,7 +3,7 @@ import "./App.css";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import ActivitiesForm from "./Components/Activities/ActivitiesForm";
-import CategoriesForm from "./Components/Categories/CategoriesForm";
+import CategoriesContainer from "./Containers/Categories/CategoriesContainer";
 import NewsForm from "./Components/News/NewsForm";
 import SlidesForm from "./Components/Slides/SlidesForm";
 import TestimonialForm from "./Components/Testimonials/TestimonialsForm";
@@ -30,7 +30,7 @@ function App() {
           {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
           <Route exact component={ActivitiesForm} path="/create-activity" />
           <Route exact component={ActivitiesDetailsContainer} path="/activities/:id" />
-          <Route exact component={CategoriesForm} path="/create-category" />
+          <Route exact component={CategoriesContainer} path="/create-category" />
           <Route exact component={NewsForm} path="/backoffice/create-news" />
           <Route exact component={SlidesForm} path="/backoffice/create-slide" />
           <Route exact component={EditOrganizationContainer} path="/backoffice/organization/edit" />
