@@ -1,17 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import axios from "axios";
 
+import { toBase64 } from "../../utils/toBase64";
 import CategoriesForm from "../../Components/Categories/CategoriesForm";
-
-const toBase64 = (file) =>
-  new Promise((resolve, reject) => {
-    const reader = new FileReader();
-
-    reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result);
-    reader.onerror = (error) => reject(error);
-  });
 
 export const formattedCategory = async (values) => {
   const imageFormatted = await toBase64(values.image);
@@ -25,25 +16,6 @@ export const formattedCategory = async (values) => {
   };
 
   return data;
-};
-
-export const updateCategory = async (data) => {
-  try {
-    const id = data.id;
-    const response = await axios.put(`http://ongapi.alkemy.org/api/categories/${id}`, data);
-  } catch (error) {
-    console.log(error.response.data);
-  }
-};
-
-export const createCategory = async (data) => {
-  console.log(data);
-
-  try {
-    const response = await axios.post("http://ongapi.alkemy.org/api/categories", data);
-  } catch (error) {
-    console.log(error.response.data);
-  }
 };
 
 function CategoriesContainer({ category }) {
