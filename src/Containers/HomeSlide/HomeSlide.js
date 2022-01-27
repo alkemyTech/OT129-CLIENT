@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 import HomeSlides from "../../Components/Home/HomeSlides";
-
-const axios = require("axios");
 
 const HomeContainer = () => {
   const [slides, setSlides] = useState([]);

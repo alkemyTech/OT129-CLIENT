@@ -9,7 +9,7 @@ const HomeSlides = ({ data }) => {
         {data.map((el, index) => {
           return (
             <div
-              key={el.id ?? index}
+              key={el.id ?? `CarouselItem-${index}`}
               className={index === 0 ? "carousel-item active" : "carousel-item"}
             >
               <img alt="ong-carousel" className="d-block w-100" src={el.image} />
