@@ -18,6 +18,8 @@ import EditOrganizationContainer from "./Containers/EditOrganization/EditOrganiz
 import ActivitiesDetailsContainer from "./Components/Activities/Detail/ActivitiesDetailsContainer";
 import HomeForm from "./Components/Home/HomeForm";
 import ContactForm from "./Components/Contact/ContactForm";
+import Donation from "./Components/Donations/Donation";
+import ThankYou from "./Components/Donations/ThankYou";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
@@ -44,6 +46,8 @@ function App() {
           <Route exact component={RegisterForm} path="/register" />
           <Route exact component={ContactForm} path="/contact" />
           <Route exact component={FooterForm} path="/footer-form" />
+          <Route exact component={Donation} path="/donar" />
+          <Route exact component={ThankYou} path="/gracias" />
         </Switch>
       </BrowserRouter>
     </>

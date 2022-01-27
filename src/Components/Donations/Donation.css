@@ -1,0 +1,60 @@
+:root {
+  --blue: #9AC9FB;
+  --dark-blue: #7BA1C9;
+  --width-button: 140px;
+  --heigth-button: 40px;
+  --border-radius: 6px;
+}
+
+.container-donation {
+  padding: 100px 0;
+  background: #f2f2f2;
+}
+
+.row-donation {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.text-container {
+  width: 60%;
+  height: fit-content;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.text {
+  margin: 0;
+}
+
+.col-button {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.general-btn {
+  width: var(--width-button);
+  height: var(--heigth-button);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--border-radius);
+  border: none;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.fill-btn {
+  background: var(--blue);
+  color: var(--black);
+}
+
+.fill-btn:hover {
+  background: var(--dark-blue);
+}
