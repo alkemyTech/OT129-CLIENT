@@ -45,7 +45,6 @@ function App() {
           <Route exact component={ToysCampaign} path="/toys-campaign" />
           <Route exact component={RegisterForm} path="/register" />
           <Route exact component={ContactForm} path="/contact" />
-
         </Switch>
       </BrowserRouter>
       <div className="App">
