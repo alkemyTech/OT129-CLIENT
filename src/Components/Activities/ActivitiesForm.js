@@ -97,18 +97,12 @@ const ActivitiesForm = ({ activity = {} }) => {
                   type="file"
                   onChange={(event) => {
                     formik.setFieldValue("image", event.currentTarget.files[0]);
-                    setActivityImage(
-                      URL.createObjectURL(event.currentTarget.files[0])
-                    );
+                    setActivityImage(URL.createObjectURL(event.currentTarget.files[0]));
                   }}
                 />
                 <ErrorMessage className="alert-danger" name="image" />
                 {activityImage ? (
-                  <img
-                    alt="Imagen actual"
-                    className="current-img"
-                    src={activityImage}
-                  />
+                  <img alt="Imagen actual" className="current-img" src={activityImage} />
                 ) : null}
               </div>
               <button className="submit-btn" type="submit">

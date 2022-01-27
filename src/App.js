@@ -29,35 +29,15 @@ function App() {
         <Switch>
           {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
           <Route exact component={ActivitiesForm} path="/create-activity" />
-          <Route
-            exact
-            component={ActivitiesDetailsContainer}
-            path="/activities/:id"
-          />
+          <Route exact component={ActivitiesDetailsContainer} path="/activities/:id" />
           <Route exact component={CategoriesForm} path="/create-category" />
           <Route exact component={NewsForm} path="/backoffice/create-news" />
           <Route exact component={SlidesForm} path="/backoffice/create-slide" />
-          <Route
-            exact
-            component={OrganizationContainer}
-            path="/backoffice/organization"
-          />
-          <Route
-            exact
-            component={EditOrganizationContainer}
-            path="/backoffice/organization/edit"
-          />
-          <Route
-            exact
-            component={OrganizationContainer}
-            path="/backoffice/organization"
-          />
+          <Route exact component={OrganizationContainer} path="/backoffice/organization" />
+          <Route exact component={EditOrganizationContainer} path="/backoffice/organization/edit" />
+          <Route exact component={OrganizationContainer} path="/backoffice/organization" />
           <Route exact component={HomeForm} path="/backoffice/home" />
-          <Route
-            exact
-            component={TestimonialForm}
-            path="/create-testimonials"
-          />
+          <Route exact component={TestimonialForm} path="/create-testimonials" />
           <Route exact component={UserForm} path="/create-user" />
           <Route exact component={MembersForm} path="/create-member" />
           <Route exact component={ProjectsForm} path="/create-project" />

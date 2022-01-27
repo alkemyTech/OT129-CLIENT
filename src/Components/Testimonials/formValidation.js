@@ -1,7 +1,5 @@
 import * as yup from "yup";
 
-const SUPPORTED_FORMATS = ["image/jpg", "image/png"];
-
 export const testimonialSchema = yup.object({
   name: yup
     .string()
