@@ -10,7 +10,7 @@ const HomeSlides = ({ data }) => {
           return (
             <div key={el.id} className={index === 0 ? "carousel-item active" : "carousel-item"}>
               <img alt="ong-carousel" className="d-block w-100" src={el.image} />
-              <div className="carousel-caption d-none d-md-block">
+              <div className="carousel-caption d-md-block">
                 {el.name && <h4>{el.name}</h4>}
                 <p>{el.description}</p>
               </div>
