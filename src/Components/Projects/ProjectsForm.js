@@ -5,15 +5,18 @@ import * as Yup from "yup";
 
 import { edit } from "../../Services/edit";
 import { create } from "../../Services/create";
-import { toBase64 } from "../../utils/toBase64";
 import { formatDate } from "../../utils/formatDate";
 
 import "../FormStyles.css";
 
+const IMG_FORMAT_REGEX = new RegExp(".(jpg|png)$");
+
 const validationSchema = Yup.object({
   title: Yup.string().required("El título del proyecto es obligatorio"),
   description: Yup.string().required("La descripción del proyecto es obligatorio"),
-  image: Yup.mixed().required("Debe adjuntar una imagen"),
+  image: Yup.string()
+    .required("Debe insertar URL de la imagen")
+    .matches(IMG_FORMAT_REGEX, "Solo el formato .png y .jpg de las imagenes son permitios"),
 });
 
 const ProjectsForm = ({ project = {} }) => {
@@ -38,19 +41,10 @@ const ProjectsForm = ({ project = {} }) => {
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={async (formData) => {
-          const resultBase = await toBase64(formData.image);
-          const newProject = { ...formData, image: resultBase };
-
           if (project.id === undefined) {
-            const result = await create("projects", newProject);
-
-            // eslint-disable-next-line no-console
-            console.log(result);
+            create("projects", formData);
           } else {
-            const result = await edit("projects", { ...newProject, id: project.id });
-
-            // eslint-disable-next-line no-console
-            console.log(result);
+            edit("projects", { ...formData, id: project.id });
           }
         }}
       >
@@ -76,14 +70,14 @@ const ProjectsForm = ({ project = {} }) => {
                 <ErrorMessage className="alert-danger" name="description" />
               </div>
               <div className="mb-3">
-                <input
-                  accept="image/png, image/jpeg"
+                <Field
                   className="w-100"
                   name="image"
-                  type="file"
+                  placeholder="Inserte URL de la imagen"
+                  type="text"
                   onChange={(event) => {
-                    formik.setFieldValue("image", event.currentTarget.files[0]);
-                    setProjectImage(URL.createObjectURL(event.currentTarget.files[0]));
+                    formik.setFieldValue("image", event.target.value);
+                    setProjectImage(event.target.value);
                   }}
                 />
                 <ErrorMessage className="alert-danger" name="image" />
