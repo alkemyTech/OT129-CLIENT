@@ -17,7 +17,12 @@ import EditOrganizationContainer from "./Containers/EditOrganization/EditOrganiz
 import ActivitiesDetailsContainer from "./Components/Activities/Detail/ActivitiesDetailsContainer";
 import HomeForm from "./Components/Home/HomeForm";
 import ContactForm from "./Components/Contact/ContactForm";
+<<<<<<< HEAD
 import MembersContainer from "./Containers/Members/MembersContainer";
+=======
+import HomePage from "./Pages/HomePage";
+import NewsPage from "./Components/News/NewsPage";
+>>>>>>> 9dd025cce3be6a8c724462ffabb4bed36752c8d7
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
@@ -27,9 +32,10 @@ function App() {
     <>
       <BrowserRouter>
         <Switch>
-          {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
+          <Route exact component={HomePage} path="/" />
           <Route exact component={ActivitiesForm} path="/create-activity" />
           <Route exact component={ActivitiesDetailsContainer} path="/activities/:id" />
+          <Route exact component={NewsPage} path="/backoffice/news" />
           <Route exact component={CategoriesContainer} path="/create-category" />
           <Route exact component={NewsForm} path="/backoffice/create-news" />
           <Route exact component={SlidesForm} path="/backoffice/create-slide" />
