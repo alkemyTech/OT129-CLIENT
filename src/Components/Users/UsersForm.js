@@ -11,7 +11,7 @@ const validationSchema = Yup.object().shape({
   name: Yup.string().required("Field Required").min(4, "Must have at least 4 characters"),
   email: Yup.string().required("Field Required").email("Is not a valid format"),
   role_id: Yup.string().required("Field Required"),
-  profile_image: Yup.string(),
+  profile_image: Yup.string().required("Field Required"),
 });
 
 const isDesktop = window.innerWidth > 768;
