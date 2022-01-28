@@ -43,7 +43,7 @@ function App() {
           <Route exact component={SchoolCampaign} path="/school-campaign" />
           <Route exact component={ToysCampaign} path="/toys-campaign" />
           <Route exact component={RegisterForm} path="/register" />
-          <Route exact component={ContactForm} path="/contact" />
+          <Route exact component={ContactPage} path="/contact" />
           <Route exact component={FooterForm} path="/footer-form" />
         </Switch>
       </BrowserRouter>
