@@ -11,9 +11,7 @@ const PreviewImage = ({ file }) => {
 };
 
 PreviewImage.propTypes = {
-  file: PropTypes.shape({
-    file: string,
-  }),
+  file: PropTypes.string,
 };
 
 export default PreviewImage;
