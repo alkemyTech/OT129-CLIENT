@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Carousel from "bootstrap";
 
 const HomeSlides = ({ data }) => {
   return (
