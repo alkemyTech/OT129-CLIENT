@@ -1,10 +1,8 @@
-import axios from "axios";
+import { axiosInstance } from "./axiosConfig";
 
-export const getService = ({ route, method, id = null }) => {
-  const url = id ? `${route}/${id}` : route;
-
-  return axios.get({
-    method,
-    url,
-  });
-};
+export const getService = (url, config, id = null) => {
+  if (id) {
+    url = `${url}/${id}`;
+  }
+  return axiosInstance.get(url, config);
+}
