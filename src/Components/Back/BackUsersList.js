@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import BackUserItem from "./BackUserItem";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
 import "bootstrap/dist/css/bootstrap.css";
 import BackUserItemEdit from "./BackUserItemEdit";
 
-const BackUsersList = ({ data }) => {
+const BackUsersList = ({ data, linkUrl }) => {
   const [users, setUsers] = useState(data);
+
+  const history = useHistory();
 
   const [editUserId, setEditUserId] = useState(null);
 
@@ -115,12 +117,19 @@ const BackUsersList = ({ data }) => {
           </tbody>
         </table>
       </form>
+      <Link className="btn btn-info" to={linkUrl}>
+        Crear
+      </Link>
+      <button type="button" className="btn btn-info" onClick={() => history.replace(`${linkUrl}`)}>
+        Crear
+      </button>
     </div>
   );
 };
 
 BackUsersList.propTypes = {
   data: PropTypes.array,
+  linkUrl: PropTypes.string,
 };
 
 export default BackUsersList;
