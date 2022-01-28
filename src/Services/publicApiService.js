@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const config = {
+export const config = {
   headers: {
     Group: "01", // Aqui va el ID del equipo!!
   },

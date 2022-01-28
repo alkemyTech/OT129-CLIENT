@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ActivitiesForm from "./Components/Activities/ActivitiesForm";
-import CategoriesForm from "./Components/Categories/CategoriesForm";
+import CategoriesContainer from "./Containers/Categories/CategoriesContainer";
 import NewsForm from "./Components/News/NewsForm";
 import SlidesForm from "./Components/Slides/SlidesForm";
 import TestimonialForm from "./Components/Testimonials/TestimonialsForm";
@@ -12,12 +12,14 @@ import SchoolCampaign from "./Campaigns/School/SchoolCampaign";
 import ToysCampaign from "./Campaigns/Toys/ToysCampaign";
 import MembersForm from "./Components/Members/MembersForm";
 import ProjectsForm from "./Components/Projects/ProjectsForm";
-import OrganizationContainer from "./Containers/Organization/OrganizationContainer";
+import FooterForm from "./Components/Footer/FooterForm";
 import RegisterForm from "./Components/Auth/RegisterForm";
 import EditOrganizationContainer from "./Containers/EditOrganization/EditOrganizationContainer";
 import ActivitiesDetailsContainer from "./Components/Activities/Detail/ActivitiesDetailsContainer";
 import HomeForm from "./Components/Home/HomeForm";
 import ContactForm from "./Components/Contact/ContactForm";
+import HomePage from "./Pages/HomePage";
+import NewsPage from "./Components/News/NewsPage";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
@@ -27,15 +29,14 @@ function App() {
     <>
       <BrowserRouter>
         <Switch>
-          {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
+          <Route exact component={HomePage} path="/" />
           <Route exact component={ActivitiesForm} path="/create-activity" />
           <Route exact component={ActivitiesDetailsContainer} path="/activities/:id" />
-          <Route exact component={CategoriesForm} path="/create-category" />
+          <Route exact component={NewsPage} path="/backoffice/news" />
+          <Route exact component={CategoriesContainer} path="/create-category" />
           <Route exact component={NewsForm} path="/backoffice/create-news" />
           <Route exact component={SlidesForm} path="/backoffice/create-slide" />
-          <Route exact component={OrganizationContainer} path="/backoffice/organization" />
           <Route exact component={EditOrganizationContainer} path="/backoffice/organization/edit" />
-          <Route exact component={OrganizationContainer} path="/backoffice/organization" />
           <Route exact component={HomeForm} path="/backoffice/home" />
           <Route exact component={TestimonialForm} path="/create-testimonials" />
           <Route exact component={UserForm} path="/create-user" />
@@ -46,6 +47,7 @@ function App() {
           <Route exact component={RegisterForm} path="/register" />
           <Route exact component={ContactForm} path="/contact" />
           <Route exact component={BackOfficePage} path="/backoffice/users" />
+          <Route exact component={FooterForm} path="/footer-form" />
         </Switch>
       </BrowserRouter>
     </>
