@@ -42,7 +42,7 @@ const UserForm = ({
       };
 
       axios.post("http://ongapi.alkemy.org/api/users", dataUser).then(() => {
-        alert("Se creo correctamente");
+        alert("User create correctly");
       });
     } else {
       const resultBase = await toBase64(formValues.profile_image);
@@ -57,7 +57,7 @@ const UserForm = ({
       };
 
       axios.put(`http://ongapi.alkemy.org/api/users/${id}`, dataUser).then(() => {
-        alert("se actualizo correctamente");
+        alert("User edit correctly");
       });
     }
   };
