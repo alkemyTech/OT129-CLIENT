@@ -1,0 +1,13 @@
+.card {
+    padding: 0!important;
+    text-align: center;
+}
+.card a {
+    text-decoration: none;
+}
+
+.card-img-top {
+    height: 280px;
+    box-shadow: var(--card-shadow);
+}
+
