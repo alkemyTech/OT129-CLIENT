@@ -6,7 +6,7 @@ const Donation = ({ text }) => {
   return (
     <div className="container-fluid container-donation">
       <div className="container">
-        <div className="row row-donation">
+        <div className="row row-donation d-flex justify-content-between align-items-center mx-auto">
           <div className="col-8">
             <p className="text">{text}</p>
           </div>

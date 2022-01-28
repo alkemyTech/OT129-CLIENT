@@ -1,43 +1,20 @@
+@import "../../index.css";
+
 .container-donation {
   padding: 100px 0;
-  background: #f2f2f2;
+  background: #e6e6e6;
 }
 
 .row-donation {
-  width: 90%;
-  margin: auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  width: 80%;
 }
 
 .text {
   margin: 0;
+  color: var(--black);
 }
 
 .col-button {
   display: flex;
   justify-content: flex-end;
-}
-
-.general-btn {
-  width: 140px;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 6px;
-  border: none;
-  font-size: 14px;
-  font-weight: bold;
-  text-transform: uppercase;
-}
-
-.fill-btn {
-  background: #9AC9FB;
-  color: #1b1b1b;
-}
-
-.fill-btn:hover {
-  background: #7BA1C9;
 }
