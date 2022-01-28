@@ -1,5 +1,4 @@
 import React from "react";
-import "./App.css";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import ActivitiesForm from "./Components/Activities/ActivitiesForm";
@@ -18,6 +17,7 @@ import EditOrganizationContainer from "./Containers/EditOrganization/EditOrganiz
 import ActivitiesDetailsContainer from "./Components/Activities/Detail/ActivitiesDetailsContainer";
 import HomeForm from "./Components/Home/HomeForm";
 import ContactForm from "./Components/Contact/ContactForm";
+import HomePage from "./Pages/HomePage";
 import NewsPage from "./Components/News/NewsPage";
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -28,7 +28,7 @@ function App() {
     <>
       <BrowserRouter>
         <Switch>
-          {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
+          <Route exact component={HomePage} path="/" />
           <Route exact component={ActivitiesForm} path="/create-activity" />
           <Route exact component={ActivitiesDetailsContainer} path="/activities/:id" />
           <Route exact component={NewsPage} path="/backoffice/news" />
