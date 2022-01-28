@@ -6,7 +6,7 @@ import TitleNav from "../TitleNav/TitleNav";
 const MembersList = ({ content }) => {
   return (
     <div className="container-fluid mt-3">
-      <TitleNav link="/backoffice/members" linkTitle="Members" title="Members" />
+      <TitleNav link="/backoffice/members/create" linkTitle="New member" title="Members" />
       <table className="table table-striped">
         <thead>
           <tr>
@@ -31,8 +31,12 @@ const MembersList = ({ content }) => {
                 </td>
                 <td>
                   <div className="d-flex flex-column">
-                    <button className="btn btn-warning mt-3">Edit</button>
-                    <button className="btn btn-danger mt-3">Delete</button>
+                    <button className="btn btn-info mt-3 mx-auto">
+                      <i className="fas fa-pencil-alt" />
+                    </button>
+                    <button className="btn btn-danger mt-3 mx-auto">
+                      <i className="fas fa-trash-alt" />
+                    </button>
                   </div>
                 </td>
               </tr>
