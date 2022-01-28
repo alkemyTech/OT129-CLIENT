@@ -7,6 +7,7 @@ import CategoriesForm from "./Components/Categories/CategoriesForm";
 import NewsForm from "./Components/News/NewsForm";
 import SlidesForm from "./Components/Slides/SlidesForm";
 import TestimonialForm from "./Components/Testimonials/TestimonialsForm";
+import BackOfficePage from "./Pages/BackOfficePage";
 import UserForm from "./Components/Users/UsersForm";
 import SchoolCampaign from "./Campaigns/School/SchoolCampaign";
 import ToysCampaign from "./Campaigns/Toys/ToysCampaign";
@@ -45,6 +46,7 @@ function App() {
           <Route exact component={ToysCampaign} path="/toys-campaign" />
           <Route exact component={RegisterForm} path="/register" />
           <Route exact component={ContactForm} path="/contact" />
+          <Route exact component={BackOfficePage} path="/backoffice/users" />
         </Switch>
       </BrowserRouter>
     </>
