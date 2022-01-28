@@ -21,8 +21,9 @@ const NewsDetails = () => {
 
   return (
     <div>
-      <img alt="news.alt" src="news.imagen" />
-      <p>news.contenido</p>
+      <h5>{data.name}</h5>
+      <img alt="..." src={data.image} />
+      <p>{data.content}</p>
     </div>
   );
 };
