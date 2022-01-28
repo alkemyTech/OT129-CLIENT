@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import BackUserItem from "./BackUserItem";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import "bootstrap/dist/css/bootstrap.css";
 import BackUserItemEdit from "./BackUserItemEdit";
 
 const BackUsersList = ({ data, linkUrl }) => {
   const [users, setUsers] = useState(data);
-
-  const history = useHistory();
 
   const [editUserId, setEditUserId] = useState(null);
 
@@ -81,49 +79,49 @@ const BackUsersList = ({ data, linkUrl }) => {
   };
 
   return (
-    <div className="d-flex justify-content-between">
-      {/* se coloca form asi, por problema de child en linea 23 */}
-      <form onSubmit={submitFormHandler}>
-        <table className="table">
-          <thead className="thead-dark">
-            <tr>
-              <th scope="col">Nombre</th>
-              <th scope="col">Email</th>
-              <th scope="col">Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            {users.map((user, index) => {
-              return (
-                <React.Fragment key={index}>
-                  {editUserId === user.id ? (
-                    <BackUserItemEdit
-                      editFormData={editFormData}
-                      onEditFormChange={editFormHandler}
-                      onCancelClick={cancelClickHandler}
-                      key={index}
-                    />
-                  ) : (
-                    <BackUserItem
-                      user={user}
-                      key={user.id}
-                      onEdit={editHandler}
-                      onDeleteClick={deleteClickHandler}
-                    />
-                  )}
-                </React.Fragment>
-              );
-            })}
-          </tbody>
-        </table>
-      </form>
-      <Link className="btn btn-info" to={linkUrl}>
-        Crear
+    <>
+      <Link className="btn btn-primary btn-sm mb-3" to={linkUrl}>
+        <i className="fas fa-plus" />
+        <span className="ms-2">Crear Usuario</span>
       </Link>
-      <button type="button" className="btn btn-info" onClick={() => history.replace(`${linkUrl}`)}>
-        Crear
-      </button>
-    </div>
+      <div className="d-flex justify-content-between">
+        {/* se coloca form asi, por problema de child en linea 23 */}
+        <form onSubmit={submitFormHandler}>
+          <table className="table">
+            <thead className="thead-dark">
+              <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Email</th>
+                <th scope="col">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              {users.map((user, index) => {
+                return (
+                  <React.Fragment key={index}>
+                    {editUserId === user.id ? (
+                      <BackUserItemEdit
+                        editFormData={editFormData}
+                        onEditFormChange={editFormHandler}
+                        onCancelClick={cancelClickHandler}
+                        key={index}
+                      />
+                    ) : (
+                      <BackUserItem
+                        user={user}
+                        key={user.id}
+                        onEdit={editHandler}
+                        onDeleteClick={deleteClickHandler}
+                      />
+                    )}
+                  </React.Fragment>
+                );
+              })}
+            </tbody>
+          </table>
+        </form>
+      </div>
+    </>
   );
 };
 
