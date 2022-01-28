@@ -1,9 +1,9 @@
 import React from "react";
-import BackUsers from "../Components/Back/BackUsers";
+import BackUsersList from "../Components/Back/BackUsersList";
 import dataMock from "./mock-user.json";
 
 const BackOfficePage = () => {
-  return <BackUsers data={dataMock} />;
+  return <BackUsersList data={dataMock} />;
 };
 
 export default BackOfficePage;
