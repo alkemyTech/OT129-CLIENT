@@ -1,6 +1,7 @@
 import React, { /* useParams ,*/ useEffect, useState } from "react";
-import ActivitiesForm from "../../Components/Activities/ActivitiesForm";
 import axios from "axios";
+
+import ActivitiesForm from "../../Components/Activities/ActivitiesForm";
 
 const ActivitiesFormContainer = () => {
   const [activity, setActivity] = useState({});
