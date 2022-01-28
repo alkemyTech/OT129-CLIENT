@@ -1,11 +1,3 @@
-:root {
-  --blue: #9AC9FB;
-  --dark-blue: #7BA1C9;
-  --width-button: 140px;
-  --heigth-button: 40px;
-  --border-radius: 6px;
-}
-
 .container-donation {
   padding: 100px 0;
   background: #f2f2f2;
@@ -13,15 +5,6 @@
 
 .row-donation {
   width: 90%;
-  margin: auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.text-container {
-  width: 60%;
-  height: fit-content;
   margin: auto;
   display: flex;
   justify-content: space-between;
@@ -38,12 +21,12 @@
 }
 
 .general-btn {
-  width: var(--width-button);
-  height: var(--heigth-button);
+  width: 140px;
+  height: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: var(--border-radius);
+  border-radius: 6px;
   border: none;
   font-size: 14px;
   font-weight: bold;
@@ -51,10 +34,10 @@
 }
 
 .fill-btn {
-  background: var(--blue);
-  color: var(--black);
+  background: #9AC9FB;
+  color: #1b1b1b;
 }
 
 .fill-btn:hover {
-  background: var(--dark-blue);
+  background: #7BA1C9;
 }

@@ -8,10 +8,7 @@ const Donation = ({ text }) => {
       <div className="container">
         <div className="row row-donation">
           <div className="col-8">
-            <p className="text">
-              Cada método es adecuado para una situación concreta y, por ello, es necesario saber
-              cómo funcionan todas.
-            </p>
+            <p className="text">{text}</p>
           </div>
           <div className="col-4 col-button">
             <button className="general-btn fill-btn">Contribuye</button>
