@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
-const NewsDetails = (props) => {
+const NewsDetails = () => {
   const [newsDetail, setNewsDetail] = useState(null);
 
   async function getNewsDetail() {
