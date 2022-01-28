@@ -6,8 +6,8 @@ const config = {
   },
 };
 
-const Get = () => {
-  getService("https://jsonplaceholder.typicode.com/users", config)
+const Get = (url) => {
+  getService(url, config)
     .then((res) => console.log(res))
     .catch((err) => console.log(err));
 };
