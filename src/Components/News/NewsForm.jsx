@@ -6,7 +6,7 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import PropTypes from "prop-types";
 
 import { toBase64 } from "../../utils/toBase64";
-import ContainerFormCard from "../ContainerFormCard";
+import ContainerFormCard from "../../Containers/ContainerFormCard";
 import { editNew } from "../../Services/editNew";
 import { createNews } from "../../Services/createNews";
 import { getCategories } from "../../Services/getCategories";
