@@ -16,7 +16,13 @@ const validationSchema = Yup.object().shape({
 
 const isDesktop = window.innerWidth > 768;
 
-const UserForm = ({ name, email, role_id, profile_image, id }) => {
+const UserForm = ({
+  name = "test",
+  email = "test@gmail.com",
+  role_id = "1",
+  profile_image = "",
+  id = 990,
+}) => {
   const startValues = {
     name: name || "",
     email: email || "",
@@ -144,7 +150,7 @@ const UserForm = ({ name, email, role_id, profile_image, id }) => {
               />
               <div className="mb-3">
                 <button className="btn btn-primary w-100" type="submit">
-                  {id ? "EDITAR" : "CREAR"}
+                  {id ? "EDIT" : "CREATE"}
                 </button>
               </div>
             </form>
