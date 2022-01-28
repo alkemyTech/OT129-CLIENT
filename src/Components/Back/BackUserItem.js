@@ -25,6 +25,8 @@ const BackUserItem = ({ user, onEdit, onDeleteClick }) => {
 
 BackUserItem.propTypes = {
   user: PropTypes.object,
+  onEdit: PropTypes.func,
+  onDeleteClick: PropTypes.func,
 };
 
 export default BackUserItem;
