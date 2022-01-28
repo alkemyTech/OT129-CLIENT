@@ -5,7 +5,7 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import * as Yup from "yup";
 
 import { isValidUrl } from "../../utils/isValidUrl";
-import ContainerFormCard from "../ContainerFormCard";
+import ContainerFormCard from "../../Containers/ContainerFormCard";
 
 import "../FormStyles.css";
 
