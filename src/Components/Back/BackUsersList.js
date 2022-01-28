@@ -79,11 +79,13 @@ const BackUsersList = ({ data, linkUrl }) => {
   };
 
   return (
-    <>
-      <Link className="btn btn-primary btn-sm mb-3" to={linkUrl}>
-        <i className="fas fa-plus" />
-        <span className="ms-2">Crear Usuario</span>
-      </Link>
+    <div className="container">
+      <div className="d-flex justify-content-end">
+        <Link className="btn btn-secondary btn-sm mb-3" to={linkUrl}>
+          <i className="fas fa-plus" />
+          <span className="ms-2">Crear Usuario</span>
+        </Link>
+      </div>
       <div className="d-flex justify-content-between">
         {/* se coloca form asi, por problema de child en linea 23 */}
         <form onSubmit={submitFormHandler}>
@@ -121,7 +123,7 @@ const BackUsersList = ({ data, linkUrl }) => {
           </table>
         </form>
       </div>
-    </>
+    </div>
   );
 };
 
