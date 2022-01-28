@@ -1,66 +1,59 @@
-src/Components/Auth/LoginForm.jsimport React, { useState } from "react";
+import React from "react";
 import "../FormStyles.css";
+import { Formik, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import axios from "axios";
+import PropTypes from "prop-types";
+
+import { toBase64 } from "../../utils/toBase64";
 
 const validationSchema = Yup.object().shape({
-  name: Yup.string()
-    .required("Field Required")
-    .min(4, "Must have at least 4 characters"),
+  name: Yup.string().required("Field Required").min(4, "Must have at least 4 characters"),
   email: Yup.string().required("Field Required").email("Is not a valid format"),
   role_id: Yup.string().required("Field Required"),
-  profile_image: Yup.string().required("Field Required"),
+  profile_image: Yup.string(),
 });
 
 const isDesktop = window.innerWidth > 768;
 
-const UserForm = ({  id = '' }) => {
-  const isAddMode = id === "";
-
+const UserForm = ({ name, email, role_id, profile_image, id }) => {
   const startValues = {
-    name: "",
-    email: "",
-    role_id: "",
-    profile_image: "",
+    name: name || "",
+    email: email || "",
+    role_id: role_id || "",
+    profile_image: profile_image || "",
   };
-
-  const [user, setUser] = useState({});
 
   const onSubmit = async (formValues) => {
-    if (isAddMode) {
-      const result = await toBase64(formValues.profile_image);
+    if (id === undefined) {
+      const resultBase = await toBase64(formValues.profile_image);
       const dataUser = {
         name: formValues.name,
         email: formValues.email,
         role_id: formValues.role_id,
-        profile_image: result,
+        password: "123",
+        profile_image: resultBase,
       };
-      axios.post("http://ongapi.alkemy.org/api/users", dataUser).then((user)=>{
-        setUser(user.data)
-      })
-    } else {
-      const result = await toBase64(formValues.profile_image);
-      const dataUser = {
-        name: formValues.name,
-        email: formValues.email,
-        role_id: formValues.role_id,
-        profile_image: result,
-      };
-      axios.put(`http://ongapi.alkemy.org/api/users/${id}`, dataUser).then((user)=>{
-        setUser(user.data)
-      })
-    }
-  };
 
-  const SetFields = (setValue) => {
-    useEffect(() => { 
-      if (!isAddMode) {
-        axios.get(`http://ongapi.alkemy.org/api/users/${id}`).then((user) => { 
-          setUser(user.data)})
-          if (user) {
-            const fields = ["name", "email", "role_id", "profile_image"];
-            fields.forEach((field) => setValue(field, user[field]));
-          }
-      }
-    }, []);
+      axios.post("http://ongapi.alkemy.org/api/users", dataUser).then(() => {
+        alert("Se creo correctamente");
+      });
+    } else {
+      const resultBase = await toBase64(formValues.profile_image);
+
+      const dataUser = {
+        id: id,
+        name: formValues.name,
+        email: formValues.email,
+        role_id: formValues.role_id,
+        password: "123",
+        profile_image: resultBase,
+      };
+
+      axios.put(`http://ongapi.alkemy.org/api/users/${id}`, dataUser).then(() => {
+        alert("se actualizo correctamente");
+      });
+    }
   };
 
   return (
@@ -77,46 +70,44 @@ const UserForm = ({  id = '' }) => {
         }}
       >
         {({ errors, handleSubmit, setFieldValue }) => {
-          SetFields(setFieldValue);
-
           return (
             <form className="mt-3" onSubmit={handleSubmit}>
               <div className="mb-3">
-                <label htmlFor="name" className="form-label">
+                <label className="form-label" htmlFor="name">
                   Name:
                 </label>
                 <Field
                   className="form-control mb-3"
-                  type="text"
                   name="name"
                   placeholder="Enter name"
+                  type="text"
                 />
                 <ErrorMessage
-                  name="name"
                   component={() => (
                     <div className="alert alert-danger" role="alert">
                       {errors.name}
                     </div>
                   )}
+                  name="name"
                 />
               </div>
               <div className="form-group mb-3">
-                <label htmlFor="email" className="form-label">
+                <label className="form-label" htmlFor="email">
                   Email:
                 </label>
                 <Field
                   className="form-control mb-3"
-                  type="email"
                   name="email"
                   placeholder="Enter Email"
+                  type="email"
                 />
                 <ErrorMessage
-                  name="email"
                   component={() => (
                     <div className="alert alert-danger" role="alert">
                       {errors.email}
                     </div>
                   )}
+                  name="email"
                 />
               </div>
               <input
@@ -128,33 +119,32 @@ const UserForm = ({  id = '' }) => {
                 }}
               />
               <ErrorMessage
-                name="profile_image"
+                className="text-danger"
                 component={() => (
                   <div className="alert alert-danger" role="alert">
                     {errors.profile_image}
                   </div>
                 )}
-                className="text-danger"
+                name="profile_image"
               />
               <div className="mb-3">
-                <Field className="form-select" name="role_id" as="select">
+                <Field as="select" className="form-select" name="role_id">
                   <option defaultValue>Choose</option>
                   <option value="1">Admin</option>
                   <option value="2">User</option>
                 </Field>
               </div>
               <ErrorMessage
-                name="role_id"
                 component={() => (
                   <div className="alert alert-danger" role="alert">
                     {errors.role_id}
                   </div>
                 )}
+                name="role_id"
               />
-
               <div className="mb-3">
                 <button className="btn btn-primary w-100" type="submit">
-                  Send
+                  {id ? "EDITAR" : "CREAR"}
                 </button>
               </div>
             </form>
@@ -165,6 +155,13 @@ const UserForm = ({  id = '' }) => {
   );
 };
 
-
+UserForm.propTypes = {
+  id: PropTypes.number,
+  name: PropTypes.string,
+  email: PropTypes.string,
+  role_id: PropTypes.string,
+  password: PropTypes.string,
+  profile_image: PropTypes.string,
+};
 
 export default UserForm;
