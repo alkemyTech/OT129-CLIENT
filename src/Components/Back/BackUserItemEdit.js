@@ -7,22 +7,22 @@ const BackUserItemEdit = ({ editFormData, onEditFormChange, onCancelClick }) => 
     <tr>
       <td>
         <input
-          type="text"
-          required="required"
-          placeholder="Editar nombre..."
           name="name"
-          onChange={onEditFormChange}
+          placeholder="Editar nombre..."
+          required="required"
+          type="text"
           value={editFormData.name}
+          onChange={onEditFormChange}
         />
       </td>
       <td>
         <input
-          type="email"
-          required="required"
-          placeholder="Editar email..."
           name="email"
-          onChange={onEditFormChange}
+          placeholder="Editar email..."
+          required="required"
+          type="email"
           value={editFormData.email}
+          onChange={onEditFormChange}
         />
       </td>
       <td>

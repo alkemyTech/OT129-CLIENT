@@ -1,6 +1,6 @@
 import React from "react";
-import "./App.css";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+
 import ActivitiesForm from "./Components/Activities/ActivitiesForm";
 import CategoriesContainer from "./Containers/Categories/CategoriesContainer";
 import NewsForm from "./Components/News/NewsForm";

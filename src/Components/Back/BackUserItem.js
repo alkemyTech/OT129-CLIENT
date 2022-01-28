@@ -8,13 +8,13 @@ const BackUserItem = ({ user, onEdit, onDeleteClick }) => {
       <td>{user.name}</td>
       <td>{user.email}</td>
       <td>
-        <button className="btn btn-primary" onClick={(event) => onEdit(event, user)} type="button">
+        <button className="btn btn-primary" type="button" onClick={(event) => onEdit(event, user)}>
           <i className="fas fa-user-edit" />
           <span className="ms-2">Editar</span>
         </button>
       </td>
       <td>
-        <button className="btn btn-danger" onClick={() => onDeleteClick(user.id)} type="button">
+        <button className="btn btn-danger" type="button" onClick={() => onDeleteClick(user.id)}>
           <i className="fas fa-eraser" />
           <span className="ms-2">Eliminar</span>
         </button>

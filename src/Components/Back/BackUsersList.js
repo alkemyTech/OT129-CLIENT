@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import BackUserItem from "./BackUserItem";
-import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+
+import BackUserItem from "./BackUserItem";
 import "bootstrap/dist/css/bootstrap.css";
 import BackUserItemEdit from "./BackUserItemEdit";
 
@@ -101,17 +102,17 @@ const BackUsersList = ({ data, linkUrl }) => {
                   <React.Fragment key={index}>
                     {editUserId === user.id ? (
                       <BackUserItemEdit
-                        editFormData={editFormData}
-                        onEditFormChange={editFormHandler}
-                        onCancelClick={cancelClickHandler}
                         key={index}
+                        editFormData={editFormData}
+                        onCancelClick={cancelClickHandler}
+                        onEditFormChange={editFormHandler}
                       />
                     ) : (
                       <BackUserItem
-                        user={user}
                         key={user.id}
-                        onEdit={editHandler}
+                        user={user}
                         onDeleteClick={deleteClickHandler}
+                        onEdit={editHandler}
                       />
                     )}
                   </React.Fragment>
