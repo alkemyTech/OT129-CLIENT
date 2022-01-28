@@ -17,12 +17,9 @@ import EditOrganizationContainer from "./Containers/EditOrganization/EditOrganiz
 import ActivitiesDetailsContainer from "./Components/Activities/Detail/ActivitiesDetailsContainer";
 import HomeForm from "./Components/Home/HomeForm";
 import ContactForm from "./Components/Contact/ContactForm";
-<<<<<<< HEAD
 import MembersContainer from "./Containers/Members/MembersContainer";
-=======
 import HomePage from "./Pages/HomePage";
 import NewsPage from "./Components/News/NewsPage";
->>>>>>> 9dd025cce3be6a8c724462ffabb4bed36752c8d7
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
