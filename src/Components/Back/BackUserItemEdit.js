@@ -29,6 +29,8 @@ const BackUserItemEdit = ({ editFormData, onEditFormChange, onCancelClick }) => 
         <button className="btn btn-success" type="submit">
           Aceptar
         </button>
+      </td>
+      <td>
         <button className="btn btn-danger" type="button" onClick={onCancelClick}>
           Cancelar
         </button>
