@@ -1,4 +1,5 @@
 import React from "react";
+import "./App.css";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import ActivitiesForm from "./Components/Activities/ActivitiesForm";
@@ -18,6 +19,8 @@ import ActivitiesDetailsContainer from "./Components/Activities/Detail/Activitie
 import HomeForm from "./Components/Home/HomeForm";
 import ContactForm from "./Components/Contact/ContactForm";
 import MembersContainer from "./Containers/Members/MembersContainer";
+import Donation from "./Components/Donations/Donation";
+import ThankYou from "./Components/Donations/ThankYou";
 import HomePage from "./Pages/HomePage";
 import NewsPage from "./Components/News/NewsPage";
 
@@ -48,6 +51,8 @@ function App() {
           <Route exact component={RegisterForm} path="/register" />
           <Route exact component={ContactForm} path="/contact" />
           <Route exact component={FooterForm} path="/footer-form" />
+          <Route exact component={Donation} path="/donar" />
+          <Route exact component={ThankYou} path="/gracias" />
         </Switch>
       </BrowserRouter>
     </>
