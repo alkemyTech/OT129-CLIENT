@@ -2,13 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import "bootstrap/dist/css/bootstrap.css";
 
-const BackUserItem = ({ user, onEdit, onDeleteClick }) => {
+const BackUserItem = ({ user, onDeleteClick }) => {
   return (
     <tr>
       <td>{user.name}</td>
       <td>{user.email}</td>
       <td>
-        <button className="btn btn-primary" type="button" onClick={(event) => onEdit(event, user)}>
+        <button className="btn btn-primary" type="button">
           <i className="fas fa-user-edit" />
           <span className="ms-2">Editar</span>
         </button>

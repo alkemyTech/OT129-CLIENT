@@ -4,69 +4,9 @@ import { Link } from "react-router-dom";
 
 import BackUserItem from "./BackUserItem";
 import "bootstrap/dist/css/bootstrap.css";
-import BackUserItemEdit from "./BackUserItemEdit";
 
 const BackUsersList = ({ data, linkUrl }) => {
   const [users, setUsers] = useState(data);
-
-  const [editUserId, setEditUserId] = useState(null);
-
-  const [editFormData, setEditFormData] = useState({
-    email: "",
-    name: "",
-  });
-
-  //funcion para que el boton al dar click, edite los campos
-  const editHandler = (event, data) => {
-    event.preventDefault();
-    setEditUserId(data.id);
-
-    const formValues = {
-      email: data.email,
-      name: data.name,
-    };
-
-    setEditFormData(formValues);
-  };
-
-  //funcion para actualizar datos de los campos
-  const editFormHandler = (event) => {
-    event.preventDefault();
-
-    const fieldName = event.target.getAttribute("name");
-    const fieldValue = event.target.value;
-
-    const newFormData = { ...editFormData };
-
-    newFormData[fieldName] = fieldValue;
-
-    setEditFormData(newFormData);
-  };
-
-  //funcion para que se haga submit y se actualicen los cambios
-  const submitFormHandler = (event) => {
-    event.preventDefault();
-
-    const editedUser = {
-      id: editUserId,
-      name: editFormData.name,
-      email: editFormData.email,
-    };
-
-    const newUsers = [...users];
-
-    const index = users.findIndex((user) => user.id === editUserId);
-
-    newUsers[index] = editedUser;
-
-    setUsers(newUsers);
-    setEditUserId(null);
-  };
-
-  //funcion para cuando el usuario no quiere realizar cambios a los campos
-  const cancelClickHandler = () => {
-    setEditUserId(null);
-  };
 
   //funcion para eliminar usuario
   const deleteClickHandler = (userId) => {
@@ -86,41 +26,20 @@ const BackUsersList = ({ data, linkUrl }) => {
         <span className="ms-2">Crear Usuario</span>
       </Link>
       <div className="d-flex justify-content-between">
-        {/* se coloca form asi, por problema de child en linea 23 */}
-        <form onSubmit={submitFormHandler}>
-          <table className="table">
-            <thead className="thead-dark">
-              <tr>
-                <th scope="col">Nombre</th>
-                <th scope="col">Email</th>
-                <th scope="col">Acciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              {users.map((user, index) => {
-                return (
-                  <React.Fragment key={index}>
-                    {editUserId === user.id ? (
-                      <BackUserItemEdit
-                        key={index}
-                        editFormData={editFormData}
-                        onCancelClick={cancelClickHandler}
-                        onEditFormChange={editFormHandler}
-                      />
-                    ) : (
-                      <BackUserItem
-                        key={user.id}
-                        user={user}
-                        onDeleteClick={deleteClickHandler}
-                        onEdit={editHandler}
-                      />
-                    )}
-                  </React.Fragment>
-                );
-              })}
-            </tbody>
-          </table>
-        </form>
+        <table className="table">
+          <thead className="thead-dark">
+            <tr>
+              <th scope="col">Nombre</th>
+              <th scope="col">Email</th>
+              <th scope="col">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {users.map((user) => {
+              return <BackUserItem key={user.id} user={user} onDeleteClick={deleteClickHandler} />;
+            })}
+          </tbody>
+        </table>
       </div>
     </>
   );
