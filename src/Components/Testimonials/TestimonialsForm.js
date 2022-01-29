@@ -1,49 +1,134 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import "../FormStyles.css";
+import "bootstrap/dist/css/bootstrap.css";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
-const TestimonialForm = () => {
-  const [initialValues, setInitialValues] = useState({
-    name: "",
-    description: "",
-  });
+import { toBase64 } from "../../utils/toBase64";
+import { create } from "../../Services/create";
+import { edit } from "../../Services/edit";
 
-  const handleChange = (e) => {
-    if (e.target.name === "name") {
-      setInitialValues({ ...initialValues, name: e.target.value });
-    }
-    if (e.target.name === "description") {
-      setInitialValues({ ...initialValues, description: e.target.value });
-    }
-  };
+import PreviewImage from "./PreviewImage";
+import { testimonialSchema } from "./formValidation";
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(initialValues);
-  };
+const TestimonialForm = ({ testimony = {} }) => {
+  const [formSend, setFormSend] = useState(false);
+
+  const [testimonyImage, setTestimonyImage] = useState("");
 
   return (
-    <form className="form-container" onSubmit={handleSubmit}>
-      <input
-        className="input-field"
-        name="name"
-        placeholder="Testimonial Title"
-        type="text"
-        value={initialValues.name}
-        onChange={handleChange}
-      />
-      <input
-        className="input-field"
-        name="description"
-        placeholder="Testimonial description"
-        type="text"
-        value={initialValues.description}
-        onChange={handleChange}
-      />
-      <button className="submit-btn" type="submit">
-        Send
-      </button>
-    </form>
+    <React.Fragment>
+      <Formik
+        validateOnMount
+        initialValues={{
+          name: testimony?.name || "",
+          description: testimony?.description || "",
+          image: testimony?.image || "",
+        }}
+        validationSchema={testimonialSchema}
+        onSubmit={async (values) => {
+          //Eleccion de ruta para crear o editar
+          const resultBase = await toBase64(values.image);
+          const newTestimony = { ...values, image: resultBase };
+
+          if (!testimony.id) {
+            const result = await create("testimonials", newTestimony);
+
+            console.log(result);
+            setFormSend(true);
+          } else {
+            const result = await edit("testimonials", {
+              ...newTestimony,
+              id: testimony.id,
+            });
+
+            setFormSend(true);
+            console.log(result);
+          }
+        }}
+      >
+        {({ errors, isValid, setFieldValue }) => (
+          <Form className="form-container">
+            <div className="mt-3">
+              <label className="form-label" htmlFor="name">
+                Nombre
+                <span>:</span>
+              </label>
+              <Field
+                className="form-control"
+                id="name"
+                name="name"
+                placeholder="Testimonio Nombre"
+                type="text"
+              />
+              <ErrorMessage component={() => <p className="error">{errors.name}</p>} name="name" />
+            </div>
+            <div className="mt-3">
+              <label className="form-label" htmlFor="description">
+                Descripción
+                <span>:</span>
+              </label>
+              <CKEditor
+                data={testimony.description}
+                editor={ClassicEditor}
+                id="description"
+                name="description"
+                onChange={(event, editor) => {
+                  const data = editor.getData();
+
+                  setFieldValue("description", data);
+                }}
+              />
+
+              <ErrorMessage
+                component={() => <p className="error">{errors.description}</p>}
+                name="description"
+              />
+
+              <label className="form-label" htmlFor="image">
+                Imagen
+                <span>:</span>
+              </label>
+              <input
+                accept="image/png, image/jpg"
+                className="form-control"
+                id="image"
+                name="image"
+                type="file"
+                onChange={(event) => {
+                  setFieldValue("image", event.target.files[0]);
+                  setTestimonyImage(URL.createObjectURL(event.currentTarget.files[0]));
+                }}
+              />
+              <ErrorMessage component={() => <p className="error">{errors.file}</p>} name="file" />
+              {testimonyImage && <PreviewImage file={testimonyImage} />}
+            </div>
+            <button className="btn btn-primary" disabled={!isValid} type="submit">
+              Enviar
+            </button>
+            {formSend ? (
+              testimony.id ? (
+                <p className="formSubmitted">Formulario editado con éxito</p>
+              ) : (
+                <p className="formSubmitted">Formulario enviado con éxito</p>
+              )
+            ) : null}
+          </Form>
+        )}
+      </Formik>
+    </React.Fragment>
   );
+};
+
+TestimonialForm.propTypes = {
+  testimony: PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    description: PropTypes.string,
+    image: PropTypes.string,
+  }),
 };
 
 export default TestimonialForm;
