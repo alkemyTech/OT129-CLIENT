@@ -43,7 +43,7 @@ function App() {
           <Route exact component={HomeForm} path="/backoffice/home" />
           <Route exact component={MembersContainer} path="/backoffice/members" />
           <Route exact component={TestimonialForm} path="/create-testimonials" />
-          <Route exact component={UserForm} path="/create-user" />
+          <Route exact component={UserForm} path="/backoffice/create-user" />
           <Route exact component={MembersForm} path="/create-member" />
           <Route exact component={ProjectsForm} path="/create-project" />
           <Route exact component={SchoolCampaign} path="/school-campaign" />
