@@ -15,6 +15,7 @@ import FooterForm from "./Components/Footer/FooterForm";
 import RegisterForm from "./Components/Auth/RegisterForm";
 import EditOrganizationContainer from "./Containers/EditOrganization/EditOrganizationContainer";
 import ActivitiesDetailsContainer from "./Components/Activities/Detail/ActivitiesDetailsContainer";
+import CategoriesListContainer from "./Containers/Categories/CategoriesListContainer";
 import HomeForm from "./Components/Home/HomeForm";
 import ContactForm from "./Components/Contact/ContactForm";
 import HomePage from "./Pages/HomePage";
@@ -46,6 +47,7 @@ function App() {
           <Route exact component={RegisterForm} path="/register" />
           <Route exact component={ContactForm} path="/contact" />
           <Route exact component={FooterForm} path="/footer-form" />
+          <Route exact component={CategoriesListContainer} path="/backoffice/categories" />
         </Switch>
       </BrowserRouter>
     </>
