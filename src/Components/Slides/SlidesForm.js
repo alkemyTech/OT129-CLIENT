@@ -3,63 +3,37 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import PropTypes from "prop-types";
 import * as Yup from "yup";
 import "../FormStyles.css";
-import axios from "axios";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
-const toBase64 = async (file) =>
-  new Promise((resolve, reject) => {
-    const reader = new FileReader();
+import { edit } from "../../Services/edit";
+import { create } from "../../Services/create";
 
-    reader.readAsDataURL(file);
-    reader.onloadend = () => resolve(reader.result);
-    reader.onerror = reject;
-  });
-const createNewSlide = async (data) => {
-  axios
-    .post("http://ongapi.alkemy.org/api/slides", data, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-    .then((res) => {
-      console.log(res, "se creo correctamente");
-    });
-};
-const updateSlides = async (data) => {
-  axios
-    .put(`http://ongapi.alkemy.org/api/slides/${data.id}`, data, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-    .then((res) => {
-      console.log(res);
-      console.log("el cambio fue exitoso");
-    });
-};
+const IMG_FORMAT_REGEX = new RegExp(".(jpg|png)$");
 
 const validationSchema = Yup.object({
   name: Yup.string()
     .min(4, "Debe contener al menos 4 caracteres")
-    .required("El nombre es obligatorio"),
-  description: Yup.string().required("El contenido es obligatorio"),
-
+    .required("Este campo es obligatorio"),
+  description: Yup.string().required("Este campo es obligatorio"),
   image: Yup.mixed()
-    .required("Debe adjuntar una imagen")
-    .test("fileType", "La extensión del archivo no es soportado", (value) => {
-      if (value) return ["image/jpeg", "image/png"].includes(value.type);
-
-      return true;
-    }),
+    .required("Este campo es obligatorio")
+    .matches(IMG_FORMAT_REGEX, "Solo es permitido formato .png y .jpg"),
 });
-
 const SlidesForm = ({ slides = {} }) => {
+  const [slidesImage, setSlidesImage] = useState("");
   const initialValues = {
     name: slides?.name || "",
     description: slides?.description || "",
     image: slides?.image || "",
+    order: slides?.order || "",
   };
+
+  useEffect(() => {
+    if (slides.id) {
+      setSlidesImage(slides.image);
+    }
+  }, []);
 
   return (
     <div className="container mt-4">
@@ -67,17 +41,10 @@ const SlidesForm = ({ slides = {} }) => {
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={async (formData) => {
-          const resultBase = await toBase64(formData.image);
-          const newSlides = { ...formData, image: resultBase };
-
           if (slides.id === undefined) {
-            const result = await createNewSlides(newSlides);
-
-            console.log(result);
+            create("slides", formData);
           } else {
-            const result = await updateSlides({ ...newSlides, id: slides.id });
-
-            console.log(result);
+            edit("slides", { ...formData, id: slides.id });
           }
         }}
       >
@@ -116,11 +83,15 @@ const SlidesForm = ({ slides = {} }) => {
                   name="image"
                   type="file"
                   onChange={(event) => {
-                    formik.setFieldValue("image", event.currentTarget.files[0]);
+                    formik.setFieldValue("image", event.target.value);
+                    setSlidesImage(event.target.value);
                   }}
                 />
                 <ErrorMessage className="alert-danger" name="image" />
               </div>
+              {slidesImage ? (
+                <img alt="Imagen actual" className="row w-25 h-25" src={slidesImage} />
+              ) : null}
               <button className="submit-btn" type="submit">
                 {slides?.id ? "EDITAR" : "CREAR"}
               </button>
