@@ -18,6 +18,7 @@ import EditOrganizationContainer from "./Containers/EditOrganization/EditOrganiz
 import ActivitiesDetailsContainer from "./Components/Activities/Detail/ActivitiesDetailsContainer";
 import HomeForm from "./Components/Home/HomeForm";
 import ContactForm from "./Components/Contact/ContactForm";
+import MembersContainer from "./Containers/Members/MembersContainer";
 import Donation from "./Components/Donations/Donation";
 import ThankYou from "./Components/Donations/ThankYou";
 import HomePage from "./Pages/HomePage";
@@ -40,6 +41,7 @@ function App() {
           <Route exact component={SlidesForm} path="/backoffice/create-slide" />
           <Route exact component={EditOrganizationContainer} path="/backoffice/organization/edit" />
           <Route exact component={HomeForm} path="/backoffice/home" />
+          <Route exact component={MembersContainer} path="/backoffice/members" />
           <Route exact component={TestimonialForm} path="/create-testimonials" />
           <Route exact component={UserForm} path="/create-user" />
           <Route exact component={MembersForm} path="/create-member" />
