@@ -11,10 +11,10 @@ const MemberCard = ({ member }) => {
         <h5 className="card-title">{member.name}</h5>
         <p className="card-text">{member.description}</p>
         <div className="d-flex justify-content-around">
-          <a href={member.facebookUrl} target="_blank" rel="noreferrer">
+          <a href={member.facebookUrl} rel="noreferrer" target="_blank">
             <i className="fab fa-facebook-f" />
           </a>
-          <a href={member.linkedinUrl} target="_blank" rel="noreferrer">
+          <a href={member.linkedinUrl} rel="noreferrer" target="_blank">
             <i className="fab fa-linkedin-in" />
           </a>
         </div>
