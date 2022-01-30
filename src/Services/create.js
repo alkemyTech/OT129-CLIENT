@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import axios from "axios";
 
 export const create = async (route, data) => {

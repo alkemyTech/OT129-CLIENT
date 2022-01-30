@@ -52,7 +52,10 @@ const ActivitiesForm = ({ activity = {} }) => {
 
             console.log(result);
           } else {
-            const result = await edit("activities", { ...newActivity, id: activity.id });
+            const result = await edit("activities", {
+              ...newActivity,
+              id: activity.id,
+            });
 
             console.log(result);
           }
