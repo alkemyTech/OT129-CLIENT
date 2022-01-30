@@ -8,6 +8,7 @@
 
 .card-img-top {
     height: 280px;
+    object-fit: cover;
     box-shadow: var(--card-shadow);
 }
 
