@@ -1,14 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useHistory } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
 
-const BackUserItem = ({ user, onDeleteClick }) => {
+const BackUserItem = ({ user, pathCreate, onDeleteClick }) => {
+  const history = useHistory();
+
   return (
     <tr>
       <td>{user.name}</td>
       <td>{user.email}</td>
       <td>
-        <button className="btn btn-primary" type="button">
+        <button className="btn btn-primary" type="button" onClick={() => history.push(pathCreate)}>
           <i className="fas fa-user-edit" />
           <span className="ms-2">Editar</span>
         </button>
@@ -25,7 +28,7 @@ const BackUserItem = ({ user, onDeleteClick }) => {
 
 BackUserItem.propTypes = {
   user: PropTypes.object,
-  onEdit: PropTypes.func,
+  pathCreate: PropTypes.string,
   onDeleteClick: PropTypes.func,
 };
 

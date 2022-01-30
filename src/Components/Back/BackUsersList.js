@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 import BackUserItem from "./BackUserItem";
-import "bootstrap/dist/css/bootstrap.css";
 
 const BackUsersList = ({ data, linkUrl }) => {
   const [users, setUsers] = useState(data);
@@ -36,7 +35,14 @@ const BackUsersList = ({ data, linkUrl }) => {
           </thead>
           <tbody>
             {users.map((user) => {
-              return <BackUserItem key={user.id} user={user} onDeleteClick={deleteClickHandler} />;
+              return (
+                <BackUserItem
+                  key={user.id}
+                  pathCreate="/create-user"
+                  user={user}
+                  onDeleteClick={deleteClickHandler}
+                />
+              );
             })}
           </tbody>
         </table>
