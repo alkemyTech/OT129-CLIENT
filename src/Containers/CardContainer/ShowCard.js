@@ -1,21 +1,26 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-const ShowCard = () => {
+const ShowCard = ({ title, image, description }) => {
   return (
-    <div className="card" style="width: 18rem;">
-      <img
-        alt="Card image cap"
-        className="card-img-top"
-        src="https://www.adslzone.net/app/uploads-adslzone.net/2019/04/borrar-fondo-imagen.jpg"
-      />
+    <div className="card">
+      {image ? (
+        <img alt="Card image cap" className="card-img-top" src={image} />
+      ) : (
+        <img alt="Placeholder" className="card-img-top" src="\images\placeholder\emptyImage.png" />
+      )}
       <div className="card-body">
-        <h5 className="card-title">Card title</h5>
-        <p className="card-text">
-          Some quick example text to build on the card title and make up the bulk of the content.
-        </p>
+        <h5 className="card-title text-uppercase">{title}</h5>
+        <p className="card-text">{description}</p>
       </div>
     </div>
   );
+};
+
+ShowCard.propTypes = {
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
 };
 
 export default ShowCard;
