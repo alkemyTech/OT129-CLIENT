@@ -39,11 +39,7 @@ Alert.propTypes = {
 const RegisterForm = () => {
   return (
     <div className="container">
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={(formData) => console.log(formData)}
-      >
+      <Formik initialValues={initialValues} validationSchema={validationSchema}>
         {(formik) => (
           <form noValidate className="mt-3" onSubmit={formik.handleSubmit}>
             <div className="form-group mb-3">
