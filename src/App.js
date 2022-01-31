@@ -57,7 +57,7 @@ function App() {
           <Route exact component={FooterForm} path="/footer-form" />
           <Route exact component={Donation} path="/donar" />
           <Route exact component={ThankYou} path="/gracias" />
-          <Route exact component={AboutPage} path="/about" />
+          <Route exact component={AboutPage} path="/nosotros" />
         </Switch>
       </BrowserRouter>
     </>
