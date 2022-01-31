@@ -19,12 +19,12 @@ import EditOrganizationContainer from "./Containers/EditOrganization/EditOrganiz
 import ActivitiesDetailsContainer from "./Components/Activities/Detail/ActivitiesDetailsContainer";
 import HomeForm from "./Components/Home/HomeForm";
 import ContactForm from "./Components/Contact/ContactForm";
+import NewsDetailsContainer from "./Components/News/Details/NewsDetailsContainer";
 import MembersContainer from "./Containers/Members/MembersContainer";
 import Donation from "./Components/Donations/Donation";
 import ThankYou from "./Components/Donations/ThankYou";
 import HomePage from "./Pages/HomePage";
 import NewsPage from "./Components/News/NewsPage";
-
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
@@ -39,6 +39,7 @@ function App() {
           <Route exact component={NewsPage} path="/backoffice/news" />
           <Route exact component={CategoriesContainer} path="/create-category" />
           <Route exact component={NewsForm} path="/backoffice/create-news" />
+          <Route exact component={NewsDetailsContainer} path="/novedades/:id" />
           <Route exact component={SlidesForm} path="/backoffice/create-slide" />
           <Route exact component={SlidesContainer} path="/backoffice/slides" />
           <Route exact component={EditOrganizationContainer} path="/backoffice/organization/edit" />
