@@ -21,8 +21,8 @@ import ContactForm from "./Components/Contact/ContactForm";
 import MembersContainer from "./Containers/Members/MembersContainer";
 import Donation from "./Components/Donations/Donation";
 import ThankYou from "./Components/Donations/ThankYou";
-import HomePage from "./Pages/HomePage";
 import NewsPage from "./Components/News/NewsPage";
+import HomePage from "./Pages/HomePage";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
