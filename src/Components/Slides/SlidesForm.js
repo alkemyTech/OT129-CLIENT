@@ -51,11 +51,10 @@ const SlidesForm = () => {
           const { name, description, order, image } = res.data.data;
 
           setInitialValues({
-            name: name,
-            description: description,
-            order: order ? order : 0,
-            image: image,
-            id: true,
+            name,
+            description,
+            order,
+            image,
           });
         } else {
           const { status } = res.data;
@@ -76,7 +75,7 @@ const SlidesForm = () => {
     }
     // se obtiene un arreglo de orders ya usados
     getOrdersList();
-  }, []); // eslint-disable-line
+  }, []);
 
   const handleSubmit = async (formValues) => {
     let { image, ...rest } = formValues;
@@ -122,7 +121,7 @@ const SlidesForm = () => {
       ) : (
         <ContainerFormCard>
           <Formik
-            enableReinitialize={true}
+            enableReinitialize
             initialValues={initialValues}
             validationSchema={validations}
             onSubmit={async (values, { resetForm }) => {
