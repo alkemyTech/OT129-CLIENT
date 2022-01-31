@@ -21,3 +21,9 @@ export const patch = (url, id = null, data) => {
 
   return instance.patch(processedURL, data);
 };
+
+export const put = (url, id = null, data) => {
+  let processedURL = id ? `${url}/${id}` : url;
+
+  return instance.put(processedURL, data);
+};
