@@ -1,0 +1,20 @@
+@import "../../index.css";
+
+.container-donation {
+  padding: 100px 0;
+  background: #e6e6e6;
+}
+
+.row-donation {
+  width: 80%;
+}
+
+.text {
+  margin: 0;
+  color: var(--black);
+}
+
+.col-button {
+  display: flex;
+  justify-content: flex-end;
+}
