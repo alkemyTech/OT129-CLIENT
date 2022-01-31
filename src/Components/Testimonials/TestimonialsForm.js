@@ -7,8 +7,7 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 import { toBase64 } from "../../utils/toBase64";
-import { create } from "../../Services/create";
-import { edit } from "../../Services/edit";
+import { createTestimonial, editTestimonial } from "../../Services/TestimonialsService";
 
 import PreviewImage from "./PreviewImage";
 import { testimonialSchema } from "./formValidation";
@@ -34,12 +33,12 @@ const TestimonialForm = ({ testimony = {} }) => {
           const newTestimony = { ...values, image: resultBase };
 
           if (!testimony.id) {
-            const result = await create("testimonials", newTestimony);
+            const result = await createTestimonial("testimonials", newTestimony);
 
             console.log(result);
             setFormSend(true);
           } else {
-            const result = await edit("testimonials", {
+            const result = await editTestimonial("testimonials", {
               ...newTestimony,
               id: testimony.id,
             });
