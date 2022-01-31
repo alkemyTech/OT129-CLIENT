@@ -1,6 +1,6 @@
 import { get, post, patch } from "./publicApiService";
 
-const ENDPOINT = "/news";
+const ENDPOINT = "news";
 
 export const getNews = () => {
   return get(ENDPOINT);

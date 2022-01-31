@@ -1,7 +1,15 @@
-import { get } from "./publicApiService";
+import { get, post, put } from "./publicApiService";
 
-const ENDPOINT = "/categories";
+const ENDPOINT = "categories";
 
 export const getCategories = () => {
-  return get(SUB_URL);
+  return get(ENDPOINT);
+};
+
+export const createCategory = () => {
+  return post(ENDPOINT);
+};
+
+export const editCategory = () => {
+  return put(ENDPOINT);
 };
