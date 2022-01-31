@@ -26,6 +26,8 @@ import Donation from "./Components/Donations/Donation";
 import ThankYou from "./Components/Donations/ThankYou";
 import HomePage from "./Pages/HomePage";
 import NewsPage from "./Components/News/NewsPage";
+import AboutPage from "./Pages/AboutPage";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
@@ -59,6 +61,7 @@ function App() {
           <Route exact component={CategoriesListContainer} path="/backoffice/categories" />
           <Route exact component={Donation} path="/donar" />
           <Route exact component={ThankYou} path="/gracias" />
+          <Route exact component={AboutPage} path="/nosotros" />
         </Switch>
       </BrowserRouter>
     </>
