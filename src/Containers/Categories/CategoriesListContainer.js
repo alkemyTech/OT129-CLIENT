@@ -1,6 +1,6 @@
 import React from "react";
 
-import { TitleNav } from "../../Components/TitleNav/TitleNav";
+import TitleNav from "../../Components/TitleNav/TitleNav";
 import CategoriesList from "../../Components/Categories/CategoriesList";
 
 const dataCategories = [

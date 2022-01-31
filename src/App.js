@@ -53,12 +53,9 @@ function App() {
           <Route exact component={RegisterForm} path="/register" />
           <Route exact component={ContactForm} path="/contact" />
           <Route exact component={FooterForm} path="/footer-form" />
-<<<<<<< HEAD
           <Route exact component={CategoriesListContainer} path="/backoffice/categories" />
-=======
           <Route exact component={Donation} path="/donar" />
           <Route exact component={ThankYou} path="/gracias" />
->>>>>>> development
         </Switch>
       </BrowserRouter>
     </>
