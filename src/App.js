@@ -17,16 +17,12 @@ import RegisterForm from "./Components/Auth/RegisterForm";
 import EditOrganizationContainer from "./Containers/EditOrganization/EditOrganizationContainer";
 import ActivitiesDetailsContainer from "./Components/Activities/Detail/ActivitiesDetailsContainer";
 import HomeForm from "./Components/Home/HomeForm";
-<<<<<<< HEAD
-import ContactPage from "./Components/Contact/ContactPage";
-=======
-import ContactForm from "./Components/Contact/ContactForm";
 import MembersContainer from "./Containers/Members/MembersContainer";
 import Donation from "./Components/Donations/Donation";
 import ThankYou from "./Components/Donations/ThankYou";
 import HomePage from "./Pages/HomePage";
 import NewsPage from "./Components/News/NewsPage";
->>>>>>> 7c253c30f0881e9a102b31217a4232f26175d6e5
+import ContactPage from "./Pages/ContactPage";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
