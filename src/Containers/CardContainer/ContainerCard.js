@@ -30,8 +30,8 @@ const ContainerCard = ({ data = data1 }) => {
   return (
     <div className="container">
       <div className="row">
-        {data.map((el, index) => (
-          <div key={index} className="col">
+        {data.map((el) => (
+          <div key={el.id} className="col">
             <ShowCard description={el.description} image={el.image} title={el.name} />
           </div>
         ))}
