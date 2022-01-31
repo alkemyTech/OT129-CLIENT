@@ -1,5 +1,5 @@
-import { axiosInstance } from "./axiosConfig";
+import { instance } from "./axiosConfig";
 
 export const getCategories = async () => {
-  return await axiosInstance.get("/categories");
+  return await instance.get("/categories");
 };
