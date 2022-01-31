@@ -1,7 +1,8 @@
 const config = {
   baseURL: process.env.REACT_APP_API_BASE_URL,
   headers: {
-    Group: "01",
+    Accept: "application/json, text/plain, */*",
+    Group: "129",
   },
 };
 
