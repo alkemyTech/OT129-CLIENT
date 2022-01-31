@@ -1,0 +1,23 @@
+@import "../../index.css";
+
+.container-thankyou {
+  padding: 100px 0;
+  background: #e6e6e6;
+}
+
+.text-container {
+  width: 80%;
+  margin: auto;
+}
+
+.text {
+  color: var(--black);
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--blue);
+  text-shadow: 1px 1px 2px rgb(196, 196, 196);
+}
