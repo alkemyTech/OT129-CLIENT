@@ -17,6 +17,7 @@ import FooterForm from "./Components/Footer/FooterForm";
 import RegisterForm from "./Components/Auth/RegisterForm";
 import EditOrganizationContainer from "./Containers/EditOrganization/EditOrganizationContainer";
 import ActivitiesDetailsContainer from "./Components/Activities/Detail/ActivitiesDetailsContainer";
+import CategoriesListContainer from "./Containers/Categories/CategoriesListContainer";
 import HomeForm from "./Components/Home/HomeForm";
 import ContactForm from "./Components/Contact/ContactForm";
 import NewsDetailsContainer from "./Components/News/Details/NewsDetailsContainer";
@@ -55,6 +56,7 @@ function App() {
           <Route exact component={ContactForm} path="/contact" />
           <Route exact component={BackOfficeUserPage} path="/backoffice/users" />
           <Route exact component={FooterForm} path="/footer-form" />
+          <Route exact component={CategoriesListContainer} path="/backoffice/categories" />
           <Route exact component={Donation} path="/donar" />
           <Route exact component={ThankYou} path="/gracias" />
         </Switch>
