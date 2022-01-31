@@ -1,31 +1,24 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 
-const NewsDetails = () => {
-  const [newsDetail, setNewsDetail] = useState(null);
-
-  async function getNewsDetail() {
-    try {
-      const data = await axios.get("url");
-
-      setNewsDetail(data);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  useEffect(() => {
-    getNewsDetail();
-  }, []);
-  console.log(newsDetail);
-
+const NewsDetails = ({ data }) => {
   return (
-    <div>
-      <h5>{data.name}</h5>
-      <img alt="..." src={data.image} />
-      <p>{data.content}</p>
+    <div className="container">
+      <h1>{data.name}</h1>
+      <div className="d-grid d-md-flex justify-content-md-center py-3">
+        <img alt={data.name} className="mw-100" src={data.image} />
+      </div>
+      <h5 className="text-center">{data.content}</h5>
     </div>
   );
+};
+
+NewsDetails.propTypes = {
+  data: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    content: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default NewsDetails;
