@@ -1,0 +1,26 @@
+.banner {
+  position: relative;
+  text-align: center;
+}
+
+.image-banner {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.text-banner {
+  z-index: 1;
+}
+
+.title-banner {
+  font-weight: 600;
+  font-size: 2.3rem;
+  text-transform: uppercase;
+}
+
