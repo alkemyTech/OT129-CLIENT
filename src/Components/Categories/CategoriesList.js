@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import { formatDate } from "../../utils/formatDate";
+
 const CategoriesList = ({ data }) => {
   return (
     <table className="table table-striped table-list">
@@ -15,7 +17,7 @@ const CategoriesList = ({ data }) => {
         {data.map((el, i) => (
           <tr key={i}>
             <td>{el.name}</td>
-            <td>{el.created_at}</td>
+            <td>{formatDate(el.created_at)}</td>
             <td>
               <button className="btn-list btn-edit" title="Editar">
                 <i className="fas fa-pencil-alt" />
