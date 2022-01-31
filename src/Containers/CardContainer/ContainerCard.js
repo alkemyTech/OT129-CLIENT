@@ -43,9 +43,11 @@ const ContainerCard = ({ data = data1 }) => {
 export default ContainerCard;
 
 ContainerCard.propTypes = {
-  data: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-  }),
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+      image: PropTypes.string.isRequired,
+    })
+  ),
 };
