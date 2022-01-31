@@ -8,8 +8,7 @@ const ContactPage = ({ props }) => {
   return (
     <div>
       <Titles title="Contacto" />
-      <h3 className="text-center">Acá va a ir el contenido de esta pagina</h3>
-      {props}
+      <h3 className="text-center mt-3">Acá va a ir el contenido de esta pagina {props}</h3>
       <ContactForm />
     </div>
   );
