@@ -24,7 +24,7 @@ import Donation from "./Components/Donations/Donation";
 import ThankYou from "./Components/Donations/ThankYou";
 import HomePage from "./Pages/HomePage";
 import NewsPage from "./Components/News/NewsPage";
-
+import News from "./Components/News/News";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
@@ -37,6 +37,7 @@ function App() {
           <Route exact component={ActivitiesForm} path="/create-activity" />
           <Route exact component={ActivitiesDetailsContainer} path="/activities/:id" />
           <Route exact component={NewsPage} path="/backoffice/news" />
+          <Route exact component={News} path="/novedades" />
           <Route exact component={CategoriesContainer} path="/create-category" />
           <Route exact component={NewsForm} path="/backoffice/create-news" />
           <Route exact component={SlidesForm} path="/backoffice/create-slide" />
