@@ -8,8 +8,7 @@ import PropTypes from "prop-types";
 
 import { toBase64 } from "../../utils/toBase64";
 import ContainerFormCard from "../../Containers/ContainerFormCard";
-import { editNews } from "../../Services/NewsService";
-import { createNews } from "../../Services/NewsService";
+import { createNews, editNews } from "../../Services/NewsService";
 import { getCategories } from "../../Services/CategoriesService";
 
 const NewsForm = ({ id, name, content, image, category_id }) => {
