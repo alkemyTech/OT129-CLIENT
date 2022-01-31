@@ -12,6 +12,7 @@ import SchoolCampaign from "./Campaigns/School/SchoolCampaign";
 import ToysCampaign from "./Campaigns/Toys/ToysCampaign";
 import MembersForm from "./Components/Members/MembersForm";
 import ProjectsForm from "./Components/Projects/ProjectsForm";
+import SlidesContainer from "./Components/Slides/SlidesContainer";
 import FooterForm from "./Components/Footer/FooterForm";
 import RegisterForm from "./Components/Auth/RegisterForm";
 import EditOrganizationContainer from "./Containers/EditOrganization/EditOrganizationContainer";
@@ -39,6 +40,7 @@ function App() {
           <Route exact component={CategoriesContainer} path="/create-category" />
           <Route exact component={NewsForm} path="/backoffice/create-news" />
           <Route exact component={SlidesForm} path="/backoffice/create-slide" />
+          <Route exact component={SlidesContainer} path="/backoffice/slides" />
           <Route exact component={EditOrganizationContainer} path="/backoffice/organization/edit" />
           <Route exact component={HomeForm} path="/backoffice/home" />
           <Route exact component={MembersContainer} path="/backoffice/members" />
