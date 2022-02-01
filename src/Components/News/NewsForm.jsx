@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, { useEffect, useState } from "react";
 import { ErrorMessage, Form, Formik } from "formik";
 import * as Yup from "yup";
@@ -7,9 +8,8 @@ import PropTypes from "prop-types";
 
 import { toBase64 } from "../../utils/toBase64";
 import ContainerFormCard from "../../Containers/ContainerFormCard";
-import { editNew } from "../../Services/editNew";
-import { createNews } from "../../Services/createNews";
-import { getCategories } from "../../Services/getCategories";
+import { createNews, editNews } from "../../Services/NewsService";
+import { getCategories } from "../../Services/CategoriesService";
 
 const NewsForm = ({ id, name, content, image, category_id }) => {
   const initialValues = {
@@ -64,7 +64,7 @@ const NewsForm = ({ id, name, content, image, category_id }) => {
                 image: resultbase,
               };
 
-              await editNew({ data }, id);
+              await editNews({ data }, id);
 
               setLoading(false);
             }
@@ -82,7 +82,11 @@ const NewsForm = ({ id, name, content, image, category_id }) => {
                   // placeholder="Ingrese un título"
                   {...formik.getFieldProps("name")}
                 />
-                <ErrorMessage className="text-danger" component="span" name="name" />
+                <ErrorMessage
+                  className="text-danger"
+                  component="span"
+                  name="name"
+                />
               </div>
               <div className="mb-1">
                 <label className="form-label fw-bold mt-1">Contenido</label>
@@ -90,11 +94,16 @@ const NewsForm = ({ id, name, content, image, category_id }) => {
                   data={content}
                   editor={ClassicEditor}
                   id="content"
-                  onChange={(event, editor) => formik.setFieldValue("content", editor.getData())}
+                  onChange={(event, editor) =>
+                    formik.setFieldValue("content", editor.getData())
+                  }
                 />
               </div>
-              <ErrorMessage className="text-danger" component="span" name="content" />
-
+              <ErrorMessage
+                className="text-danger"
+                component="span"
+                name="content"
+              />
               <div className="mb-1">
                 <label className="form-label fw-bold mt-1">Categoría</label>
                 <select
@@ -110,8 +119,11 @@ const NewsForm = ({ id, name, content, image, category_id }) => {
                   ))}
                 </select>
               </div>
-              <ErrorMessage className="text-danger" component="span" name="category_id" />
-
+              <ErrorMessage
+                className="text-danger"
+                component="span"
+                name="category_id"
+              />
               <div className="mb-1">
                 <label className="form-label fw-bold mt-1">Imagen</label>
                 <input
@@ -124,12 +136,20 @@ const NewsForm = ({ id, name, content, image, category_id }) => {
                   }}
                 />
               </div>
-              <ErrorMessage className="text-danger" component="span" name="image" />
-
-              <button className="btn btn-primary w-100 mt-2 fw-bold" type="submit">
+              <ErrorMessage
+                className="text-danger"
+                component="span"
+                name="image"
+              />
+              <button
+                className="btn btn-primary w-100 mt-2 fw-bold"
+                type="submit"
+              >
                 <span
                   aria-hidden="true"
-                  className={loading ? "spinner-border spinner-border-sm" : null}
+                  className={
+                    loading ? "spinner-border spinner-border-sm" : null
+                  }
                   role="status"
                 />
                 {id === undefined ? "AGREGAR NOVEDAD" : "EDITAR NOTICIA"}

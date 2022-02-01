@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 
 import HomeSlides from "../../Components/Home/HomeSlides";
+import { getSlides } from "../../Services/SlidesServices";
 
 const HomeContainer = () => {
   const [slides, setSlides] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("http://ongapi.alkemy.org/api/slides")
+    getSlides()
       .then((response) => {
         const result = response.data.data;
         const slides = result.map((slide) => {

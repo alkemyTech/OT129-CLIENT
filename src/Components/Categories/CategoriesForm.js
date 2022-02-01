@@ -5,8 +5,7 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import PropTypes from "prop-types";
 
-import { create } from "../../Services/create";
-import { edit } from "../../Services/edit";
+import { createCategory, editCategory } from "../../Services/CategoriesService";
 import { formattedCategory } from "../../Containers/Categories/CategoriesContainer";
 
 const ErrorComponent = (props) => {
@@ -29,7 +28,7 @@ const CategoriesForm = ({ initialValues }) => {
   const onSubmit = async (values) => {
     const data = await formattedCategory(values);
 
-    values.id === undefined ? create("categories", data) : edit("categories", data);
+    values.id === undefined ? createCategory("categories", data) : editCategory("categories", data);
   };
 
   const formik = useFormik({ initialValues, onSubmit, validationSchema });

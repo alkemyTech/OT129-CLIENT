@@ -7,8 +7,7 @@ import "../FormStyles.css";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
-import { create } from "../../Services/create";
-import { edit } from "../../Services/edit";
+import { createActivity, editActivity } from "../../Services/ActivitiesService";
 import { toBase64 } from "../../utils/toBase64";
 
 const validationSchema = Yup.object({
@@ -48,11 +47,11 @@ const ActivitiesForm = ({ activity = {} }) => {
 
           console.log(newActivity);
           if (activity.id === undefined) {
-            const result = await create("activities", newActivity);
+            const result = await createActivity("activities", newActivity);
 
             console.log(result);
           } else {
-            const result = await edit("activities", {
+            const result = await editActivity("activities", {
               ...newActivity,
               id: activity.id,
             });

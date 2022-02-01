@@ -2,21 +2,19 @@ import axios from "axios";
 
 import config from "./axiosConfig";
 
-//import { getToken } from "..."
-
 const privateConfig = {
   ...config,
   headers: {
     ...config.headers,
-    Authorization: getToken(),
+    Authorization: "",
   },
   body: {},
 };
 
 const instance = axios.create(privateConfig);
 
-export const post = (url) => {
-  let processedURL = url;
+export const get = (url, id = null) => {
+  let processedURL = id ? `${url}/${id}` : url;
 
-  return instance.post(processedURL);
+  return instance.get(processedURL);
 };
