@@ -29,6 +29,7 @@ import NewsPage from "./Pages/NewsPage";
 import HomePage from "./Pages/HomePage";
 import ContactPage from "./Pages/ContactPage";
 import AboutPage from "./Pages/AboutPage";
+import Backoffice from "./Containers/Backoffice/Backoffice";
 import ActivitiesPage from "./Pages/ActivitiesPage";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -43,6 +44,7 @@ function App() {
           <Route exact component={ActivitiesPage} path="/activities" />
           <Route exact component={ActivitiesForm} path="/create-activity" />
           <Route exact component={ActivitiesDetailsContainer} path="/activities/:id" />
+          <Route exact component={Backoffice} path="/backoffice" />
           <Route exact component={NewsList} path="/backoffice/news" />
           <Route exact component={NewsPage} path="/novedades" />
           <Route exact component={CategoriesContainer} path="/create-category" />
