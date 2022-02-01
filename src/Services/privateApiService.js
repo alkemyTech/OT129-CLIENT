@@ -4,7 +4,7 @@ const privateConfig = {
   ...config,
   headers: {
     ...config.headers,
-    Authorization: "",
+    Authorization: authenticate().Authentication,
   },
 };
 
@@ -14,7 +14,7 @@ export const authenticate = () => {
   const storage = localStorage.getItem("token");
 
   if (storage) {
-    const header = { Authentication: `Bearer${storage}` };
+    const header = { Authentication: `Bearer ${storage}` };
 
     return header;
   } else {
@@ -27,3 +27,5 @@ export const get = (url, id = null) => {
 
   return instance.get(processedURL);
 };
+
+export const patch = (endpoint, data, id) => instance.patch(`${endpoint}/${id}`, data);

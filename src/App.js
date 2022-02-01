@@ -19,7 +19,7 @@ import EditOrganizationContainer from "./Containers/EditOrganization/EditOrganiz
 import ActivitiesDetailsContainer from "./Components/Activities/Detail/ActivitiesDetailsContainer";
 import CategoriesListContainer from "./Containers/Categories/CategoriesListContainer";
 import HomeForm from "./Components/Home/HomeForm";
-import ActivitiesIndexContainer from "./Components/Activities/Backoffice/ActivitiesIndexContainer";
+import ActivitiesListContainer from "./Components/Activities/Backoffice/ActivitiesListContainer";
 import NewsDetailsContainer from "./Components/News/Details/NewsDetailsContainer";
 import MembersContainer from "./Containers/Members/MembersContainer";
 import Donation from "./Components/Donations/Donation";
@@ -49,7 +49,7 @@ function App() {
           <Route exact component={SlidesContainer} path="/backoffice/slides" />
           <Route exact component={EditOrganizationContainer} path="/backoffice/organization/edit" />
           <Route exact component={HomeForm} path="/backoffice/home" />
-          <Route exact component={ActivitiesIndexContainer} path="/backoffice/activities" />
+          <Route exact component={ActivitiesListContainer} path="/backoffice/activities" />
           <Route exact component={MembersContainer} path="/backoffice/members" />
           <Route exact component={TestimonialForm} path="/create-testimonials" />
           <Route exact component={UserForm} path="/backoffice/create-user" />
