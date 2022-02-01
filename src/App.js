@@ -24,9 +24,8 @@ import NewsDetailsContainer from "./Components/News/Details/NewsDetailsContainer
 import MembersContainer from "./Containers/Members/MembersContainer";
 import Donation from "./Components/Donations/Donation";
 import ThankYou from "./Components/Donations/ThankYou";
-import HomePage from "./Pages/HomePage";
 import NewsPage from "./Components/News/NewsPage";
-import News from "./Components/News/NewsPage";
+import HomePage from "./Pages/HomePage";
 import ContactPage from "./Pages/ContactPage";
 import AboutPage from "./Pages/AboutPage";
 
