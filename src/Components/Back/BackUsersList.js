@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+
+import TitleNav from "../../Components/TitleNav/TitleNav";
 
 import BackUserItem from "./BackUserItem";
 
@@ -19,35 +20,30 @@ const BackUsersList = ({ data, linkUrl }) => {
   };
 
   return (
-    <>
-      <Link className="btn btn-secondary btn-sm mb-3" to={linkUrl}>
-        <i className="fas fa-plus" />
-        <span className="ms-2">Crear Usuario</span>
-      </Link>
-      <div className="d-flex justify-content-between">
-        <table className="table">
-          <thead className="thead-dark">
-            <tr>
-              <th scope="col">Nombre</th>
-              <th scope="col">Email</th>
-              <th scope="col">Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            {users.map((user) => {
-              return (
-                <BackUserItem
-                  key={user.id}
-                  pathCreate="/create-user"
-                  user={user}
-                  onDeleteClick={deleteClickHandler}
-                />
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
-    </>
+    <div className="container mt-5">
+      <TitleNav link={linkUrl} linkTitle="Crear" title="Usuarios" />
+      <table className="table table-striped table-list">
+        <thead className="thead-list">
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Email</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {users.map((user) => {
+            return (
+              <BackUserItem
+                key={user.id}
+                pathCreate="/create-user"
+                user={user}
+                onDeleteClick={deleteClickHandler}
+              />
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
   );
 };
 
