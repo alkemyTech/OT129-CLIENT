@@ -1,49 +1,231 @@
-import React, { useState } from "react";
-import "../FormStyles.css";
+import React, { useEffect, useRef, useState } from "react";
+import { useParams } from "react-router-dom";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import axios from "axios";
+import PropTypes from "prop-types";
+
+import { toBase64 } from "../../utils/toBase64";
+// import "@ckeditor/ckeditor5-build-classic/build/translations/es";
+import ContainerFormCard from "../../Containers/ContainerFormCard";
 
 const SlidesForm = () => {
   const [initialValues, setInitialValues] = useState({
     name: "",
     description: "",
+    order: 0,
+    image: "",
+  });
+  const [ordersList, setOrdersList] = useState([]); // para validar order
+  const [loading, setLoading] = useState(false);
+
+  const { id } = useParams();
+  const url = "http://ongapi.alkemy.org/api/slides";
+
+  const getOrdersList = async () => {
+    await axios
+      .get(url)
+      .then((res) => {
+        let data = res.data.data;
+        // arreglo de order utilizados
+        const orderBlackList = data
+          .map((data) => data.order)
+          .filter((order) => order !== initialValues.order);
+
+        setOrdersList(orderBlackList);
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
+  };
+
+  const getSlideById = async (id) => {
+    setLoading(true);
+
+    await axios
+      .get(`${url}/${id}`)
+      .then((res) => {
+        if (res.data.success) {
+          const { name, description, order, image } = res.data.data;
+
+          setInitialValues({
+            name,
+            description,
+            order,
+            image,
+          });
+        } else {
+          const { status } = res.data;
+
+          alert(status.message);
+        }
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
+
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    if (id) {
+      getSlideById(id);
+    }
+    // se obtiene un arreglo de orders ya usados
+    getOrdersList();
+  }, []);
+
+  const handleSubmit = async (formValues) => {
+    let { image, ...rest } = formValues;
+
+    if (typeof image === "object") {
+      image = await toBase64(image);
+      formValues = {
+        image,
+        ...rest,
+      };
+    }
+
+    if (id) {
+      await axios.put(`${url}/${id}`, formValues).catch((err) => {
+        alert(err.message);
+      });
+    } else {
+      await axios.post(url, formValues).catch((err) => {
+        alert(err.message);
+      });
+    }
+  };
+
+  const inputFileRef = useRef();
+  const validations = Yup.object({
+    name: Yup.string()
+      .min(4, "Debe tener al menos 4 caracteres")
+      .required("Este campo es obligatorio"),
+    description: Yup.string().required("Este campo es obligatorio"),
+    id: Yup.boolean(),
+    order: Yup.number()
+      .moreThan(0, "Debe ser un numero mayor o igual a cero")
+      .required("Este campo es obligatorio")
+      .integer()
+      .notOneOf(ordersList, "Numero de orden ya esta en uso"),
+    image: Yup.string().required("Este campo es obligatorio"),
   });
 
-  const handleChange = (e) => {
-    if (e.target.name === "name") {
-      setInitialValues({ ...initialValues, name: e.target.value });
-    }
-    if (e.target.name === "description") {
-      setInitialValues({ ...initialValues, description: e.target.value });
-    }
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(initialValues);
-  };
-
   return (
-    <form className="form-container" onSubmit={handleSubmit}>
-      <input
-        className="input-field"
-        name="name"
-        placeholder="Slide Title"
-        type="text"
-        value={initialValues.name}
-        onChange={handleChange}
-      />
-      <input
-        className="input-field"
-        name="description"
-        placeholder="Write the description"
-        type="text"
-        value={initialValues.description}
-        onChange={handleChange}
-      />
-      <button className="submit-btn" type="submit">
-        Send
-      </button>
-    </form>
+    <>
+      {loading ? (
+        <p>LOADING...</p>
+      ) : (
+        <ContainerFormCard>
+          <Formik
+            enableReinitialize
+            initialValues={initialValues}
+            validationSchema={validations}
+            onSubmit={async (values, { resetForm }) => {
+              const resultbase = await toBase64(values.image);
+              let formValues = {
+                name: values.name,
+                description: values.description,
+                order: values.order,
+                image: resultbase,
+              };
+
+              await handleSubmit(formValues);
+              // limpio el input file
+              inputFileRef.current.value = "";
+
+              resetForm();
+            }}
+          >
+            {({ setFieldValue }) => (
+              <Form className="p-4">
+                <label className="form-label fw-bold" htmlFor="name">
+                  Titulo
+                </label>
+                <Field
+                  className="form-control form-control-sm w-100"
+                  id="name"
+                  name="name"
+                  placeholder="Titulo"
+                  type="text"
+                />
+
+                <ErrorMessage className="text-danger" component="span" name="name" />
+                <div className="mb-1">
+                  <label className="form-label fw-bold mt-1" htmlFor="fdescription">
+                    Descripcion
+                  </label>
+                  <Field name="description">
+                    {({ field }) => (
+                      <>
+                        <CKEditor
+                          data={field.value}
+                          editor={ClassicEditor}
+                          onChange={(event, editor) => {
+                            setFieldValue(field.name, editor.getData());
+                          }}
+                        />
+                      </>
+                    )}
+                  </Field>
+                  <ErrorMessage className="text-danger" component="span" name="description" />
+                </div>
+
+                <div className="mb-1">
+                  <label className="form-label fw-bold mt-1" htmlFor="order">
+                    Numero de orden
+                  </label>
+                  <Field
+                    className="input-field"
+                    id="order"
+                    name="order"
+                    placeholder="ingrese un numero"
+                    type="number"
+                    onChange={(e) => {
+                      setFieldValue("order", parseInt(e.currentTarget.value));
+                    }}
+                  />
+                </div>
+                <ErrorMessage className="text-danger" component="span" name="order" />
+                <label className="form-label fw-bold mt-1" htmlFor="order">
+                  Cargar Imagen
+                </label>
+                <input
+                  ref={inputFileRef}
+                  accept=".jpg, .png"
+                  className="input-field"
+                  type="file"
+                  onChange={(e) => {
+                    setFieldValue("image", e.currentTarget.files[0]);
+                  }}
+                />
+                <ErrorMessage className="text-danger" component="span" name="image" />
+                <button className="btn btn-primary w-100 mt-2 fw-bold" type="submit">
+                  <span
+                    aria-hidden="true"
+                    className={loading ? "spinner-border spinner-border-sm" : null}
+                    role="status"
+                  />
+                  {id === undefined ? "AGREGAR SLIDES" : "EDITAR SLIDES"}
+                </button>
+              </Form>
+            )}
+          </Formik>
+        </ContainerFormCard>
+      )}
+    </>
   );
+};
+
+SlidesForm.propTypes = {
+  id: PropTypes.number,
+  name: PropTypes.string,
+  descripcion: PropTypes.descripcion,
+  image: PropTypes.string,
+  order: PropTypes.number,
 };
 
 export default SlidesForm;
