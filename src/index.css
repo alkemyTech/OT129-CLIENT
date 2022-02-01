@@ -49,11 +49,14 @@ body {
 
 .fill-black-btn {
   background: var(--black);
+  border: 2px solid var(--black);
+  box-sizing: border-box;
   color: var(--white);
 }
 
 .fill-black-btn:hover {
-  background: var(--blue);
+  border: 2px solid var(--black);
+  background: none;
   color: var(--black);
 }
 
@@ -97,11 +100,13 @@ code {
   font-size: 18px;
 }
 
+.btn-edit {
+  background: var(--blue);
+  margin-right: 10px;
+}
+
 .btn-delete {
   background: var(--red);
 }
 
-.btn-edit {
-  background: var(--yellow);
-}
 
