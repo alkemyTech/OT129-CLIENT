@@ -27,6 +27,7 @@ import ThankYou from "./Components/Donations/ThankYou";
 import HomePage from "./Pages/HomePage";
 import NewsPage from "./Components/News/NewsPage";
 import AboutPage from "./Pages/AboutPage";
+import Backoffice from "./Containers/Backoffice/Backoffice";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
@@ -39,6 +40,7 @@ function App() {
           <Route exact component={HomePage} path="/" />
           <Route exact component={ActivitiesForm} path="/create-activity" />
           <Route exact component={ActivitiesDetailsContainer} path="/activities/:id" />
+          <Route exact component={Backoffice} path="/backoffice" />
           <Route exact component={NewsPage} path="/backoffice/news" />
           <Route exact component={CategoriesContainer} path="/create-category" />
           <Route exact component={NewsForm} path="/backoffice/create-news" />

@@ -1,0 +1,4 @@
+.bg-container{
+  background-color: var(--bg-light-blue);
+  min-height: 100vh;
+}
