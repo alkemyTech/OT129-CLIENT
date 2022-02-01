@@ -3,8 +3,7 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import PropTypes from "prop-types";
 import * as Yup from "yup";
 
-import { edit } from "../../Services/edit";
-import { create } from "../../Services/create";
+import { createProject, editProject } from "../../Services/ProjectsService";
 import { formatDate } from "../../utils/formatDate";
 
 import "../FormStyles.css";
@@ -42,9 +41,9 @@ const ProjectsForm = ({ project = {} }) => {
         validationSchema={validationSchema}
         onSubmit={async (formData) => {
           if (project.id === undefined) {
-            create("projects", formData);
+            createProject(formData);
           } else {
-            edit("projects", { ...formData, id: project.id });
+            editProject({ ...formData, id: project.id });
           }
         }}
       >
