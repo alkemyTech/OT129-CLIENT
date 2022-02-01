@@ -109,4 +109,12 @@ code {
   background: var(--red);
 }
 
+.img-table {
+  display: block;
+  width: 150px;
+  height: 150px;
+  margin: auto;
+  object-fit: cover;
+}
+
 
