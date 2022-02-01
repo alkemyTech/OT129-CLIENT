@@ -1,7 +1,5 @@
 import config from "./axiosConfig";
 
-import config from "./axiosConfig";
-
 const Authenticate = () => {
   const storage = localStorage.getItem("token");
 
