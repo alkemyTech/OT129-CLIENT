@@ -1,18 +1,14 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-import ListTable from "../../ListTable/ListTable";
+import TitleNav from "../../TitleNav/TitleNav";
+
+import ListTable from "./ListTable";
 
 function ActivitiesIndex({ data }) {
   return (
-    <div className="container">
-      <h1>Gestor de actividades</h1>
-      <div className="d-grid d-md-flex justify-content-md-end py-3">
-        <Link className="btn btn-primary" to="/backoffice/activities/create">
-          Crear
-        </Link>
-      </div>
+    <div className="container mt-5">
+      <TitleNav link="/backoffice/activities/create" linkTitle="Crear" title="Actividades" />
       <ListTable data={data} />
     </div>
   );
