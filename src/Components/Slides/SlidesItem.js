@@ -5,11 +5,11 @@ const SlidesItem = ({ slide }) => {
   return (
     <tr>
       <td className="align-middle">{slide.name}</td>
-      <td className="w-25 align-middle text-center">
-        <img className="w-25" src={slide.image} />
+      <td className="align-middle">
+        <img className="img-table" src={slide.image} />
       </td>
-      <td className="align-middle text-center">{slide.order}</td>
-      <td className="align-middle text-center">
+      <td className="align-middle">{slide.order}</td>
+      <td className="align-middle">
         <button className="btn-list btn-edit" title="Editar">
           <i className="fas fa-pencil-alt" />
         </button>

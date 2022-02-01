@@ -6,8 +6,8 @@ const NewsTableRow = ({ data }) => {
   return (
     <tr>
       <td className="align-middle">{data.name}</td>
-      <td className="w-25 align-middle">
-        <img alt="" className="w-50" src={data.image} />
+      <td className="align-middle">
+        <img alt="" className="img-table" src={data.image} />
       </td>
       <td className="align-middle">{format(new Date(data.created_at), "dd/MM/yyyy")}</td>
       <td className="align-middle">
