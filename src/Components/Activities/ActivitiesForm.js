@@ -47,11 +47,11 @@ const ActivitiesForm = ({ activity = {} }) => {
 
           console.log(newActivity);
           if (activity.id === undefined) {
-            const result = await createActivity("activities", newActivity);
+            const result = await createActivity(newActivity);
 
             console.log(result);
           } else {
-            const result = await editActivity("activities", {
+            const result = await editActivity({
               ...newActivity,
               id: activity.id,
             });
