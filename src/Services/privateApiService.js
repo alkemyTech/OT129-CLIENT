@@ -15,7 +15,6 @@ const authenticate = () => {
 const config = {
   headers: {
     Group: "129",
-    Authentication: authenticate(),
   },
 };
 
