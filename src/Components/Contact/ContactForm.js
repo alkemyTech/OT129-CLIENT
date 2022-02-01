@@ -31,20 +31,20 @@ const ContactForm = () => {
   return (
     <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
       <Form className="form-container">
-        <Field className="input-field" name="name" placeholder="Nombre" type="text" />
+        <Field className="form-control" name="name" placeholder="Nombre" type="text" />
         <ErrorMessage component={ErrorComponent} name="name" />
-        <Field className="input-field" name="email" placeholder="Email" type="text" />
+        <Field className="form-control" name="email" placeholder="Email" type="text" />
         <ErrorMessage component={ErrorComponent} name="email" />
-        <Field className="input-field" name="phone" placeholder="Teléfono" type="tel" />
+        <Field className="form-control" name="phone" placeholder="Teléfono" type="tel" />
         <ErrorMessage component={ErrorComponent} name="phone" />
         <Field
           as="textarea"
-          className="input-field"
+          className="form-control"
           name="message"
           placeholder="Escribe tu mensaje"
         />
         <ErrorMessage component={ErrorComponent} name="message" />
-        <button className="submit-btn" type="submit">
+        <button className="btn btn-primary" type="submit">
           Enviar
         </button>
       </Form>

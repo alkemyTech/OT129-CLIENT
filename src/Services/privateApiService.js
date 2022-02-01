@@ -1,12 +1,20 @@
-import axios from "axios";
+import config from "./axiosConfig";
 
-import axiosInstance from "./axiosInstance";
+const privateConfig = {
+  ...config,
+  headers: {
+    ...config.headers,
+    Authorization: "",
+  },
+};
+
+const instance = axios.create(privateConfig);
 
 export const authenticate = () => {
   const storage = localStorage.getItem("token");
 
   if (storage) {
-    const header = { Authentication: `Bearer${storage}` };
+    const header = { Authentication: `Bearer ${storage}` };
 
     return header;
   } else {
@@ -14,15 +22,10 @@ export const authenticate = () => {
   }
 };
 
-export const Get = () => {
-  axios
-    .get("https://jsonplaceholder.typicode.com/users", config)
-    .then((res) => console.log(res))
-    .catch((err) => console.log(err));
+export const get = (url, id = null) => {
+  let processedURL = id ? `${url}/${id}` : url;
+
+  return instance.get(processedURL);
 };
 
-export const put = (endpoint, data, id = null) => {
-  axiosInstance.put(id ? `${endpoint}/${id}` : endpoint, data);
-};
-
-axios.defaults.headers.put["Autorization"] = authenticate().Authentication;
+export const patch = (endpoint, data, id) => instance.patch(`${endpoint}/${id}`, data);
