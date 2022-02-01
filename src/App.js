@@ -28,7 +28,7 @@ import NewsPage from "./Components/News/NewsPage";
 import HomePage from "./Pages/HomePage";
 import ContactPage from "./Pages/ContactPage";
 import AboutPage from "./Pages/AboutPage";
-
+import ActivitiesPage from "./Pages/ActivitiesPage";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import "./App.css";
@@ -39,6 +39,7 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route exact component={HomePage} path="/" />
+          <Route exact component={ActivitiesPage} path="/activities" />
           <Route exact component={ActivitiesForm} path="/create-activity" />
           <Route exact component={ActivitiesDetailsContainer} path="/activities/:id" />
           <Route exact component={NewsPage} path="/backoffice/news" />
