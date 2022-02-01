@@ -6,7 +6,7 @@ const TitleNav = ({ title, link, linkTitle }) => {
   return (
     <div className="d-flex justify-content-between">
       <h4>{title}</h4>
-      <Link exact path className="btn btn-primary" to={link}>
+      <Link className="btn btn-primary" to={link}>
         {linkTitle}
       </Link>
     </div>
