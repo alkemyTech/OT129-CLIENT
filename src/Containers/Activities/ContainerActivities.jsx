@@ -2,11 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const ContainerActivities = ({ content }) => {
-  return <>{content}</>;
+  return <div dangerouslySetInnerHTML={{ __html: content }} />;
 };
 
 ContainerActivities.propTypes = {
-  content: PropTypes.string,
+  content: PropTypes.object,
 };
 
 export default ContainerActivities;
