@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 import ListTable from "../../ListTable/ListTable";
 
-function ActivitiesIndex({ data }) {
+function ActivitiesList({ data }) {
   return (
     <div className="container">
       <h1>Gestor de actividades</h1>
@@ -18,7 +18,7 @@ function ActivitiesIndex({ data }) {
   );
 }
 
-ActivitiesIndex.propTypes = {
+ActivitiesList.propTypes = {
   data: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
@@ -29,4 +29,4 @@ ActivitiesIndex.propTypes = {
   ).isRequired,
 };
 
-export default ActivitiesIndex;
+export default ActivitiesList;

@@ -1,6 +1,6 @@
 import React from "react";
 
-import ActivitiesIndex from "./ActivitiesList";
+import ActivitiesList from "./ActivitiesList";
 
 const activities = [
   {
@@ -97,8 +97,8 @@ const activities = [
   },
 ];
 
-function ActivitiesIndexContainer() {
-  return <ActivitiesIndex data={activities} />;
+function ActivitiesListContainer() {
+  return <ActivitiesList data={activities} />;
 }
 
-export default ActivitiesIndexContainer;
+export default ActivitiesListContainer;
