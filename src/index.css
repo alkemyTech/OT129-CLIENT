@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 :root {
   --black: #2c2c2c;
   --white: #ffffff;
@@ -5,6 +7,7 @@
   --dark-blue: #7BA1C9;
   --grey: #C2C2C2;
   --red: #DB5752;
+  --yellow: #FAFA88;
   --width-button: 140px;
   --heigth-button: 40px;
   --border-radius: 6px;
@@ -16,9 +19,6 @@
 body {
   margin: 0;
   font-family: var(--font-family);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: rgb(240, 240, 240);
 }
 
 /* Buttons */
@@ -34,6 +34,7 @@ body {
   font-size: 14px;
   font-weight: bold;
   text-transform: uppercase;
+  transition-duration: 0.4s;
 }
 
 .fill-btn {
@@ -43,6 +44,17 @@ body {
 
 .fill-btn:hover {
   background: var(--dark-blue);
+  color: var(--black);
+}
+
+.fill-black-btn {
+  background: var(--black);
+  color: var(--white);
+}
+
+.fill-black-btn:hover {
+  background: var(--blue);
+  color: var(--black);
 }
 
 .stroke-btn {
@@ -67,3 +79,29 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+/* Tablas Listados */
+
+.table-list {
+  border: 2px solid rgb(207, 207, 207);
+  text-align: center;
+}
+
+.thead-list {
+  border: 2px solid rgb(207, 207, 207);
+  text-transform: uppercase;
+}
+
+.btn-list {
+  border: none;
+  font-size: 18px;
+}
+
+.btn-delete {
+  background: var(--red);
+}
+
+.btn-edit {
+  background: var(--yellow);
+}
+
