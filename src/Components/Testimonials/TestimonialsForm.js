@@ -33,12 +33,12 @@ const TestimonialForm = ({ testimony = {} }) => {
           const newTestimony = { ...values, image: resultBase };
 
           if (!testimony.id) {
-            const result = await createTestimonial("testimonials", newTestimony);
+            const result = await createTestimonial(newTestimony);
 
             console.log(result);
             setFormSend(true);
           } else {
-            const result = await editTestimonial("testimonials", {
+            const result = await editTestimonial({
               ...newTestimony,
               id: testimony.id,
             });
