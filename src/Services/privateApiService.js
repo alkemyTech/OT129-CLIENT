@@ -4,7 +4,7 @@ const privateConfig = {
   ...config,
   headers: {
     ...config.headers,
-    Authorization: "",
+    Authorization: authenticate().Authentication,
   },
 };
 
