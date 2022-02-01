@@ -10,11 +10,11 @@ const SlidesItem = ({ slide }) => {
       </td>
       <td className="align-middle text-center">{slide.order}</td>
       <td className="align-middle text-center">
-        <button className="btn btn-primary ">
+        <button className="btn-list btn-edit" title="Editar">
           <i className="fas fa-pencil-alt" />
         </button>
-        <button className="btn btn-danger ms-2">
-          <i className="fas fa-trash-alt" />
+        <button className="btn-list btn-delete" title="Eliminar">
+          <i className="far fa-trash-alt" />
         </button>
       </td>
     </tr>
