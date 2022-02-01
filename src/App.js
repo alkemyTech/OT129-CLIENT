@@ -26,7 +26,7 @@ import Donation from "./Components/Donations/Donation";
 import ThankYou from "./Components/Donations/ThankYou";
 import HomePage from "./Pages/HomePage";
 import NewsPage from "./Components/News/NewsPage";
-import News from "./Components/News/News";
+import News from "./Components/News/NewsPage";
 import ContactPage from "./Pages/ContactPage";
 import AboutPage from "./Pages/AboutPage";
 
