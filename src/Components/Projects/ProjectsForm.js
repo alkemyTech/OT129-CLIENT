@@ -41,9 +41,9 @@ const ProjectsForm = ({ project = {} }) => {
         validationSchema={validationSchema}
         onSubmit={async (formData) => {
           if (project.id === undefined) {
-            createProject("projects", formData);
+            createProject(formData);
           } else {
-            editProject("projects", { ...formData, id: project.id });
+            editProject({ ...formData, id: project.id });
           }
         }}
       >

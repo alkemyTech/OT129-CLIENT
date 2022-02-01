@@ -79,7 +79,6 @@ const NewsForm = ({ id, name, content, image, category_id }) => {
                   className="form-control form-control-sm w-100"
                   type="text"
                   value="hola que tal"
-                  // placeholder="Ingrese un título"
                   {...formik.getFieldProps("name")}
                 />
                 <ErrorMessage
@@ -99,11 +98,7 @@ const NewsForm = ({ id, name, content, image, category_id }) => {
                   }
                 />
               </div>
-              <ErrorMessage
-                className="text-danger"
-                component="span"
-                name="content"
-              />
+              <ErrorMessage className="text-danger" component="span" name="content" />
               <div className="mb-1">
                 <label className="form-label fw-bold mt-1">Categoría</label>
                 <select
@@ -119,11 +114,7 @@ const NewsForm = ({ id, name, content, image, category_id }) => {
                   ))}
                 </select>
               </div>
-              <ErrorMessage
-                className="text-danger"
-                component="span"
-                name="category_id"
-              />
+              <ErrorMessage className="text-danger" component="span" name="category_id" />
               <div className="mb-1">
                 <label className="form-label fw-bold mt-1">Imagen</label>
                 <input
@@ -136,15 +127,8 @@ const NewsForm = ({ id, name, content, image, category_id }) => {
                   }}
                 />
               </div>
-              <ErrorMessage
-                className="text-danger"
-                component="span"
-                name="image"
-              />
-              <button
-                className="btn btn-primary w-100 mt-2 fw-bold"
-                type="submit"
-              >
+              <ErrorMessage className="text-danger" component="span" name="image" />
+              <button className="btn btn-primary w-100 mt-2 fw-bold" type="submit">
                 <span
                   aria-hidden="true"
                   className={

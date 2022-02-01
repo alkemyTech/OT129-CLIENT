@@ -28,7 +28,7 @@ const CategoriesForm = ({ initialValues }) => {
   const onSubmit = async (values) => {
     const data = await formattedCategory(values);
 
-    values.id === undefined ? createCategory("categories", data) : editCategory("categories", data);
+    values.id ? editCategory(data, values.id) : createCategory(data);
   };
 
   const formik = useFormik({ initialValues, onSubmit, validationSchema });
