@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const authenticate = () => {
+export const authenticate = () => {
   const storage = localStorage.getItem("token");
 
   if (storage) {
