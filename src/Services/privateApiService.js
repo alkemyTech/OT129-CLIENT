@@ -1,4 +1,14 @@
-import axios from "axios";
+import config from "./axiosConfig";
+
+const privateConfig = {
+  ...config,
+  headers: {
+    ...config.headers,
+    Authorization: "",
+  },
+};
+
+const instance = axios.create(privateConfig);
 
 export const authenticate = () => {
   const storage = localStorage.getItem("token");
@@ -12,15 +22,8 @@ export const authenticate = () => {
   }
 };
 
-const config = {
-  headers: {
-    Group: "129",
-  },
-};
+export const get = (url, id = null) => {
+  let processedURL = id ? `${url}/${id}` : url;
 
-export const Get = () => {
-  axios
-    .get("https://jsonplaceholder.typicode.com/users", config)
-    .then((res) => console.log(res))
-    .catch((err) => console.log(err));
+  return instance.get(processedURL);
 };
