@@ -6,7 +6,7 @@ const ContainerActivities = ({ content }) => {
 };
 
 ContainerActivities.propTypes = {
-  content: PropTypes.object,
+  content: PropTypes.string,
 };
 
 export default ContainerActivities;
