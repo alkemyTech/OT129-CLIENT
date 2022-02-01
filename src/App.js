@@ -24,7 +24,8 @@ import NewsDetailsContainer from "./Components/News/Details/NewsDetailsContainer
 import MembersContainer from "./Containers/Members/MembersContainer";
 import Donation from "./Components/Donations/Donation";
 import ThankYou from "./Components/Donations/ThankYou";
-import NewsPage from "./Components/News/NewsPage";
+import NewsList from "./Components/News/NewsList";
+import NewsPage from "./Pages/NewsPage";
 import HomePage from "./Pages/HomePage";
 import ContactPage from "./Pages/ContactPage";
 import AboutPage from "./Pages/AboutPage";
@@ -41,8 +42,8 @@ function App() {
           <Route exact component={HomePage} path="/" />
           <Route exact component={ActivitiesForm} path="/create-activity" />
           <Route exact component={ActivitiesDetailsContainer} path="/activities/:id" />
-          <Route exact component={NewsPage} path="/backoffice/news" />
-          <Route exact component={News} path="/novedades" />
+          <Route exact component={NewsList} path="/backoffice/news" />
+          <Route exact component={NewsPage} path="/novedades" />
           <Route exact component={CategoriesContainer} path="/create-category" />
           <Route exact component={NewsForm} path="/backoffice/create-news" />
           <Route exact component={NewsDetailsContainer} path="/novedades/:id" />

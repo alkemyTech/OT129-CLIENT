@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import Title from "../Titles/Titles";
-import ContainerCard from "../../Containers/CardContainer/ContainerCard";
+import Title from "../Components/Titles/Titles";
+import ContainerCard from "../Containers/CardContainer/ContainerCard";
 
 const NewsPage = () => {
   const titleAPI = "titulo Desde la API Novedades";
