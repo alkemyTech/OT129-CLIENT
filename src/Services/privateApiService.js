@@ -23,8 +23,8 @@ const privateConfig = {
 
 const instance = axios.create(privateConfig);
 
-export const post = (endpoint, id = null, data) => {
-  let processedURL = (id ? `${endpoint}/${id}` : url, data);
+export const post = (endpoint, id, data) => {
+  let processedURL = (id ? `${endpoint}/${id}` : endpoint, data);
 
   return instance.post(processedURL);
 };
