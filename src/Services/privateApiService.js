@@ -28,7 +28,6 @@ export const get = (url, id = null) => {
   return instance.get(processedURL);
 };
 
-
 export const put = (endpoint, data, id) => instance.put(`${endpoint}/${id}`, data);
 
 export const patch = (endpoint, data, id) => instance.patch(`${endpoint}/${id}`, data);
