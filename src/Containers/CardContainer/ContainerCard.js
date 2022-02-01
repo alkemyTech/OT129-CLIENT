@@ -15,7 +15,7 @@ const data1 = [
     image: "http://ongapi.alkemy.org/storage/hh2Lju770B.png",
   },
   {
-    name: "Prueba3",
+    name: "PlaceHolder",
     description: "Esta es una actividad de prueba, se reemplazarán luego por las traídas de la API",
     image: "",
   },
