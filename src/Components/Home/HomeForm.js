@@ -13,30 +13,14 @@ const formSchema = Yup.object().shape({
     .max(255, "Máximo 255 caracteres"),
 });
 
-const data = {
-  welcome_text: "Bienvenidos a la web de la ONG",
-  slides: [
-    {
-      image: "https://via.placeholder.com/1366x768",
-      description: "Mensaje 1 de prueba de los slides, este mensaje vendrá luego desde la API",
-    },
-    {
-      image: "https://via.placeholder.com/1366x768",
-      description: "Mensaje 2 de prueba de los slides, este mensaje vendrá luego desde la API",
-    },
-    {
-      image: "https://via.placeholder.com/1366x768",
-      description: "Mensaje 3 de prueba de los slides, este mensaje vendrá luego desde la API",
-    },
-  ],
-};
-
 const HomeForm = () => {
   const [slides, setSlides] = useState([]);
 
   useEffect(() => {
     const fetchSlides = async () => {
       const fetchedSlides = await getSlides();
+
+      console.log(fetchedSlides.data);
 
       setSlides(fetchedSlides.data);
     };
