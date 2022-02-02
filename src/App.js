@@ -39,27 +39,32 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route exact component={HomePage} path="/" />
-          <Route exact component={ActivitiesForm} path="/create-activity" />
+          <Route exact component={ActivitiesForm} path="/backoffice/activities/create" />
           <Route exact component={ActivitiesDetailsContainer} path="/activities/:id" />
           <Route exact component={NewsPage} path="/backoffice/news" />
-          <Route exact component={CategoriesContainer} path="/create-category" />
-          <Route exact component={NewsForm} path="/backoffice/create-news" />
+          <Route exact component={CategoriesContainer} path="/backoffice/categories/create" />
+          <Route exact component={NewsForm} path="/backoffice/news/create" />
           <Route exact component={NewsDetailsContainer} path="/novedades/:id" />
-          <Route exact component={SlidesForm} path="/backoffice/create-slide" />
+          <Route exact component={SlidesForm} path="/backoffice/slides/create" />
           <Route exact component={SlidesContainer} path="/backoffice/slides" />
           <Route exact component={EditOrganizationContainer} path="/backoffice/organization/edit" />
           <Route exact component={HomeForm} path="/backoffice/home" />
           <Route exact component={ActivitiesIndexContainer} path="/backoffice/activities" />
+
           <Route exact component={MembersContainer} path="/backoffice/members" />
+          <Route exact component={MembersForm} path="/backoffice/members/create" />
+
           <Route exact component={TestimonialForm} path="/create-testimonials" />
-          <Route exact component={UserForm} path="/backoffice/create-user" />
-          <Route exact component={MembersForm} path="/create-member" />
+
+          <Route exact component={BackOfficeUserPage} path="/backoffice/users" />
+          <Route exact component={UserForm} path="/backoffice/users/create" />
+
           <Route exact component={ProjectsForm} path="/create-project" />
           <Route exact component={SchoolCampaign} path="/school-campaign" />
           <Route exact component={ToysCampaign} path="/toys-campaign" />
           <Route exact component={RegisterForm} path="/register" />
           <Route exact component={ContactPage} path="/contact" />
-          <Route exact component={BackOfficeUserPage} path="/backoffice/users" />
+
           <Route exact component={FooterForm} path="/footer-form" />
           <Route exact component={CategoriesListContainer} path="/backoffice/categories" />
           <Route exact component={Donation} path="/donar" />

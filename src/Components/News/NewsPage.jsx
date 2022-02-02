@@ -88,7 +88,7 @@ const news = [
 const NewsPage = () => {
   return (
     <div className="container mt-5">
-      <TitleNav link="/backoffice/create-news" linkTitle="Crear" title="Novedades" />
+      <TitleNav link="/backoffice/news/create" linkTitle="Crear" title="Novedades" />
       <NewsTable news={news} />
     </div>
   );
