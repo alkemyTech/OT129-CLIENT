@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import Title from "../Components/Titles/Titles";
-import ContainerCard from "../Containers/CardContainer/ContainerCard";
+import NewsCards from "../Containers/NewsCards/NewsCards";
 
 const NewsPage = () => {
   const titleAPI = "titulo Desde la API Novedades";
@@ -11,7 +11,7 @@ const NewsPage = () => {
   return (
     <>
       <Title title={titleAPI} />
-      <ContainerCard card={cardNews} />
+      <NewsCards card={cardNews} />
       <h1>Novedades</h1>
     </>
   );
