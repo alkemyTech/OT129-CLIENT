@@ -84,7 +84,7 @@ const news = [
   },
 ];
 
-const NewsPage = () => {
+const NewsList = () => {
   return (
     <div className="container">
       <h1 className="mt-3 mb-3 text-center">NOVEDADES</h1>
@@ -97,4 +97,4 @@ const NewsPage = () => {
   );
 };
 
-export default NewsPage;
+export default NewsList;
