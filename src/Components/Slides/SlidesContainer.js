@@ -57,8 +57,6 @@ const SlidesContainer = () => {
     data();
   }, []);
 
-  console.log(slides);
-
   return (
     <div className="container">
       <h1 className="text-center mt-3">Slides</h1>
