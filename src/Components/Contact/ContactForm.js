@@ -28,7 +28,7 @@ const validationSchema = Yup.object({
 const ContactForm = () => {
   const onSubmit = (values, { resetForm }) => {
     resetForm();
-    createContact();
+    createContact(values);
   };
 
   return (

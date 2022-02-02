@@ -6,10 +6,10 @@ export const getContact = () => {
   return get(ENDPOINT);
 };
 
-export const createContact = () => {
-  return post(ENDPOINT);
+export const createContact = (data) => {
+  return post(ENDPOINT, data);
 };
 
-export const editContact = () => {
-  return put(ENDPOINT);
+export const editContact = (data, id) => {
+  return put(ENDPOINT, id, data);
 };
