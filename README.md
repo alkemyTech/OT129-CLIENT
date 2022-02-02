@@ -28,3 +28,34 @@ The build is minified and the filenames include the hashes.<br />
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+***
+## Use Sweet Alert 2
+
+Use a method called `alerts` in file alerts.js 
+
+### This method recive 2 arguments:
+
+* title: the message to be displayed.(string)
+* icon: the icon to be displayed.(string)
+
+### There are 5 different icons:
+
+* "success"
+* "error"
+* "info"
+* "warning"
+* "question"
+
+### Example: 
+
+```
+alerts("Title message", "success");
+```
+
+### Result:
+![plot](https://i.ibb.co/883s3dH/example.jpg)
+
+
+
+  
+
