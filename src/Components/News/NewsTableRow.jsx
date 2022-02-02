@@ -5,6 +5,7 @@ import { format } from "date-fns";
 const NewsTableRow = ({ data }) => {
   return (
     <tr>
+      <td className="align-middle">{data.id}</td>
       <td className="align-middle">{data.name}</td>
       <td className="align-middle">
         <img alt="" className="img-table" src={data.image} />

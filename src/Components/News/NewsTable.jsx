@@ -10,6 +10,7 @@ const NewsTable = ({ news }) => {
         <table className="table table-striped table-list">
           <thead className="thead-list">
             <tr>
+              <th scope="col">Id</th>
               <th scope="col">Nombre</th>
               <th scope="col">Imagen</th>
               <th scope="col">Fecha de creación</th>

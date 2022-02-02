@@ -8,7 +8,7 @@ function ListTable({ data }) {
     <table className="table table-striped table-list">
       <thead className="thead-list">
         <tr>
-          <th scope="col">#</th>
+          <th scope="col">Id</th>
           <th scope="col">Nombre</th>
           <th scope="col">Imágen</th>
           <th scope="col">Creado</th>

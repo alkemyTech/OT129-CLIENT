@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 const SlidesItem = ({ slide }) => {
   return (
     <tr>
+      <td className="align-middle">{slide.id}</td>
       <td className="align-middle">{slide.name}</td>
       <td className="align-middle">
         <img className="img-table" src={slide.image} />

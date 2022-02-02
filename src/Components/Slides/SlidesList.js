@@ -8,6 +8,7 @@ const SlidesList = ({ slides }) => {
     <table className="table table-striped table-list">
       <thead className="thead-list">
         <tr>
+          <th scope="col">Id</th>
           <th scope="col">Titulo</th>
           <th className="text-center" scope="col">
             Imagen

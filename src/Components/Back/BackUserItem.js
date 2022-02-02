@@ -8,6 +8,7 @@ const BackUserItem = ({ user, pathCreate, onDeleteClick }) => {
 
   return (
     <tr>
+      <td>{user.id}</td>
       <td>{user.name}</td>
       <td>{user.email}</td>
       <td>
