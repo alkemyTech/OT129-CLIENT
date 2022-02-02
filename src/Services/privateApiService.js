@@ -28,7 +28,6 @@ export const get = (url, id = null) => {
   return instance.get(processedURL);
 };
 
-
 export const post = (endpoint, data, id) => {
   let processedURL = (id ? `${endpoint}/${id}` : endpoint, data);
 
