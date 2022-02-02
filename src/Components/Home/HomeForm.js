@@ -32,6 +32,18 @@ const data = {
 };
 
 const HomeForm = () => {
+  const [slides, setSlides] = useState([]);
+
+  useEffect(() => {
+    const fetchSlides = async () => {
+      const fetchedSlides = await getSlides();
+
+      setSlides(fetchedSlides.data);
+    };
+
+    fetchSlides();
+  }, []);
+
   const { handleSubmit, handleChange, values, errors } = useFormik({
     initialValues: {
       welcome_text: data.welcome_text,
@@ -47,7 +59,7 @@ const HomeForm = () => {
       <div className="container">
         <h1>Editor de Home</h1>
       </div>
-      <HomeSlides data={data.slides} />
+      {!slides ? <HomeSlides data={slides} /> : <p>Próximamente nuevos Slides!</p>}
       <div className="container">
         <form onSubmit={handleSubmit}>
           <label className="form-label" htmlFor="welcome_text">
