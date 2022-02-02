@@ -1,6 +1,6 @@
 import { get, post, put } from "./publicApiService";
 
-const ENDPOINT = process.env.REACT_APP_API_ACTIVITIES;
+const ENDPOINT = process.env.REACT_APP_API_ACTIVITIES_ENDPOINT;
 
 export const getAtivities = () => {
   return get(ENDPOINT);
