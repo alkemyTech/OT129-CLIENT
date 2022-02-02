@@ -2,7 +2,7 @@ import { get, post, put } from "./publicApiService";
 
 const ENDPOINT = "activities";
 
-export const getAtivities = () => {
+export const getActivities = () => {
   return get(ENDPOINT);
 };
 
