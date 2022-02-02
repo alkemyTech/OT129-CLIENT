@@ -4,6 +4,8 @@ import "../FormStyles.css";
 import * as Yup from "yup";
 import PropTypes from "prop-types";
 
+import { createContact } from "../../Services/ContactService";
+
 const ErrorComponent = (props) => <p>{props.children}</p>;
 
 const initialValues = {
@@ -26,6 +28,7 @@ const validationSchema = Yup.object({
 const ContactForm = () => {
   const onSubmit = (values, { resetForm }) => {
     resetForm();
+    createContact(values);
   };
 
   return (
