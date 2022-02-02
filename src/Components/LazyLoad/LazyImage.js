@@ -1,26 +1,12 @@
-import React, { useRef } from "react";
+import React from "react";
 import PropTypes from "prop-types";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
-import LazyLoad from "react-lazyload";
-
-import styles from './LazyImage.module.css'
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const LazyImage = ({ src, alt }) => {
-    const refPlaceholder = useRef();
 
-    const removePlaceholder = () => {
-        refPlaceholder.current.remove();
-    };
-
-  return (
-    <div style={styles.lazyCtn}>
-      <div ref={refPlaceholder} style={styles.lazyPlaceholder}>
-          <LazyLoad>
-           <img alt={alt} src={src} style={styles.lazyImg} onError={removePlaceholder} onLoad={removePlaceholder}/>
-          </LazyLoad>
-      </div>
-    </div>
-  );
+  return <LazyLoadImage alt={alt} effect="opacity" src={src} />;
 };
 
 LazyImage.propTypes = {
