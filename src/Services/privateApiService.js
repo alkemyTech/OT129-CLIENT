@@ -28,3 +28,7 @@ export const post = (endpoint, id, data) => {
 
   return instance.post(processedURL);
 };
+
+export const put = (endpoint, data, id) => instance.put(`${endpoint}/${id}`, data);
+
+export const patch = (endpoint, data, id) => instance.patch(`${endpoint}/${id}`, data);
