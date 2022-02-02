@@ -1,7 +1,7 @@
 import { get } from "./publicApiService";
 
-const ENDPOINT = "home";
+const ENDPOINT = "slides";
 
-export const getHome = () => {
-    return get(ENDPOINT);
-  };
+export const getSlides = () => {
+  return get(ENDPOINT);
+};
