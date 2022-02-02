@@ -13,6 +13,10 @@ const formSchema = Yup.object().shape({
     .max(255, "Máximo 255 caracteres"),
 });
 
+const data = {
+  welcome_text: "Bienvenidos a la web de la ONG",
+};
+
 const HomeForm = () => {
   const [slides, setSlides] = useState([]);
 
