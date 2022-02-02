@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import { getSlides } from "../../Services/SlidesServices";
+
 import SlidesList from "./SlidesList";
 
 const slides = [
@@ -43,6 +45,10 @@ const slides = [
 ];
 
 const SlidesContainer = () => {
+  const slidessss = getSlides();
+
+  console.log(slidessss);
+
   return (
     <div className="container">
       <h1 className="text-center mt-3">Slides</h1>
