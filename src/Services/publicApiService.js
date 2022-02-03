@@ -10,20 +10,20 @@ export const get = (url, id = null) => {
   return instance.get(processedURL);
 };
 
-export const post = (url, id = null, data) => {
+export const post = (data, url, id = null) => {
   let processedURL = id ? `${url}/${id}` : url;
 
-  return instance.post(processedURL, data);
+  return instance.post(data, processedURL);
 };
 
-export const patch = (url, id = null, data) => {
+export const patch = (data, url, id = null) => {
   let processedURL = id ? `${url}/${id}` : url;
 
-  return instance.patch(processedURL, data);
+  return instance.patch(data, processedURL);
 };
 
-export const put = (url, id = null, data) => {
+export const put = (data, url, id = null) => {
   let processedURL = id ? `${url}/${id}` : url;
 
-  return instance.put(processedURL, data);
+  return instance.put(data, processedURL);
 };
