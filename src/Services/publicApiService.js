@@ -10,10 +10,8 @@ export const get = (url, id = null) => {
   return instance.get(processedURL);
 };
 
-export const post = (url, id = null, data) => {
-  let processedURL = id ? `${url}/${id}` : url;
-
-  return instance.post(processedURL, data);
+export const post = (url, data) => {
+  return instance.post(url, data);
 };
 
 export const patch = (url, id = null, data) => {

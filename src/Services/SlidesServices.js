@@ -6,14 +6,14 @@ export const getSlides = () => {
   return get(ENDPOINT);
 };
 
-export const postSlides = () => {
-  return post(ENDPOINT);
+export const postSlides = (data) => {
+  return post(ENDPOINT, data);
 };
 
 export const patchSlides = () => {
   return patch(ENDPOINT);
 };
 
-export const putSlides = () => {
-  return put(ENDPOINT);
+export const putSlides = (id, data) => {
+  return put(`${ENDPOINT}/${id}`, data);
 };

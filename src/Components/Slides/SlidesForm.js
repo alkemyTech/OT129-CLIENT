@@ -8,8 +8,8 @@ import axios from "axios";
 import PropTypes from "prop-types";
 
 import { toBase64 } from "../../utils/toBase64";
-// import "@ckeditor/ckeditor5-build-classic/build/translations/es";
 import ContainerFormCard from "../../Containers/ContainerFormCard";
+import { postSlides, putSlides } from "../../Services/SlidesServices";
 
 const SlidesForm = () => {
   const [initialValues, setInitialValues] = useState({
@@ -80,6 +80,8 @@ const SlidesForm = () => {
   const handleSubmit = async (formValues) => {
     let { image, ...rest } = formValues;
 
+    console.log(formValues);
+
     if (typeof image === "object") {
       image = await toBase64(image);
       formValues = {
@@ -89,13 +91,13 @@ const SlidesForm = () => {
     }
 
     if (id) {
-      await axios.put(`${url}/${id}`, formValues).catch((err) => {
-        alert(err.message);
-      });
+      const result = await putSlides(id, formValues);
+
+      console.log(result);
     } else {
-      await axios.post(url, formValues).catch((err) => {
-        alert(err.message);
-      });
+      const result = await postSlides(formValues);
+
+      console.log(result);
     }
   };
 
@@ -134,6 +136,7 @@ const SlidesForm = () => {
               };
 
               await handleSubmit(formValues);
+
               // limpio el input file
               inputFileRef.current.value = "";
 
@@ -223,7 +226,7 @@ const SlidesForm = () => {
 SlidesForm.propTypes = {
   id: PropTypes.number,
   name: PropTypes.string,
-  descripcion: PropTypes.descripcion,
+  descripcion: PropTypes.string,
   image: PropTypes.string,
   order: PropTypes.number,
 };
