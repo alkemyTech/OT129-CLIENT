@@ -1,17 +1,26 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
 import Title from "../Components/Titles/Titles";
 import NewsCards from "../Containers/NewsCards/NewsCards";
 
 const NewsPage = () => {
-  const titleAPI = "titulo Desde la API Novedades";
-  const cardNews = "Cards Desde la API Novedades";
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const getData = async () => {
+      const response = await getNews();
+
+      setData(response.data.data);
+    };
+
+    getData();
+  }, []);
 
   return (
     <>
       <Title title={titleAPI} />
-      <NewsCards card={cardNews} />
+      <NewsCards data={data} />
       <h1>Novedades</h1>
     </>
   );

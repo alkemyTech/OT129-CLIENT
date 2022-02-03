@@ -1,6 +1,6 @@
 import { get, post, put } from "./publicApiService";
 
-const ENDPOINT = "testimonials";
+const ENDPOINT = process.env.REACT_APP_API_TESTIMONIES;
 
 export const getTestimonials = () => {
   return get(ENDPOINT);
