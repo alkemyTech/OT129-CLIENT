@@ -30,12 +30,12 @@ const data1 = [
   },
 ];
 
-const NewsCards = ({ data = data1 }) => {
+const HomeCards = ({ data = data1 }) => {
   return (
     <div className="container my-5 d-grid gap-3">
       <div className="row">
         {data.map((el) => (
-          <div key={el.id} className="col">
+          <div key={el.id} className="col-3 mb-4">
             <Card description={el.description} image={el.image} title={el.name} />
           </div>
         ))}
@@ -44,9 +44,9 @@ const NewsCards = ({ data = data1 }) => {
   );
 };
 
-export default NewsCards;
+export default HomeCards;
 
-NewsCards.propTypes = {
+HomeCards.propTypes = {
   data: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,
