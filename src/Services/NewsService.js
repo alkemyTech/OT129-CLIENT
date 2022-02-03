@@ -15,6 +15,6 @@ export const editNews = () => {
   return patch(ENDPOINT);
 };
 
-export const removeNews = () => {
-  return remove(ENDPOINT);
+export const removeNews = (id) => {
+  return remove(ENDPOINT, id);
 };
