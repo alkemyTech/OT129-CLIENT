@@ -16,7 +16,7 @@ import SlidesContainer from "./Components/Slides/SlidesContainer";
 import FooterForm from "./Components/Footer/FooterForm";
 import RegisterForm from "./Components/Auth/RegisterForm";
 import EditOrganization from "./Containers/EditOrganization/EditOrganization";
-import ActivitiesDetailsContainer from "./Components/Activities/Detail/ActivitiesDetailsContainer";
+import ActivitiesDetailsContainer from "./Containers/Activities/ActivitiesDetailsContainer/ActivitiesDetailsContainer";
 import CategoriesListContainer from "./Containers/Categories/CategoriesListContainer";
 import HomeForm from "./Components/Home/HomeForm";
 import ActivitiesListContainer from "./Components/Activities/Backoffice/ActivitiesListContainer";
