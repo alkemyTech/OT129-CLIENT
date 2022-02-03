@@ -12,3 +12,24 @@ export const alerts = (title, icon) => {
     title: title,
   });
 };
+
+export const confirmAlerts = (title, text) => {
+  Swal.fire({
+    cancelButtonColor: "#d33",
+    cancelButtonText: "Cancelar",
+    confirmButtonColor: "#3085d6",
+    confirmButtonText: "Sí",
+    icon: "warning",
+    showCancelButton: true,
+    showCloseButton: true,
+    text: text,
+    title: title,
+  }).then((result) => {
+    console.log(result);
+    if (result.isConfirmed) {
+      Swal.fire("Confirmado", "La operación se realizó con éxcito", "success");
+    } else {
+      Swal.fire("Cancelado", "La operación ha sido cancelada", "error");
+    }
+  });
+};
