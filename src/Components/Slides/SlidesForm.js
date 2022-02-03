@@ -4,7 +4,6 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import axios from "axios";
 import PropTypes from "prop-types";
 
 import { toBase64 } from "../../utils/toBase64";
@@ -18,11 +17,10 @@ const SlidesForm = () => {
     order: 0,
     image: "",
   });
-  const [ordersList, setOrdersList] = useState([]); // para validar order
+  const [ordersList, setOrdersList] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const { id } = useParams();
-  const url = "http://ongapi.alkemy.org/api/slides";
 
   const getOrdersList = async () => {
     const res = await getSlides();
