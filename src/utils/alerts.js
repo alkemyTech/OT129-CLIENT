@@ -6,30 +6,26 @@ const MySwal = withReactContent(Swal);
 export const alerts = (title, icon) => {
   MySwal.fire({
     icon: icon,
-    showConfirmButton: false,
-    timer: 2000,
+    confirmButtonText: "ACEPTAR",
     timerProgressBar: true,
     title: title,
   });
 };
 
-export const confirmAlerts = (title, text) => {
+export const confirmAlerts = (title, text, callback) => {
   Swal.fire({
+    buttonsStyling: true,
     cancelButtonColor: "#d33",
-    cancelButtonText: "Cancelar",
-    confirmButtonColor: "#3085d6",
-    confirmButtonText: "Sí",
+    cancelButtonText: "CANCELAR",
+    confirmButtonText: "OK",
     icon: "warning",
     showCancelButton: true,
     showCloseButton: true,
     text: text,
     title: title,
   }).then((result) => {
-    console.log(result);
     if (result.isConfirmed) {
-      Swal.fire("Confirmado", "La operación se realizó con éxcito", "success");
-    } else {
-      Swal.fire("Cancelado", "La operación ha sido cancelada", "error");
+      callback(result.isConfirmed);
     }
   });
 };
