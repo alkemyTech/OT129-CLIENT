@@ -9,7 +9,7 @@ import PropTypes from "prop-types";
 
 import { toBase64 } from "../../utils/toBase64";
 import ContainerFormCard from "../../Containers/ContainerFormCard";
-import { postSlides, putSlides } from "../../Services/SlidesServices";
+import { getSlides, postSlides, putSlides } from "../../Services/SlidesServices";
 
 const SlidesForm = () => {
   const [initialValues, setInitialValues] = useState({
@@ -25,46 +25,35 @@ const SlidesForm = () => {
   const url = "http://ongapi.alkemy.org/api/slides";
 
   const getOrdersList = async () => {
-    await axios
-      .get(url)
-      .then((res) => {
-        let data = res.data.data;
-        // arreglo de order utilizados
-        const orderBlackList = data
-          .map((data) => data.order)
-          .filter((order) => order !== initialValues.order);
+    const res = await getSlides();
+    let data = res.data.data;
+    // arreglo de order utilizados
+    const orderBlackList = data
+      .map((data) => data.order)
+      .filter((order) => order !== initialValues.order);
 
-        setOrdersList(orderBlackList);
-      })
-      .catch((err) => {
-        alert(err.message);
-      });
+    setOrdersList(orderBlackList);
   };
 
   const getSlideById = async (id) => {
     setLoading(true);
 
-    await axios
-      .get(`${url}/${id}`)
-      .then((res) => {
-        if (res.data.success) {
-          const { name, description, order, image } = res.data.data;
+    const res = await getSlides(id);
 
-          setInitialValues({
-            name,
-            description,
-            order,
-            image,
-          });
-        } else {
-          const { status } = res.data;
+    if (res.data.success) {
+      const { name, description, order, image } = res.data.data;
 
-          alert(status.message);
-        }
-      })
-      .catch((err) => {
-        alert(err.message);
+      setInitialValues({
+        name,
+        description,
+        order,
+        image,
       });
+    } else {
+      const { status } = res.data;
+
+      alert(status.message);
+    }
 
     setLoading(false);
   };
@@ -79,8 +68,6 @@ const SlidesForm = () => {
 
   const handleSubmit = async (formValues) => {
     let { image, ...rest } = formValues;
-
-    console.log(formValues);
 
     if (typeof image === "object") {
       image = await toBase64(image);
