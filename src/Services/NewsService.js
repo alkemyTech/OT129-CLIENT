@@ -6,8 +6,8 @@ export const getNews = () => {
   return get(ENDPOINT);
 };
 
-export const createNews = () => {
-  return post(ENDPOINT);
+export const createNews = (id) => {
+  return post(ENDPOINT, id);
 };
 
 export const editNews = () => {
