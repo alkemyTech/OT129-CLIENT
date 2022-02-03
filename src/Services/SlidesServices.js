@@ -1,6 +1,6 @@
 import { get, post, put } from "./publicApiService";
 
-const ENDPOINT = "REACT_APP_API_SLIDES_ENDPOINT";
+const ENDPOINT = process.env.REACT_APP_API_SLIDES_ENDPOINT;
 
 export const getSlides = () => {
   return get(ENDPOINT);
