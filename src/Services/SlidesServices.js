@@ -1,4 +1,5 @@
 import { get, post, put } from "./publicApiService";
+import { remove } from "./publicApiService";
 
 const ENDPOINT = process.env.REACT_APP_API_SLIDES_ENDPOINT;
 
@@ -12,4 +13,8 @@ export const postSlides = (data) => {
 
 export const putSlides = (id, data) => {
   return put(`${ENDPOINT}/${id}`, data);
+};
+
+export const removeSlides = (id) => {
+  return remove(`${ENDPOINT}/${id}`);
 };
