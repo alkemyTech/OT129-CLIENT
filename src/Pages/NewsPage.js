@@ -14,8 +14,7 @@ const NewsPage = () => {
     const getData = async () => {
       const response = await getNews();
 
-      console.log(response.data.data);
-      //setData(response.data.data);
+      setData(response.data.data);
     };
 
     getData();
@@ -24,7 +23,7 @@ const NewsPage = () => {
   return (
     <>
       <Title title={title} />
-      <ContainerCard />
+      <ContainerCard data={data} />
     </>
   );
 };

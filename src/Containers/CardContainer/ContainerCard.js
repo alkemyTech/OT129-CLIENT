@@ -32,11 +32,11 @@ const data1 = [
 
 const ContainerCard = ({ data = data1 }) => {
   return (
-    <div className="container my-5">
+    <div className="container my-5 d-grid gap-3">
       <div className="row">
         {data.map((el) => (
-          <div key={el.id} className="col">
-            <ShowCard description={el.description} image={el.image} title={el.name} />
+          <div key={el.id} className="col-3 mb-4">
+            <ShowCard description={el.content} image={el.image} title={el.name} />
           </div>
         ))}
       </div>
