@@ -1,18 +1,15 @@
-import { get, patch } from "./publicApiService";
-import { getAll, post, put } from "./privateApiService";
+import { patch } from "./publicApiService";
+import { get, post, put } from "./privateApiService";
+
 const ENDPOINT = process.env.REACT_APP_API_SLIDES_ENDPOINT;
 
 export const patchSlides = () => {
   return patch(ENDPOINT);
 };
 
-export const getSlides = () => {
-  return get(ENDPOINT);
-};
-
 // The token is needed for this method
-export const getAllSlides = (id) => {
-  return getAll(`${ENDPOINT}/${id}`);
+export const getSlides = (id) => {
+  return get(`${ENDPOINT}/${id}`);
 };
 
 // The token is needed for this method
