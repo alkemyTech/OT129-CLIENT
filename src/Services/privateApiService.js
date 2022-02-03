@@ -38,4 +38,4 @@ export const put = (endpoint, data, id) => instance.put(`${endpoint}/${id}`, dat
 
 export const patch = (endpoint, data, id) => instance.patch(`${endpoint}/${id}`, data);
 
-export const del = (url, id) => instance.delete(`${url}/${id}`);
+export const remove = (url, id) => instance.delete(`${url}/${id}`);
