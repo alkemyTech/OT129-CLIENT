@@ -3,6 +3,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 
 import { getSlides } from "../../Services/HomeServices";
+import { postOrganization } from "../../Services/HomeServices";
 
 import HomeSlides from "./HomeSlides";
 
@@ -26,7 +27,7 @@ const HomeForm = () => {
 
       console.log(fetchedSlides.data);
 
-      setSlides(fetchedSlides.data);
+      setSlides(fetchedSlides.data.data);
     };
 
     fetchSlides();
@@ -38,6 +39,8 @@ const HomeForm = () => {
     },
     onSubmit: (values) => {
       console.log(values);
+
+      postOrganization(values.welcome_text);
     },
     validationSchema: formSchema,
   });
@@ -47,7 +50,7 @@ const HomeForm = () => {
       <div className="container">
         <h1>Editor de Home</h1>
       </div>
-      {!slides ? <HomeSlides data={slides} /> : <p>Próximamente nuevos Slides!</p>}
+      {slides ? <HomeSlides data={slides} /> : <p>Próximamente nuevos Slides!</p>}
       <div className="container">
         <form onSubmit={handleSubmit}>
           <label className="form-label" htmlFor="welcome_text">
