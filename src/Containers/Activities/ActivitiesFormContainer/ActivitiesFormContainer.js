@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import ActivitiesForm from "../../../Components/Activities/ActivitiesForm";
-import { getActivities } from "../../../Services/ActivitiesService";
+import { getActivityByID } from "../../../Services/ActivitiesService";
 
 const ActivitiesFormContainer = () => {
   const [activity, setActivity] = useState({
@@ -11,7 +11,7 @@ const ActivitiesFormContainer = () => {
   });
 
   useEffect(() => {
-    getActivities(id)
+    getActivityByID(id)
       .then((response) => {
         const result = response.data.data;
 
