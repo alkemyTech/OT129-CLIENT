@@ -31,7 +31,7 @@ const UserForm = ({
   };
 
   const onSubmit = async (formValues) => {
-    if (id === undefined) {
+    if (id) {
       const resultBase = await toBase64(formValues.profile_image);
       const dataUser = {
         name: formValues.name,

@@ -1,16 +1,27 @@
 import axios from "axios";
 
-export const config = {
-  headers: {
-    Group: "01", // Aqui va el ID del equipo!!
-  },
+import config from "./axiosConfig";
+
+const instance = axios.create(config);
+
+export const get = (url, id = null) => {
+  let processedURL = id ? `${url}/${id}` : url;
+
+  return instance.get(processedURL);
 };
 
-const Get = () => {
-  axios
-    .get("https://jsonplaceholder.typicode.com/users", config)
-    .then((res) => console.log(res))
-    .catch((err) => console.log(err));
+export const post = (url, data) => {
+  return instance.post(url, data);
 };
 
-export default Get;
+export const patch = (url, id = null, data) => {
+  let processedURL = id ? `${url}/${id}` : url;
+
+  return instance.patch(processedURL, data);
+};
+
+export const put = (url, id = null, data) => {
+  let processedURL = id ? `${url}/${id}` : url;
+
+  return instance.put(processedURL, data);
+};
