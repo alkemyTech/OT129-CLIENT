@@ -78,13 +78,9 @@ const SlidesForm = () => {
     }
 
     if (id) {
-      const result = await putSlides(id, formValues);
-
-      console.log(result);
+      await putSlides(id, formValues);
     } else {
-      const result = await postSlides(formValues);
-
-      console.log(result);
+      await postSlides(formValues);
     }
   };
 
