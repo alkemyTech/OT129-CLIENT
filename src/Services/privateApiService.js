@@ -1,14 +1,6 @@
+import axios from "axios";
+
 import config from "./axiosConfig";
-
-const privateConfig = {
-  ...config,
-  headers: {
-    ...config.headers,
-    Authorization: authenticate().Authentication,
-  },
-};
-
-const instance = axios.create(privateConfig);
 
 export const authenticate = () => {
   const storage = localStorage.getItem("token");
@@ -21,6 +13,16 @@ export const authenticate = () => {
     return null;
   }
 };
+
+const privateConfig = {
+  ...config,
+  headers: {
+    ...config.headers,
+    Authorization: authenticate().Authentication,
+  },
+};
+
+const instance = axios.create(privateConfig);
 
 export const get = (url, id = null) => {
   let processedURL = id ? `${url}/${id}` : url;
