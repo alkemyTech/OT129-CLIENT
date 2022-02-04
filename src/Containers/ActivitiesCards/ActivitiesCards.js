@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 
 import { getActivities } from "../../Services/ActivitiesService";
 import Card from "../../Components/Card/Card";
+import Loader from "../../Components/Loader";
+import { alerts } from "../../utils/alerts";
 
 const ActivitiesCards = () => {
   const [activities, setActivities] = useState([]);
@@ -18,19 +20,27 @@ const ActivitiesCards = () => {
 
         setActivities(activities);
       })
-      .catch((error) => {
-        console.log(error);
+      .catch((_) => {
+        alerts("No se pudo obtener el listado de actividades", "error");
       });
   }, []);
 
   return (
     <div className="container">
       <div className="row">
-        {activities.map((activity) => (
-          <div key={activity.id} className="col">
-            <Card description={activity.description} image={activity.image} title={activity.name} />
-          </div>
-        ))}
+        {activities.length === 0 ? (
+          <Loader />
+        ) : (
+          activities.map((activity) => (
+            <div key={activity.id} className="col">
+              <Card
+                description={activity.description}
+                image={activity.image}
+                title={activity.name}
+              />
+            </div>
+          ))
+        )}
       </div>
     </div>
   );
