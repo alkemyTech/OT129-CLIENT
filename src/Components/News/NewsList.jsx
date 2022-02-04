@@ -85,7 +85,7 @@ const news = [
   },
 ];
 
-const NewsPage = () => {
+const NewsList = () => {
   return (
     <div className="container mt-5">
       <TitleNav link="/backoffice/news/create" linkTitle="Crear" title="Novedades" />
@@ -94,4 +94,4 @@ const NewsPage = () => {
   );
 };
 
-export default NewsPage;
+export default NewsList;

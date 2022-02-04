@@ -1,4 +1,5 @@
 import { get, post, patch } from "./publicApiService";
+import { remove } from "./privateApiService";
 
 const ENDPOINT = "news";
 
@@ -12,4 +13,8 @@ export const createNews = () => {
 
 export const editNews = () => {
   return patch(ENDPOINT);
+};
+
+export const removeNews = (id) => {
+  return remove(ENDPOINT, id);
 };
