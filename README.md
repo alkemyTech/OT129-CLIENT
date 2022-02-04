@@ -106,4 +106,4 @@ confirmAlerts(
 
 ### Result:
 
-![plot](https://imgur.com/4qLJ6E2)
+![plot](https://imgur.com/4qLJ6E2.png)
