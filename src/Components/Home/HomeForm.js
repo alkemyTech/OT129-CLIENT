@@ -16,6 +16,7 @@ const formSchema = Yup.object().shape({
 
 const data = {
   welcome_text: "Bienvenidos a la web de la ONG",
+  name: "Somos Más",
 };
 
 const HomeForm = () => {
@@ -36,11 +37,12 @@ const HomeForm = () => {
   const { handleSubmit, handleChange, values, errors } = useFormik({
     initialValues: {
       welcome_text: data.welcome_text,
+      name: data.name,
     },
     onSubmit: (values) => {
       console.log(values);
 
-      postOrganization(values.welcome_text);
+      postOrganization(values);
     },
     validationSchema: formSchema,
   });
