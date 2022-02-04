@@ -57,4 +57,10 @@ export const put = (endpoint, data, id) => instance.put(`${endpoint}/${id}`, dat
  */
 export const patch = (endpoint, data, id) => instance.patch(`${endpoint}/${id}`, data);
 
+/**
+ * Method to make a delete with private endpoint
+ * @param {string} url
+ * @param {number|null} id
+ * @returns {Promise}
+ */
 export const remove = (url, id) => instance.delete(`${url}/${id}`);
