@@ -26,8 +26,6 @@ const HomeForm = () => {
     const fetchSlides = async () => {
       const fetchedSlides = await getSlides();
 
-      console.log(fetchedSlides.data);
-
       setSlides(fetchedSlides.data.data);
     };
 
@@ -40,8 +38,6 @@ const HomeForm = () => {
       name: data.name,
     },
     onSubmit: (values) => {
-      console.log(values);
-
       postOrganization(values);
     },
     validationSchema: formSchema,
