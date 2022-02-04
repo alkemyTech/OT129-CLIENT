@@ -4,9 +4,9 @@ import PropTypes from "prop-types";
 import "../../index.css";
 import "./Comment.css";
 
-const Comment = ({ data = [], title }) => {
+const Comment = ({ data = {}, title }) => {
   return (
-    <div className="comment-container">
+    <>
       <h2 className="comment-title" id="comenatrios">
         {title}
       </h2>
@@ -29,7 +29,7 @@ const Comment = ({ data = [], title }) => {
           })}
         </ul>
       </div>
-    </div>
+    </>
   );
 };
 
