@@ -106,4 +106,4 @@ confirmAlerts(
 
 ### Result:
 
-![plot](https://ibb.co/kcdbyk3)
+![plot](https://imgur.com/4qLJ6E2)
