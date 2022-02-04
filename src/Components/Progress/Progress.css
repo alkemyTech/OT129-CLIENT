@@ -1,3 +1,13 @@
+/*CONTAINER*/
+.progress-container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+/*COMPONENT*/
 .progress-linear {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -5,7 +15,7 @@
   border: none;
   height: 16px;
   width: 90%;
-  margin: auto;
+  margin: 1rem auto 1rem auto;
   max-width: 600px;
   color: var(--blue);
   font-size: 16px;
@@ -49,7 +59,7 @@
 .progress-linear:indeterminate::-ms-fill {
   animation-name: none;
 }
-
+/*ANIMATION*/
 @keyframes progress-linear {
   0% {
     background-size: 200% 100%;
