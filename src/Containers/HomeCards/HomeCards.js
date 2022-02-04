@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import ShowCard from "./ShowCard";
+import Card from "../../Components/Card/Card";
 
 const data1 = [
   {
@@ -30,13 +30,13 @@ const data1 = [
   },
 ];
 
-const ContainerCard = ({ data = data1 }) => {
+const HomeCards = ({ data = data1 }) => {
   return (
     <div className="container my-5 d-grid gap-3">
       <div className="row">
         {data.map((el) => (
           <div key={el.id} className="col-3 mb-4">
-            <ShowCard description={el.content} image={el.image} title={el.name} />
+            <Card description={el.description} image={el.image} title={el.name} />
           </div>
         ))}
       </div>
@@ -44,9 +44,9 @@ const ContainerCard = ({ data = data1 }) => {
   );
 };
 
-export default ContainerCard;
+export default HomeCards;
 
-ContainerCard.propTypes = {
+HomeCards.propTypes = {
   data: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,
