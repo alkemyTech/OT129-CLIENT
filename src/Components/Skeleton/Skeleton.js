@@ -26,6 +26,7 @@ const Skeleton = ({
   col = undefined,
   size = undefined,
   height = undefined,
+  addClass = undefined,
 }) => {
   if (!validElement.some((el) => el === element)) {
     throw new Error(
@@ -69,8 +70,10 @@ const Skeleton = ({
   }
 
   const MyLink = () =>
-    React.createElement(element, {
-      className: `placeholder ${col ? "col-" + col : "col-4"} ${size ? "placeholder-" + size : ""}`,
+    React.createElement("span", {
+      className: `placeholder ${col ? "col-" + col : "col-4"} ${
+        size ? "placeholder-" + size : ""
+      } ${addClass ? addClass : ""}`,
       style: { height: height, width: width },
     });
 
@@ -83,6 +86,7 @@ Skeleton.propTypes = {
   height: PropTypes.string,
   col: PropTypes.number,
   size: PropTypes.string,
+  addClass: PropTypes.string,
 };
 
 export default Skeleton;

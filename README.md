@@ -26,7 +26,7 @@ To invoke te skeleton just  need to import and add to your code.
 You can define the HTML element that Skeleton will use.
 This change the height and the shape of the resultant placeholder.
  *Element prop support a string value*.
-Valid types: "p", "h1", "h2", "h3", "h4", "h5", "h6", "a", "button", "img", "span", "input", "label".
+Valid types: "p", "h1", "h2", "h3", "h4", "h5", "h6", "a", "button".
 
 Example:
 
@@ -55,7 +55,7 @@ Example:
  - **Col:**
 
 According bootstrap grid, Skeleton can accepts col number between 1 and 12. Default value is 4.
- *Element prop support a string number*.
+ *Element prop support a number value*.
 
 Example:
 
@@ -64,7 +64,7 @@ Example:
  - **Size:**
 
 Throught size prop, can change the default height value of the element to increase or decrease that. 
- *Element prop support a string string*.
+ *Element prop support a string value*.
  Size valid values: "xs", "sm", "lg"
 
 Example:
@@ -72,6 +72,34 @@ Example:
     <Skeleton size="md" />
     <Skeleton size="lg" />
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+ - **Custom classes:**
+
+Can add custom classNames using the addClass prop. Skeleton is made with bootstrap classes so you can to take advantage of than using bs classes.
+ *Element prop support a string value*.
+
+Example:
+
+    <Skeleton element="button" addClass="btn" />
+
+ - **Example:**
+
+Can add custom classNames using the addClass prop. Skeleton is made with bootstrap classes so you can to take advantage of than using bs classes.
+ *Element prop support a string value*.
+
+Example:
+
+![image](https://user-images.githubusercontent.com/71856261/152566785-905c9342-8afc-48be-bcb7-35f3cd65f460.png)
+
+    <div className="container col-4">
+      <Skeleton addClass="mx-3" col={12} element="p" height="300px" width="300px" />
+      <Skeleton addClass="m-3" col={4} element="p" width="100%" />
+      <Skeleton addClass="btn m-3" element="button" />
+    </div>
+
+
+
+
 ***
 ## Use Sweet Alert 2
 
