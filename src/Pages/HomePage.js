@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import HomeSlide from "../Containers/HomeSlide/HomeSlide";
-import ContainerCard from "../Containers/CardContainer/ContainerCard";
+import HomeCards from "../Containers/HomeCards/HomeCards";
 
 const HomePage = () => {
   const cardNews = "Cards Desde la API Novedades";
@@ -13,7 +13,7 @@ const HomePage = () => {
       <h1 className="text-center mt-3">Home Page</h1>
       <HomeSlide />
       <h2> {welcomeText}</h2>
-      <ContainerCard card={cardNews} />
+      <HomeCards card={cardNews} />
     </div>
   );
 };
