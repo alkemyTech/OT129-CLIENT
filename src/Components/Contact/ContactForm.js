@@ -5,6 +5,7 @@ import * as Yup from "yup";
 import PropTypes from "prop-types";
 
 import { createContact } from "../../Services/ContactService";
+import { alerts } from "../../utils/alerts";
 
 const ErrorComponent = (props) => <p>{props.children}</p>;
 
@@ -28,7 +29,18 @@ const validationSchema = Yup.object({
 const ContactForm = () => {
   const onSubmit = (values, { resetForm }) => {
     resetForm();
-    createContact(values);
+
+    createContact(values)
+      .then((res) => {
+        if (res.status === 200) {
+          alerts("Formulario enviado", "success");
+        }
+      })
+      .catch((err) => {
+        if (err) {
+          alerts("Ha habido un error", "error");
+        }
+      });
   };
 
   return (
