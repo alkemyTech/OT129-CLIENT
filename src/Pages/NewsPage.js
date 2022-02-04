@@ -19,7 +19,7 @@ const NewsPage = () => {
 
   return (
     <>
-      <Title title={titleAPI} />
+      <Title title="Novedades" />
       <NewsCards data={data} />
       <h1>Novedades</h1>
     </>
