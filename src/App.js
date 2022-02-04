@@ -15,8 +15,8 @@ import ProjectsForm from "./Components/Projects/ProjectsForm";
 import SlidesContainer from "./Components/Slides/SlidesContainer";
 import FooterForm from "./Components/Footer/FooterForm";
 import RegisterForm from "./Components/Auth/RegisterForm";
-import EditOrganizationContainer from "./Containers/EditOrganization/EditOrganizationContainer";
-import ActivitiesDetailsContainer from "./Components/Activities/Detail/ActivitiesDetailsContainer";
+import EditOrganization from "./Containers/EditOrganization/EditOrganization";
+import ActivitiesDetailsContainer from "./Containers/Activities/ActivitiesDetailsContainer/ActivitiesDetailsContainer";
 import CategoriesListContainer from "./Containers/Categories/CategoriesListContainer";
 import HomeForm from "./Components/Home/HomeForm";
 import ActivitiesListContainer from "./Components/Activities/Backoffice/ActivitiesListContainer";
@@ -52,7 +52,7 @@ function App() {
           <Route exact component={NewsDetailsContainer} path="/novedades/:id" />
           <Route exact component={SlidesForm} path="/backoffice/create-slide" />
           <Route exact component={SlidesContainer} path="/backoffice/slides" />
-          <Route exact component={EditOrganizationContainer} path="/backoffice/organization/edit" />
+          <Route exact component={EditOrganization} path="/backoffice/organization/edit" />
           <Route exact component={HomeForm} path="/backoffice/home" />
           <Route exact component={ActivitiesListContainer} path="/backoffice/activities" />
           <Route exact component={MembersContainer} path="/backoffice/members" />
