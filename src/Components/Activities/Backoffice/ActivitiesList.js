@@ -5,7 +5,7 @@ import TitleNav from "../../TitleNav/TitleNav";
 
 import ListTable from "./ListTable";
 
-function ActivitiesIndex({ data }) {
+function ActivitiesList({ data }) {
   return (
     <div className="container mt-5">
       <TitleNav link="/backoffice/activities/create" linkTitle="Crear" title="Actividades" />
@@ -14,7 +14,7 @@ function ActivitiesIndex({ data }) {
   );
 }
 
-ActivitiesIndex.propTypes = {
+ActivitiesList.propTypes = {
   data: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
@@ -25,4 +25,4 @@ ActivitiesIndex.propTypes = {
   ).isRequired,
 };
 
-export default ActivitiesIndex;
+export default ActivitiesList;
