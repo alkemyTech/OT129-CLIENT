@@ -1,5 +1,4 @@
 import { get, post, put } from "./publicApiService";
-import { _ } from "./privateApiService";
 import { remove } from "./privateApiService";
 
 const ENDPOINT = process.env.REACT_APP_API_SLIDES_ENDPOINT;
