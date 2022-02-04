@@ -15,7 +15,7 @@ const data = {
   instagramLink: "https://www.instagram.com/SomosMás",
   twitterLink: "https://www.twitter.com/Somos_Más",
 };
-const EditOrganizationContainer = () => {
+const EditOrganization = () => {
   return (
     <div className="container">
       <div className="alert alert-warning text-center mt-3">Editar organización</div>
@@ -24,4 +24,4 @@ const EditOrganizationContainer = () => {
   );
 };
 
-export default EditOrganizationContainer;
+export default EditOrganization;
