@@ -2,7 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./ShowCard.css";
 
-const ShowCard = ({ title, image, description }) => {
+import "./Card.css";
+
+const Card = ({ title, image, description }) => {
   return (
     <div className="card">
       {image ? (
@@ -25,10 +27,10 @@ const ShowCard = ({ title, image, description }) => {
   );
 };
 
-ShowCard.propTypes = {
+Card.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
 };
 
-export default ShowCard;
+export default Card;
