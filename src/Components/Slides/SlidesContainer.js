@@ -12,8 +12,6 @@ const SlidesContainer = () => {
     const data = async () => {
       const slides = await getSlides();
 
-      console.log(slides);
-
       setSlides(slides.data.data);
     };
 
