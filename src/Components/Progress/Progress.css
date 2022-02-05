@@ -1,0 +1,76 @@
+/*CONTAINER*/
+.progress-container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+/*COMPONENT*/
+.progress-linear {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  height: 16px;
+  width: 90%;
+  margin: 1rem auto 1rem auto;
+  max-width: 600px;
+  color: var(--blue);
+  font-size: 16px;
+  background-color: rgba(var(--white, 33, 150, 243), 0.12);
+}
+.progress-linear::-webkit-progress-bar {
+  background-color: transparent;
+}
+
+/*DETERMINATE*/
+.progress-linear::-webkit-progress-value,
+.progress-linear::-moz-progress-bar {
+  background-color: var(--blue);
+  transition: all 0.2s;
+}
+.progress-linear::-ms-fill {
+  border: none;
+  background-color: var(--blue);
+  transition: all 0.2s;
+}
+
+/*INDETERMINATE*/
+.progress-linear:indeterminate {
+  background-size: 200% 100%;
+  background-image: linear-gradient(
+    to right,
+    transparent 50%,
+    var(--blue) 50%,
+    var(--blue) 60%,
+    transparent 60%,
+    transparent 71.5%,
+    var(--blue) 71.5%,
+    var(--blue) 84%,
+    transparent 84%
+  );
+  animation: progress-linear 3.5s infinite linear;
+}
+.progress-linear:indeterminate::-moz-progress-bar {
+  background-color: transparent;
+}
+.progress-linear:indeterminate::-ms-fill {
+  animation-name: none;
+}
+/*ANIMATION*/
+@keyframes progress-linear {
+  0% {
+    background-size: 200% 100%;
+    background-position: left -31.25% top 0%;
+  }
+  50% {
+    background-size: 800% 100%;
+    background-position: left -49% top 0%;
+  }
+  100% {
+    background-size: 400% 100%;
+    background-position: left -102% top 0%;
+  }
+}

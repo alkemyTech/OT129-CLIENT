@@ -9,7 +9,7 @@ const NewsCards = ({ data }) => {
       <div className="row">
         {data.map((el) => (
           <div key={el.id} className="col">
-            <Card description={el.description} image={el.image} title={el.name} />
+            <Card description={el.content} image={el.image} title={el.name} />
           </div>
         ))}
       </div>
@@ -20,11 +20,5 @@ const NewsCards = ({ data }) => {
 export default NewsCards;
 
 NewsCards.propTypes = {
-  data: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired,
-      image: PropTypes.string.isRequired,
-    })
-  ),
+  data: PropTypes.array.isRequired,
 };
