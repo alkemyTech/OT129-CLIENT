@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
+import { deleteCategory } from "../../Services/CategoriesService";
 import { formatDate } from "../../utils/formatDate";
 
 const CategoriesList = ({ data }) => {
@@ -21,10 +23,16 @@ const CategoriesList = ({ data }) => {
             <td>{el.name}</td>
             <td>{formatDate(el.created_at)}</td>
             <td>
-              <button className="btn-list btn-edit" title="Editar">
-                <i className="fas fa-pencil-alt" />
-              </button>
-              <button className="btn-list btn-delete" title="Eliminar">
+              <Link to={`/backoffice/categories/${el.id}`}>
+                <button className="btn-list btn-edit" title="Editar">
+                  <i className="fas fa-pencil-alt" />
+                </button>
+              </Link>
+              <button
+                className="btn-list btn-delete"
+                title="Eliminar"
+                onClick={() => deleteCategory(el.id)}
+              >
                 <i className="far fa-trash-alt" />
               </button>
             </td>
