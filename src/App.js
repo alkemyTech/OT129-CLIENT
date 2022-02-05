@@ -20,7 +20,7 @@ import ActivitiesForm from "./Components/Activities/ActivitiesForm";
 import NewsList from "./Components/News/NewsList";
 import NewsForm from "./Components/News/NewsForm";
 import CategoriesListContainer from "./Containers/Categories/CategoriesListContainer";
-import CategoriesContainer from "./Containers/Categories/CategoriesContainer";
+import CategoriesFormContainer from "./Containers/Categories/CategoriesFormContainer";
 import SlidesContainer from "./Components/Slides/SlidesContainer";
 import SlidesForm from "./Components/Slides/SlidesForm";
 import MembersContainer from "./Containers/Members/MembersContainer";
@@ -63,7 +63,8 @@ function App() {
           <Route exact component={NewsList} path="/backoffice/news" />
           <Route exact component={NewsForm} path="/backoffice/news/create" />
           <Route exact component={CategoriesListContainer} path="/backoffice/categories" />
-          <Route exact component={CategoriesContainer} path="/backoffice/categories/create" />
+          <Route exact component={CategoriesFormContainer} path="/backoffice/categories/create" />
+          <Route exact component={CategoriesFormContainer} path="/backoffice/categories/:id" />
           <Route exact component={SlidesContainer} path="/backoffice/slides" />
           <Route exact component={SlidesForm} path="/backoffice/slides/create" />
           <Route exact component={MembersContainer} path="/backoffice/members" />
