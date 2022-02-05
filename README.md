@@ -1,70 +1,140 @@
-# Ong Client
+# ONG Somos Más!
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+## **Skeleton Component:**
 
-## Available Scripts
+Skeleton component is a reutilizable placeholder which receive a serie of props to define its own HTML element type, and properties.
+To invoke te skeleton just  need to import and add to your code.
 
-In the project directory, you can run:
+    import <Skeleton> from '../Skeleton/Skeleton'
 
-### `yarn start`
+	const MyComponent = () =>{
+	  return(
+	    {
+	      isLoading ?
+	      <Skeleton />
+	      :
+	      <p> Hi!, i'm a line of a paragraph. </p>
+	    }
+       );
+      }
+    export default MyComponent;
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+**Customization Values:**
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+ - **Element:**
 
-### `yarn test`
+You can define the HTML element that Skeleton will use.
+This change the height and the shape of the resultant placeholder.
+ *Element prop support a string value*.
+Valid types: "p", "h1", "h2", "h3", "h4", "h5", "h6", "a", "button".
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Example:
 
-### `yarn build`
+    <Skeleton element="h1" />
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+ - **Width:**
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+You can choose the width of the placeholder assigning a percentage or a pixels value.
+ *Element prop support a string value*.
 
+Example:
+
+    <Skeleton width="100%" />
+    <Skeleton width="20px" />
+
+
+ - **Height:**
+
+You can choose the width of the placeholder assigning a pixels value.
+ *Element prop support a string value*.
+
+Example:
+
+    <Skeleton width="20px" />
+
+ - **Col:**
+
+According bootstrap grid, Skeleton can accepts col number between 1 and 12. Default value is 4.
+ *Element prop support a number value*.
+
+Example:
+
+    <Skeleton column={4} />
+
+ - **Size:**
+
+Throught size prop, can change the default height value of the element to increase or decrease that. 
+ *Element prop support a string value*.
+ Size valid values: "xs", "sm", "lg"
+
+Example:
+
+    <Skeleton size="md" />
+    <Skeleton size="lg" />
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-***
+
+
+
+Can add custom classNames using the addClass prop. Skeleton is made with bootstrap classes so you can to take advantage of than using bs classes.
+ *Element prop support a string value*.
+
+Example:
+
+    <Skeleton element="button" addClass="btn" />
+
+ - **Example:**
+
+Can add custom classNames using the addClass prop. Skeleton is made with bootstrap classes so you can to take advantage of than using bs classes.
+ *Element prop support a string value*.
+
+Example:
+
+![image](https://user-images.githubusercontent.com/71856261/152566785-905c9342-8afc-48be-bcb7-35f3cd65f460.png)
+
+    <div className="container col-4">
+      <Skeleton addClass="mx-3" col={12} element="p" height="300px" width="300px" />
+      <Skeleton addClass="m-3" col={4} element="p" width="100%" />
+      <Skeleton addClass="btn m-3" element="button" />
+    </div>
+
+---
+
 ## Use Sweet Alert 2
 
-### 1 - Use a method called `alerts` in file alerts.js 
+### 1 - Use a method called `alerts` in file alerts.js
 
 ### This method recive 2 arguments:
 
-* title: the message to be displayed.(string)
-* icon: the icon to be displayed.(string)
+- title: the message to be displayed.(string)
+- icon: the icon to be displayed.(string)
 
 ### There are 5 different icons:
 
-* "success"
-* "error"
-* "info"
-* "warning"
-* "question"
+- "success"
+- "error"
+- "info"
+- "warning"
+- "question"
 
-### Example: 
+### Example:
 
 ```
 alerts("Title message", "success");
 ```
 
 ### Result:
+
 ![plot](https://i.ibb.co/883s3dH/example.jpg)
 
-
-### 2 - Use a method called `confirmAlerts` in file alerts.js 
+### 2 - Use a method called `confirmAlerts` in file alerts.js
 
 ### This method recive 3 arguments:
 
-* title: confirmation title to be displayed.(string)
-* text: descriptive text to be displayed.(string)
-* callback: a function that is triggered when the user clicks on the confirmation button.(function)
+- title: confirmation title to be displayed.(string)
+- text: descriptive text to be displayed.(string)
+- callback: a function that is triggered when the user clicks on the confirmation button.(function)
 
-### Example: 
+### Example:
 
 ```
 confirmAlerts(
@@ -84,12 +154,24 @@ confirmAlerts(
       }
     );
 ```
+
 ### Result:
+
 ![plot](https://i.ibb.co/bz9wLHk/confirmation2.jpg)
 
 ![plot](https://i.ibb.co/hywdz46/confirmed.jpg)
 
+## Use Progress component!
 
+- Custom JSX and CSS component.
+- CSS root variables custom styles.
 
-  
+### Example:
 
+```
+  <Progress />;
+```
+
+### Result:
+
+![plot](https://imgur.com/4qLJ6E2.png)
