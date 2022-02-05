@@ -1,12 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import { formatDate } from "../../../utils/formatDate";
+
 function ListTable({ data }) {
   return (
-    <table className="table table-striped">
-      <thead>
+    <table className="table table-striped table-list">
+      <thead className="thead-list">
         <tr>
-          <th scope="col">#</th>
+          <th scope="col">Id</th>
           <th scope="col">Nombre</th>
           <th scope="col">Imágen</th>
           <th scope="col">Creado</th>
@@ -21,13 +23,17 @@ function ListTable({ data }) {
                 {el.id}
               </th>
               <td className="align-middle">{el.name}</td>
-              <td className="d-flex flex-row">
-                <img alt={el.name} className="mx-1 " src={el.image} style={{ width: "8vw" }} />
-              </td>
-              <td className="align-middle">{el.created_at}</td>
               <td className="align-middle">
-                <button className="btn btn-secondary mx-1">Editar</button>
-                <button className="btn btn-danger mx-1">Borrar</button>
+                <img alt={el.name} className="img-table" src={el.image} />
+              </td>
+              <td className="align-middle">{formatDate(el.created_at)}</td>
+              <td className="align-middle">
+                <button className="btn-list btn-edit" title="Editar">
+                  <i className="fas fa-pencil-alt" />
+                </button>
+                <button className="btn-list btn-delete" title="Eliminar">
+                  <i className="far fa-trash-alt" />
+                </button>
               </td>
             </tr>
           );

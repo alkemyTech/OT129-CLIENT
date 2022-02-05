@@ -5,9 +5,10 @@ import SlidesItem from "./SlidesItem";
 
 const SlidesList = ({ slides }) => {
   return (
-    <table className="table table-hover table-striped mt-3">
-      <thead>
+    <table className="table table-striped table-list">
+      <thead className="thead-list">
         <tr>
+          <th scope="col">Id</th>
           <th scope="col">Titulo</th>
           <th className="text-center" scope="col">
             Imagen
