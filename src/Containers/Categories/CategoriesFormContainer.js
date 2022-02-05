@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import PropTypes from "prop-types";
 
 import { toBase64 } from "../../utils/toBase64";
 import CategoriesForm from "../../Components/Categories/CategoriesForm";
+import { getCategoryById } from "../../Services/CategoriesService";
 
 export const formattedCategory = async (values) => {
   const imageFormatted = await toBase64(values.image);
@@ -18,16 +20,24 @@ export const formattedCategory = async (values) => {
   return data;
 };
 
-function CategoriesContainer({ category }) {
-  const initialValues = {
-    id: category?.id || undefined,
-    name: category?.name || "",
-    description: category?.description || "",
-    image: category?.image || "",
-    parent_category_id: category?.parent_category_id || undefined,
-  };
+function CategoriesContainer() {
+  const { id } = useParams();
+  const [category, setCategory] = useState({});
 
-  return <CategoriesForm initialValues={initialValues} />;
+  useEffect(() => {
+    if (id) {
+      getCategoryById(id).then((result) => {
+        const response = result.data.data;
+
+        console.log(response);
+        setCategory(response);
+      });
+    }
+
+    return () => {};
+  }, [id]);
+
+  return <CategoriesForm category={category} />;
 }
 
 CategoriesContainer.propTypes = {
