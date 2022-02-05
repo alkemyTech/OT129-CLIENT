@@ -29,7 +29,6 @@ function CategoriesContainer() {
       getCategoryById(id).then((result) => {
         const response = result.data.data;
 
-        console.log(response);
         setCategory(response);
       });
     }
