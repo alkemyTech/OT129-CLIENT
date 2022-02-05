@@ -28,43 +28,45 @@ The build is minified and the filenames include the hashes.<br />
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-***
+
+---
+
 ## Use Sweet Alert 2
 
-### 1 - Use a method called `alerts` in file alerts.js 
+### 1 - Use a method called `alerts` in file alerts.js
 
 ### This method recive 2 arguments:
 
-* title: the message to be displayed.(string)
-* icon: the icon to be displayed.(string)
+- title: the message to be displayed.(string)
+- icon: the icon to be displayed.(string)
 
 ### There are 5 different icons:
 
-* "success"
-* "error"
-* "info"
-* "warning"
-* "question"
+- "success"
+- "error"
+- "info"
+- "warning"
+- "question"
 
-### Example: 
+### Example:
 
 ```
 alerts("Title message", "success");
 ```
 
 ### Result:
+
 ![plot](https://i.ibb.co/883s3dH/example.jpg)
 
-
-### 2 - Use a method called `confirmAlerts` in file alerts.js 
+### 2 - Use a method called `confirmAlerts` in file alerts.js
 
 ### This method recive 3 arguments:
 
-* title: confirmation title to be displayed.(string)
-* text: descriptive text to be displayed.(string)
-* callback: a function that is triggered when the user clicks on the confirmation button.(function)
+- title: confirmation title to be displayed.(string)
+- text: descriptive text to be displayed.(string)
+- callback: a function that is triggered when the user clicks on the confirmation button.(function)
 
-### Example: 
+### Example:
 
 ```
 confirmAlerts(
@@ -84,12 +86,24 @@ confirmAlerts(
       }
     );
 ```
+
 ### Result:
+
 ![plot](https://i.ibb.co/bz9wLHk/confirmation2.jpg)
 
 ![plot](https://i.ibb.co/hywdz46/confirmed.jpg)
 
+## Use Progress component!
 
+- Custom JSX and CSS component.
+- CSS root variables custom styles.
 
-  
+### Example:
 
+```
+  <Progress />;
+```
+
+### Result:
+
+![plot](https://imgur.com/4qLJ6E2.png)
