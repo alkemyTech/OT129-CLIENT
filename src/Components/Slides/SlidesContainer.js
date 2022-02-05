@@ -1,5 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
+
+import TitleNav from "../TitleNav/TitleNav";
 
 import SlidesList from "./SlidesList";
 
@@ -44,16 +45,8 @@ const slides = [
 
 const SlidesContainer = () => {
   return (
-    <div className="container">
-      <h1 className="text-center mt-3">Slides</h1>
-      <div className=" d-flex justify-content-end">
-        <Link className="text-decoration-none " to="/backoffice/slides/create">
-          <span className="general-btn fill-btn ">
-            <i className="fas fa-plus me-2" />
-            CREAR SLIDE
-          </span>
-        </Link>
-      </div>
+    <div className="container mt-5">
+      <TitleNav link="/backoffice/slides/create" linkTitle="Crear" title="Slides" />
       <SlidesList slides={slides} />
     </div>
   );
