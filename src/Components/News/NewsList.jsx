@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
+import TitleNav from "../TitleNav/TitleNav";
 import { getNews } from "../../Services/NewsService";
 
 import NewsTable from "./NewsTable";
@@ -20,12 +21,8 @@ const NewsList = () => {
   }, []);
 
   return (
-    <div className="container">
-      <h1 className="mt-3 mb-3 text-center">NOVEDADES</h1>
-      <Link className="btn btn-primary btn-sm mb-3" to="/backoffice/create-news">
-        <i className="fas fa-plus" />
-        <span className="ms-2">CREAR NOVEDAD</span>
-      </Link>
+    <div className="container mt-5">
+      <TitleNav link="/backoffice/news/create" linkTitle="Crear" title="Novedades" />
       <NewsTable news={news} />
     </div>
   );

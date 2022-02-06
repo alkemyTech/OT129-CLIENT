@@ -4,9 +4,9 @@ import PropTypes from "prop-types";
 
 const TitleNav = ({ title, link, linkTitle }) => {
   return (
-    <div className="d-flex justify-content-between">
-      <h4>{title}</h4>
-      <Link exact path className="btn btn-primary" to={link}>
+    <div className="d-flex justify-content-between align-items-center mb-4">
+      <h4 className="text-uppercase mb-0">{title}</h4>
+      <Link className="general-btn fill-black-btn text-decoration-none" to={link}>
         {linkTitle}
       </Link>
     </div>

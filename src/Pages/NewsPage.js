@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
 
 import Title from "../Components/Titles/Titles";
-import ContainerCard from "../Containers/CardContainer/ContainerCard";
+import NewsCards from "../Containers/NewsCards/NewsCards";
 import { getNews } from "../Services/NewsService";
-
-const title = "Novedades";
 
 const NewsPage = () => {
   const [data, setData] = useState([]);
@@ -22,18 +19,10 @@ const NewsPage = () => {
 
   return (
     <>
-      <Title title={title} />
-      <ContainerCard data={data} />
+      <Title title={"Novedades"} />
+      <NewsCards data={data} />
     </>
   );
-};
-
-NewsPage.propTypes = {
-  data: PropTypes.shape({
-    name: PropTypes.string,
-    description: PropTypes.string,
-    image: PropTypes.string,
-  }),
 };
 
 export default NewsPage;
