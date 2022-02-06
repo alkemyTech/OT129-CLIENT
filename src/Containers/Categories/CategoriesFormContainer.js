@@ -20,7 +20,7 @@ export const formattedCategory = async (values) => {
   return data;
 };
 
-function CategoriesContainer() {
+const CategoriesFormContainer = () => {
   const { id } = useParams();
   const [category, setCategory] = useState({});
 
@@ -37,7 +37,7 @@ function CategoriesContainer() {
   }, [id]);
 
   return <CategoriesForm category={category} />;
-}
+};
 
 CategoriesContainer.propTypes = {
   category: PropTypes.shape({
@@ -49,4 +49,4 @@ CategoriesContainer.propTypes = {
   }),
 };
 
-export default CategoriesContainer;
+export default CategoriesFormContainer;
