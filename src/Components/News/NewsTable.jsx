@@ -36,6 +36,12 @@ const NewsTable = ({ news }) => {
 };
 
 NewsTable.propTypes = {
-  news: PropTypes.array,
+  news: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      photo: PropTypes.string,
+      id: PropTypes.number.isRequired,
+    })
+  ),
 };
 export default NewsTable;
