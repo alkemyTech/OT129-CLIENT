@@ -1,6 +1,7 @@
+/*The margin top is weight too large for testing purposes*/
 .comment-container {
   width: 100%;
-  margin-top: 75rem;
+  margin-top: 55rem;
 }
 .comment-title {
   width: 100%;

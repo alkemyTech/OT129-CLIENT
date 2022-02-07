@@ -6,7 +6,7 @@ import "./Comment.css";
 
 const Comment = ({ data = {}, title }) => {
   return (
-    <>
+    <div>
       <h2 className="comment-title" id="comenatrios">
         {title}
       </h2>
@@ -29,7 +29,7 @@ const Comment = ({ data = {}, title }) => {
           })}
         </ul>
       </div>
-    </>
+    </div>
   );
 };
 
