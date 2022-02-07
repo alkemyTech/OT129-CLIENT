@@ -32,10 +32,6 @@ const NewsForm = ({ newId = {} }) => {
     data();
   }, []);
 
-  useEffect(() => {
-    console.log(initialValues);
-  }, []);
-
   return (
     <>
       <ContainerFormCard>

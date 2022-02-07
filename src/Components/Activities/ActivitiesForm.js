@@ -45,18 +45,13 @@ const ActivitiesForm = ({ activity = {} }) => {
           const resultBase = await toBase64(formData.image);
           const newActivity = { ...formData, image: resultBase };
 
-          console.log(newActivity);
           if (activity.id === undefined) {
             const result = await createActivity(newActivity);
-
-            console.log(result);
           } else {
             const result = await editActivity({
               ...newActivity,
               id: activity.id,
             });
-
-            console.log(result);
           }
         }}
       >

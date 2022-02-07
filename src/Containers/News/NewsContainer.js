@@ -18,7 +18,6 @@ const NewsContainer = () => {
           setNewId(response);
         })
         .catch((err) => console.log(err));
-      console.log(id);
     }
   }, []);
 
