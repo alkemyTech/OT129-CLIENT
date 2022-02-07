@@ -18,7 +18,6 @@ import HomeForm from "./Components/Home/HomeForm";
 import ActivitiesList from "./Components/Activities/Backoffice/ActivitiesListContainer";
 import ActivitiesForm from "./Components/Activities/ActivitiesForm";
 import NewsList from "./Components/News/NewsList";
-import NewsForm from "./Components/News/NewsForm";
 import CategoriesListContainer from "./Containers/Categories/CategoriesListContainer";
 import CategoriesContainer from "./Containers/Categories/CategoriesContainer";
 import SlidesContainer from "./Components/Slides/SlidesContainer";
@@ -40,23 +39,18 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route exact component={HomePage} path="/" />
-
           <Route exact component={ContactPage} path="/contacto" />
           <Route exact component={Donation} path="/donar" />
           <Route exact component={ThankYou} path="/gracias" />
           <Route exact component={AboutPage} path="/nosotros" />
           <Route exact component={SchoolCampaign} path="/school-campaign" />
           <Route exact component={ToysCampaign} path="/toys-campaign" />
-
           <Route exact component={ActivitiesPage} path="/actividades" />
           <Route exact component={ActivitiesDetailsContainer} path="/actividades/:id" />
-
           <Route exact component={NewsPage} path="/novedades" />
           <Route exact component={NewsDetailsContainer} path="/novedades/:id" />
-
           <Route exact component={TestimonialForm} path="/testimonials/create" />
           <Route exact component={ProjectsForm} path="/projects/create" />
-
           <Route exact component={HomeForm} path="/backoffice/home" />
           <Route exact component={ActivitiesList} path="/backoffice/activities" />
           <Route exact component={ActivitiesForm} path="/backoffice/activities/create" />
