@@ -1,17 +1,27 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-const newsSlice = createSlice({
-    name: 'news',
-    initialState: {
-        newsList: [],
-    },
-    reducers: {
-        showList(state, action) {
-            state.newsList = action.payload.newsList;
-        },
-    }
+export const getNews = createAsyncThunk("news/getNewsRedux", async () => {
+  return await fetch("http://ongapi.alkemy.org/public/api/news").then((res) => res.json());
 });
 
-export const newsActions = newsSlice.actions;
+const newsSlice = createSlice({
+  name: "news",
+  initialState: {
+    news: [],
+    status: null,
+  },
+  extraReducers: {
+    [getNews.pending]: (state) => {
+      state.status = "loading";
+    },
+    [getNews.fulfilled]: (state, action) => {
+      state.status = "success";
+      state.news = action.payload;
+    },
+    [getNews.rejected]: (state) => {
+      state.status = "failed";
+    },
+  },
+});
 
-export default newsSlice;
+export default newsSlice.reducer;
