@@ -1,6 +1,6 @@
 import React from "react";
 
-import BackUsersList from "../Components/Back/BackUsersList";
+import BackUsersList from "../Components/Users/BackUsersList";
 
 const dataMock = [
   {

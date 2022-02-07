@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 
-import TitleNav from "../../Components/TitleNav/TitleNav";
+import TitleNav from "../TitleNav/TitleNav";
 
 import BackUserItem from "./BackUserItem";
 
