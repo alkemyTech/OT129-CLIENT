@@ -34,7 +34,7 @@ const ActivitiesCards = () => {
           </div>
         ) : (
           activities.map((activity) => (
-            <div key={activity.id} className="col">
+            <div key={activity.id} className="col mt-3 mb-1">
               <Card
                 description={activity.description}
                 image={activity.image}
