@@ -1,27 +1,35 @@
-import React, { useEffect, useState } from "react";
-import { InView } from "react-intersection-observer";
+import React, { useState } from "react";
+import useInView from "react-cool-inview";
 
 import Comment from "../../Components/Comment/Comment";
+import Skeleton from "../../Components/Skeleton/Skeleton";
 import { getComments } from "../../Services/CommentService";
 
 const CommentContainer = () => {
   const [comments, setComments] = useState([]);
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    getComments()
-      .then((response) => setComments(response.data.data))
-      .catch((err) => console.log(err));
-  }, []);
+  const [isLoading, setIsLoading] = useState(false);
+  const { observe } = useInView({
+    rootMargin: "0px",
+    onEnter: ({ unobserve }) => {
+      setIsLoading(true);
+      getComments()
+        .then((response) => {
+          setIsLoading(false);
+          setComments(response.data.data);
+          unobserve();
+        })
+        .catch((err) => console.log(err));
+    },
+  });
 
   return (
-    <InView>
-      {({ inView, ref, entry }) => (
-        <div ref={ref} className="comment-container">
-          <Comment data={comments} title={`Header inside viewport ${inView}.`} />
-        </div>
+    <div ref={observe} className="comment-container mb-3">
+      {isLoading ? (
+        <Skeleton element="h1" height="40px" width="100%" />
+      ) : (
+        <Comment data={comments} title="Comentarios" />
       )}
-    </InView>
+    </div>
   );
 };
 
