@@ -1,44 +1,39 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
 import Card from "../../Components/Card/Card";
+import { getLastNews } from "../../Services/NewsService";
+import Spinner from "../../Components/Spinner/Spinner";
+import { alerts } from "../../utils/alerts";
 
-const data1 = [
-  {
-    id: 1,
-    name: "Prueba1",
-    description: "Esta es una actividad de prueba, se reemplazarán luego por las traídas de la API",
-    image: "http://ongapi.alkemy.org/storage/hh2Lju770B.png",
-  },
-  {
-    id: 2,
-    name: "Prueba2",
-    description: "Esta es una actividad de prueba, se reemplazarán luego por las traídas de la API",
-    image: "http://ongapi.alkemy.org/storage/hh2Lju770B.png",
-  },
-  {
-    id: 3,
-    name: "PlaceHolder",
-    description: "Esta es una actividad de prueba, se reemplazarán luego por las traídas de la API",
-    image: "",
-  },
-  {
-    id: 4,
-    name: "Prueba4",
-    description: "Esta es una actividad de prueba, se reemplazarán luego por las traídas de la API",
-    image: "http://ongapi.alkemy.org/storage/hh2Lju770B.png",
-  },
-];
+const HomeCards = () => {
+  const [lastNewsData, setLastNewsData] = useState([]);
+  const [newsDataExist, setNewsDataExist] = useState(false);
+  const [spinnerShow, setSpinnerShow] = useState(true);
 
-const HomeCards = ({ data = data1 }) => {
+  useEffect(() => {
+    getLastNews("4")
+      .then((response) => {
+        setLastNewsData(response.data.data);
+        setNewsDataExist(true);
+        setSpinnerShow(false);
+      })
+      .catch(() => {
+        alerts("Lo sentimos! La información no se encuentra disponible.", "error");
+        setSpinnerShow(false);
+      });
+  }, []);
+
   return (
     <div className="container my-5 d-grid gap-3">
       <div className="row">
-        {data.map((el) => (
-          <div key={el.id} className="col-3 mb-4">
-            <Card description={el.description} image={el.image} title={el.name} />
-          </div>
-        ))}
+        {newsDataExist &&
+          lastNewsData.map((el) => (
+            <div key={el.id} className="col-3 mb-4">
+              <Card description={el.description} image={el.image} title={el.name} />
+            </div>
+          ))}
+        {spinnerShow && <Spinner />}
       </div>
     </div>
   );
