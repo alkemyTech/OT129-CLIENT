@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import HomeSlides from "../../Components/Home/HomeSlides";
 import { getSlides } from "../../Services/SlidesServices";
+import { alerts } from "../../utils/alerts";
 
 const HomeContainer = () => {
   const [slides, setSlides] = useState([]);
@@ -18,8 +19,8 @@ const HomeContainer = () => {
 
         setSlides(slides);
       })
-      .catch((error) => {
-        console.log(error);
+      .catch((_) => {
+        alerts("Ocurrio un error al intentar obtener los datos", error);
       });
   }, []);
 
