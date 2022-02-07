@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const getNews = createAsyncThunk("news/getNewsRedux", async () => {
-  return await fetch(`http://ongapi.alkemy.org/public/api/${process.env.REACT_APP_API_NEWS_ENDPOINT}`).then((res) => res.json());
+  return await fetch(`${process.env.REACT_APP_API_BASE_URL}${process.env.REACT_APP_API_NEWS_ENDPOINT}`).then((res) => res.json());
 });
 
 const newsSlice = createSlice({
