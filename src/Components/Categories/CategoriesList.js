@@ -4,8 +4,27 @@ import { Link } from "react-router-dom";
 
 import { deleteCategory } from "../../Services/CategoriesService";
 import { formatDate } from "../../utils/formatDate";
+import { alerts, confirmAlerts } from "../../utils/alerts";
 
 const CategoriesList = ({ data }) => {
+  const handleDelete = (id) => {
+    confirmAlerts(
+      "¿Estás seguro?",
+      `La categoría id: ${id} se eliminará permanentemente`,
+      function (response) {
+        if (response) {
+          deleteCategory(id)
+            .then(() => {
+              alerts(`La categoría id: ${id} se eliminó correctamente`, "success");
+            })
+            .catch(() => {
+              alerts(`Ocurrió un error al eliminar la categoría id: ${id} `, "error");
+            });
+        }
+      }
+    );
+  };
+
   return (
     <table className="table table-striped table-list">
       <thead className="thead-list">
@@ -31,7 +50,7 @@ const CategoriesList = ({ data }) => {
               <button
                 className="btn-list btn-delete"
                 title="Eliminar"
-                onClick={() => deleteCategory(el.id)}
+                onClick={() => handleDelete(el.id)}
               >
                 <i className="far fa-trash-alt" />
               </button>
