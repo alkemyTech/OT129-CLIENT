@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 
+import Spinner from "../../Components/Spinner/Spinner";
 import { getActivities } from "../../Services/ActivitiesService";
 import Card from "../../Components/Card/Card";
-import Loader from "../../Components/Loader";
 import { alerts } from "../../utils/alerts";
 
 const ActivitiesCards = () => {
@@ -29,7 +29,7 @@ const ActivitiesCards = () => {
     <div className="container">
       <div className="row">
         {activities.length === 0 ? (
-          <Loader />
+          <Spinner />
         ) : (
           activities.map((activity) => (
             <div key={activity.id} className="col">
