@@ -1,6 +1,7 @@
 import React from "react";
 
 import MembersList from "../../Components/Members/MembersList";
+import TitleNav from "../../Components/TitleNav/TitleNav";
 
 const MEMBERS = [
   {
@@ -36,8 +37,8 @@ const MEMBERS = [
 ];
 const MembersContainer = () => {
   return (
-    <div className="container">
-      <h1 className="text-center">Members Container</h1>
+    <div className="container mt-5">
+      <TitleNav link="/backoffice/members/create" linkTitle="Crear" title="Miembros" />
       <MembersList content={MEMBERS} />
     </div>
   );
