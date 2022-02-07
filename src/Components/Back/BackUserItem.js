@@ -8,18 +8,25 @@ const BackUserItem = ({ user, pathCreate, onDeleteClick }) => {
 
   return (
     <tr>
+      <td>{user.id}</td>
       <td>{user.name}</td>
       <td>{user.email}</td>
       <td>
-        <button className="btn btn-primary" type="button" onClick={() => history.push(pathCreate)}>
-          <i className="fas fa-user-edit" />
-          <span className="ms-2">Editar</span>
+        <button
+          className="btn-list btn-edit"
+          title="Editar"
+          type="button"
+          onClick={() => history.push(pathCreate)}
+        >
+          <i className="fas fa-pencil-alt" />
         </button>
-      </td>
-      <td>
-        <button className="btn btn-danger" type="button" onClick={() => onDeleteClick(user.id)}>
-          <i className="fas fa-eraser" />
-          <span className="ms-2">Eliminar</span>
+        <button
+          className="btn-list btn-delete"
+          title="Eliminar"
+          type="button"
+          onClick={() => onDeleteClick(user.id)}
+        >
+          <i className="far fa-trash-alt" />
         </button>
       </td>
     </tr>
