@@ -8,6 +8,7 @@ const CategoriesList = ({ data }) => {
     <table className="table table-striped table-list">
       <thead className="thead-list">
         <tr>
+          <th>Id</th>
           <th>Título</th>
           <th>Creado</th>
           <th>Acciones</th>
@@ -16,6 +17,7 @@ const CategoriesList = ({ data }) => {
       <tbody>
         {data.map((el, i) => (
           <tr key={i}>
+            <td>{el.id}</td>
             <td>{el.name}</td>
             <td>{formatDate(el.created_at)}</td>
             <td>
