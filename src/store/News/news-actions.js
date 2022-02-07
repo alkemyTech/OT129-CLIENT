@@ -20,7 +20,7 @@ export const fetchNewsData = () => {
     try {
         const newsData =  await fetchData();
         dispatch(newsActions.showList({
-            newsList: newsData.items || [],
+            newsList: newsData.newsList || [],
         }));
     } catch (error) {
         //error handling
