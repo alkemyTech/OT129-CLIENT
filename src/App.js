@@ -28,11 +28,11 @@ import BackOfficeUserPage from "./Pages/BackOfficeUserPage";
 import UserForm from "./Components/Users/UsersForm";
 import OrganizationContainer from "./Containers/Organization/OrganizationContainer";
 import EditOrganization from "./Containers/EditOrganization/EditOrganization";
+import NewsIdPage from "./Pages/NewsIdPage";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import "./App.css";
-import NewsIdPage from "./Pages/NewsIdPage";
 
 function App() {
   return (
