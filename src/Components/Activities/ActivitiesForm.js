@@ -46,9 +46,9 @@ const ActivitiesForm = ({ activity = {} }) => {
           const newActivity = { ...formData, image: resultBase };
 
           if (activity.id === undefined) {
-            const result = await createActivity(newActivity);
+            await createActivity(newActivity);
           } else {
-            const result = await editActivity({
+            await editActivity({
               ...newActivity,
               id: activity.id,
             });
