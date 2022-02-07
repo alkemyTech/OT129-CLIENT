@@ -6,6 +6,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
+import { alerts } from "../../utils/alerts";
 import { toBase64 } from "../../utils/toBase64";
 import { createTestimonial, editTestimonial } from "../../Services/TestimonialsService";
 
@@ -33,18 +34,17 @@ const TestimonialForm = ({ testimony = {} }) => {
           const newTestimony = { ...values, image: resultBase };
 
           if (!testimony.id) {
-            const result = await createTestimonial(newTestimony);
-
-            console.log(result);
-            setFormSend(true);
-          } else {
-            const result = await editTestimonial({
-              ...newTestimony,
-              id: testimony.id,
+            const result = await createTestimonial(newTestimony).catch(() => {
+              alerts("Lo sentimos! Su mensaje no se ha podido enviar.", "error");
             });
 
             setFormSend(true);
-            console.log(result);
+          } else {
+            const result = await editTestimonial(newTestimony, testimony.id).catch(() => {
+              alerts("Lo sentimos! Su mensaje no se ha podido enviar.", "error");
+            });
+
+            setFormSend(true);
           }
         }}
       >
