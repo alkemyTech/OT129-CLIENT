@@ -21,7 +21,7 @@ const NewsCards = () => {
       <div className="row">
         {news.map((el) => (
           <div key={el.id} className="col">
-            <Card description={el.description} image={el.image} title={el.name} />
+            <Card description={el.content} image={el.image} title={el.name} />
           </div>
         ))}
       </div>

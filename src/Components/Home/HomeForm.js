@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+
+import { getSlides } from "../../Services/HomeServices";
+import { postOrganization } from "../../Services/HomeServices";
 
 import HomeSlides from "./HomeSlides";
 
@@ -13,29 +16,29 @@ const formSchema = Yup.object().shape({
 
 const data = {
   welcome_text: "Bienvenidos a la web de la ONG",
-  slides: [
-    {
-      image: "https://via.placeholder.com/1366x768",
-      description: "Mensaje 1 de prueba de los slides, este mensaje vendrá luego desde la API",
-    },
-    {
-      image: "https://via.placeholder.com/1366x768",
-      description: "Mensaje 2 de prueba de los slides, este mensaje vendrá luego desde la API",
-    },
-    {
-      image: "https://via.placeholder.com/1366x768",
-      description: "Mensaje 3 de prueba de los slides, este mensaje vendrá luego desde la API",
-    },
-  ],
+  name: "Somos Más",
 };
 
 const HomeForm = () => {
+  const [slides, setSlides] = useState([]);
+
+  useEffect(() => {
+    const fetchSlides = async () => {
+      const fetchedSlides = await getSlides();
+
+      setSlides(fetchedSlides.data.data);
+    };
+
+    fetchSlides();
+  }, []);
+
   const { handleSubmit, handleChange, values, errors } = useFormik({
     initialValues: {
       welcome_text: data.welcome_text,
+      name: data.name,
     },
     onSubmit: (values) => {
-      console.log(values);
+      postOrganization(values);
     },
     validationSchema: formSchema,
   });
@@ -45,7 +48,7 @@ const HomeForm = () => {
       <div className="container">
         <h1>Editor de Home</h1>
       </div>
-      <HomeSlides data={data.slides} />
+      {slides ? <HomeSlides data={slides} /> : <p>Próximamente nuevos Slides!</p>}
       <div className="container">
         <form onSubmit={handleSubmit}>
           <label className="form-label" htmlFor="welcome_text">

@@ -4,17 +4,18 @@ import PropTypes from "prop-types";
 const SlidesItem = ({ slide }) => {
   return (
     <tr>
+      <td className="align-middle">{slide.id}</td>
       <td className="align-middle">{slide.name}</td>
-      <td className="w-25 align-middle text-center">
-        <img className="w-25" src={slide.image} />
+      <td className="align-middle">
+        <img className="img-table" src={slide.image} />
       </td>
-      <td className="align-middle text-center">{slide.order}</td>
-      <td className="align-middle text-center">
-        <button className="btn btn-primary ">
+      <td className="align-middle">{slide.order}</td>
+      <td className="align-middle">
+        <button className="btn-list btn-edit" title="Editar">
           <i className="fas fa-pencil-alt" />
         </button>
-        <button className="btn btn-danger ms-2">
-          <i className="fas fa-trash-alt" />
+        <button className="btn-list btn-delete" title="Eliminar">
+          <i className="far fa-trash-alt" />
         </button>
       </td>
     </tr>
