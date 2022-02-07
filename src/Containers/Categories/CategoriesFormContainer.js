@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import PropTypes from "prop-types";
 
 import { toBase64 } from "../../utils/toBase64";
 import CategoriesForm from "../../Components/Categories/CategoriesForm";
@@ -37,16 +36,6 @@ const CategoriesFormContainer = () => {
   }, [id]);
 
   return <CategoriesForm category={category} />;
-};
-
-CategoriesContainer.propTypes = {
-  category: PropTypes.shape({
-    id: PropTypes.number,
-    name: PropTypes.string,
-    description: PropTypes.string,
-    image: PropTypes.string,
-    parent_category_id: PropTypes.number,
-  }),
 };
 
 export default CategoriesFormContainer;
