@@ -7,6 +7,7 @@ import PropTypes from "prop-types";
 
 import { createCategory, editCategory } from "../../Services/CategoriesService";
 import { formattedCategory } from "../../Containers/Categories/CategoriesFormContainer";
+import { alerts, confirmAlerts } from "../../utils/alerts";
 
 const ErrorComponent = (props) => {
   return <p>{props.children}</p>;
@@ -34,7 +35,31 @@ const CategoriesForm = ({ category = {} }) => {
   const onSubmit = async (values) => {
     const data = await formattedCategory(values);
 
-    category.id ? editCategory(data, category.id) : createCategory(data);
+    if (!category.id) {
+      createCategory(data)
+        .then(() => {
+          alerts(`Categoría creada correctamente`, "success");
+        })
+        .catch(() => {
+          alerts("Ups! ocurrió un error inesperado al crear la categoría", "error");
+        });
+    } else {
+      confirmAlerts(
+        "¿Estás seguro?",
+        `La categoría id: ${category.id} será editada`,
+        function (response) {
+          if (response) {
+            editCategory(data, category.id)
+              .then(() => {
+                alerts(`La categoría id: ${category.id} se editó correctamente`, "success");
+              })
+              .catch(() => {
+                alerts(`Ocurrió un error al editar la categoría id: ${category.id} `, "error");
+              });
+          }
+        }
+      );
+    }
   };
 
   const formik = useFormik({ initialValues, onSubmit, validationSchema });
