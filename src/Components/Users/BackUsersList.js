@@ -1,45 +1,58 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
+import { deleteUsers } from "../../Services/UsersService";
 import TitleNav from "../TitleNav/TitleNav";
 
-import BackUserItem from "./BackUserItem";
-
-const BackUsersList = ({ data, linkUrl }) => {
-  const [users, setUsers] = useState(data);
-
-  //funcion para eliminar usuario
-  const deleteClickHandler = (userId) => {
-    const newUsers = [...users];
-
-    const index = users.findIndex((user) => user.id === userId);
-
-    newUsers.splice(index, 1);
-
-    setUsers(newUsers);
-  };
-
+const BackUsersList = ({ data }) => {
   return (
     <div className="container mt-5">
       <TitleNav link={linkUrl} linkTitle="Crear" title="Usuarios" />
       <table className="table table-striped table-list">
         <thead className="thead-list">
           <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Email</th>
-            <th scope="col">Acciones</th>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Imagen</th>
+            <th>Rol</th>
           </tr>
         </thead>
         <tbody>
-          {users.map((user) => {
+          {data.map((users) => {
             return (
-              <BackUserItem
-                key={user.id}
-                pathCreate="/create-user"
-                user={user}
-                onDeleteClick={deleteClickHandler}
-              />
+              <tr key={users.id}>
+                <th className="align-middle" scope="row">
+                  <p className="mt-3">{users.id}</p>
+                </th>
+                <td className="align-middle">
+                  <p className="mt-3">{users.name}</p>
+                </td>
+                <td className="align-middle">
+                  <img alt="img" className="img-list" src={users.imagen} />
+                </td>
+                <td className="align-middle">
+                  <p className="mt-3">{users.email}</p>
+                </td>
+                <td className="align-middle">
+                  <img alt="img" className="mt-3" src={users.role_id} />
+                </td>
+                <td className="align-middle">
+                  <Link to={`/backoffice/users/${users.id}`}>
+                    <button className="btn-list btn-edit" title="Editar">
+                      <i className="fas fa-pencil-alt" />
+                    </button>
+                  </Link>
+                  <button
+                    className="btn-list btn-delete"
+                    title="Eliminar"
+                    onClick={() => deleteUsers(users.id)}
+                  >
+                    <i className="fas fa-trash-alt" />
+                  </button>
+                </td>
+              </tr>
             );
           })}
         </tbody>
@@ -49,8 +62,15 @@ const BackUsersList = ({ data, linkUrl }) => {
 };
 
 BackUsersList.propTypes = {
-  data: PropTypes.array,
-  linkUrl: PropTypes.string,
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequiered,
+      email: PropTypes.string.isRequiered,
+      imagen: PropTypes.string.isRequiered,
+      role_id: PropTypes.number.isRequiered,
+      id: PropTypes.number.isRequiered,
+    })
+  ),
 };
 
 export default BackUsersList;
