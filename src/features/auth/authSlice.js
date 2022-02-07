@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { useDispatch } from "react-redux";
 
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { login, register } from "../../Services/authServices";
