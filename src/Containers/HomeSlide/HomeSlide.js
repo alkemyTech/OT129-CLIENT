@@ -20,7 +20,7 @@ const HomeContainer = () => {
         setSlides(slides);
       })
       .catch((_) => {
-        alerts("Ocurrio un error al intentar obtener los datos", error);
+        alerts("Ocurrio un error al intentar obtener los datos", "error");
       });
   }, []);
 
