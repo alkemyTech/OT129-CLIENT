@@ -29,7 +29,7 @@ import BackOfficeUserPage from "./Pages/BackOfficeUserPage";
 import UserForm from "./Components/Users/UsersForm";
 import OrganizationContainer from "./Containers/Organization/OrganizationContainer";
 import EditOrganization from "./Containers/EditOrganization/EditOrganization";
-
+import NewsContainer from "./Containers/News/NewsContainer";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import "./App.css";
@@ -61,7 +61,8 @@ function App() {
           <Route exact component={ActivitiesList} path="/backoffice/activities" />
           <Route exact component={ActivitiesForm} path="/backoffice/activities/create" />
           <Route exact component={NewsList} path="/backoffice/news" />
-          <Route exact component={NewsForm} path="/backoffice/news/create" />
+          <Route exact component={NewsContainer} path="/backoffice/news/create" />
+          <Route exact component={NewsContainer} path="/backoffice/news/:id" />
           <Route exact component={CategoriesListContainer} path="/backoffice/categories" />
           <Route exact component={CategoriesContainer} path="/backoffice/categories/create" />
           <Route exact component={SlidesContainer} path="/backoffice/slides" />
