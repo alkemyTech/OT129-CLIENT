@@ -11,10 +11,10 @@ export const getOrganization = (id) => {
   return remove(ENDPOINT, id);
 };
 
-export const addOrganization = () => {
-  return post(ENDPOINT);
+export const addOrganization = (data) => {
+  return post(ENDPOINT, data);
 };
 
 export const editOrganization = () => {
-  return put(ENDPOINT);
+  return put(ENDPOINT, data, id);
 };

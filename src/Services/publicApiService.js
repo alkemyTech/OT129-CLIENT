@@ -11,7 +11,10 @@ instance.interceptors.response.use(
     return response;
   },
   function (error) {
-    alerts(error, "error");
+    const message =
+      "No hemos podido recuperar la información. Por favor intente nuevamente a la brevedad.";
+
+    alerts(message, "error");
 
     return Promise.reject(error);
   }
