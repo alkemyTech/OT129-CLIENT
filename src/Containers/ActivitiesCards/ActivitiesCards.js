@@ -29,7 +29,9 @@ const ActivitiesCards = () => {
     <div className="container">
       <div className="row">
         {activities.length === 0 ? (
-          <Spinner />
+          <div className="mt-5">
+            <Spinner />
+          </div>
         ) : (
           activities.map((activity) => (
             <div key={activity.id} className="col">
