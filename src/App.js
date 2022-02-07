@@ -11,7 +11,6 @@ import ToysCampaign from "./Campaigns/Toys/ToysCampaign";
 import ActivitiesPage from "./Pages/ActivitiesPage";
 import ActivitiesDetailsContainer from "./Containers/Activities/ActivitiesDetailsContainer/ActivitiesDetailsContainer";
 import NewsPage from "./Pages/NewsPage";
-import NewsDetailsContainer from "./Components/News/Details/NewsDetailsContainer";
 import TestimonialForm from "./Components/Testimonials/TestimonialsForm";
 import ProjectsForm from "./Components/Projects/ProjectsForm";
 import HomeForm from "./Components/Home/HomeForm";
@@ -33,6 +32,7 @@ import EditOrganization from "./Containers/EditOrganization/EditOrganization";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import "./App.css";
+import NewsIdPage from "./Pages/NewsIdPage";
 
 function App() {
   return (
@@ -52,7 +52,7 @@ function App() {
           <Route exact component={ActivitiesDetailsContainer} path="/actividades/:id" />
 
           <Route exact component={NewsPage} path="/novedades" />
-          <Route exact component={NewsDetailsContainer} path="/novedades/:id" />
+          <Route exact component={NewsIdPage} path="/novedades/:id" />
 
           <Route exact component={TestimonialForm} path="/testimonials/create" />
           <Route exact component={ProjectsForm} path="/projects/create" />
