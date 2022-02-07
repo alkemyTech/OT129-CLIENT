@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import "bootstrap/dist/css/bootstrap.css";
 
 import "../FormStyles.css";
+import { getRegistered } from "../../features/auth/authSlice";
 
 const PASSWORD_REGEX = new RegExp("(?=.*[A-Za-z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{6,})");
 
@@ -37,9 +38,25 @@ Alert.propTypes = {
 };
 
 const RegisterForm = () => {
+  const handleRegister = (values) => {
+    const body = {
+      name: values.name,
+      email: values.email,
+      password: values.password,
+    };
+
+    getRegistered(body);
+  };
+
   return (
     <div className="container">
-      <Formik initialValues={initialValues} validationSchema={validationSchema}>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={(values) => {
+          handleRegister(values);
+        }}
+      >
         {(formik) => (
           <form noValidate className="mt-3" onSubmit={formik.handleSubmit}>
             <div className="form-group mb-3">

@@ -2,9 +2,9 @@ import React from "react";
 import "../FormStyles.css";
 import { Formik, ErrorMessage, Field } from "formik";
 import * as Yup from "yup";
-import axios from "axios";
 
 import Alert from "../Container/Alert";
+import { getLogged } from "../../features/auth/authSlice";
 
 const startValues = {
   email: "",
@@ -23,15 +23,12 @@ const validationSchema = Yup.object().shape({
 
 const LoginForm = () => {
   const handleLogin = (values) => {
-    const url = "";
     const body = {
       email: values.email,
       password: values.password,
     };
 
-    axios.post(url, body).then((response) => {
-      localStorage.setItem("token", response.data.token);
-    });
+    getLogged(body);
   };
 
   return (
