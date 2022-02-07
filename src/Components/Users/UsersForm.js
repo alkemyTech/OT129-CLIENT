@@ -8,7 +8,7 @@ import { toBase64 } from "../../utils/toBase64";
 import { editUsers, createUsers } from "../../Services/UsersService";
 import ContainerFormCard from "../../Containers/ContainerFormCard";
 
-export const UsersForm = ({ users = {} }) => {
+const UsersForm = ({ users = {} }) => {
   const initialValues = {
     name: users?.name || "",
     email: users?.email || "",
@@ -105,3 +105,5 @@ export const UsersForm = ({ users = {} }) => {
     </ContainerFormCard>
   );
 };
+
+export default UsersForm;

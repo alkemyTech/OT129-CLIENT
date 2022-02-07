@@ -25,8 +25,8 @@ import SlidesContainer from "./Components/Slides/SlidesContainer";
 import SlidesForm from "./Components/Slides/SlidesForm";
 import MembersContainer from "./Containers/Members/MembersContainer";
 import MembersForm from "./Components/Members/MembersForm";
-import BackOfficeUserPage from "./Pages/BackOfficeUserPage";
-import UserForm from "./Components/Users/UsersForm";
+import BackOfficeUsersPage from "./Pages/BackOfficeUsersPage";
+import UsersForm from "./Components/Users/UsersForm";
 import OrganizationContainer from "./Containers/Organization/OrganizationContainer";
 import EditOrganization from "./Containers/EditOrganization/EditOrganization";
 
@@ -68,8 +68,9 @@ function App() {
           <Route exact component={SlidesForm} path="/backoffice/slides/create" />
           <Route exact component={MembersContainer} path="/backoffice/members" />
           <Route exact component={MembersForm} path="/backoffice/members/create" />
-          <Route exact component={BackOfficeUserPage} path="/backoffice/users" />
-          <Route exact component={UserForm} path="/backoffice/users/create" />
+          <Route exact component={BackOfficeUsersPage} path="/backoffice/users" />
+          <Route exact component={UsersForm} path="/backoffice/users/create" />
+          <Route exact component={UsersForm} path="/backoffice/users/create/:id" />
           <Route exact component={OrganizationContainer} path="/backoffice/organization" />
           <Route exact component={EditOrganization} path="/backoffice/organization/edit" />
         </Switch>

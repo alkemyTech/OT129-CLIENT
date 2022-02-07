@@ -1,24 +1,24 @@
 import { get } from "./publicApiService";
 import { post, put, remove } from "./privateApiService";
 
-const ENDPOINT = process.env.REACT_APP_API_USER_ENDPOINT;
+const ENDPOINT = process.env.REACT_APP_API_USERS_ENDPOINT;
 
-export const getUser = () => {
+export const getUsers = () => {
   return get(ENDPOINT);
 };
 
-export const getUserByID = (id) => {
+export const getUsersByID = (id) => {
   return get(ENDPOINT, id);
 };
 
-export const createUser = (data) => {
+export const createUsers = (data) => {
   return post(ENDPOINT, data);
 };
 
-export const editUser = (data, id) => {
+export const editUsers = (data, id) => {
   return put(ENDPOINT, data, id);
 };
 
-export const deleteUser = (id) => {
+export const deleteUsers = (id) => {
   return remove(ENDPOINT, id);
 };
