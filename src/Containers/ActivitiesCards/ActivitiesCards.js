@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { getActivities } from "../../Services/ActivitiesService";
 import Card from "../../Components/Card/Card";
+import { alerts } from "../../utils/alerts";
 
 const ActivitiesCards = () => {
   const [activities, setActivities] = useState([]);
@@ -18,8 +19,8 @@ const ActivitiesCards = () => {
 
         setActivities(activities);
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
+        alerts("Ups! ocurrió un error inesperado al solicitar las actividades", "error");
       });
   }, []);
 
@@ -28,7 +29,13 @@ const ActivitiesCards = () => {
       <div className="row">
         {activities.map((activity) => (
           <div key={activity.id} className="col">
-            <Card description={activity.description} image={activity.image} title={activity.name} />
+            <Card
+              description={activity.description}
+              id={activity.id}
+              image={activity.image}
+              title={activity.name}
+              url="actividades"
+            />
           </div>
         ))}
       </div>
