@@ -10,12 +10,12 @@ import ContainerFormCard from "../../Containers/ContainerFormCard";
 import { createNews, editNews } from "../../Services/NewsService";
 import { getCategories } from "../../Services/CategoriesService";
 
-const NewsForm = ({ id, name, content, image, category_id }) => {
+const NewsForm = ({ newId = {} }) => {
   const initialValues = {
-    name,
-    content,
-    image,
-    category_id,
+    name: newId.name || "",
+    content: newId.content || "",
+    image: newId.image || "",
+    category_id: newId.category_id || undefined,
   };
 
   const [categories, setCategories] = useState([]);
@@ -30,6 +30,10 @@ const NewsForm = ({ id, name, content, image, category_id }) => {
     };
 
     data();
+  }, []);
+
+  useEffect(() => {
+    console.log(initialValues);
   }, []);
 
   return (
@@ -50,8 +54,8 @@ const NewsForm = ({ id, name, content, image, category_id }) => {
             };
 
             // Validamos si el objeto novedad esta vacio o no
-            if (id === undefined) {
-              await createNews({ data });
+            if (newId.id === undefined) {
+              await createNews(data);
 
               setLoading(false);
             } else {
@@ -63,7 +67,7 @@ const NewsForm = ({ id, name, content, image, category_id }) => {
                 image: resultbase,
               };
 
-              await editNews({ data }, id);
+              await editNews(data, newId.id);
 
               setLoading(false);
             }
@@ -76,8 +80,9 @@ const NewsForm = ({ id, name, content, image, category_id }) => {
                 <input
                   autoComplete="off"
                   className="form-control form-control-sm w-100"
+                  placeholder={initialValues.name}
                   type="text"
-                  value="hola que tal"
+                  value={initialValues.name}
                   {...formik.getFieldProps("name")}
                 />
                 <ErrorMessage className="text-danger" component="span" name="name" />
@@ -85,7 +90,7 @@ const NewsForm = ({ id, name, content, image, category_id }) => {
               <div className="mb-1">
                 <label className="form-label fw-bold mt-1">Contenido</label>
                 <CKEditor
-                  data={content}
+                  data={initialValues.content}
                   editor={ClassicEditor}
                   id="content"
                   onChange={(event, editor) => formik.setFieldValue("content", editor.getData())}
@@ -127,7 +132,7 @@ const NewsForm = ({ id, name, content, image, category_id }) => {
                   className={loading ? "spinner-border spinner-border-sm" : null}
                   role="status"
                 />
-                {id === undefined ? "AGREGAR NOVEDAD" : "EDITAR NOTICIA"}
+                {newId.id === undefined ? "AGREGAR NOVEDAD" : "EDITAR NOTICIA"}
               </button>
             </Form>
           )}
@@ -146,11 +151,13 @@ const validationNewSchema = Yup.object({
 });
 
 NewsForm.propTypes = {
-  id: PropTypes.number,
-  name: PropTypes.string,
-  content: PropTypes.string,
-  image: PropTypes.string,
-  category_id: PropTypes.number,
+  newId: PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    content: PropTypes.string,
+    image: PropTypes.string,
+    category_id: PropTypes.number,
+  }),
 };
 
 export default NewsForm;

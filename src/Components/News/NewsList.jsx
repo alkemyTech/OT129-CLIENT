@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 
 import TitleNav from "../TitleNav/TitleNav";
 import { getNews } from "../../Services/NewsService";
@@ -14,7 +13,6 @@ const NewsList = () => {
       const response = await getNews();
 
       setNews(response.data.data);
-      console.log(news);
     };
 
     getData();
