@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 import ActivitiesForm from "../../../Components/Activities/ActivitiesForm";
 import { getActivityByID } from "../../../Services/ActivitiesService";
 
 const ActivitiesFormContainer = () => {
+  const { id } = useParams();
   const [activity, setActivity] = useState({
     name: "",
     description: "",
@@ -17,8 +19,8 @@ const ActivitiesFormContainer = () => {
 
         setActivity(result);
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
+        alerts("Ups! ocurrió un error inesperado al solicitar la actividad", "error");
       });
   }, [id]);
 
