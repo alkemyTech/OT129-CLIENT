@@ -11,5 +11,5 @@ export const createContact = (data) => {
 };
 
 export const editContact = (data, id) => {
-  return put(ENDPOINT, id, data);
+  return put(ENDPOINT, data, id);
 };
