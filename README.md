@@ -1,21 +1,22 @@
 # ONG Somos Más!
 
 ## **Spinner Component:**
-Spinner component is a reutilizable  which receive a serie of props to define its own HTML element type, and properties.
-Bootstrap “spinners”  was implemented for to show the loading state in the project. 
-To invoke te spinner just  need to import and add to your code.
+
+Spinner component is a reutilizable which receive a serie of props to define its own HTML element type, and properties.
+Bootstrap “spinners” was implemented for to show the loading state in the project.
+To invoke te spinner just need to import and add to your code.
 usage (import) example:
 
-   import { Spinner } from "../Components/Spinner/Spinner";
-           
+import { Spinner } from "../Components/Spinner/Spinner";
+
            const MyComponent = () =>{
-	  return(
-	    {
-	      isLoading ?
-	      <Spinner />
-	      :
-	      <p> Hi!, i'm a line of a paragraph. </p>
-	    }
+      return(
+        {
+          isLoading ?
+          <Spinner />
+          :
+          <p> Hi!, i'm a line of a paragraph. </p>
+        }
        );
       }
     export default MyComponent;
@@ -23,89 +24,87 @@ usage (import) example:
 ## **Skeleton Component:**
 
 Skeleton component is a reutilizable placeholder which receive a serie of props to define its own HTML element type, and properties.
-To invoke te skeleton just  need to import and add to your code.
+To invoke te skeleton just need to import and add to your code.
 
     import <Skeleton> from '../Skeleton/Skeleton'
 
-	const MyComponent = () =>{
-	  return(
-	    {
-	      isLoading ?
-	      <Skeleton />
-	      :
-	      <p> Hi!, i'm a line of a paragraph. </p>
-	    }
+    const MyComponent = () =>{
+      return(
+        {
+          isLoading ?
+          <Skeleton />
+          :
+          <p> Hi!, i'm a line of a paragraph. </p>
+        }
        );
       }
     export default MyComponent;
 
 **Customization Values:**
 
- - **Element:**
+- **Element:**
 
 You can define the HTML element that Skeleton will use.
 This change the height and the shape of the resultant placeholder.
- *Element prop support a string value*.
+_Element prop support a string value_.
 Valid types: "p", "h1", "h2", "h3", "h4", "h5", "h6", "a", "button".
 
 Example:
 
     <Skeleton element="h1" />
 
- - **Width:**
+- **Width:**
 
 You can choose the width of the placeholder assigning a percentage or a pixels value.
- *Element prop support a string value*.
+_Element prop support a string value_.
 
 Example:
 
     <Skeleton width="100%" />
     <Skeleton width="20px" />
 
-
- - **Height:**
+- **Height:**
 
 You can choose the width of the placeholder assigning a pixels value.
- *Element prop support a string value*.
+_Element prop support a string value_.
 
 Example:
 
     <Skeleton width="20px" />
 
- - **Col:**
+- **Col:**
 
 According bootstrap grid, Skeleton can accepts col number between 1 and 12. Default value is 4.
- *Element prop support a number value*.
+_Element prop support a number value_.
 
 Example:
 
     <Skeleton column={4} />
 
- - **Size:**
+- **Size:**
 
-Throught size prop, can change the default height value of the element to increase or decrease that. 
- *Element prop support a string value*.
- Size valid values: "xs", "sm", "lg"
+Throught size prop, can change the default height value of the element to increase or decrease that.
+_Element prop support a string value_.
+Size valid values: "xs", "sm", "lg"
 
 Example:
 
     <Skeleton size="md" />
     <Skeleton size="lg" />
+
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-
-
 Can add custom classNames using the addClass prop. Skeleton is made with bootstrap classes so you can to take advantage of than using bs classes.
- *Element prop support a string value*.
+_Element prop support a string value_.
 
 Example:
 
     <Skeleton element="button" addClass="btn" />
 
- - **Example:**
+- **Example:**
 
 Can add custom classNames using the addClass prop. Skeleton is made with bootstrap classes so you can to take advantage of than using bs classes.
- *Element prop support a string value*.
+_Element prop support a string value_.
 
 Example:
 
@@ -184,12 +183,13 @@ confirmAlerts(
 ## Use Progress component!
 
 - Custom JSX and CSS component.
+- Set your height and width as props.
 - CSS root variables custom styles.
 
 ### Example:
 
 ```
-  <Progress />;
+  <Progress height="5px" width="500px" margin="1rem auto"/>;
 ```
 
 ### Result:
