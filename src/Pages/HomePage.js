@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 import HomeSlidesContainer from "../Containers/HomeSlide/HomeSlidesContainer";
 import HomeCards from "../Containers/HomeCards/HomeCards";
@@ -16,15 +15,6 @@ const HomePage = () => {
       <HomeCards card={cardNews} />
     </div>
   );
-};
-
-HomePage.propTypes = {
-  data: PropTypes.shape({
-    name: PropTypes.string,
-    description: PropTypes.string,
-    image: PropTypes.string,
-    welcome_text: PropTypes.string,
-  }),
 };
 
 export default HomePage;
