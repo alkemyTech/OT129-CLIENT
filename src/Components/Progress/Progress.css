@@ -13,10 +13,6 @@
   -moz-appearance: none;
   appearance: none;
   border: none;
-  height: 16px;
-  width: 90%;
-  margin: 1rem auto 1rem auto;
-  max-width: 600px;
   color: var(--blue);
   font-size: 16px;
   background-color: rgba(var(--white, 33, 150, 243), 0.12);

@@ -1,9 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import counterReducer from "../features/counter/counterSlice";
+import authReducer from "../features/auth/authSlice";
+import newsReducer from "../features/News/news-slice";
 
-export default configureStore({
+const store = configureStore({
   reducer: {
-    counter: counterReducer,
+    auth: authReducer,
+    news: newsReducer,
   },
 });
+
+export default store;

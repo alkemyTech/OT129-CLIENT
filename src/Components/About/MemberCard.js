@@ -5,12 +5,12 @@ import "./MemberCard.css";
 
 const MemberCard = ({ member }) => {
   return (
-    <div className="card" style={{ width: "18rem" }}>
+    <div className="card">
       <img alt="Member Image" className="card-img-top" src={member.image} />
       <div className="card-body">
         <h5 className="card-title">{member.name}</h5>
         <p className="card-text">{member.description}</p>
-        <div className="d-flex justify-content-around">
+        <div className="container-icons">
           <a href={member.facebookUrl} rel="noreferrer" target="_blank">
             <i className="fab fa-facebook-f" />
           </a>
