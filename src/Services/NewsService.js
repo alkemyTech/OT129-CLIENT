@@ -7,6 +7,10 @@ export const getNews = () => {
   return get(ENDPOINT);
 };
 
+export const getNewByID = (id) => {
+  return get(ENDPOINT, id);
+};
+
 export const createNews = () => {
   return post(ENDPOINT);
 };

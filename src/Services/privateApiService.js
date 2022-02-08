@@ -20,6 +20,16 @@ const privateConfig = {
 
 const instance = axios.create(privateConfig);
 
+instance.interceptors.response.use(
+  function (response) {
+    return response;
+  },
+  function (error) {
+    alerts(error, "error");
+
+    return Promise.reject(error);
+  }
+);
 /**
  * Method to make a get with private endpoint
  * @param {string} url
