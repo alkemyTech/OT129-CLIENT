@@ -20,8 +20,8 @@ const ActivitiesCards = () => {
 
         setActivities(activities);
       })
-      .catch((_) => {
-        alerts("No se pudo obtener el listado de actividades", "error");
+      .catch(() => {
+        alerts("Ups! ocurrió un error inesperado al solicitar las actividades", "error");
       });
   }, []);
 
@@ -34,11 +34,13 @@ const ActivitiesCards = () => {
           </div>
         ) : (
           activities.map((activity) => (
-            <div key={activity.id} className="col mt-3 mb-1">
+            <div key={activity.id} className="col">
               <Card
                 description={activity.description}
+                id={activity.id}
                 image={activity.image}
                 title={activity.name}
+                url="actividades"
               />
             </div>
           ))

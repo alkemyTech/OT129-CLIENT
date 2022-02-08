@@ -1,29 +1,30 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 import ActivitiesDetail from "../../../Components/Activities/Detail/ActivitiesDetail";
 import { getActivityByID } from "../../../Services/ActivitiesService";
 import { alerts } from "../../../utils/alerts";
 
-const ID = window.location.pathname.split("/")[2];
-
 const ActivitiesDetailsContainer = () => {
+  const { id } = useParams();
   const [activity, setActivity] = useState({
+    id: undefined,
     name: "",
     description: "",
     image: "",
   });
 
   useEffect(() => {
-    getActivityByID(ID)
+    getActivityByID(id)
       .then((res) => {
         const result = res.data.data;
 
         setActivity(result);
       })
-      .catch((_) => {
-        alerts("No se pudo obtener los datos de esta actividad", "error");
+      .catch(() => {
+        alerts("Ups! ocurrió un error inesperado al solicitar la actividad", "error");
       });
-  }, [ID]);
+  }, [id]);
 
   return <ActivitiesDetail data={activity} />;
 };

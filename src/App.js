@@ -15,8 +15,8 @@ import NewsDetailsContainer from "./Components/News/Details/NewsDetailsContainer
 import TestimonialForm from "./Components/Testimonials/TestimonialsForm";
 import ProjectsForm from "./Components/Projects/ProjectsForm";
 import HomeForm from "./Components/Home/HomeForm";
-import ActivitiesList from "./Components/Activities/Backoffice/ActivitiesListContainer";
-import ActivitiesForm from "./Components/Activities/ActivitiesForm";
+import ActivitiesListContainer from "./Containers/Activities/ActivitiesListContainer";
+import ActivitiesFormContainer from "./Containers/Activities/ActivitiesFormContainer/ActivitiesFormContainer";
 import NewsList from "./Components/News/NewsList";
 import NewsForm from "./Components/News/NewsForm";
 import CategoriesListContainer from "./Containers/Categories/CategoriesListContainer";
@@ -58,8 +58,9 @@ function App() {
           <Route exact component={ProjectsForm} path="/projects/create" />
 
           <Route exact component={HomeForm} path="/backoffice/home" />
-          <Route exact component={ActivitiesList} path="/backoffice/activities" />
-          <Route exact component={ActivitiesForm} path="/backoffice/activities/create" />
+          <Route exact component={ActivitiesListContainer} path="/backoffice/activities" />
+          <Route exact component={ActivitiesFormContainer} path="/backoffice/activities/create" />
+          <Route exact component={ActivitiesFormContainer} path="/backoffice/activities/:id" />
           <Route exact component={NewsList} path="/backoffice/news" />
           <Route exact component={NewsForm} path="/backoffice/news/create" />
           <Route exact component={CategoriesListContainer} path="/backoffice/categories" />
