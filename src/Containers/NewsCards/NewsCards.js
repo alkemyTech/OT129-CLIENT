@@ -21,7 +21,13 @@ const NewsCards = () => {
       <div className="row">
         {news.map((el) => (
           <div key={el.id} className="col">
-            <Card description={el.content} image={el.image} title={el.name} />
+            <Card
+              description={el.content}
+              id={el.id}
+              image={el.image}
+              title={el.name}
+              url={`./novedades`}
+            />
           </div>
         ))}
       </div>
