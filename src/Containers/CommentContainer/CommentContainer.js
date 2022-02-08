@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import useInView from "react-cool-inview";
 
 import Comment from "../../Components/Comment/Comment";
-import Skeleton from "../../Components/Skeleton/Skeleton";
+import CommentSkeleton from "../../Components/Comment/CommentSkeleton";
 import { getComments } from "../../Services/CommentService";
 
 const CommentContainer = () => {
@@ -28,7 +28,7 @@ const CommentContainer = () => {
         <>
           {" "}
           <Comment title="Comentarios" />
-          <Skeleton element="h1" height="40px" width="100%" />
+          <CommentSkeleton />
         </>
       ) : (
         <Comment data={comments} title="Comentarios" />
