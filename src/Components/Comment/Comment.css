@@ -25,7 +25,9 @@
 }
 .comment-item {
   width: 90%;
-  height: 150px;
+  min-height: 150px;
+  height: auto;
+  max-height: 250px;
   margin: auto;
   overflow: hidden;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
