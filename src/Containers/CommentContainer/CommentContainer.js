@@ -25,7 +25,11 @@ const CommentContainer = () => {
   return (
     <div ref={observe} className="comment-container mb-3">
       {isLoading ? (
-        <Skeleton element="h1" height="40px" width="100%" />
+        <>
+          {" "}
+          <Comment title="Comentarios" />
+          <Skeleton element="h1" height="40px" width="100%" />
+        </>
       ) : (
         <Comment data={comments} title="Comentarios" />
       )}
