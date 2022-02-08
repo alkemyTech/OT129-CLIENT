@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 
+import Spinner from "../../Components/Spinner/Spinner";
 import { getActivities } from "../../Services/ActivitiesService";
 import Card from "../../Components/Card/Card";
+import { alerts } from "../../utils/alerts";
 
 const ActivitiesCards = () => {
   const [activities, setActivities] = useState([]);
@@ -18,19 +20,29 @@ const ActivitiesCards = () => {
 
         setActivities(activities);
       })
-      .catch((error) => {
-        console.log(error);
+      .catch((_) => {
+        alerts("No se pudo obtener el listado de actividades", "error");
       });
   }, []);
 
   return (
     <div className="container">
       <div className="row">
-        {activities.map((activity) => (
-          <div key={activity.id} className="col">
-            <Card description={activity.description} image={activity.image} title={activity.name} />
+        {activities.length === 0 ? (
+          <div className="mt-5">
+            <Spinner />
           </div>
-        ))}
+        ) : (
+          activities.map((activity) => (
+            <div key={activity.id} className="col mt-3 mb-1">
+              <Card
+                description={activity.description}
+                image={activity.image}
+                title={activity.name}
+              />
+            </div>
+          ))
+        )}
       </div>
     </div>
   );

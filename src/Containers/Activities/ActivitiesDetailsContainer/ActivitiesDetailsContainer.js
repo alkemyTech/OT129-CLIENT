@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 
 import ActivitiesDetail from "../../../Components/Activities/Detail/ActivitiesDetail";
 import { getActivityByID } from "../../../Services/ActivitiesService";
+import { alerts } from "../../../utils/alerts";
 
 const ID = window.location.pathname.split("/")[2];
 
 const ActivitiesDetailsContainer = () => {
-  const [error, setError] = useState(null);
   const [activity, setActivity] = useState({
     name: "",
     description: "",
@@ -20,16 +20,12 @@ const ActivitiesDetailsContainer = () => {
 
         setActivity(result);
       })
-      .catch((error) => {
-        setError(error);
+      .catch((_) => {
+        alerts("No se pudo obtener los datos de esta actividad", "error");
       });
   }, [ID]);
 
-  return error ? (
-    <div className="alert alert-danger">{error.message}</div>
-  ) : (
-    <ActivitiesDetail data={activity} />
-  );
+  return <ActivitiesDetail data={activity} />;
 };
 
 export default ActivitiesDetailsContainer;
