@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 
 import { getMembers } from "../../Services/MembersService";
-import MemberCard from "../../Components/About/MemberCard";
+import MemberList from "../../Components/About/MembersList";
 import { alerts } from "../../utils/alerts";
 import Spinner from "../../Components/Spinner/Spinner";
 
 const MemberCardContainer = () => {
   const [dataMembers, setDataMembers] = useState([]);
-  const [dataExist, setDataExist] = useState(false);
+  const [dataExist, setDataExist] = useState(true);
   const [spinnerShow, setSpinnerShow] = useState(true);
 
   useEffect(() => {
