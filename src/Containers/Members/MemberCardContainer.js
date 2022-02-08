@@ -24,8 +24,9 @@ const MemberCardContainer = () => {
   }, []);
 
   return (
-    <div className="container mt-5">
-      {dataExist && <MemberCard member={dataMembers} />}
+    <div className="container my-5">
+      <h3 className="text-center mb-5">MIEMBROS</h3>
+      {dataExist && <MemberList members={dataMembers} />}
       {spinnerShow && <Spinner />}
     </div>
   );

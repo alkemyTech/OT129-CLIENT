@@ -1,13 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import "./MembersList.css";
+
 import MemberCard from "./MemberCard";
 
 const MembersList = ({ members }) => {
   return (
-    <div className="container">
-      <h1 className="text-center">Miembros</h1>
-      <div className="row d-flex justify-content-around mt-5">
+    <div className="row mt-5">
+      <div className="container container-cards">
         {members.map((member) => (
           <MemberCard key={member.id} member={member} />
         ))}
