@@ -26,4 +26,6 @@ const newsSlice = createSlice({
   },
 });
 
+export const selectorNews = (state) => state.news;
+
 export default newsSlice.reducer;

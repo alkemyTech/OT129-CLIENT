@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { fetchNews } from "../../features/News/news-slice";
+import { fetchNews, selectorNews } from "../../features/News/news-slice";
 import TitleNav from "../TitleNav/TitleNav";
 
 import NewsTable from "./NewsTable";
@@ -9,7 +9,7 @@ import NewsTable from "./NewsTable";
 const NewsList = () => {
   const dispatch = useDispatch();
 
-  const news = useSelector((state) => state.news.news.data);
+  const { news } = useSelector(selectorNews);
 
   useEffect(() => {
     dispatch(fetchNews());
