@@ -1,15 +1,33 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { useEffect, useState } from "react";
 
 import Card from "../../Components/Card/Card";
+import { getNews } from "../../Services/NewsService";
 
-const NewsCards = ({ data }) => {
+const NewsCards = () => {
+  const [news, setNews] = useState([]);
+
+  useEffect(() => {
+    getNews()
+      .then((response) => {
+        setNews(response.data.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
   return (
     <div className="container my-5 d-grid gap-3">
       <div className="row">
-        {data.map((el) => (
+        {news.map((el) => (
           <div key={el.id} className="col">
-            <Card description={el.content} image={el.image} title={el.name} />
+            <Card
+              description={el.content}
+              id={el.id}
+              image={el.image}
+              title={el.name}
+              url={`./novedades`}
+            />
           </div>
         ))}
       </div>
@@ -18,7 +36,3 @@ const NewsCards = ({ data }) => {
 };
 
 export default NewsCards;
-
-NewsCards.propTypes = {
-  data: PropTypes.array.isRequired,
-};
