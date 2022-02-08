@@ -14,8 +14,6 @@ import PreviewImage from "./PreviewImage";
 import { testimonialSchema } from "./formValidation";
 
 const TestimonialForm = ({ testimony = {} }) => {
-  const [formSend, setFormSend] = useState(false);
-
   const [testimonyImage, setTestimonyImage] = useState("");
 
   return (
