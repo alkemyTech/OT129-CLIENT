@@ -189,7 +189,7 @@ confirmAlerts(
 ### Example:
 
 ```
-  <Progress height="5px" width="500px" />;
+  <Progress height="5px" width="500px" margin="1rem auto"/>;
 ```
 
 ### Result:
