@@ -47,7 +47,7 @@ const ActivitiesForm = ({ activity = {} }) => {
           const newActivity = { ...formData, image: resultBase };
 
           if (activity.id === undefined) {
-            await createActivity(newActivity).catch(() => {
+            createActivity(newActivity).catch(() => {
               alerts("Ups! ocurrió un error inesperado al crear la Actividad", "error");
             });
           } else {
