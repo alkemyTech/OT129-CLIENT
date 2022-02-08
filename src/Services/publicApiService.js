@@ -1,8 +1,24 @@
 import axios from "axios";
 
+import { alerts } from "../utils/alerts";
+
 import config from "./axiosConfig";
 
 const instance = axios.create(config);
+
+instance.interceptors.response.use(
+  function (response) {
+    return response;
+  },
+  function (error) {
+    const message =
+      "No hemos podido recuperar la información. Por favor intente nuevamente a la brevedad.";
+
+    alerts(message, "error");
+
+    return Promise.reject(error);
+  }
+);
 
 /**
  * Method to make a get with public endpoint

@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
+import { fetchNews, selectorNews } from "../../features/News/news-slice";
 import TitleNav from "../TitleNav/TitleNav";
 import { getNews } from "../../Services/NewsService";
 
@@ -17,6 +20,13 @@ const NewsList = () => {
 
     getData();
   }, []);
+  const dispatch = useDispatch();
+
+  const { news } = useSelector(selectorNews);
+
+  useEffect(() => {
+    dispatch(fetchNews());
+  }, [dispatch]);
 
   return (
     <div className="container mt-5">

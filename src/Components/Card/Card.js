@@ -1,10 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "./ShowCard.css";
+import { Link } from "react-router-dom";
 
 import "./Card.css";
 
-const Card = ({ title, image, description }) => {
+const Card = ({ id, title, image, description, url }) => {
   return (
     <div className="card">
       {image ? (
@@ -19,18 +20,20 @@ const Card = ({ title, image, description }) => {
       <div className="card-body">
         <h5 className="card-title text-uppercase">{title}</h5>
         <p className="card-text">{description}</p>
-        <a className="general-btn fill-btn text-decoration-none" href="#">
+        <Link className="general-btn fill-btn text-decoration-none" to={`/${url}/${id}`}>
           Leer más
-        </a>
+        </Link>
       </div>
     </div>
   );
 };
 
 Card.propTypes = {
+  id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired,
 };
 
 export default Card;

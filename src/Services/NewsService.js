@@ -9,6 +9,19 @@ export const getNews = () => {
 
 export const getNewsById = (id) => {
   return get(ENDPOINT, id);
+  
+export const getLastNews = (entries) => {
+  const url = entries ? `${ENDPOINT}?limit=${entries}` : ENDPOINT;
+
+  return get(url);
+};
+
+export const getNewByID = (id) => {
+  return get(ENDPOINT, id);
+};
+
+export const createNews = () => {
+  return post(ENDPOINT);
 };
 
 export const createNews = (data) => {

@@ -10,6 +10,6 @@ export const createTestimonial = () => {
   return post(ENDPOINT);
 };
 
-export const editTestimonial = () => {
-  return put(ENDPOINT);
+export const editTestimonial = (data, id) => {
+  return put(ENDPOINT, data, id);
 };

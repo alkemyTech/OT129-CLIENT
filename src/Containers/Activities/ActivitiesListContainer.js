@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 
-import { getActivities } from "../../../Services/ActivitiesService";
-
-import ActivitiesList from "./ActivitiesList";
+import ActivitiesList from "../../Components/Activities/Backoffice/ActivitiesList";
+import { getActivities } from "../../Services/ActivitiesService";
+import { alerts } from "../../utils/alerts";
 
 function ActivitiesListContainer() {
   const [activities, setActivities] = useState([]);
@@ -19,8 +19,8 @@ function ActivitiesListContainer() {
 
         setActivities(activities);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        alerts("Ups! ocurrió un error inesperado al solicitar las actividades", "error");
       });
   }, []);
 
