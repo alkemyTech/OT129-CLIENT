@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
+import { useParams } from "react-router-dom";
 
 import NewsDetails from "../../Components/News/Details/NewsDetails";
 import { getNewByID } from "../../Services/NewsService";
 
-const NewsDetailsContainer = ({ id }) => {
+const NewsDetailsContainer = () => {
   const [news, setNews] = useState({
     name: "",
     content: "",
     image: "",
     id: "",
   });
+
+  const { id } = useParams();
 
   useEffect(() => {
     getNewByID(id)
@@ -23,10 +25,6 @@ const NewsDetailsContainer = ({ id }) => {
   }, [id]);
 
   return <NewsDetails data={news} />;
-};
-
-NewsDetailsContainer.propTypes = {
-  id: PropTypes.number.isRequired,
 };
 
 export default NewsDetailsContainer;
