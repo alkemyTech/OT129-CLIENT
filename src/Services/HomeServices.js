@@ -8,6 +8,10 @@ export const getSlides = () => {
   return get(ENDPOINT_SLIDES);
 };
 
+export const getOrganization = () => {
+  return get(ENDPOINT_ORGANIZATION);
+};
+
 export const postOrganization = (data) => {
   return post(ENDPOINT_ORGANIZATION, data);
 };

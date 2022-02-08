@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import HomeSlide from "../Containers/HomeSlide/HomeSlide";
+import HomeSlidesContainer from "../Containers/HomeSlide/HomeSlidesContainer";
 import HomeCards from "../Containers/HomeCards/HomeCards";
 
 const HomePage = () => {
@@ -11,7 +11,7 @@ const HomePage = () => {
   return (
     <div className="container">
       <h1 className="text-center mt-3">Home Page</h1>
-      <HomeSlide />
+      <HomeSlidesContainer />
       <h2> {welcomeText}</h2>
       <HomeCards card={cardNews} />
     </div>
