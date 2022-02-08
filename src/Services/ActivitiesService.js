@@ -1,4 +1,5 @@
-import { get, post, put } from "./publicApiService";
+import { get } from "./publicApiService";
+import { post, put, remove } from "./privateApiService";
 
 const ENDPOINT = process.env.REACT_APP_API_ACTIVITIES_ENDPOINT;
 
@@ -16,4 +17,8 @@ export const createActivity = (data) => {
 
 export const editActivity = (data) => {
   return put(ENDPOINT, data);
+};
+
+export const deleteActivity = (id) => {
+  return remove(ENDPOINT, id);
 };

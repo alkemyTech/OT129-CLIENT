@@ -9,6 +9,7 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 import { createActivity, editActivity } from "../../Services/ActivitiesService";
 import { toBase64 } from "../../utils/toBase64";
+import { alerts } from "../../utils/alerts";
 
 const validationSchema = Yup.object({
   name: Yup.string().required("El nombre de la actividad es obligatorio"),
@@ -45,18 +46,20 @@ const ActivitiesForm = ({ activity = {} }) => {
           const resultBase = await toBase64(formData.image);
           const newActivity = { ...formData, image: resultBase };
 
-          console.log(newActivity);
           if (activity.id === undefined) {
-            const result = await createActivity(newActivity);
-
-            console.log(result);
+            createActivity(newActivity).catch(() => {
+              alerts("Ups! ocurrió un error inesperado al crear la Actividad", "error");
+            });
           } else {
-            const result = await editActivity({
+            editActivity({
               ...newActivity,
               id: activity.id,
+            }).catch(() => {
+              alerts(
+                `Ups! ocurrió un error inesperado editar la actividad id: ${activity.id}`,
+                "error"
+              );
             });
-
-            console.log(result);
           }
         }}
       >
