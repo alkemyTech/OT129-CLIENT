@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import AboutInfo from "../../Components/About/AboutInfo";
 import Spinner from "../../Components/Spinner/Spinner";
-import { getOrganization } from "../../Services/HomeServices";
+import { getOrganizations } from "../../Services/organizationService";
 import { alerts } from "../../utils/alerts";
 
 const AboutInfoContainer = () => {
@@ -11,7 +11,7 @@ const AboutInfoContainer = () => {
   const [spinnerShow, setSpinnerShow] = useState(true);
 
   useEffect(() => {
-    getOrganization()
+    getOrganizations()
       .then((response) => {
         setDataAboutUs(response.data.data.long_description);
         setDataExist(true);
