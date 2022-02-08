@@ -107,13 +107,6 @@ const TestimonialForm = ({ testimony = {} }) => {
             <button className="btn btn-primary" disabled={!isValid} type="submit">
               Enviar
             </button>
-            {formSend ? (
-              testimony.id ? (
-                <p className="formSubmitted">Formulario editado con éxito</p>
-              ) : (
-                <p className="formSubmitted">Formulario enviado con éxito</p>
-              )
-            ) : null}
           </Form>
         )}
       </Formik>
