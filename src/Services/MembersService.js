@@ -1,24 +1,24 @@
 import { get } from "./publicApiService";
 import { post, put, remove } from "./privateApiService";
 
-const ENDPOINT = process.env.REACT_APP_API_CATEGORIES;
+const ENDPOINT = process.env.REACT_APP_API_MEMBERS_ENDPOINT;
 
-export const getCategories = () => {
+export const getMembers = () => {
   return get(ENDPOINT);
 };
 
-export const getCategoryById = (id) => {
+export const getMemberByID = (id) => {
   return get(ENDPOINT, id);
 };
 
-export const createCategory = (data) => {
+export const createMember = (data) => {
   return post(ENDPOINT, data);
 };
 
-export const editCategory = (data, id) => {
+export const editMember = (data, id) => {
   return put(ENDPOINT, data, id);
 };
 
-export const deleteCategory = (id) => {
+export const deleteMember = (id) => {
   return remove(ENDPOINT, id);
 };

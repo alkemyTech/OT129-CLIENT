@@ -15,19 +15,18 @@ import NewsDetailsContainer from "./Components/News/Details/NewsDetailsContainer
 import TestimonialForm from "./Components/Testimonials/TestimonialsForm";
 import ProjectsForm from "./Components/Projects/ProjectsForm";
 import HomeForm from "./Components/Home/HomeForm";
-import ActivitiesList from "./Components/Activities/Backoffice/ActivitiesListContainer";
-import ActivitiesForm from "./Components/Activities/ActivitiesForm";
+import ActivitiesListContainer from "./Containers/Activities/ActivitiesListContainer";
+import ActivitiesFormContainer from "./Containers/Activities/ActivitiesFormContainer/ActivitiesFormContainer";
 import NewsList from "./Components/News/NewsList";
 import NewsForm from "./Components/News/NewsForm";
 import CategoriesListContainer from "./Containers/Categories/CategoriesListContainer";
-import CategoriesContainer from "./Containers/Categories/CategoriesContainer";
+import CategoriesFormContainer from "./Containers/Categories/CategoriesFormContainer";
 import SlidesContainer from "./Components/Slides/SlidesContainer";
 import SlidesForm from "./Components/Slides/SlidesForm";
-import MembersContainer from "./Containers/Members/MembersContainer";
-import MembersForm from "./Components/Members/MembersForm";
-// import BackOfficeUsersPage from "./Pages/BackOfficeUsersPage";
-import UsersListContainer from "./Container/Users/UsersListContainer";
-import UsersForm from "./Components/Users/UsersForm";
+import UsersListContainer from "./Containers/Users/UsersListContainer";
+import UsersFormContainer from "./Containers/Users/UsersFormContainer";
+import MembersListContainer from "./Containers/Members/MembersListContainer";
+import MembersFormContainer from "./Containers/Members/MembersFormContainer";
 import OrganizationContainer from "./Containers/Organization/OrganizationContainer";
 import EditOrganization from "./Containers/EditOrganization/EditOrganization";
 
@@ -59,20 +58,22 @@ function App() {
           <Route exact component={ProjectsForm} path="/projects/create" />
 
           <Route exact component={HomeForm} path="/backoffice/home" />
-          <Route exact component={ActivitiesList} path="/backoffice/activities" />
-          <Route exact component={ActivitiesForm} path="/backoffice/activities/create" />
+          <Route exact component={ActivitiesListContainer} path="/backoffice/activities" />
+          <Route exact component={ActivitiesFormContainer} path="/backoffice/activities/create" />
+          <Route exact component={ActivitiesFormContainer} path="/backoffice/activities/:id" />
           <Route exact component={NewsList} path="/backoffice/news" />
           <Route exact component={NewsForm} path="/backoffice/news/create" />
           <Route exact component={CategoriesListContainer} path="/backoffice/categories" />
-          <Route exact component={CategoriesContainer} path="/backoffice/categories/create" />
+          <Route exact component={CategoriesFormContainer} path="/backoffice/categories/create" />
+          <Route exact component={CategoriesFormContainer} path="/backoffice/categories/:id" />
           <Route exact component={SlidesContainer} path="/backoffice/slides" />
           <Route exact component={SlidesForm} path="/backoffice/slides/create" />
-          <Route exact component={MembersContainer} path="/backoffice/members" />
-          <Route exact component={MembersForm} path="/backoffice/members/create" />
-          {/* <Route exact component={BackOfficeUsersPage} path="/backoffice/users" /> */}
           <Route exact component={UsersListContainer} path="/backoffice/users" />
-          <Route exact component={UsersForm} path="/backoffice/users/create" />
-          <Route exact component={UsersForm} path="/backoffice/users/create/:id" />
+          <Route exact component={UsersFormContainer} path="/backoffice/users/create" />
+          <Route exact component={UsersFormContainer} path="/backoffice/users/create/:id" />
+          <Route exact component={MembersListContainer} path="/backoffice/members" />
+          <Route exact component={MembersFormContainer} path="/backoffice/members/create" />
+          <Route exact component={MembersFormContainer} path="/backoffice/members/:id" />
           <Route exact component={OrganizationContainer} path="/backoffice/organization" />
           <Route exact component={EditOrganization} path="/backoffice/organization/edit" />
         </Switch>

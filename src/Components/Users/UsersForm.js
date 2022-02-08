@@ -15,23 +15,6 @@ const UsersForm = ({ users = {} }) => {
     role_id: users?.role_id || "",
     profile_image: users?.profile_image || "",
   };
-  const validationUserSchema = Yup.object().shape({
-    name: Yup.string().required("Field Required").min(4, "Must have at least 4 characters"),
-    email: Yup.string().required("Field Required").email("Is not a valid format"),
-    role_id: Yup.string().required("Field Required"),
-    profile_image: Yup.string().required("Field Required"),
-  });
-
-  UsersForm.propTypes = {
-    users: PropTypes.shape({
-      id: PropTypes.number,
-      name: PropTypes.string,
-      email: PropTypes.string,
-      role_id: PropTypes.string,
-      password: PropTypes.string,
-      profile_image: PropTypes.string,
-    }),
-  };
 
   return (
     <ContainerFormCard>
@@ -106,4 +89,28 @@ const UsersForm = ({ users = {} }) => {
   );
 };
 
+UsersForm.propTypes = {
+  users: PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    email: PropTypes.string,
+    role_id: PropTypes.string,
+    password: PropTypes.string,
+    profile_image: PropTypes.string,
+  }),
+};
+
 export default UsersForm;
+const SUPPORTED_FORMATS = ["image/jpg", "image/png"];
+const validationUserSchema = Yup.object().shape({
+  name: Yup.string().required("Field Required").min(4, "Must have at least 4 characters"),
+  email: Yup.string().required("Field Required").email("Is not a valid format"),
+  role_id: Yup.string().required("Field Required"),
+  profile_image: Yup.mixed()
+    .required("Field Required")
+    .test(
+      "format",
+      "El formato no es valido",
+      (value) => !value || (value && SUPPORTED_FORMATS.includes(value.type))
+    ),
+});

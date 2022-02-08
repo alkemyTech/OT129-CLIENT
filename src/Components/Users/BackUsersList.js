@@ -3,12 +3,10 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 import { deleteUsers } from "../../Services/UsersService";
-import TitleNav from "../TitleNav/TitleNav";
 
 const BackUsersList = ({ data }) => {
   return (
     <div className="container mt-5">
-      <TitleNav link={linkUrl} linkTitle="Crear" title="Usuarios" />
       <table className="table table-striped table-list">
         <thead className="thead-list">
           <tr>
@@ -17,6 +15,7 @@ const BackUsersList = ({ data }) => {
             <th>Email</th>
             <th>Imagen</th>
             <th>Rol</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
