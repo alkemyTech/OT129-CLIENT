@@ -22,10 +22,10 @@ import CategoriesListContainer from "./Containers/Categories/CategoriesListConta
 import CategoriesFormContainer from "./Containers/Categories/CategoriesFormContainer";
 import SlidesContainer from "./Components/Slides/SlidesContainer";
 import SlidesForm from "./Components/Slides/SlidesForm";
+import UsersListContainer from "./Containers/Users/UsersListContainer";
+import UsersFormContainer from "./Containers/Users/UsersFormContainer";
 import MembersListContainer from "./Containers/Members/MembersListContainer";
 import MembersFormContainer from "./Containers/Members/MembersFormContainer";
-import BackOfficeUserPage from "./Pages/BackOfficeUserPage";
-import UserForm from "./Components/Users/UsersForm";
 import OrganizationContainer from "./Containers/Organization/OrganizationContainer";
 import EditOrganization from "./Containers/EditOrganization/EditOrganization";
 import NewsIdPage from "./Pages/NewsIdPage";
@@ -68,11 +68,12 @@ function App() {
           <Route exact component={CategoriesFormContainer} path="/backoffice/categories/:id" />
           <Route exact component={SlidesContainer} path="/backoffice/slides" />
           <Route exact component={SlidesForm} path="/backoffice/slides/create" />
+          <Route exact component={UsersListContainer} path="/backoffice/users" />
+          <Route exact component={UsersFormContainer} path="/backoffice/users/create" />
+          <Route exact component={UsersFormContainer} path="/backoffice/users/create/:id" />
           <Route exact component={MembersListContainer} path="/backoffice/members" />
           <Route exact component={MembersFormContainer} path="/backoffice/members/create" />
           <Route exact component={MembersFormContainer} path="/backoffice/members/:id" />
-          <Route exact component={BackOfficeUserPage} path="/backoffice/users" />
-          <Route exact component={UserForm} path="/backoffice/users/create" />
           <Route exact component={OrganizationContainer} path="/backoffice/organization" />
           <Route exact component={EditOrganization} path="/backoffice/organization/edit" />
         </Switch>
