@@ -11,6 +11,7 @@ import { getRegistered } from "../../features/auth/authSlice";
 const PASSWORD_REGEX = new RegExp("(?=.*[A-Za-z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{6,})");
 
 const initialValues = {
+  name: "",
   email: "",
   password: "",
   confirmPassword: "",
