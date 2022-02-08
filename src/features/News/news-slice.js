@@ -3,7 +3,11 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { getNews } from "../../Services/NewsService";
 
 export const fetchNews = createAsyncThunk("news/get", async () => {
-  return await getNews().then((res) => res.data);
+  const {
+    data: { data },
+  } = await getNews();
+
+  return data;
 });
 
 const newsSlice = createSlice({
