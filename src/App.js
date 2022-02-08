@@ -17,7 +17,6 @@ import HomeForm from "./Components/Home/HomeForm";
 import ActivitiesListContainer from "./Containers/Activities/ActivitiesListContainer";
 import ActivitiesFormContainer from "./Containers/Activities/ActivitiesFormContainer/ActivitiesFormContainer";
 import NewsList from "./Components/News/NewsList";
-import NewsForm from "./Components/News/NewsForm";
 import CategoriesListContainer from "./Containers/Categories/CategoriesListContainer";
 import CategoriesFormContainer from "./Containers/Categories/CategoriesFormContainer";
 import SlidesContainer from "./Components/Slides/SlidesContainer";
@@ -28,6 +27,7 @@ import MembersListContainer from "./Containers/Members/MembersListContainer";
 import MembersFormContainer from "./Containers/Members/MembersFormContainer";
 import OrganizationContainer from "./Containers/Organization/OrganizationContainer";
 import EditOrganization from "./Containers/EditOrganization/EditOrganization";
+import NewsContainer from "./Containers/News/NewsContainer";
 import NewsIdPage from "./Pages/NewsIdPage";
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -40,29 +40,28 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route exact component={HomePage} path="/" />
-
           <Route exact component={ContactPage} path="/contacto" />
           <Route exact component={Donation} path="/donar" />
           <Route exact component={ThankYou} path="/gracias" />
           <Route exact component={AboutPage} path="/nosotros" />
           <Route exact component={SchoolCampaign} path="/school-campaign" />
           <Route exact component={ToysCampaign} path="/toys-campaign" />
-
           <Route exact component={ActivitiesPage} path="/actividades" />
           <Route exact component={ActivitiesDetailsContainer} path="/actividades/:id" />
-
           <Route exact component={NewsPage} path="/novedades" />
+          <Route exact component={NewsDetailsContainer} path="/novedades/:id" />
+
           <Route exact component={NewsIdPage} path="/novedades/:id" />
 
           <Route exact component={TestimonialForm} path="/testimonials/create" />
           <Route exact component={ProjectsForm} path="/projects/create" />
-
           <Route exact component={HomeForm} path="/backoffice/home" />
           <Route exact component={ActivitiesListContainer} path="/backoffice/activities" />
           <Route exact component={ActivitiesFormContainer} path="/backoffice/activities/create" />
           <Route exact component={ActivitiesFormContainer} path="/backoffice/activities/:id" />
           <Route exact component={NewsList} path="/backoffice/news" />
-          <Route exact component={NewsForm} path="/backoffice/news/create" />
+          <Route exact component={NewsContainer} path="/backoffice/news/create" />
+          <Route exact component={NewsContainer} path="/backoffice/news/:id" />
           <Route exact component={CategoriesListContainer} path="/backoffice/categories" />
           <Route exact component={CategoriesFormContainer} path="/backoffice/categories/create" />
           <Route exact component={CategoriesFormContainer} path="/backoffice/categories/:id" />

@@ -1,10 +1,14 @@
-import { get, post, patch } from "./publicApiService";
-import { remove } from "./privateApiService";
+import { get } from "./publicApiService";
+import { remove, post, put } from "./privateApiService";
 
 const ENDPOINT = process.env.REACT_APP_API_NEWS_ENDPOINT;
 
 export const getNews = () => {
   return get(ENDPOINT);
+};
+
+export const getNewsById = (id) => {
+  return get(ENDPOINT, id);
 };
 
 export const getLastNews = (entries) => {
@@ -13,16 +17,12 @@ export const getLastNews = (entries) => {
   return get(url);
 };
 
-export const getNewByID = (id) => {
-  return get(ENDPOINT, id);
+export const createNews = (data) => {
+  return post(ENDPOINT, data);
 };
 
-export const createNews = () => {
-  return post(ENDPOINT);
-};
-
-export const editNews = () => {
-  return patch(ENDPOINT);
+export const editNews = (data, id) => {
+  return put(ENDPOINT, data, id);
 };
 
 export const removeNews = (id) => {
