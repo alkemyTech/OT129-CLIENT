@@ -28,7 +28,6 @@ import MembersFormContainer from "./Containers/Members/MembersFormContainer";
 import OrganizationContainer from "./Containers/Organization/OrganizationContainer";
 import EditOrganization from "./Containers/EditOrganization/EditOrganization";
 import NewsContainer from "./Containers/News/NewsContainer";
-
 import NewsIdPage from "./Pages/NewsIdPage";
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -53,7 +52,6 @@ function App() {
           <Route exact component={NewsDetailsContainer} path="/novedades/:id" />
 
           <Route exact component={NewsIdPage} path="/novedades/:id" />
-
 
           <Route exact component={TestimonialForm} path="/testimonials/create" />
           <Route exact component={ProjectsForm} path="/projects/create" />
