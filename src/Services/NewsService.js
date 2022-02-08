@@ -7,6 +7,12 @@ export const getNews = () => {
   return get(ENDPOINT);
 };
 
+export const getLastNews = (entries) => {
+  const url = entries ? `${ENDPOINT}?limit=${entries}` : ENDPOINT;
+
+  return get(url);
+};
+
 export const getNewByID = (id) => {
   return get(ENDPOINT, id);
 };
