@@ -1,9 +1,31 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 import { formatDate } from "../../../utils/formatDate";
+import { confirmAlerts, alerts } from "../../../utils/alerts";
+import { deleteActivity } from "../../../Services/ActivitiesService";
 
 function ListTable({ data }) {
+  const handleDelete = (id) => {
+    confirmAlerts(
+      "¿Estás seguro?",
+      `La actividad id: ${id} se eliminará permanentemente`,
+      function (response) {
+        // callback function, if user clicks on confirm button, response is true
+        if (response) {
+          deleteActivity(id)
+            .then(() => {
+              alerts(`La actividad id: ${id} se eliminó correctamente`, "success");
+            })
+            .catch(() => {
+              alerts(`Ocurrió un error al eliminar la actividad id: ${id} `, "error");
+            });
+        }
+      }
+    );
+  };
+
   return (
     <table className="table table-striped table-list">
       <thead className="thead-list">
@@ -28,10 +50,16 @@ function ListTable({ data }) {
               </td>
               <td className="align-middle">{formatDate(el.created_at)}</td>
               <td className="align-middle">
-                <button className="btn-list btn-edit" title="Editar">
-                  <i className="fas fa-pencil-alt" />
-                </button>
-                <button className="btn-list btn-delete" title="Eliminar">
+                <Link to={`/backoffice/activities/${el.id}`}>
+                  <button className="btn-list btn-edit" title="Editar">
+                    <i className="fas fa-pencil-alt" />
+                  </button>
+                </Link>
+                <button
+                  className="btn-list btn-delete"
+                  title="Eliminar"
+                  onClick={() => handleDelete(el.id)}
+                >
                   <i className="far fa-trash-alt" />
                 </button>
               </td>

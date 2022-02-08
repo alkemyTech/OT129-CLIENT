@@ -6,7 +6,8 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import PropTypes from "prop-types";
 
 import { createCategory, editCategory } from "../../Services/CategoriesService";
-import { formattedCategory } from "../../Containers/Categories/CategoriesContainer";
+import { formattedCategory } from "../../Containers/Categories/CategoriesFormContainer";
+import { alerts, confirmAlerts } from "../../utils/alerts";
 
 const ErrorComponent = (props) => {
   return <p>{props.children}</p>;
@@ -24,11 +25,41 @@ const validationSchema = Yup.object({
   description: Yup.string().required("Requerido"),
 });
 
-const CategoriesForm = ({ initialValues }) => {
+const CategoriesForm = ({ category = {} }) => {
+  const initialValues = {
+    name: category?.name || "",
+    description: category?.description || "",
+    image: category?.image || "",
+    parent_category_id: category?.parent_category_id || undefined,
+  };
   const onSubmit = async (values) => {
     const data = await formattedCategory(values);
 
-    values.id ? editCategory(data, values.id) : createCategory(data);
+    if (!category.id) {
+      createCategory(data)
+        .then(() => {
+          alerts(`Categoría creada correctamente`, "success");
+        })
+        .catch(() => {
+          alerts("Ups! ocurrió un error inesperado al crear la categoría", "error");
+        });
+    } else {
+      confirmAlerts(
+        "¿Estás seguro?",
+        `La categoría id: ${category.id} será editada`,
+        function (response) {
+          if (response) {
+            editCategory(data, category.id)
+              .then(() => {
+                alerts(`La categoría id: ${category.id} se editó correctamente`, "success");
+              })
+              .catch(() => {
+                alerts(`Ocurrió un error al editar la categoría id: ${category.id} `, "error");
+              });
+          }
+        }
+      );
+    }
   };
 
   const formik = useFormik({ initialValues, onSubmit, validationSchema });
@@ -41,7 +72,13 @@ const CategoriesForm = ({ initialValues }) => {
       onSubmit={onSubmit}
     >
       <Form className="form-container">
-        <Field className="input-field" name="name" placeholder="Título categoría" type="text" />
+        <Field
+          className="input-field"
+          id="name"
+          name="name"
+          placeholder={initialValues.name}
+          type="text"
+        />
         <ErrorMessage component={ErrorComponent} name="name" />
         {initialValues.image ? (
           <img alt={initialValues.name} height="150" src={initialValues.image} width="200" />
@@ -59,6 +96,7 @@ const CategoriesForm = ({ initialValues }) => {
         <ErrorMessage component={ErrorComponent} name="image" />
         <CKEditor
           config={{ placeholder: `${initialValues.description}` }}
+          data={initialValues.description}
           editor={ClassicEditor}
           name="description"
           onChange={(e, editor) => {
@@ -79,7 +117,7 @@ ErrorComponent.propTypes = {
 };
 
 CategoriesForm.propTypes = {
-  initialValues: PropTypes.shape({
+  category: PropTypes.shape({
     id: PropTypes.number,
     name: PropTypes.string,
     description: PropTypes.string,
