@@ -1,7 +1,21 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { login, register } from "../../Services/authServices";
+
+export const getLogged = createAsyncThunk("auth/getLogged", async (data) => {
+  const response = await login(data);
+
+  localStorage.setItem("token", response.data.data.token);
+
+  return response.data.data;
+});
+export const getRegistered = createAsyncThunk("auth/getRegistered", async (data) => {
+  const response = await register(data);
+
+  localStorage.setItem("token", response.data.data.token);
+
+  return response.data.data;
+});
 
 export const authSlice = createSlice({
   name: "auth",
@@ -22,29 +36,27 @@ export const authSlice = createSlice({
       state.data = initialState.token;
     },
   },
+  extraReducers: (builder) => {
+    builder.addCase(getLogged.fulfilled, (state, action) => {
+      return {
+        ...state,
+        auth: true,
+        data: action.payload,
+        token: action.payload.token,
+      };
+    });
+    builder.addCase(getRegistered.fulfilled, (state, action) => {
+      return {
+        ...state,
+        auth: true,
+        data: action.payload,
+        token: action.payload.token,
+      };
+    });
+  },
 });
 
 export const { autheticate, logout } = authSlice.actions;
-
-export const getLogged = (data) => (dispatch) => {
-  login(data).then((response) => {
-    if ("success") {
-      dispatch(autheticate(response.data));
-      useLocalStorage("token", response.data.token);
-    }
-  });
-};
-export const getRegistered = (data) => (dispatch) => {
-  register(data).then((response) => {
-    if ("success") {
-      dispatch(autheticate(response.data));
-      useLocalStorage("token", response.data.token);
-    }
-  });
-};
-export const getLoggedOut = () => (dispatch) => {
-  dispatch(logout());
-};
 
 export const selectAuth = (state) => state.auth;
 

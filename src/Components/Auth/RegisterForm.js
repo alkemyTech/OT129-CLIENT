@@ -2,10 +2,10 @@ import React from "react";
 import { Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import PropTypes from "prop-types";
-
 import "bootstrap/dist/css/bootstrap.css";
-
 import "../FormStyles.css";
+import { useDispatch } from "react-redux";
+
 import { getRegistered } from "../../features/auth/authSlice";
 
 const PASSWORD_REGEX = new RegExp("(?=.*[A-Za-z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{6,})");
@@ -38,6 +38,7 @@ Alert.propTypes = {
 };
 
 const RegisterForm = () => {
+  const dispatch = useDispatch();
   const handleRegister = (values) => {
     const body = {
       name: values.name,
@@ -45,7 +46,7 @@ const RegisterForm = () => {
       password: values.password,
     };
 
-    getRegistered(body);
+    dispatch(getRegistered(body));
   };
 
   return (
@@ -59,6 +60,20 @@ const RegisterForm = () => {
       >
         {(formik) => (
           <form noValidate className="mt-3" onSubmit={formik.handleSubmit}>
+            <div className="form-group mb-3">
+              <label className="form-label" htmlFor="name">
+                Nombre:
+              </label>
+              <input
+                className="form-control mb-3"
+                id="name"
+                placeholder="Enter your name"
+                type="name"
+                value={formik.values.name}
+                onChange={formik.handleChange}
+              />
+              <ErrorMessage className="alert-danger" component={Alert} name="name" />
+            </div>
             <div className="form-group mb-3">
               <label className="form-label" htmlFor="email">
                 Email:

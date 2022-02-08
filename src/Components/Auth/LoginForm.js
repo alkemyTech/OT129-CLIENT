@@ -2,9 +2,9 @@ import React from "react";
 import "../FormStyles.css";
 import { Formik, ErrorMessage, Field } from "formik";
 import * as Yup from "yup";
+import { useDispatch } from "react-redux";
 
 import Alert from "../Container/Alert";
-import { getLogged } from "../../features/auth/authSlice";
 
 const startValues = {
   email: "",
@@ -22,13 +22,14 @@ const validationSchema = Yup.object().shape({
 });
 
 const LoginForm = () => {
+  const dispatch = useDispatch();
   const handleLogin = (values) => {
     const body = {
       email: values.email,
       password: values.password,
     };
 
-    getLogged(body);
+    dispatch(getLogged(body));
   };
 
   return (
