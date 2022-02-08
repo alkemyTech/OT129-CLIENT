@@ -1,7 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+
+import AboutInfo from "../../Components/About/AboutInfo";
+import Spinner from "../../Components/Spinner/Spinner";
+import { getOrganization } from "../../Services/HomeServices";
+import { alerts } from "../../utils/alerts";
 
 const AboutInfoContainer = () => {
-  return <div className="container mt-5 text-center" />;
+  const [dataAboutUs, setDataAboutUs] = useState("");
+  const [dataExist, setDataExist] = useState(false);
+  const [spinnerShow, setSpinnerShow] = useState(true);
+
+  useEffect(() => {
+    getOrganization()
+      .then((response) => {
+        setDataAboutUs(response.data.data.long_description);
+        setDataExist(true);
+        setSpinnerShow(false);
+      })
+      .catch(() => {
+        alerts("Lo sentimos! La información no se encuentra disponible.", "error");
+        setSpinnerShow(false);
+      });
+  }, []);
+
+  return (
+    <div className="container mt-5 text-center">
+      <h3 className="text-uppercase mb-4">Sobre la ONG</h3>
+      {dataExist && <AboutInfo description={dataAboutUs} />}
+      {spinnerShow && <Spinner />}
+    </div>
+  );
 };
 
 export default AboutInfoContainer;
