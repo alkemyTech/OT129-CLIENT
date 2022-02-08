@@ -34,13 +34,13 @@ const TestimonialForm = ({ testimony = {} }) => {
           const newTestimony = { ...values, image: resultBase };
 
           if (!testimony.id) {
-            const result = await createTestimonial(newTestimony).catch(() => {
+            await createTestimonial(newTestimony).catch(() => {
               alerts("Lo sentimos! Su mensaje no se ha podido enviar.", "error");
             });
 
             setFormSend(true);
           } else {
-            const result = await editTestimonial(newTestimony, testimony.id).catch(() => {
+            await editTestimonial(newTestimony, testimony.id).catch(() => {
               alerts("Lo sentimos! Su mensaje no se ha podido enviar.", "error");
             });
 
