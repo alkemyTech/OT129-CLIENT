@@ -7,9 +7,8 @@ import TitleNav from "../TitleNav/TitleNav";
 import NewsTable from "./NewsTable";
 
 const NewsList = () => {
-  const dispatch = useDispatch();
-
   const { news } = useSelector(selectorNews);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchNews());

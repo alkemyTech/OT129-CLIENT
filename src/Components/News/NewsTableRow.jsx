@@ -1,6 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { format } from "date-fns";
+import { Link } from "react-router-dom";
+
+import { removeNews } from "../../Services/NewsService";
 
 const NewsTableRow = ({ data }) => {
   return (
@@ -12,10 +15,16 @@ const NewsTableRow = ({ data }) => {
       </td>
       <td className="align-middle">{format(new Date(data.created_at), "dd/MM/yyyy")}</td>
       <td className="align-middle">
-        <button className="btn-list btn-edit" title="Editar">
-          <i className="fas fa-pencil-alt" />
-        </button>
-        <button className="btn-list btn-delete" title="Eliminar">
+        <Link to={`/backoffice/news/${data.id}`}>
+          <button className="btn-list btn-edit" title="Editar">
+            <i className="fas fa-pencil-alt" />
+          </button>
+        </Link>
+        <button
+          className="btn-list btn-delete"
+          title="Eliminar"
+          onClick={() => removeNews(data.id)}
+        >
           <i className="fas fa-trash-alt" />
         </button>
       </td>

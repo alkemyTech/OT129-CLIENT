@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import NewsDetails from "../../Components/News/Details/NewsDetails";
-import { getNewByID } from "../../Services/NewsService";
+import { getNewsById } from "../../Services/NewsService";
 
 const NewsDetailsContainer = () => {
   const [news, setNews] = useState({
@@ -15,7 +15,7 @@ const NewsDetailsContainer = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    getNewByID(id)
+    getNewsById(id)
       .then((response) => {
         setNews(response.data.data);
       })
