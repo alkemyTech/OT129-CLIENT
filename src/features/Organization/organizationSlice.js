@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 import { getOrganizations } from "../../Services/OrganizationService";
 
-export const fetchOrganization = createAsyncThunk("about/get", async () => {
+export const fetchOrganization = createAsyncThunk("organization/get", async () => {
   const {
     data: { data },
   } = await getOrganizations();
@@ -10,8 +10,8 @@ export const fetchOrganization = createAsyncThunk("about/get", async () => {
   return data;
 });
 
-const aboutSlice = createSlice({
-  name: "about",
+const organizationSlice = createSlice({
+  name: "organization",
   initialState: {
     organization: [],
     status: null,
@@ -30,6 +30,6 @@ const aboutSlice = createSlice({
   },
 });
 
-export const selectorOrganization = (state) => state.about.organization;
+export const selectorOrganization = (state) => state.organization;
 
-export default aboutSlice.reducer;
+export default organizationSlice.reducer;
