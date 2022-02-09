@@ -29,9 +29,9 @@ import SchoolCampaign from "./Campaigns/School/SchoolCampaign";
 import TestimonialForm from "./Components/Testimonials/TestimonialsForm";
 import ThankYou from "./Components/Donations/ThankYou";
 import ToysCampaign from "./Campaigns/Toys/ToysCampaign";
+import Backoffice from "./Containers/Backoffice/Backoffice";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import NewsDetailsContainer from "./Containers/NewsDetailContainer/NewsDetailsContainer";
 
 function App() {
   return (
@@ -74,6 +74,7 @@ function App() {
           <Route exact component={MembersFormContainer} path="/backoffice/members/:id" />
           <Route exact component={OrganizationContainer} path="/backoffice/organization" />
           <Route exact component={EditOrganization} path="/backoffice/organization/edit" />
+          <Route exact component={Backoffice} path="/backoffice" />
         </Switch>
       </BrowserRouter>
     </>
