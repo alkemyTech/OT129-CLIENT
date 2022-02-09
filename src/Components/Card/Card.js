@@ -19,7 +19,11 @@ const Card = ({ id, title, image, description, url }) => {
       )}
       <div className="card-body">
         <h5 className="card-title text-uppercase">{title}</h5>
-        <p className="card-text">{description}</p>
+        {description === null ? (
+          <p />
+        ) : (
+          <p dangerouslySetInnerHTML={{ __html: `${description}` }} className="card-text" />
+        )}
         <Link className="general-btn fill-btn text-decoration-none" to={`/${url}/${id}`}>
           Leer más
         </Link>
