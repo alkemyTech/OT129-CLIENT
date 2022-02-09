@@ -1,4 +1,5 @@
-import { get, post, put } from "./publicApiService";
+import { get } from "./publicApiService";
+import { post, put, remove } from "./privateApiService";
 
 const ENDPOINT = process.env.REACT_APP_API_CATEGORIES;
 
@@ -6,10 +7,18 @@ export const getCategories = () => {
   return get(ENDPOINT);
 };
 
-export const createCategory = () => {
-  return post(ENDPOINT);
+export const getCategoryById = (id) => {
+  return get(ENDPOINT, id);
 };
 
-export const editCategory = () => {
-  return put(ENDPOINT);
+export const createCategory = (data) => {
+  return post(ENDPOINT, data);
+};
+
+export const editCategory = (data, id) => {
+  return put(ENDPOINT, data, id);
+};
+
+export const deleteCategory = (id) => {
+  return remove(ENDPOINT, id);
 };

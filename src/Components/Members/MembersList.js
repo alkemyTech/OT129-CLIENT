@@ -1,7 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
-const MembersList = ({ content }) => {
+import { deleteMember } from "../../Services/MembersService";
+
+const MembersList = ({ data }) => {
   return (
     <table className="table table-striped table-list">
       <thead className="thead-list">
@@ -13,7 +16,7 @@ const MembersList = ({ content }) => {
         </tr>
       </thead>
       <tbody>
-        {content.map((member) => {
+        {data.map((member) => {
           return (
             <tr key={member.id}>
               <th className="align-middle" scope="row">
@@ -26,10 +29,16 @@ const MembersList = ({ content }) => {
                 <img alt="member" className="img-list" src={member.photo} />
               </td>
               <td className="align-middle">
-                <button className="btn-list btn-edit" title="Editar">
-                  <i className="fas fa-pencil-alt" />
-                </button>
-                <button className="btn-list btn-delete" title="Eliminar">
+                <Link to={`/backoffice/members/${member.id}`}>
+                  <button className="btn-list btn-edit" title="Editar">
+                    <i className="fas fa-pencil-alt" />
+                  </button>
+                </Link>
+                <button
+                  className="btn-list btn-delete"
+                  title="Eliminar"
+                  onClick={() => deleteMember(member.id)}
+                >
                   <i className="fas fa-trash-alt" />
                 </button>
               </td>
@@ -42,10 +51,10 @@ const MembersList = ({ content }) => {
 };
 
 MembersList.propTypes = {
-  content: PropTypes.arrayOf(
+  data: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,
-      photo: PropTypes.string.isRequired,
+      photo: PropTypes.string,
       id: PropTypes.number.isRequired,
     })
   ),

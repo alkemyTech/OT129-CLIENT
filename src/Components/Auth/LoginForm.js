@@ -2,7 +2,7 @@ import React from "react";
 import "../FormStyles.css";
 import { Formik, ErrorMessage, Field } from "formik";
 import * as Yup from "yup";
-import axios from "axios";
+import { useDispatch } from "react-redux";
 
 import Alert from "../Container/Alert";
 
@@ -22,16 +22,14 @@ const validationSchema = Yup.object().shape({
 });
 
 const LoginForm = () => {
+  const dispatch = useDispatch();
   const handleLogin = (values) => {
-    const url = "";
     const body = {
       email: values.email,
       password: values.password,
     };
 
-    axios.post(url, body).then((response) => {
-      localStorage.setItem("token", response.data.token);
-    });
+    dispatch(getLogged(body));
   };
 
   return (

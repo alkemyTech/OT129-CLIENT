@@ -6,6 +6,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
+import { alerts } from "../../utils/alerts";
 import { toBase64 } from "../../utils/toBase64";
 import { createTestimonial, editTestimonial } from "../../Services/TestimonialsService";
 
@@ -13,8 +14,6 @@ import PreviewImage from "./PreviewImage";
 import { testimonialSchema } from "./formValidation";
 
 const TestimonialForm = ({ testimony = {} }) => {
-  const [formSend, setFormSend] = useState(false);
-
   const [testimonyImage, setTestimonyImage] = useState("");
 
   return (
@@ -33,18 +32,17 @@ const TestimonialForm = ({ testimony = {} }) => {
           const newTestimony = { ...values, image: resultBase };
 
           if (!testimony.id) {
-            const result = await createTestimonial(newTestimony);
-
-            console.log(result);
-            setFormSend(true);
-          } else {
-            const result = await editTestimonial({
-              ...newTestimony,
-              id: testimony.id,
+            await createTestimonial(newTestimony).catch(() => {
+              alerts("Lo sentimos! Su mensaje no se ha podido enviar.", "error");
             });
 
             setFormSend(true);
-            console.log(result);
+          } else {
+            await editTestimonial(newTestimony, testimony.id).catch(() => {
+              alerts("Lo sentimos! Su mensaje no se ha podido enviar.", "error");
+            });
+
+            setFormSend(true);
           }
         }}
       >
@@ -107,13 +105,6 @@ const TestimonialForm = ({ testimony = {} }) => {
             <button className="btn btn-primary" disabled={!isValid} type="submit">
               Enviar
             </button>
-            {formSend ? (
-              testimony.id ? (
-                <p className="formSubmitted">Formulario editado con éxito</p>
-              ) : (
-                <p className="formSubmitted">Formulario enviado con éxito</p>
-              )
-            ) : null}
           </Form>
         )}
       </Formik>

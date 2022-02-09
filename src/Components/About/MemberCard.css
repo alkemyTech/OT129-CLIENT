@@ -1,7 +1,8 @@
 .card {
-    padding: 0!important;
+    padding: 0 !important;
     text-align: center;
 }
+
 .card a {
     text-decoration: none;
 }
@@ -10,5 +11,17 @@
     height: 280px;
     object-fit: cover;
     box-shadow: var(--card-shadow);
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 160px;
+}
+
+.container-icons {
+    display: flex;
+    justify-content: space-around;
 }
 

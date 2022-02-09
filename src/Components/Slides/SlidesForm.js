@@ -4,12 +4,11 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import axios from "axios";
 import PropTypes from "prop-types";
 
 import { toBase64 } from "../../utils/toBase64";
-// import "@ckeditor/ckeditor5-build-classic/build/translations/es";
 import ContainerFormCard from "../../Containers/ContainerFormCard";
+import { getSlides, postSlides, putSlides } from "../../Services/SlidesServices";
 
 const SlidesForm = () => {
   const [initialValues, setInitialValues] = useState({
@@ -18,53 +17,41 @@ const SlidesForm = () => {
     order: 0,
     image: "",
   });
-  const [ordersList, setOrdersList] = useState([]); // para validar order
+  const [ordersList, setOrdersList] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const { id } = useParams();
-  const url = "http://ongapi.alkemy.org/api/slides";
 
   const getOrdersList = async () => {
-    await axios
-      .get(url)
-      .then((res) => {
-        let data = res.data.data;
-        // arreglo de order utilizados
-        const orderBlackList = data
-          .map((data) => data.order)
-          .filter((order) => order !== initialValues.order);
+    const res = await getSlides();
+    let data = res.data.data;
+    // arreglo de order utilizados
+    const orderBlackList = data
+      .map((data) => data.order)
+      .filter((order) => order !== initialValues.order);
 
-        setOrdersList(orderBlackList);
-      })
-      .catch((err) => {
-        alert(err.message);
-      });
+    setOrdersList(orderBlackList);
   };
 
   const getSlideById = async (id) => {
     setLoading(true);
 
-    await axios
-      .get(`${url}/${id}`)
-      .then((res) => {
-        if (res.data.success) {
-          const { name, description, order, image } = res.data.data;
+    const res = await getSlides(id);
 
-          setInitialValues({
-            name,
-            description,
-            order,
-            image,
-          });
-        } else {
-          const { status } = res.data;
+    if (res.data.success) {
+      const { name, description, order, image } = res.data.data;
 
-          alert(status.message);
-        }
-      })
-      .catch((err) => {
-        alert(err.message);
+      setInitialValues({
+        name,
+        description,
+        order,
+        image,
       });
+    } else {
+      const { status } = res.data;
+
+      alert(status.message);
+    }
 
     setLoading(false);
   };
@@ -89,13 +76,9 @@ const SlidesForm = () => {
     }
 
     if (id) {
-      await axios.put(`${url}/${id}`, formValues).catch((err) => {
-        alert(err.message);
-      });
+      await putSlides(id, formValues);
     } else {
-      await axios.post(url, formValues).catch((err) => {
-        alert(err.message);
-      });
+      await postSlides(formValues);
     }
   };
 
@@ -134,6 +117,7 @@ const SlidesForm = () => {
               };
 
               await handleSubmit(formValues);
+
               // limpio el input file
               inputFileRef.current.value = "";
 
@@ -223,7 +207,7 @@ const SlidesForm = () => {
 SlidesForm.propTypes = {
   id: PropTypes.number,
   name: PropTypes.string,
-  descripcion: PropTypes.descripcion,
+  descripcion: PropTypes.string,
   image: PropTypes.string,
   order: PropTypes.number,
 };
