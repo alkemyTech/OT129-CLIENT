@@ -30,9 +30,13 @@ const ContactForm = () => {
   const onSubmit = (values, { resetForm }) => {
     resetForm();
 
-    createContact(values).catch(() => {
-      alerts("Lo sentimos! Su mensaje no se ha podido enviar.", "error");
-    });
+    createContact(values)
+      .then((response) => {
+        response.status === 200 && alerts("Mensaje enviado correctamente.", "success");
+      })
+      .catch(() => {
+        alerts("Lo sentimos! Su mensaje no se ha podido enviar.", "error");
+      });
   };
 
   return (
