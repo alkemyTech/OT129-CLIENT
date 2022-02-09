@@ -26,7 +26,7 @@ const NewsCards = () => {
               id={el.id}
               image={el.image}
               title={el.name}
-              url={`./novedades`}
+              url={"novedades"}
             />
           </div>
         ))}
