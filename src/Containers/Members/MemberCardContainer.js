@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 
 import MemberCard from "../../Components/About/MemberCard";
-import ErrorHandler from "../../Components/ErrorHandler/ErrorHandler";
+import StatusHandler from "../../Components/StatusHandler/StatusHandler";
 import { fetchMembers, selectorMembers } from "../../features/Members/membersSlice";
 
 import "./MemberCardContainer.css";
@@ -22,7 +22,7 @@ const MemberCardContainer = () => {
       <h3 className="text-center mb-5">MIEMBROS</h3>
       <div className="member-card-container">
         {members && members.map((member) => <MemberCard key={member.id} {...member} />)}
-        <ErrorHandler status={status} />
+        <StatusHandler status={status} />
       </div>
     </div>
   );

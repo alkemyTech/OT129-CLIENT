@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 
 import AboutInfo from "../../Components/About/AboutInfo";
-import ErrorHandler from "../../Components/ErrorHandler/ErrorHandler";
+import StatusHandler from "../../Components/StatusHandler/StatusHandler";
 import {
   fetchOrganization,
   selectorOrganization,
@@ -26,7 +26,7 @@ const AboutInfoContainer = () => {
     <div className="container mt-5 text-center">
       <h3 className="text-uppercase mb-4">Sobre la ONG</h3>
       {long_description && <AboutInfo description={long_description} />}
-      <ErrorHandler status={status} />
+      <StatusHandler status={status} />
     </div>
   );
 };

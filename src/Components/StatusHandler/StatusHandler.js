@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { alerts } from "../../utils/alerts";
 import Spinner from "../Spinner/Spinner";
 
-const ErrorHandler = ({ status }) => {
+const StatusHandler = ({ status }) => {
   if (status === "loading") {
     return (
       <div className="container">
@@ -18,8 +18,8 @@ const ErrorHandler = ({ status }) => {
   }
 };
 
-ErrorHandler.propTypes = {
+StatusHandler.propTypes = {
   status: PropTypes.string,
 };
 
-export default ErrorHandler;
+export default StatusHandler;
