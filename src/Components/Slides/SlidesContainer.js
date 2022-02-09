@@ -1,28 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { getSlides } from "../../Services/SlidesServices";
+import { fetchSlides, selectorSlides } from "../../features/slides/slidesSlice";
 
 import SlidesList from "./SlidesList";
 
 const SlidesContainer = () => {
-  const [slides, setSlides] = useState([]);
+  const dispatch = useDispatch();
+  const { slides } = useSelector(selectorSlides);
 
   useEffect(() => {
-    const data = async () => {
-      const slides = await getSlides();
-
-      setSlides(slides.data.data);
-    };
-
-    data();
-  }, []);
+    dispatch(fetchSlides());
+  }, [dispatch]);
 
   return (
     <div className="container">
       <h1 className="text-center mt-3">Slides</h1>
       <div className=" d-flex justify-content-end">
-        <Link className="text-decoration-none " to="/backoffice/slides/create">
+        <Link className="text-decoration-none mb-2" to="/backoffice/slides/create">
           <span className="general-btn fill-btn ">
             <i className="fas fa-plus me-2" />
             CREAR SLIDE
