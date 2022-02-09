@@ -19,20 +19,21 @@ import ActivitiesFormContainer from "./Containers/Activities/ActivitiesFormConta
 import NewsList from "./Components/News/NewsList";
 import CategoriesListContainer from "./Containers/Categories/CategoriesListContainer";
 import CategoriesFormContainer from "./Containers/Categories/CategoriesFormContainer";
+import EditOrganization from "./Containers/EditOrganization/EditOrganization";
 import SlidesContainer from "./Components/Slides/SlidesContainer";
 import SlidesForm from "./Components/Slides/SlidesForm";
 import UsersListContainer from "./Containers/Users/UsersListContainer";
 import UsersFormContainer from "./Containers/Users/UsersFormContainer";
 import MembersListContainer from "./Containers/Members/MembersListContainer";
 import MembersFormContainer from "./Containers/Members/MembersFormContainer";
-import OrganizationContainer from "./Containers/Organization/OrganizationContainer";
-import EditOrganization from "./Containers/EditOrganization/EditOrganization";
-import NewsContainer from "./Containers/News/NewsContainer";
 import NewsIdPage from "./Pages/NewsIdPage";
+import NewsContainer from "./Containers/News/NewsContainer";
+import OrganizationContainer from "./Containers/Organization/OrganizationContainer";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import "./App.css";
+import NewsDetailsContainer from "./Containers/NewsDetailContainer/NewsDetailsContainer";
 
 function App() {
   return (
