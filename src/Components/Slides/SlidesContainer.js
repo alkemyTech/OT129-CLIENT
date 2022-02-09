@@ -18,7 +18,7 @@ const SlidesContainer = () => {
     <div className="container">
       <h1 className="text-center mt-3">Slides</h1>
       <div className=" d-flex justify-content-end">
-        <Link className="text-decoration-none " to="/backoffice/slides/create">
+        <Link className="text-decoration-none mb-2" to="/backoffice/slides/create">
           <span className="general-btn fill-btn ">
             <i className="fas fa-plus me-2" />
             CREAR SLIDE
