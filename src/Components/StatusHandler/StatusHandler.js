@@ -12,7 +12,7 @@ const StatusHandler = ({ status }) => {
       </div>
     );
   } else if (status === "failed") {
-    alerts("Lo sentimos! La infrmación no se encuentra disponible.", "error");
+    alerts("Lo sentimos! La información no se encuentra disponible.", "error");
   } else {
     return null;
   }
