@@ -1,22 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { getSlides } from "../../Services/SlidesServices";
+import { fetchSlides, selectorSlides } from "../../features/slides/slidesSlice";
 
 import SlidesList from "./SlidesList";
 
 const SlidesContainer = () => {
-  const [slides, setSlides] = useState([]);
+  const dispatch = useDispatch();
+  const { slides } = useSelector(selectorSlides);
 
   useEffect(() => {
-    const data = async () => {
-      const slides = await getSlides();
-
-      setSlides(slides.data.data);
-    };
-
-    data();
-  }, []);
+    dispatch(fetchSlides());
+  }, [dispatch]);
 
   return (
     <div className="container">
