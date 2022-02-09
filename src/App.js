@@ -1,38 +1,35 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-import HomePage from "./Pages/HomePage";
-import ContactPage from "./Pages/ContactPage";
-import Donation from "./Components/Donations/Donation";
-import ThankYou from "./Components/Donations/ThankYou";
-import AboutPage from "./Pages/AboutPage";
-import SchoolCampaign from "./Campaigns/School/SchoolCampaign";
-import ToysCampaign from "./Campaigns/Toys/ToysCampaign";
+import ActivitiesListContainer from "./Containers/Activities/ActivitiesListContainer";
+import ActivitiesFormContainer from "./Containers/Activities/ActivitiesFormContainer/ActivitiesFormContainer";
 import ActivitiesPage from "./Pages/ActivitiesPage";
 import ActivitiesDetailsContainer from "./Containers/Activities/ActivitiesDetailsContainer/ActivitiesDetailsContainer";
 import NewsPage from "./Pages/NewsPage";
-import NewsDetailsContainer from "./Containers/NewsDetailContainer/NewsDetailsContainer";
 import NewsIdPage from "./Pages/NewsIdPage";
 import TestimonialForm from "./Components/Testimonials/TestimonialsForm";
 import ProjectsForm from "./Components/Projects/ProjectsForm";
+import AboutPage from "./Pages/AboutPage";
+import ContactPage from "./Pages/ContactPage";
+import Donation from "./Components/Donations/Donation";
+import EditOrganization from "./Containers/EditOrganization/EditOrganization";
+import HomePage from "./Pages/HomePage";
 import HomeForm from "./Components/Home/HomeForm";
-import ActivitiesListContainer from "./Containers/Activities/ActivitiesListContainer";
-import ActivitiesFormContainer from "./Containers/Activities/ActivitiesFormContainer/ActivitiesFormContainer";
 import NewsList from "./Components/News/NewsList";
 import CategoriesListContainer from "./Containers/Categories/CategoriesListContainer";
 import CategoriesFormContainer from "./Containers/Categories/CategoriesFormContainer";
+import MembersListContainer from "./Containers/Members/MembersListContainer";
+import MembersFormContainer from "./Containers/Members/MembersFormContainer";
+import NewsContainer from "./Containers/News/NewsContainer";
+import OrganizationContainer from "./Containers/Organization/OrganizationContainer";
 import SlidesContainer from "./Components/Slides/SlidesContainer";
 import SlidesForm from "./Components/Slides/SlidesForm";
 import UsersListContainer from "./Containers/Users/UsersListContainer";
 import UsersFormContainer from "./Containers/Users/UsersFormContainer";
-import MembersListContainer from "./Containers/Members/MembersListContainer";
-import MembersFormContainer from "./Containers/Members/MembersFormContainer";
-import OrganizationContainer from "./Containers/Organization/OrganizationContainer";
-import EditOrganization from "./Containers/EditOrganization/EditOrganization";
-import NewsContainer from "./Containers/News/NewsContainer";
-
+import SchoolCampaign from "./Campaigns/School/SchoolCampaign";
+import ThankYou from "./Components/Donations/ThankYou";
+import ToysCampaign from "./Campaigns/Toys/ToysCampaign";
 import "bootstrap/dist/css/bootstrap.min.css";
-
 import "./App.css";
 
 function App() {
@@ -50,8 +47,6 @@ function App() {
           <Route exact component={ActivitiesPage} path="/actividades" />
           <Route exact component={ActivitiesDetailsContainer} path="/actividades/:id" />
           <Route exact component={NewsPage} path="/novedades" />
-          <Route exact component={NewsDetailsContainer} path="/novedades/:id" />
-
           <Route exact component={NewsIdPage} path="/novedades/:id" />
 
           <Route exact component={TestimonialForm} path="/testimonials/create" />

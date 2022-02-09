@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import AboutInfo from "../../Components/About/AboutInfo";
 import Spinner from "../../Components/Spinner/Spinner";
-import { getOrganizations } from "../../Services/organizationService";
+import { getOrganizations } from "../../Services/OrganizationService";
 import { alerts } from "../../utils/alerts";
 
 const AboutInfoContainer = () => {
