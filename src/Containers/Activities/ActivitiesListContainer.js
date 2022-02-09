@@ -1,28 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
+import { fetchActivities, selectorActivities } from "../../features/Activities/activitiesSlice";
 import ActivitiesList from "../../Components/Activities/Backoffice/ActivitiesList";
-import { getActivities } from "../../Services/ActivitiesService";
-import { alerts } from "../../utils/alerts";
 
 function ActivitiesListContainer() {
-  const [activities, setActivities] = useState([]);
+  const { activities } = useSelector(selectorActivities);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    getActivities()
-      .then((res) => {
-        const result = res.data.data;
-        const activities = result.map((activity) => {
-          const { id, name, created_at, image } = activity;
-
-          return { id, name, created_at, image };
-        });
-
-        setActivities(activities);
-      })
-      .catch(() => {
-        alerts("Ups! ocurrió un error inesperado al solicitar las actividades", "error");
-      });
-  }, []);
+    dispatch(fetchActivities());
+  }, [dispatch]);
 
   return <ActivitiesList data={activities} />;
 }
