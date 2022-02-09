@@ -30,9 +30,9 @@ const Card = ({ id, title, image, description, url }) => {
 
 Card.propTypes = {
   id: PropTypes.number.isRequired,
-  title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
+  title: PropTypes.string,
+  description: PropTypes.string,
+  image: PropTypes.string,
   url: PropTypes.string.isRequired,
 };
 
