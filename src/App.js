@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ActivitiesListContainer from "./Containers/Activities/ActivitiesListContainer";
 import ActivitiesFormContainer from "./Containers/Activities/ActivitiesFormContainer/ActivitiesFormContainer";
 import ActivitiesPage from "./Pages/ActivitiesPage";
-import ActivitiesDetailsContainer from "./Containers/Activities/ActivitiesDetailsContainer/ActivitiesDetailsContainer";
+import ActivitiesIdPage from "./Pages/ActivitiesIdPage";
 import NewsPage from "./Pages/NewsPage";
 import NewsIdPage from "./Pages/NewsIdPage";
 import TestimonialForm from "./Components/Testimonials/TestimonialsForm";
@@ -31,6 +31,7 @@ import ThankYou from "./Components/Donations/ThankYou";
 import ToysCampaign from "./Campaigns/Toys/ToysCampaign";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+import ActivitiesDetailsContainer from "./Containers/Activities/ActivitiesDetailsContainer/ActivitiesDetailsContainer";
 
 function App() {
   return (
@@ -45,7 +46,7 @@ function App() {
           <Route exact component={SchoolCampaign} path="/school-campaign" />
           <Route exact component={ToysCampaign} path="/toys-campaign" />
           <Route exact component={ActivitiesPage} path="/actividades" />
-          <Route exact component={ActivitiesDetailsContainer} path="/actividades/:id" />
+          <Route exact component={ActivitiesIdPage} path="/actividades/:id" />
           <Route exact component={NewsPage} path="/novedades" />
           <Route exact component={NewsIdPage} path="/novedades/:id" />
 
