@@ -49,11 +49,10 @@ function App() {
           <Route exact component={ActivitiesDetailsContainer} path="/actividades/:id" />
           <Route exact component={NewsPage} path="/novedades" />
           <Route exact component={NewsDetailsContainer} path="/novedades/:id" />
-
           <Route exact component={NewsIdPage} path="/novedades/:id" />
-
           <Route exact component={TestimonialForm} path="/testimonials/create" />
           <Route exact component={ProjectsForm} path="/projects/create" />
+
           <Route exact component={HomeForm} path="/backoffice/home" />
           <Route exact component={ActivitiesListContainer} path="/backoffice/activities" />
           <Route exact component={ActivitiesFormContainer} path="/backoffice/activities/create" />
