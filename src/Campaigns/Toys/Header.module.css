@@ -1,11 +1,8 @@
-.headerCtn {
-    width: 100%;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.26);
-}
 
 .headerInfo {
     padding: 0.5rem;
     display: flex;
+    justify-content: center;
 }
 
 .logoCampaign {
@@ -14,6 +11,10 @@
 }
 
 .logoNgo {
+    display: none;
+}
+
+.slogan {
     display: none;
 }
 
@@ -41,3 +42,30 @@
         width: 150px;
     }
 }
+
+@media (min-width: 992px) {
+   .slogan, .spanbreak {
+       display: block;
+   }
+
+   .headerInfo {
+    justify-content: space-between;
+    align-items: center;
+}
+
+   .spanbreak {
+       margin-top: -5px;
+   }
+
+   .slogan {
+       color: #EC4C4B;
+       font-size: 30px;
+   }
+
+}
+
+@media (min-width: 1440px) {
+    .headerCtn {
+        background-color: transparent;
+    }
+ }
