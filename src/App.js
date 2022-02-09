@@ -11,6 +11,8 @@ import ToysCampaign from "./Campaigns/Toys/ToysCampaign";
 import ActivitiesPage from "./Pages/ActivitiesPage";
 import ActivitiesDetailsContainer from "./Containers/Activities/ActivitiesDetailsContainer/ActivitiesDetailsContainer";
 import NewsPage from "./Pages/NewsPage";
+import NewsDetailsContainer from "./Containers/NewsDetailContainer/NewsDetailsContainer";
+import NewsIdPage from "./Pages/NewsIdPage";
 import TestimonialForm from "./Components/Testimonials/TestimonialsForm";
 import ProjectsForm from "./Components/Projects/ProjectsForm";
 import HomeForm from "./Components/Home/HomeForm";
@@ -28,7 +30,6 @@ import MembersFormContainer from "./Containers/Members/MembersFormContainer";
 import OrganizationContainer from "./Containers/Organization/OrganizationContainer";
 import EditOrganization from "./Containers/EditOrganization/EditOrganization";
 import NewsContainer from "./Containers/News/NewsContainer";
-import NewsIdPage from "./Pages/NewsIdPage";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
