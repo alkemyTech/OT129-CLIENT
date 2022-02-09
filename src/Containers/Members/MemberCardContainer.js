@@ -1,33 +1,22 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
-import { getMembers } from "../../Services/MembersService";
-import MemberList from "../../Components/About/MembersList";
-import { alerts } from "../../utils/alerts";
-import Spinner from "../../Components/Spinner/Spinner";
+import { fetchMembers, selectorMembers } from "../../features/Members/membersSlice";
 
 const MemberCardContainer = () => {
-  const [dataMembers, setDataMembers] = useState([]);
-  const [dataExist, setDataExist] = useState(true);
-  const [spinnerShow, setSpinnerShow] = useState(true);
+  const dispatch = useDispatch();
+  const members = useSelector(selectorMembers);
+
+  console.log(members);
 
   useEffect(() => {
-    getMembers()
-      .then((response) => {
-        setDataMembers(response.data.data);
-        setDataExist(true);
-        setSpinnerShow(false);
-      })
-      .catch(() => {
-        alerts("Lo sentimos! La información no se encuentra disponible.", "error");
-        setSpinnerShow(false);
-      });
-  }, []);
+    dispatch(fetchMembers());
+  }, [dispatch]);
 
   return (
     <div className="container my-5">
       <h3 className="text-center mb-5">MIEMBROS</h3>
-      {dataExist && <MemberList members={dataMembers} />}
-      {spinnerShow && <Spinner />}
     </div>
   );
 };
