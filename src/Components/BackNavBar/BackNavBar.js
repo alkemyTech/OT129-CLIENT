@@ -1,17 +1,54 @@
 import React from "react";
-// eslint-disable-next-line no-unused-vars
-import { Offcanvas } from "bootstrap";
-import { Link } from "react-router-dom";
 
 import logo from "./logo-modified.png";
 
+import styles from "./BackNavBar.module.css";
+
 function BackNavBar() {
   return (
-    <nav className="navbar navbar-light bg-white">
+    <div className="container">
+      <div className={styles.headerCtn}>
+        <nav className={styles.navCtn}>
+          <ul className={styles.ulCtn}>
+            <li>
+              <a>Home</a>
+            </li>
+            <li>
+              <a>Activies</a>
+            </li>
+            <li>
+              <a>News</a>
+            </li>
+            <li>
+              <a>Categories</a>
+            </li>
+            <li>
+              <a>Users</a>
+            </li>
+            <li>
+              <a>Members</a>
+            </li>
+            <li>
+              <a>Organization</a>
+            </li>
+          </ul>
+        </nav>
+        <div className={styles.imgCtn}>
+          <img alt="Logo ONG" src={logo} />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default BackNavBar;
+
+{
+  /* <nav className="navbar navbar-light bg-white">
       <div className="container-fluid">
         <button
           aria-controls="offcanvasNavbar"
-          className="navbar-toggler border-0"
+          className="navbar-toggler border-0 d-none-769"
           data-bs-target="#offcanvasNavbar"
           data-bs-toggle="offcanvas"
           type="button"
@@ -82,12 +119,9 @@ function BackNavBar() {
             </ul>
           </div>
         </div>
-        <Link className="navbar-brand" to="/">
-          <img alt="logo" className="img-fluid " src={logo} style={{ width: "7rem" }} />
-        </Link>
+        <NavLink className="navbar-brand" to="/">
+          <img alt="logo" className="img-fluid" src={logo} style={{ width: "7rem" }} />
+        </NavLink>
       </div>
-    </nav>
-  );
+    </nav> */
 }
-
-export default BackNavBar;
