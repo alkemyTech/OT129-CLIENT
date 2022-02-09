@@ -1,0 +1,38 @@
+.headerCtn {
+    width: 100%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.26);
+}
+
+.headerInfo {
+    padding: 0.5rem;
+    display: flex;
+}
+
+.logoCampaign {
+    height: 70px;
+    width: 70px;
+}
+
+.logoNgo {
+    display: none;
+}
+
+/* MEDIA QUERIES */
+
+@media (min-width: 768px) {
+    .headerInfo {
+        display: flex;
+        justify-content: space-around;
+        align-content: center;
+    }
+    
+    .logoNgo {
+        display: block;
+    }
+
+    .logoCampaign,
+    .logoNgo {
+        height: 150px;
+        width: 150px;
+    }
+}
