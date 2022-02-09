@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import Organization from "../../Components/Organization/Organization";
-import { getOrganizations } from "../../Services/organizationService";
+import { getOrganizations } from "../../Services/OrganizationService";
 
 const OrganizationContainer = () => {
   const [data, setData] = useState({});
