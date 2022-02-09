@@ -1,29 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
+import { fetchActivities, selectorActivities } from "../../features/Activities/activitiesSlice";
 import Spinner from "../../Components/Spinner/Spinner";
-import { getActivities } from "../../Services/ActivitiesService";
 import Card from "../../Components/Card/Card";
-import { alerts } from "../../utils/alerts";
 
 const ActivitiesCards = () => {
-  const [activities, setActivities] = useState([]);
+  const { activities } = useSelector(selectorActivities);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    getActivities()
-      .then((response) => {
-        const result = response.data.data;
-        const activities = result.map((activity) => {
-          const { id, image, name, description } = activity;
-
-          return { id, image, name, description };
-        });
-
-        setActivities(activities);
-      })
-      .catch(() => {
-        alerts("Ups! ocurrió un error inesperado al solicitar las actividades", "error");
-      });
-  }, []);
+    dispatch(fetchActivities());
+  }, [dispatch]);
 
   return (
     <div className="container">
