@@ -18,11 +18,11 @@ ActivitiesList.propTypes = {
   data: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-      image: PropTypes.string.isRequired,
-      created_at: PropTypes.string.isRequired,
+      name: PropTypes.string,
+      image: PropTypes.string,
+      created_at: PropTypes.string,
     })
-  ).isRequired,
+  ),
 };
 
 export default ActivitiesList;
