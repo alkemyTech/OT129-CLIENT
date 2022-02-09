@@ -31,7 +31,6 @@ import ThankYou from "./Components/Donations/ThankYou";
 import ToysCampaign from "./Campaigns/Toys/ToysCampaign";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import NewsDetailsContainer from "./Containers/NewsDetailContainer/NewsDetailsContainer";
 
 function App() {
   return (
