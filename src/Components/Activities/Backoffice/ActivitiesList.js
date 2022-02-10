@@ -5,11 +5,11 @@ import TitleNav from "../../TitleNav/TitleNav";
 
 import ListTable from "./ListTable";
 
-function ActivitiesList({ data }) {
+function ActivitiesList({ data, deleteHandler }) {
   return (
     <div className="container mt-5">
       <TitleNav link="/backoffice/activities/create" linkTitle="Crear" title="Actividades" />
-      <ListTable data={data} />
+      <ListTable data={data} deleteHandler={deleteHandler} />
     </div>
   );
 }
@@ -23,6 +23,7 @@ ActivitiesList.propTypes = {
       created_at: PropTypes.string,
     })
   ),
+  deleteHandler: PropTypes.func,
 };
 
 export default ActivitiesList;
