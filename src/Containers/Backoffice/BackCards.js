@@ -11,8 +11,8 @@ const BackCards = ({ data }) => {
         {data?.map((el) => {
           return (
             <div key={el.title} className="card">
-              <h3>{el.title}</h3>
-              <div>
+              <h3 className="titleCard">{el.title}</h3>
+              <div className="container-icon">
                 <i className={el.icon} />
               </div>
               <Link className="btnLink" to={el.link}>
