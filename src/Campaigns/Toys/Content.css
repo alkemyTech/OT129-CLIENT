@@ -122,7 +122,7 @@
 /*SMART AND WIDER DEVICES*/
 @media screen and (min-width: 2440px) {
   .content-wrapper {
-    min-height: 600px;
+    min-height: 800px;
     background-color: rgba(255, 255, 255, 0.5);
   }
   .bg-image {
