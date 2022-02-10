@@ -21,7 +21,7 @@ const organizationSlice = createSlice({
       state.status = "loading";
     },
     [fetchOrganization.fulfilled]: (state, action) => {
-      state.status = "succeeded";
+      state.status = "successful";
       state.organization = action.payload;
     },
     [fetchOrganization.rejected]: (state) => {

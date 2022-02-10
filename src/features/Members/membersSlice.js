@@ -21,7 +21,7 @@ const memberSlice = createSlice({
       state.status = "loading";
     },
     [fetchMembers.fulfilled]: (state, action) => {
-      state.status = "succeeded";
+      state.status = "successful";
       state.members = action.payload;
     },
     [fetchMembers.rejected]: (state) => {
