@@ -1,54 +1,18 @@
 import React from "react";
+import { Offcanvas } from "bootstrap";
+import { Link, NavLink } from "react-router-dom";
+
+import "./BackNavBar.css";
 
 import logo from "./logo-modified.png";
 
-import styles from "./BackNavBar.module.css";
-
-function BackNavBar() {
+const BackNavBar = () => {
   return (
-    <div className="container">
-      <div className={styles.headerCtn}>
-        <nav className={styles.navCtn}>
-          <ul className={styles.ulCtn}>
-            <li>
-              <a>Home</a>
-            </li>
-            <li>
-              <a>Activies</a>
-            </li>
-            <li>
-              <a>News</a>
-            </li>
-            <li>
-              <a>Categories</a>
-            </li>
-            <li>
-              <a>Users</a>
-            </li>
-            <li>
-              <a>Members</a>
-            </li>
-            <li>
-              <a>Organization</a>
-            </li>
-          </ul>
-        </nav>
-        <div className={styles.imgCtn}>
-          <img alt="Logo ONG" src={logo} />
-        </div>
-      </div>
-    </div>
-  );
-}
-
-export default BackNavBar;
-
-{
-  /* <nav className="navbar navbar-light bg-white">
+    <nav className="navbar navbar-light bg-white">
       <div className="container-fluid">
         <button
           aria-controls="offcanvasNavbar"
-          className="navbar-toggler border-0 d-none-769"
+          className="navbar-toggler border-0"
           data-bs-target="#offcanvasNavbar"
           data-bs-toggle="offcanvas"
           type="button"
@@ -73,55 +37,61 @@ export default BackNavBar;
             />
           </div>
           <div className="offcanvas-body">
-            <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
-              <li className="nav-item">
-                <a aria-current="page" className="nav-link active" href="#">
+            <ul className="navbar-nav justify-content-end flex-grow-1 pe-4">
+              <li className="nav-item space">
+                <NavLink activeClassName="active" className="links" to="/backoffice/organization">
                   Home
-                </a>
+                </NavLink>
               </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">
-                  Link
-                </a>
+              <li className="nav-item space">
+                <NavLink activeClassName="active" className="links" to="/backoffice/organization">
+                  Organización
+                </NavLink>
               </li>
-              <li className="nav-item dropdown">
-                <a
-                  aria-expanded="false"
-                  className="nav-link dropdown-toggle"
-                  data-bs-toggle="dropdown"
-                  href="#"
-                  id="offcanvasNavbarDropdown"
-                  role="button"
-                >
-                  Dropdown
-                </a>
-                <ul aria-labelledby="offcanvasNavbarDropdown" className="dropdown-menu">
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Action
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Another action
-                    </a>
-                  </li>
-                  <li>
-                    <hr className="dropdown-divider" />
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Something else here
-                    </a>
-                  </li>
-                </ul>
+              <li className="nav-item space">
+                <NavLink activeClassName="active" className="links" to="/backoffice/activities">
+                  Actividades
+                </NavLink>
+              </li>
+              <li className="nav-item space">
+                <NavLink activeClassName="active" className="links" to="/backoffice/news">
+                  Novedades
+                </NavLink>
+              </li>
+              <li className="nav-item space">
+                <NavLink activeClassName="active" className="links" to="/backoffice/categories">
+                  Categories
+                </NavLink>
+              </li>
+              <li className="nav-item space">
+                <NavLink activeClassName="active" className="links" to="/backoffice/slides">
+                  Slides
+                </NavLink>
+              </li>
+              <li className="nav-item space">
+                <NavLink activeClassName="active" className="links" to="/backoffice/members">
+                  Miembros
+                </NavLink>
+              </li>
+              <li className="nav-item space">
+                <NavLink activeClassName="active" className="links" to="/backoffice/users">
+                  Usuarios
+                </NavLink>
+              </li>
+              <li className="nav-item space">
+                <NavLink activeClassName="active" className="links" to="/backoffice/testimonies">
+                  Testimonios
+                </NavLink>
               </li>
             </ul>
           </div>
         </div>
-        <NavLink className="navbar-brand" to="/">
-          <img alt="logo" className="img-fluid" src={logo} style={{ width: "7rem" }} />
-        </NavLink>
+        <Link className="navbar-brand" to="/">
+          <img alt="logo" className="img-fluid " src={logo} style={{ width: "7rem" }} />
+        </Link>
       </div>
-    </nav> */
-}
+    </nav>
+  );
+};
+
+export default BackNavBar;
