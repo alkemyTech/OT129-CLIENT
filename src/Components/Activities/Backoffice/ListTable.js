@@ -3,29 +3,8 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 import { formatDate } from "../../../utils/formatDate";
-import { confirmAlerts, alerts } from "../../../utils/alerts";
-import { deleteActivity } from "../../../Services/ActivitiesService";
 
-function ListTable({ data }) {
-  const handleDelete = (id) => {
-    confirmAlerts(
-      "¿Estás seguro?",
-      `La actividad id: ${id} se eliminará permanentemente`,
-      function (response) {
-        // callback function, if user clicks on confirm button, response is true
-        if (response) {
-          deleteActivity(id)
-            .then(() => {
-              alerts(`La actividad id: ${id} se eliminó correctamente`, "success");
-            })
-            .catch(() => {
-              alerts(`Ocurrió un error al eliminar la actividad id: ${id} `, "error");
-            });
-        }
-      }
-    );
-  };
-
+function ListTable({ data, deleteHandler }) {
   return (
     <table className="table table-striped table-list">
       <thead className="thead-list">
@@ -58,7 +37,7 @@ function ListTable({ data }) {
                 <button
                   className="btn-list btn-delete"
                   title="Eliminar"
-                  onClick={() => handleDelete(el.id)}
+                  onClick={() => deleteHandler(el.id)}
                 >
                   <i className="far fa-trash-alt" />
                 </button>
@@ -80,6 +59,7 @@ ListTable.propTypes = {
       created_at: PropTypes.string,
     })
   ).isRequired,
+  deleteHandler: PropTypes.func,
 };
 
 export default ListTable;
