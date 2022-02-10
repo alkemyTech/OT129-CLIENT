@@ -1,41 +1,55 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
-import { toBase64 } from "../../utils/toBase64";
 import CategoriesForm from "../../Components/Categories/CategoriesForm";
-import { getCategoryById } from "../../Services/CategoriesService";
-
-export const formattedCategory = async (values) => {
-  const imageFormatted = await toBase64(values.image);
-
-  const data = {
-    id: values.id,
-    name: values.name,
-    description: values.description,
-    image: imageFormatted,
-    parent_category_id: values.parent_category_id,
-  };
-
-  return data;
-};
+import { alerts, confirmAlerts } from "../../utils/alerts";
+import {
+  fetchCategoryById,
+  newCategory,
+  putCategory,
+  selectorCategories,
+} from "../../features/Categories/categoriesSlice";
 
 const CategoriesFormContainer = () => {
   const { id } = useParams();
-  const [category, setCategory] = useState({});
+  const { category } = useSelector(selectorCategories);
+  const dispatch = useDispatch();
+  const handleSubmit = (data) => {
+    if (!category.id) {
+      dispatch(newCategory(data))
+        .then(() => {
+          alerts(`Categoría creada correctamente`, "success");
+        })
+        .catch(() => {
+          alerts("Ups! ocurrió un error inesperado al crear la categoría", "error");
+        });
+    } else {
+      confirmAlerts(
+        "¿Estás seguro?",
+        `Se editará la categoría id: ${category.id}`,
+        function (response) {
+          if (response) {
+            dispatch(putCategory({ data, id: category.id }))
+              .then(() => {
+                alerts(`La categoría id: ${category.id} se editó correctamente`, "success");
+              })
+              .catch(() => {
+                alerts(`Ocurrió un error al editar la categoría id: ${category.id} `, "error");
+              });
+          }
+        }
+      );
+    }
+  };
 
   useEffect(() => {
     if (id) {
-      getCategoryById(id).then((result) => {
-        const response = result.data.data;
-
-        setCategory(response);
-      });
+      dispatch(fetchCategoryById(id));
     }
-
-    return () => {};
   }, [id]);
 
-  return <CategoriesForm category={category} />;
+  return <CategoriesForm category={category} handleSubmit={handleSubmit} />;
 };
 
 export default CategoriesFormContainer;
