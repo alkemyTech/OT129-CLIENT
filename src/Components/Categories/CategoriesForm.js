@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Field, ErrorMessage, FormikProvider, useFormik } from "formik";
+import { Form, ErrorMessage, FormikProvider, useFormik } from "formik";
 import * as Yup from "yup";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
@@ -47,7 +47,7 @@ const CategoriesForm = ({ category = {}, handleSubmit }) => {
       onSubmit={onSubmit}
     >
       <Form className="form-container">
-        <Field
+        <input
           className="input-field"
           id="name"
           name="name"
