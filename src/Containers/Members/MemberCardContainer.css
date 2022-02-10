@@ -1,0 +1,5 @@
+.member-card-container {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 1rem;
+}

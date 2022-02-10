@@ -2,14 +2,16 @@ import React from "react";
 import { Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import PropTypes from "prop-types";
-
 import "bootstrap/dist/css/bootstrap.css";
-
 import "../FormStyles.css";
+import { useDispatch } from "react-redux";
+
+import { getRegistered } from "../../features/auth/authSlice";
 
 const PASSWORD_REGEX = new RegExp("(?=.*[A-Za-z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{6,})");
 
 const initialValues = {
+  name: "",
   email: "",
   password: "",
   confirmPassword: "",
@@ -37,11 +39,42 @@ Alert.propTypes = {
 };
 
 const RegisterForm = () => {
+  const dispatch = useDispatch();
+  const handleRegister = (values) => {
+    const body = {
+      name: values.name,
+      email: values.email,
+      password: values.password,
+    };
+
+    dispatch(getRegistered(body));
+  };
+
   return (
     <div className="container">
-      <Formik initialValues={initialValues} validationSchema={validationSchema}>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={(values) => {
+          handleRegister(values);
+        }}
+      >
         {(formik) => (
           <form noValidate className="mt-3" onSubmit={formik.handleSubmit}>
+            <div className="form-group mb-3">
+              <label className="form-label" htmlFor="name">
+                Nombre:
+              </label>
+              <input
+                className="form-control mb-3"
+                id="name"
+                placeholder="Enter your name"
+                type="name"
+                value={formik.values.name}
+                onChange={formik.handleChange}
+              />
+              <ErrorMessage className="alert-danger" component={Alert} name="name" />
+            </div>
             <div className="form-group mb-3">
               <label className="form-label" htmlFor="email">
                 Email:
