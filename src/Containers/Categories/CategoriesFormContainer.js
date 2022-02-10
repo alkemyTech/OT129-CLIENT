@@ -16,7 +16,7 @@ const CategoriesFormContainer = () => {
   const { category } = useSelector(selectorCategories);
   const dispatch = useDispatch();
   const handleSubmit = (data) => {
-    if (!category.id) {
+    if (!id) {
       dispatch(newCategory(data))
         .then(() => {
           alerts(`Categoría creada correctamente`, "success");
