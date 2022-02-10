@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Switch } from "react-router-dom";
 
 import ActivitiesListContainer from "./Containers/Activities/ActivitiesListContainer";
 import ActivitiesFormContainer from "./Containers/Activities/ActivitiesFormContainer/ActivitiesFormContainer";
@@ -29,13 +29,14 @@ import UsersFormContainer from "./Containers/Users/UsersFormContainer";
 import SchoolCampaign from "./Campaigns/School/SchoolCampaign";
 import ThankYou from "./Components/Donations/ThankYou";
 import ToysCampaign from "./Campaigns/Toys/ToysCampaign";
+import Route from "./Components/Route";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
 function App() {
   return (
     <>
-      <BrowserRouter>
+      <Router>
         <Switch>
           <Route exact component={HomePage} path="/" />
           <Route exact component={ContactPage} path="/contacto" />
@@ -72,7 +73,7 @@ function App() {
           <Route exact component={OrganizationContainer} path="/backoffice/organization" />
           <Route exact component={EditOrganization} path="/backoffice/organization/edit" />
         </Switch>
-      </BrowserRouter>
+      </Router>
     </>
   );
 }

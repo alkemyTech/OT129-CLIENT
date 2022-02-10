@@ -1,7 +1,7 @@
 import { get } from "./publicApiService";
 import { post, put } from "./privateApiService";
 
-const ENDPOINT = process.env.REACT_APP_API_ORGANIZATION;
+const ENDPOINT = process.env.REACT_APP_API_ORGANIZATION_ENDPOINT;
 
 export const getOrganizations = () => {
   return get(ENDPOINT);
