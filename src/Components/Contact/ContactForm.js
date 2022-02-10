@@ -31,8 +31,8 @@ const ContactForm = () => {
     resetForm();
 
     createContact(values)
-      .then((response) => {
-        response.status === 200 && alerts("Mensaje enviado correctamente.", "success");
+      .then(() => {
+        alerts("Mensaje enviado correctamente.", "success");
       })
       .catch(() => {
         alerts("Lo sentimos! Su mensaje no se ha podido enviar.", "error");
