@@ -1,32 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
+import { fetchActivity, selectorActivities } from "../../../features/Activities/activitiesSlice";
 import ActivitiesDetail from "../../../Components/Activities/Detail/ActivitiesDetail";
-import { getActivityByID } from "../../../Services/ActivitiesService";
-import { alerts } from "../../../utils/alerts";
+import StatusHandler from "../../../Components/StatusHandler/StatusHandler";
 
 const ActivitiesDetailsContainer = () => {
   const { id } = useParams();
-  const [activity, setActivity] = useState({
-    id: undefined,
-    name: "",
-    description: "",
-    image: "",
-  });
+
+  const { activity, status } = useSelector(selectorActivities);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    getActivityByID(id)
-      .then((res) => {
-        const result = res.data.data;
+    dispatch(fetchActivity(id));
+  }, [dispatch]);
 
-        setActivity(result);
-      })
-      .catch(() => {
-        alerts("Ups! ocurrió un error inesperado al solicitar la actividad", "error");
-      });
-  }, [id]);
-
-  return <ActivitiesDetail data={activity} />;
+  return (
+    <>
+      {activity && <ActivitiesDetail data={activity} />}
+      <StatusHandler status={status} />
+    </>
+  );
 };
 
 export default ActivitiesDetailsContainer;
