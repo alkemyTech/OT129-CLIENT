@@ -8,7 +8,7 @@ import MemberCard from "./MemberCard";
 const MembersList = ({ members }) => {
   return (
     <div className="row mt-5">
-      <div className="container container-cards">
+      <div className="container cards-container">
         {members.map((member) => (
           <MemberCard key={member.id} member={member} />
         ))}
