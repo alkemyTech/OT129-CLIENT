@@ -1,0 +1,5 @@
+export const STATUS = {
+  SUCCESSFUL: "SUCCESSFUL",
+  FAILED: "FAILED",
+  PENDING: "PENDING",
+};

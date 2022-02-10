@@ -5,13 +5,13 @@ import { alerts } from "../../utils/alerts";
 import Spinner from "../Spinner/Spinner";
 
 const StatusHandler = ({ status }) => {
-  if (status === "loading") {
+  if (status === "PENDING") {
     return (
       <div className="container">
         <Spinner />
       </div>
     );
-  } else if (status === "failed") {
+  } else if (status === "FAILED") {
     alerts("Lo sentimos! La información no se encuentra disponible.", "error");
   } else {
     return null;
