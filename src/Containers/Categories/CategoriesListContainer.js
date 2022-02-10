@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import CategoriesList from "../../Components/Categories/CategoriesList";
 import TitleNav from "../../Components/TitleNav/TitleNav";
 import { alerts, confirmAlerts } from "../../utils/alerts";
+import Spinner from "../../Components/Spinner/Spinner";
 import {
   fetchCategories,
   removeCategory,
@@ -11,7 +12,8 @@ import {
 } from "../../features/Categories/categoriesSlice";
 
 const CategoriesListContainer = () => {
-  const { categories } = useSelector(selectorCategories);
+  const { categories, status } = useSelector(selectorCategories);
+
   const dispatch = useDispatch();
   const onDelete = (id) => {
     confirmAlerts(
@@ -39,6 +41,7 @@ const CategoriesListContainer = () => {
     <div className="container mt-5">
       <TitleNav link="/backoffice/categories/create" linkTitle="Crear" title="Categorías" />
       <CategoriesList data={categories} onDelete={onDelete} />
+      {status === "loading" ? <Spinner /> : null}
     </div>
   );
 };
