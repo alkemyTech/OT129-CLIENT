@@ -37,7 +37,7 @@
     transform: translateY(0px)
   }
 }
-
+/* from here navigation transition */
 .slide-enter,
 .slide-exit{
   transition: transform 1000ms ease-in-out

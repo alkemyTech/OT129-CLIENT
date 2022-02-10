@@ -70,6 +70,7 @@ class App extends Component {
                         component={ActivitiesListContainer}
                         path="/backoffice/activities"
                       />
+
                       <Route
                         exact
                         component={ActivitiesFormContainer}
