@@ -10,8 +10,7 @@ import "./MemberCardContainer.css";
 
 const MemberCardContainer = () => {
   const dispatch = useDispatch();
-  const { members } = useSelector(selectorMembers);
-  const { status } = useSelector(selectorMembers);
+  const { members, status } = useSelector(selectorMembers);
 
   useEffect(() => {
     dispatch(fetchMembers());
