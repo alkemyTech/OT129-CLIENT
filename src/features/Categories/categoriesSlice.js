@@ -29,11 +29,7 @@ export const newCategory = createAsyncThunk("category/post", async (data) => {
 });
 
 export const putCategory = createAsyncThunk("category/put", async (formData) => {
-  const {
-    data: { data },
-  } = await editCategory(formData.data, formData.id);
-
-  return data;
+  editCategory(formData.data, formData.id);
 });
 
 export const removeCategory = createAsyncThunk("categories/delete", async (id) => {
@@ -82,9 +78,9 @@ const categoriesSlice = createSlice({
     [putCategory.pending]: (state) => {
       state.status = "loading";
     },
-    [putCategory.fulfilled]: (state, { payload }) => {
+    [putCategory.fulfilled]: (state) => {
       state.status = "success";
-      state.category = payload;
+      state.category = {};
     },
     [putCategory.rejected]: (state) => {
       state.status = "failed";
