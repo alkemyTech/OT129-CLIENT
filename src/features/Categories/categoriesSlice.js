@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-import { getCategories } from "../../Services/CategoriesService";
+import { getCategories, deleteCategory } from "../../Services/CategoriesService";
 
 export const fetchCategories = createAsyncThunk("categories/get", async () => {
   const {
@@ -8,6 +8,12 @@ export const fetchCategories = createAsyncThunk("categories/get", async () => {
   } = await getCategories();
 
   return data;
+});
+
+export const removeCategory = createAsyncThunk("categories/delete", async (id) => {
+  await deleteCategory(id);
+
+  return id;
 });
 
 const categoriesSlice = createSlice({
@@ -25,6 +31,16 @@ const categoriesSlice = createSlice({
       state.categories = action.payload;
     },
     [fetchCategories.rejected]: (state) => {
+      state.status = "failed";
+    },
+    [removeCategory.pending]: (state) => {
+      state.status = "loading";
+    },
+    [removeCategory.fulfilled]: (state, { payload }) => {
+      state.status = "success";
+      state.categories = state.categories.filter(({ id }) => id !== payload);
+    },
+    [removeCategory.rejected]: (state) => {
       state.status = "failed";
     },
   },
