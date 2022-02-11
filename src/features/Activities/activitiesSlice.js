@@ -28,8 +28,12 @@ export const putActivity = createAsyncThunk("activity/put", async (data) => {
   await editActivity(data.values, data.id);
 });
 
-export const postActivity = createAsyncThunk("activity/put", async (data) => {
-  await createActivity(data);
+export const postActivity = createAsyncThunk("activity/post", async (dataActivity) => {
+  const {
+    data: { data },
+  } = await createActivity(dataActivity);
+
+  return data;
 });
 
 export const removeActivity = createAsyncThunk("activities/delete", async (id) => {
