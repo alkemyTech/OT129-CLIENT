@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch } from "react-router-dom";
 
+import LoginForm from "./Components/Auth/LoginForm";
 import ActivitiesListContainer from "./Containers/Activities/ActivitiesListContainer";
 import ActivitiesFormContainer from "./Containers/Activities/ActivitiesFormContainer/ActivitiesFormContainer";
 import ActivitiesPage from "./Pages/ActivitiesPage";
@@ -30,6 +31,7 @@ import SchoolCampaign from "./Campaigns/School/SchoolCampaign";
 import ThankYou from "./Components/Donations/ThankYou";
 import ToysCampaign from "./Campaigns/Toys/ToysCampaign";
 import Route from "./Components/Route";
+import PrivateRoute from "./Components/Route/PrivateRoute";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
