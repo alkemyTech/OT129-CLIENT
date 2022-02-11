@@ -26,6 +26,7 @@
     "react-router-dom": "5.2.0",
     "react-scripts": "5.0.0",
     "react-transition-group": "^4.4.2",
+    "reactjs-popup": "2.0.5",
     "sweetalert2": "11.3.10",
     "sweetalert2-react-content": "4.2.0",
     "yup": "0.32.11"
