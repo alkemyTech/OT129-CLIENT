@@ -30,9 +30,11 @@ import UsersFormContainer from "./Containers/Users/UsersFormContainer";
 import SchoolCampaign from "./Campaigns/School/SchoolCampaign";
 import ThankYou from "./Components/Donations/ThankYou";
 import ToysCampaign from "./Campaigns/Toys/ToysCampaign";
+import Backoffice from "./Containers/Backoffice/Backoffice";
 import Route from "./Components/Route";
 import PrivateRoute from "./Components/Route/PrivateRoute";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/js/dist/offcanvas";
 import "./App.css";
 
 function App() {
@@ -56,6 +58,7 @@ function App() {
             <Route exact component={TestimonialForm} path="/testimonials/create" />
             <Route exact component={ProjectsForm} path="/projects/create" />
             <Route exact component={LoginForm} path="/login" />
+            <PrivateRoute exact component={Backoffice} path="/backoffice" />
             <PrivateRoute exact component={HomeForm} path="/backoffice/home" />
 
             <PrivateRoute exact component={ActivitiesListContainer} path="/backoffice/activities" />

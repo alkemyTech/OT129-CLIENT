@@ -1,13 +1,11 @@
 import React from "react";
-import { Form, Field, ErrorMessage, FormikProvider, useFormik } from "formik";
+import { Form, ErrorMessage, FormikProvider, useFormik } from "formik";
 import * as Yup from "yup";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import PropTypes from "prop-types";
 
-import { createCategory, editCategory } from "../../Services/CategoriesService";
-import { formattedCategory } from "../../Containers/Categories/CategoriesFormContainer";
-import { alerts, confirmAlerts } from "../../utils/alerts";
+import { toBase64 } from "../../utils/toBase64";
 
 const ErrorComponent = (props) => {
   return <p>{props.children}</p>;
@@ -25,7 +23,7 @@ const validationSchema = Yup.object({
   description: Yup.string().required("Requerido"),
 });
 
-const CategoriesForm = ({ category = {} }) => {
+const CategoriesForm = ({ category = {}, handleSubmit }) => {
   const initialValues = {
     name: category?.name || "",
     description: category?.description || "",
@@ -33,33 +31,10 @@ const CategoriesForm = ({ category = {} }) => {
     parent_category_id: category?.parent_category_id || undefined,
   };
   const onSubmit = async (values) => {
-    const data = await formattedCategory(values);
+    const formatedImg = await toBase64(values.image);
+    const data = { ...values, image: formatedImg };
 
-    if (!category.id) {
-      createCategory(data)
-        .then(() => {
-          alerts(`Categoría creada correctamente`, "success");
-        })
-        .catch(() => {
-          alerts("Ups! ocurrió un error inesperado al crear la categoría", "error");
-        });
-    } else {
-      confirmAlerts(
-        "¿Estás seguro?",
-        `La categoría id: ${category.id} será editada`,
-        function (response) {
-          if (response) {
-            editCategory(data, category.id)
-              .then(() => {
-                alerts(`La categoría id: ${category.id} se editó correctamente`, "success");
-              })
-              .catch(() => {
-                alerts(`Ocurrió un error al editar la categoría id: ${category.id} `, "error");
-              });
-          }
-        }
-      );
-    }
+    handleSubmit(data);
   };
 
   const formik = useFormik({ initialValues, onSubmit, validationSchema });
@@ -72,14 +47,15 @@ const CategoriesForm = ({ category = {} }) => {
       onSubmit={onSubmit}
     >
       <Form className="form-container">
-        <Field
+        <input
           className="input-field"
           id="name"
           name="name"
-          placeholder={initialValues.name}
+          placeholder={initialValues.name || "Título"}
           type="text"
+          {...formik.getFieldProps("name")}
         />
-        <ErrorMessage component={ErrorComponent} name="name" />
+        <ErrorMessage className="alert-danger" name="name" />
         {initialValues.image ? (
           <img alt={initialValues.name} height="150" src={initialValues.image} width="200" />
         ) : (
@@ -117,6 +93,7 @@ ErrorComponent.propTypes = {
 };
 
 CategoriesForm.propTypes = {
+  handleSubmit: PropTypes.func,
   category: PropTypes.shape({
     id: PropTypes.number,
     name: PropTypes.string,
