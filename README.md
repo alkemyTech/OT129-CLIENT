@@ -164,7 +164,6 @@ confirmAlerts(
           deleteSlide(913)
             .then((res) => {
               alerts(`Slide id: 913 eliminado correctamente`, "success");
-              console.log(res);
             })
             .catch(() => {
               alerts(`Ocurrió un error al eliminar el slide 913`, "error");
