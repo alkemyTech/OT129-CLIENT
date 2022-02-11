@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import HomeSlidesContainer from "../Containers/HomeSlide/HomeSlidesContainer";
 import HomeCards from "../Containers/HomeCards/HomeCards";
@@ -6,6 +6,11 @@ import HomeCards from "../Containers/HomeCards/HomeCards";
 const HomePage = () => {
   const cardNews = "Cards Desde la API Novedades";
   const welcomeText = "Texto de Bienvenida";
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchOrganization());
+  });
 
   return (
     <div className="container">

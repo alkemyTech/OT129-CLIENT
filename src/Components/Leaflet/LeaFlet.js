@@ -6,9 +6,12 @@ import icon from "leaflet/dist/images/marker-icon.png";
 import iconShadow from "leaflet/dist/images/marker-shadow.png";
 
 import "./leaflet.css";
-let DefaultIcon = L.icon({
+import ErrorHandler from "./ErrorHandler";
+const DefaultIcon = L.icon({
   iconUrl: icon,
   shadowUrl: iconShadow,
+  iconSize: [24, 36],
+  iconAnchor: [12, 36],
 });
 
 const defaultTheme = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -26,7 +29,7 @@ const darkTheme = L.tileLayer(
 );
 let theme = defaultTheme;
 
-const LeaFlet = ({ dark }) => {
+const LeaFlet = ({ address, position, dark, height }) => {
   L.Marker.prototype.options.icon = DefaultIcon;
 
   if (dark) {
@@ -34,12 +37,13 @@ const LeaFlet = ({ dark }) => {
   }
 
   return (
-    <div style={{ height: "40vh" }}>
-      <MapContainer center={[51.505, -0.09]} maxZoom={theme.maxZoom} zoom={13}>
+    <div>
+      <MapContainer center={position} maxZoom={theme.maxZoom} style={{ height }} zoom={13}>
+        <ErrorHandler />
         <TileLayer attribution={theme.attribution} url={theme._url} />
-        <Marker position={[51.51, -0.12]}>
+        <Marker position={position}>
           <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
+            Ubicación: <br /> {address}
           </Popup>
         </Marker>
       </MapContainer>
@@ -49,9 +53,14 @@ const LeaFlet = ({ dark }) => {
 
 LeaFlet.propTypes = {
   dark: PropTypes.bool,
+  address: PropTypes.string.isRequired,
+  position: PropTypes.array.isRequired,
+  height: PropTypes.string,
 };
 LeaFlet.defaultProps = {
   dark: false,
+  address: "",
+  position: [0, 0],
 };
 
 export default LeaFlet;
