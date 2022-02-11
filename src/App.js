@@ -32,6 +32,7 @@ import ToysCampaign from "./Campaigns/Toys/ToysCampaign";
 import Route from "./Components/Route";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+import RegisterPage from "./Pages/RegisterPage";
 
 function App() {
   return (
@@ -50,6 +51,7 @@ function App() {
             <Route exact component={ActivitiesIdPage} path="/actividades/:id" />
             <Route exact component={NewsPage} path="/novedades" />
             <Route exact component={NewsIdPage} path="/novedades/:id" />
+            <Route exact component={RegisterPage} path="/registro" />
 
             <Route exact component={TestimonialForm} path="/testimonials/create" />
             <Route exact component={ProjectsForm} path="/projects/create" />
