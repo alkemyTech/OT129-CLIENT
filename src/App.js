@@ -30,6 +30,7 @@ import TestimonialForm from "./Components/Testimonials/TestimonialsForm";
 import ThankYou from "./Components/Donations/ThankYou";
 import ToysCampaign from "./Campaigns/Toys/ToysCampaign";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/js/dist/offcanvas";
 import "./App.css";
 
 function App() {

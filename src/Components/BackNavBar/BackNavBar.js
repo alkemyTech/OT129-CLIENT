@@ -1,5 +1,4 @@
 import React from "react";
-import { offcanvas } from "bootstrap";
 import { Link } from "react-router-dom";
 
 import logo from "./logo-modified.png";
