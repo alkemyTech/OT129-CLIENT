@@ -1,20 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 :root {
   --black: #2c2c2c;
   --white: #ffffff;
-  --blue: #9AC9FB;
-  --dark-blue: #7BA1C9;
-  --grey: #C2C2C2;
-  --red: #DB5752;
-  --yellow: #FAFA88;
+  --blue: #9ac9fb;
+  --dark-blue: #7ba1c9;
+  --grey: #c2c2c2;
+  --red: #db5752;
+  --yellow: #fafa88;
   --bg-light-blue: #edf2f7;
   --width-button: 140px;
   --heigth-button: 40px;
   --border-radius: 6px;
-  --font-family: 'Montserrat', sans-serif;
+  --font-family: "Montserrat", sans-serif;
   --font-size: 15px;
   --card-shadow: 2px 2px 6px rgb(224, 224, 224);
+  --form-shadow: 0 10px 6px -4px rgba(123, 161, 201, 0.5);
 }
 
 body {
@@ -63,7 +64,7 @@ body {
 
 .stroke-btn {
   border: 2px solid var(--blue);
-  color: var(--black);  
+  color: var(--black);
   background: transparent;
   box-sizing: border-box;
 }
@@ -71,6 +72,18 @@ body {
 .stroke-btn:hover {
   border: 2px solid var(--dark-blue);
   color: var(--dark-blue);
+}
+.register-btn {
+  width: 100%;
+  max-width: 450px;
+  height: 50px;
+  margin: auto;
+  background: var(--blue);
+  color: var(--white);
+  text-transform: uppercase;
+}
+.register-btn:hover {
+  background: var(--dark-blue);
 }
 
 /* Cards */
@@ -117,5 +130,3 @@ code {
   margin: auto;
   object-fit: cover;
 }
-
-
