@@ -1,5 +1,4 @@
 import React from "react";
-import { Offcanvas } from "bootstrap";
 import { Link, NavLink } from "react-router-dom";
 
 import "./BackNavBar.css";
