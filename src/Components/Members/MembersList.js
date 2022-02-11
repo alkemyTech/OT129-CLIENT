@@ -29,7 +29,7 @@ const MembersList = ({ data }) => {
                 <img alt="member" className="img-list" src={member.photo} />
               </td>
               <td className="align-middle">
-                <Link to={`/backoffice/members/${member.id}`}>
+                <Link to={`/backoffice/members/edit/${member.id}`}>
                   <button className="btn-list btn-edit" title="Editar">
                     <i className="fas fa-pencil-alt" />
                   </button>

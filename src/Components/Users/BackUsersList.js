@@ -38,7 +38,7 @@ const BackUsersList = ({ data }) => {
                   <img alt="img" className="mt-3" src={users.role_id} />
                 </td>
                 <td className="align-middle">
-                  <Link to={`/backoffice/users/${users.id}`}>
+                  <Link to={`/backoffice/users/edit/${users.id}`}>
                     <button className="btn-list btn-edit" title="Editar">
                       <i className="fas fa-pencil-alt" />
                     </button>
