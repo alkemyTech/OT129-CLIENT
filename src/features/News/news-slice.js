@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 import { getNews } from "../../Services/NewsService";
+import { STATUS } from "../../constants";
 
 export const fetchNews = createAsyncThunk("news/get", async () => {
   const {
@@ -18,14 +19,14 @@ const newsSlice = createSlice({
   },
   extraReducers: {
     [fetchNews.pending]: (state) => {
-      state.status = "loading";
+      state.status = STATUS.PENDING;
     },
     [fetchNews.fulfilled]: (state, action) => {
-      state.status = "success";
+      state.status = STATUS.SUCCESSFUL;
       state.news = action.payload;
     },
     [fetchNews.rejected]: (state) => {
-      state.status = "failed";
+      state.status = STATUS.FAILED;
     },
   },
 });
