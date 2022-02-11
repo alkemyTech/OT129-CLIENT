@@ -1,11 +1,11 @@
 import React from "react";
-// eslint-disable-next-line no-unused-vars
-import { Offcanvas } from "bootstrap";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
-import logo from "./logo-modified.png";
+import "./BackNavBar.css";
 
-function BackNavBar() {
+import logo from "../../assets/onglogo.png";
+
+const BackNavBar = () => {
   return (
     <nav className="navbar navbar-light bg-white">
       <div className="container-fluid">
@@ -36,48 +36,51 @@ function BackNavBar() {
             />
           </div>
           <div className="offcanvas-body">
-            <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
-              <li className="nav-item">
-                <a aria-current="page" className="nav-link active" href="#">
+            <ul className="navbar-nav justify-content-end flex-grow-1 pe-4">
+              <li className="nav-item space">
+                <NavLink activeClassName="active" className="links" to="/backoffice/organization">
                   Home
-                </a>
+                </NavLink>
               </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">
-                  Link
-                </a>
+              <li className="nav-item space">
+                <NavLink activeClassName="active" className="links" to="/backoffice/organization">
+                  Organización
+                </NavLink>
               </li>
-              <li className="nav-item dropdown">
-                <a
-                  aria-expanded="false"
-                  className="nav-link dropdown-toggle"
-                  data-bs-toggle="dropdown"
-                  href="#"
-                  id="offcanvasNavbarDropdown"
-                  role="button"
-                >
-                  Dropdown
-                </a>
-                <ul aria-labelledby="offcanvasNavbarDropdown" className="dropdown-menu">
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Action
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Another action
-                    </a>
-                  </li>
-                  <li>
-                    <hr className="dropdown-divider" />
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Something else here
-                    </a>
-                  </li>
-                </ul>
+              <li className="nav-item space">
+                <NavLink activeClassName="active" className="links" to="/backoffice/activities">
+                  Actividades
+                </NavLink>
+              </li>
+              <li className="nav-item space">
+                <NavLink activeClassName="active" className="links" to="/backoffice/news">
+                  Novedades
+                </NavLink>
+              </li>
+              <li className="nav-item space">
+                <NavLink activeClassName="active" className="links" to="/backoffice/categories">
+                  Categories
+                </NavLink>
+              </li>
+              <li className="nav-item space">
+                <NavLink activeClassName="active" className="links" to="/backoffice/slides">
+                  Slides
+                </NavLink>
+              </li>
+              <li className="nav-item space">
+                <NavLink activeClassName="active" className="links" to="/backoffice/members">
+                  Miembros
+                </NavLink>
+              </li>
+              <li className="nav-item space">
+                <NavLink activeClassName="active" className="links" to="/backoffice/users">
+                  Usuarios
+                </NavLink>
+              </li>
+              <li className="nav-item space">
+                <NavLink activeClassName="active" className="links" to="/backoffice/testimonies">
+                  Testimonios
+                </NavLink>
               </li>
             </ul>
           </div>
@@ -88,6 +91,6 @@ function BackNavBar() {
       </div>
     </nav>
   );
-}
+};
 
 export default BackNavBar;

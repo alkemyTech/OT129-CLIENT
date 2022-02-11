@@ -15,8 +15,8 @@ export const createActivity = (data) => {
   return post(ENDPOINT, data);
 };
 
-export const editActivity = (data) => {
-  return put(ENDPOINT, data);
+export const editActivity = (data, id) => {
+  return put(ENDPOINT, data, id);
 };
 
 export const deleteActivity = (id) => {

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 
 import HomeSlidesContainer from "../Containers/HomeSlide/HomeSlidesContainer";
-import HomeCards from "../Containers/HomeCards/HomeCards";
+import HomeNewsCards from "../Containers/HomeCards/HomeNewsCards";
 
 const HomePage = () => {
   const cardNews = "Cards Desde la API Novedades";
@@ -17,7 +17,7 @@ const HomePage = () => {
       <h1 className="text-center mt-3">Home Page</h1>
       <HomeSlidesContainer />
       <h2> {welcomeText}</h2>
-      <HomeCards card={cardNews} />
+      <HomeNewsCards card={cardNews} />
     </div>
   );
 };
