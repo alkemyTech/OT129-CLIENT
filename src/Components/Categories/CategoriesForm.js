@@ -51,8 +51,9 @@ const CategoriesForm = ({ category = {}, handleSubmit }) => {
           className="input-field"
           id="name"
           name="name"
-          placeholder={initialValues.name}
+          placeholder={initialValues.name || "Título"}
           type="text"
+          {...formik.getFieldProps("name")}
         />
         <ErrorMessage className="alert-danger" name="name" />
         {initialValues.image ? (
