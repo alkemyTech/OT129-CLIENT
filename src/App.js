@@ -39,8 +39,8 @@ function App() {
   return (
     <>
       <Router>
-        <Switch>
-          <div className="container-app">
+        <div className="container-app">
+          <Switch>
             <Route exact component={HomePage} path="/" />
             <Route exact component={ContactPage} path="/contacto" />
             <Route exact component={Donation} path="/donar" />
@@ -55,28 +55,54 @@ function App() {
 
             <Route exact component={TestimonialForm} path="/testimonials/create" />
             <Route exact component={ProjectsForm} path="/projects/create" />
-            <Route exact component={HomeForm} path="/backoffice/home" />
-            <Route exact component={ActivitiesListContainer} path="/backoffice/activities" />
-            <Route exact component={ActivitiesFormContainer} path="/backoffice/activities/create" />
-            <Route exact component={ActivitiesFormContainer} path="/backoffice/activities/:id" />
-            <Route exact component={NewsList} path="/backoffice/news" />
-            <Route exact component={NewsContainer} path="/backoffice/news/create" />
-            <Route exact component={NewsContainer} path="/backoffice/news/:id" />
-            <Route exact component={CategoriesListContainer} path="/backoffice/categories" />
-            <Route exact component={CategoriesFormContainer} path="/backoffice/categories/create" />
-            <Route exact component={CategoriesFormContainer} path="/backoffice/categories/:id" />
-            <Route exact component={SlidesContainer} path="/backoffice/slides" />
-            <Route exact component={SlidesForm} path="/backoffice/slides/create" />
-            <Route exact component={UsersListContainer} path="/backoffice/users" />
-            <Route exact component={UsersFormContainer} path="/backoffice/users/create" />
-            <Route exact component={UsersFormContainer} path="/backoffice/users/create/:id" />
-            <Route exact component={MembersListContainer} path="/backoffice/members" />
-            <Route exact component={MembersFormContainer} path="/backoffice/members/create" />
-            <Route exact component={MembersFormContainer} path="/backoffice/members/:id" />
-            <Route exact component={OrganizationContainer} path="/backoffice/organization" />
-            <Route exact component={EditOrganization} path="/backoffice/organization/edit" />
-          </div>
-        </Switch>
+            <Route exact component={LoginForm} path="/login" />
+            <PrivateRoute exact component={HomeForm} path="/backoffice/home" />
+
+            <PrivateRoute exact component={ActivitiesListContainer} path="/backoffice/activities" />
+            <PrivateRoute
+              exact
+              component={ActivitiesFormContainer}
+              path="/backoffice/activities/create"
+            />
+            <PrivateRoute
+              exact
+              component={ActivitiesFormContainer}
+              path="/backoffice/activities/:id"
+            />
+            <PrivateRoute exact component={NewsList} path="/backoffice/news" />
+            <PrivateRoute exact component={NewsContainer} path="/backoffice/news/create" />
+            <PrivateRoute exact component={NewsContainer} path="/backoffice/news/:id" />
+            <PrivateRoute exact component={CategoriesListContainer} path="/backoffice/categories" />
+            <PrivateRoute
+              exact
+              component={CategoriesFormContainer}
+              path="/backoffice/categories/create"
+            />
+            <PrivateRoute
+              exact
+              component={CategoriesFormContainer}
+              path="/backoffice/categories/:id"
+            />
+            <PrivateRoute exact component={SlidesContainer} path="/backoffice/slides" />
+            <PrivateRoute exact component={SlidesForm} path="/backoffice/slides/create" />
+            <PrivateRoute exact component={UsersListContainer} path="/backoffice/users" />
+            <PrivateRoute exact component={UsersFormContainer} path="/backoffice/users/create" />
+            <PrivateRoute
+              exact
+              component={UsersFormContainer}
+              path="/backoffice/users/create/:id"
+            />
+            <PrivateRoute exact component={MembersListContainer} path="/backoffice/members" />
+            <PrivateRoute
+              exact
+              component={MembersFormContainer}
+              path="/backoffice/members/create"
+            />
+            <PrivateRoute exact component={MembersFormContainer} path="/backoffice/members/:id" />
+            <PrivateRoute exact component={OrganizationContainer} path="/backoffice/organization" />
+            <PrivateRoute exact component={EditOrganization} path="/backoffice/organization/edit" />
+          </Switch>
+        </div>
       </Router>
     </>
   );
