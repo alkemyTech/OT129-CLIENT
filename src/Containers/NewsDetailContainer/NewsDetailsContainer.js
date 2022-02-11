@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
+import Title from "../../Components/Titles/Titles";
 import NewsDetails from "../../Components/News/Details/NewsDetails";
 import { getNewsById } from "../../Services/NewsService";
 
@@ -24,7 +25,12 @@ const NewsDetailsContainer = () => {
       });
   }, [id]);
 
-  return <NewsDetails data={news} />;
+  return (
+    <>
+      <Title title={news.name} />
+      <NewsDetails data={news} />
+    </>
+  );
 };
 
 export default NewsDetailsContainer;

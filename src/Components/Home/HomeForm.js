@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
-import { getSlides } from "../../Services/HomeServices";
-import { postOrganization } from "../../Services/HomeServices";
+import { getSlides } from "../../Services/SlidesServices";
+import { addOrganization } from "../../Services/OrganizationService";
 
 import HomeSlides from "./HomeSlides";
 
@@ -38,7 +38,7 @@ const HomeForm = () => {
       name: data.name,
     },
     onSubmit: (values) => {
-      postOrganization(values);
+      addOrganization(values);
     },
     validationSchema: formSchema,
   });

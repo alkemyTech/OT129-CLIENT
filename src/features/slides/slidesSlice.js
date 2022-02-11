@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 import { getSlides } from "../../Services/SlidesServices";
+import { STATUS } from "../../constants";
 
 export const fetchSlides = createAsyncThunk("slides/get", async () => {
   const {
@@ -18,14 +19,14 @@ const slidesSlice = createSlice({
   },
   extraReducers: {
     [fetchSlides.pending]: (state) => {
-      state.status = "loading";
+      state.status = STATUS.PENDING;
     },
     [fetchSlides.fulfilled]: (state, { payload }) => {
-      state.status = "success";
+      state.status = STATUS.SUCCESSFUL;
       state.slides = payload;
     },
     [fetchSlides.rejected]: (state) => {
-      state.status = "failed";
+      state.status = STATUS.FAILED;
     },
   },
 });
