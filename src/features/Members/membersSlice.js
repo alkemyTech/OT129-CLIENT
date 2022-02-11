@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 import { getMembers } from "../../Services/MembersService";
+import { STATUS } from "../../constants";
 
 export const fetchMembers = createAsyncThunk("members/get", async () => {
   const {
@@ -18,14 +19,14 @@ const memberSlice = createSlice({
   },
   extraReducers: {
     [fetchMembers.pending]: (state) => {
-      state.status = "loading";
+      state.status = STATUS.PENDING;
     },
     [fetchMembers.fulfilled]: (state, action) => {
-      state.status = "successful";
+      state.status = STATUS.SUCCESSFUL;
       state.members = action.payload;
     },
     [fetchMembers.rejected]: (state) => {
-      state.status = "failed";
+      state.status = STATUS.FAILED;
     },
   },
 });

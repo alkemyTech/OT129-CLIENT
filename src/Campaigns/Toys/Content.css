@@ -1,0 +1,132 @@
+/*MOBILE*/
+.content-wrapper {
+  width: 100%;
+  padding: 1rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--white);
+}
+.content-bg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
+}
+.col {
+  width: calc(100% / 3);
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.right {
+  justify-content: space-between;
+}
+.left {
+  justify-content: space-between;
+}
+.mid {
+  justify-content: end;
+}
+.left > img {
+  transform: rotate(25deg);
+}
+.right > img {
+  transform: rotate(-25deg);
+}
+.bg-image {
+  width: 150px;
+  height: auto;
+  border-radius: 0.5rem;
+}
+.bg-image:nth-of-type(2n - 1) {
+  border: 2px solid var(--blue);
+}
+.bg-image:nth-of-type(2n) {
+  border: 2px solid var(--yellow);
+}
+.content-text {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+.content-text-title {
+  text-align: center;
+  display: inline-block;
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+.content-text-countdown {
+  display: none;
+}
+.content-text-description {
+  text-align: center;
+  line-height: 1.5;
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 0.875rem;
+}
+/*TABLET*/
+@media screen and (min-width: 768px) {
+  .content-text-countdown {
+    display: inline-block;
+    text-align: center;
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 1rem;
+  }
+  .content-text-title {
+    font-size: 1.75rem;
+  }
+  .content-text-countdown {
+    font-size: 1.75rem;
+  }
+  .content-text-description {
+    font-size: 1rem;
+  }
+}
+/*DESKTOP*/
+@media screen and (min-width: 1024px) {
+  .content-wrapper {
+    min-height: 600px;
+  }
+  .content-bg {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+  }
+  .content-text {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    gap: 2rem;
+  }
+  .content-text-title {
+    font-size: 2rem;
+  }
+  .content-text-countdown {
+    font-size: 2rem;
+  }
+  .content-text-description {
+    font-size: 1.25rem;
+  }
+}
+/*SMART AND WIDER DEVICES*/
+@media screen and (min-width: 2440px) {
+  .content-wrapper {
+    min-height: 800px;
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+  .bg-image {
+    width: 200px;
+    height: auto;
+  }
+}

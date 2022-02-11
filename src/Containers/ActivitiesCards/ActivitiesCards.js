@@ -14,7 +14,7 @@ const ActivitiesCards = () => {
   }, [dispatch]);
 
   return (
-    <div className="container">
+    <div className="container mt-5">
       <div className="row">
         {activities.length === 0 ? (
           <div className="mt-5">
