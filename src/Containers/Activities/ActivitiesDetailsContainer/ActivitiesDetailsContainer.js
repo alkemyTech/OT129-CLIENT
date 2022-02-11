@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
+import Titles from "../../../Components/Titles/Titles";
 import ActivitiesDetail from "../../../Components/Activities/Detail/ActivitiesDetail";
 import { getActivityByID } from "../../../Services/ActivitiesService";
 import { alerts } from "../../../utils/alerts";
@@ -26,7 +27,12 @@ const ActivitiesDetailsContainer = () => {
       });
   }, [id]);
 
-  return <ActivitiesDetail data={activity} />;
+  return (
+    <>
+      <Titles title={activity.name} />
+      <ActivitiesDetail data={activity} />;
+    </>
+  );
 };
 
 export default ActivitiesDetailsContainer;

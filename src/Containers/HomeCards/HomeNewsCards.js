@@ -30,7 +30,13 @@ const HomeCards = () => {
         {newsDataExist &&
           lastNewsData.map((el) => (
             <div key={el.id} className="col-3 mb-4">
-              <Card description={el.description} image={el.image} title={el.name} />
+              <Card
+                description={el.description}
+                id={el.id}
+                image={el.image}
+                title={el.name}
+                url={"novedades"}
+              />
             </div>
           ))}
         {spinnerShow && <Spinner />}
