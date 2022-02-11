@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 
 import "./BackNavBar.css";
 
-import logo from "./logo-modified.png";
+import logo from "../../assets/onglogo.png";
 
 const BackNavBar = () => {
   return (

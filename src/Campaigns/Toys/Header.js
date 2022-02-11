@@ -1,6 +1,6 @@
 import React from "react";
 
-import logoNgo from "../../assets/ngologo.png";
+import logoNgo from "../../assets/onglogo.png";
 import logoCampaign from "../../assets/Toys/toyscampaign.png";
 
 import styles from "./Header.module.css";
