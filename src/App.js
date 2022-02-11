@@ -39,8 +39,8 @@ function App() {
   return (
     <>
       <Router>
-        <Switch>
-          <div className="container-app">
+        <div className="container-app">
+          <Switch>
             <Route exact component={HomePage} path="/" />
             <Route exact component={ContactPage} path="/contacto" />
             <Route exact component={Donation} path="/donar" />
@@ -76,8 +76,8 @@ function App() {
             <Route exact component={MembersFormContainer} path="/backoffice/members/:id" />
             <Route exact component={OrganizationContainer} path="/backoffice/organization" />
             <Route exact component={EditOrganization} path="/backoffice/organization/edit" />
-          </div>
-        </Switch>
+          </Switch>
+        </div>
       </Router>
     </>
   );
