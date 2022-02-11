@@ -1,5 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+
+import "./BackNavBar.css";
 
 import logo from "./logo-modified.png";
 
@@ -34,51 +36,51 @@ const BackNavBar = () => {
             />
           </div>
           <div className="offcanvas-body">
-            <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
-              <li className="nav-item">
-                <Link className="nav-link" to="/backoffice/organization">
+            <ul className="navbar-nav justify-content-end flex-grow-1 pe-4">
+              <li className="nav-item space">
+                <NavLink activeClassName="active" className="links" to="/backoffice/organization">
                   Home
-                </Link>
+                </NavLink>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/backoffice/organization">
+              <li className="nav-item space">
+                <NavLink activeClassName="active" className="links" to="/backoffice/organization">
                   Organización
-                </Link>
+                </NavLink>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/backoffice/activities">
+              <li className="nav-item space">
+                <NavLink activeClassName="active" className="links" to="/backoffice/activities">
                   Actividades
-                </Link>
+                </NavLink>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/backoffice/news">
+              <li className="nav-item space">
+                <NavLink activeClassName="active" className="links" to="/backoffice/news">
                   Novedades
-                </Link>
+                </NavLink>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/backoffice/categories">
+              <li className="nav-item space">
+                <NavLink activeClassName="active" className="links" to="/backoffice/categories">
                   Categories
-                </Link>
+                </NavLink>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/backoffice/slides">
+              <li className="nav-item space">
+                <NavLink activeClassName="active" className="links" to="/backoffice/slides">
                   Slides
-                </Link>
+                </NavLink>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/backoffice/members">
+              <li className="nav-item space">
+                <NavLink activeClassName="active" className="links" to="/backoffice/members">
                   Miembros
-                </Link>
+                </NavLink>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/backoffice/users">
+              <li className="nav-item space">
+                <NavLink activeClassName="active" className="links" to="/backoffice/users">
                   Usuarios
-                </Link>
+                </NavLink>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/backoffice/testimonies">
+              <li className="nav-item space">
+                <NavLink activeClassName="active" className="links" to="/backoffice/testimonies">
                   Testimonios
-                </Link>
+                </NavLink>
               </li>
             </ul>
           </div>
