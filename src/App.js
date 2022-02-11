@@ -31,6 +31,7 @@ import ThankYou from "./Components/Donations/ThankYou";
 import ToysCampaign from "./Campaigns/Toys/ToysCampaign";
 import Route from "./Components/Route";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/js/dist/offcanvas";
 import "./App.css";
 
 function App() {
