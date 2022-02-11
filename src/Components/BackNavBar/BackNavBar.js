@@ -3,7 +3,7 @@ import React from "react";
 import { Offcanvas } from "bootstrap";
 import { Link } from "react-router-dom";
 
-import logo from "./logo-modified.png";
+import logo from "../../assets/onglogo.png";
 
 function BackNavBar() {
   return (
