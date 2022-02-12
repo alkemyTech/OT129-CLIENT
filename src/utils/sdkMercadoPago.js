@@ -30,7 +30,6 @@ export const redirectToMercadoPago = () => {
 
   const headers = {
     Authorization: `Bearer ${process.env.REACT_APP_TOKEN_MP}`,
-    "Content-Type": "application/json",
   };
 
   axios.post(URL, data, { headers }).then((response) => {
