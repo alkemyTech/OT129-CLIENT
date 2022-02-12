@@ -1,5 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
+
+import { redirectToMercadoPago } from "../../utils/sdkMercadoPago";
+
 import "./Donation.css";
 
 const Donation = ({ text }) => {
@@ -11,7 +14,9 @@ const Donation = ({ text }) => {
             <p className="text">{text}</p>
           </div>
           <div className="col-4 col-button">
-            <button className="general-btn fill-btn">Contribuye</button>
+            <button className="general-btn fill-btn" onClick={() => redirectToMercadoPago()}>
+              Contribuye
+            </button>
           </div>
         </div>
       </div>
