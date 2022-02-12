@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 import { getOrganizations } from "../../Services/OrganizationService";
+import { STATUS } from "../../constants";
 
 export const fetchOrganization = createAsyncThunk("organization/get", async () => {
   const {
@@ -18,14 +19,14 @@ const organizationSlice = createSlice({
   },
   extraReducers: {
     [fetchOrganization.pending]: (state) => {
-      state.status = "loading";
+      state.status = STATUS.PENDING;
     },
     [fetchOrganization.fulfilled]: (state, action) => {
-      state.status = "successful";
+      state.status = STATUS.SUCCESSFUL;
       state.organization = action.payload;
     },
     [fetchOrganization.rejected]: (state) => {
-      state.status = "failed";
+      state.status = STATUS.FAILED;
     },
   },
 });
