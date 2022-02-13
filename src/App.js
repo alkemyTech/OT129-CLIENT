@@ -30,7 +30,7 @@ import SchoolCampaign from "./Campaigns/School/SchoolCampaign";
 import ThankYou from "./Components/Donations/ThankYou";
 import ToysCampaign from "./Campaigns/Toys/ToysCampaign";
 import Backoffice from "./Containers/Backoffice/Backoffice";
-import Error404 from "./Pages/Error404";
+import Error404 from "./Pages/Error404Page";
 import Route from "./Components/Route";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/js/dist/offcanvas";
