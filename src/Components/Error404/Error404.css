@@ -28,6 +28,7 @@
   color: var(--black);
   font-weight: bold;
   transition: color 0.2s ease;
+  margin-left: 4px;
 }
 
 .link-error404:hover {
