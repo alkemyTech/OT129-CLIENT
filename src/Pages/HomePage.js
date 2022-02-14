@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 
 import HomeSlidesContainer from "../Containers/HomeSlide/HomeSlidesContainer";
 import HomeNewsCards from "../Containers/HomeCards/HomeNewsCards";
+import { fetchOrganization } from "../../features/Organization/organizationSlice";
 
 const HomePage = () => {
   const cardNews = "Cards Desde la API Novedades";
