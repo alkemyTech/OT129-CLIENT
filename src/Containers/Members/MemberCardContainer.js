@@ -17,11 +17,15 @@ const MemberCardContainer = () => {
   }, [dispatch]);
 
   return (
-    <div className="container my-5">
-      <h3 className="text-center mb-5">MIEMBROS</h3>
-      <div className="member-card-container">
-        {members && members.map((member) => <MemberCard key={member.id} {...member} />)}
+    <div className="container mt-5">
+      <div className="row row-title">
+        <h3 className="text-center">MIEMBROS</h3>
+      </div>
+      <div className="row row-card">
         <StatusHandler status={status} />
+        <div className="container member-card-container">
+          {members && members.map((member) => <MemberCard key={member.id} {...member} />)}
+        </div>
       </div>
     </div>
   );
