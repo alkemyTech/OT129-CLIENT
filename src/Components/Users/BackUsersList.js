@@ -2,9 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-import { deleteUsers } from "../../Services/UsersService";
-
-const BackUsersList = ({ data }) => {
+const BackUsersList = ({ data, onDelete }) => {
   return (
     <table className="table table-striped table-list">
       <thead className="thead-list">
@@ -37,7 +35,7 @@ const BackUsersList = ({ data }) => {
                 <button
                   className="btn-list btn-delete"
                   title="Eliminar"
-                  onClick={() => deleteUsers(users.id)}
+                  onClick={() => onDelete(users.id)}
                 >
                   <i className="fas fa-trash-alt" />
                 </button>
@@ -53,13 +51,12 @@ const BackUsersList = ({ data }) => {
 BackUsersList.propTypes = {
   data: PropTypes.arrayOf(
     PropTypes.shape({
-      name: PropTypes.string.isRequiered,
-      email: PropTypes.string.isRequiered,
-      imagen: PropTypes.string.isRequiered,
-      role_id: PropTypes.number.isRequiered,
-      id: PropTypes.number.isRequiered,
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string,
+      email: PropTypes.string,
     })
-  ),
+  ).isRequired,
+  onDelete: PropTypes.func,
 };
 
 export default BackUsersList;
