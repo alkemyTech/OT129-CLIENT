@@ -4,9 +4,11 @@
   --black: #2c2c2c;
   --white: #ffffff;
   --blue: #9ac9fb;
+  --blue-hover: rgba(154, 201, 251, 0.8);
   --dark-blue: #7ba1c9;
   --grey: #c2c2c2;
   --red: #db5752;
+  --red-hover: rgba(219, 87, 82, 0.8);
   --yellow: #fafa88;
   --bg-light-blue: #edf2f7;
   --width-button: 140px;
@@ -84,6 +86,52 @@ body {
 }
 .register-btn:hover {
   background: var(--dark-blue);
+}
+.btn-popup {
+  width: 100%;
+  max-width: 450px;
+  height: 30px;
+  margin: auto;
+  color: var(--dark-blue) !important;
+  font-size: 0.75rem;
+  font-weight: 700;
+  font-family: var(--font-family);
+  border: none !important;
+}
+.btn-popup:hover {
+  background-color: rgba(123, 161, 201, 0.5);
+  color: var(--black) !important;
+}
+.btn-control {
+  width: 35px;
+  height: 35px;
+  display: block;
+  background-color: var(--blue);
+  border: none;
+  transition: all 150ms ease-in-out;
+}
+.btn-control:hover {
+  background-color: var(--dark-blue);
+  color: var(--white);
+}
+.btn-accept {
+  background-color: var(--blue) !important;
+  color: var(--white) !important;
+  font-weight: 700;
+  font-family: var(--font-family);
+}
+.btn-accept:hover {
+  background-color: var(--blue-hover) !important;
+}
+
+.btn-decline {
+  background-color: var(--red) !important;
+  color: var(--white) !important;
+  font-weight: 700;
+  font-family: var(--font-family);
+}
+.btn-decline:hover {
+  background-color: var(--red-hover) !important;
 }
 
 /* Cards */
