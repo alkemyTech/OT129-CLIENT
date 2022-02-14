@@ -1,14 +1,20 @@
 import axios from "axios";
 
-export const redirectToMercadoPago = () => {
-  const URL = "https://api.mercadopago.com/checkout/preferences";
+const token = process.env.REACT_APP_TOKEN_MP;
+const URL = "https://api.mercadopago.com/checkout/preferences";
+/**
+ * Method to make a payment through payment market
+ * @param {number} amount
+ * @returns {Promise}
+ */
 
+export const redirectToMercadoPago = (amount) => {
   const data = {
     items: [
       {
         title: "Donación ONG 'Somos más'",
         quantity: 1,
-        unit_price: 250,
+        unit_price: amount,
       },
     ],
     back_urls: {
@@ -29,10 +35,10 @@ export const redirectToMercadoPago = () => {
   };
 
   const headers = {
-    Authorization: `Bearer ${process.env.REACT_APP_TOKEN_MP}`,
+    Authorization: `Bearer ${token}`,
   };
 
-  axios.post(URL, data, { headers }).then((response) => {
+  return axios.post(URL, data, { headers }).then((response) => {
     window.location.href = response.data.sandbox_init_point;
   });
 };
