@@ -4,12 +4,12 @@
     justify-content: center;
 }
 
-.logoCampaign {
+.logoEscolar {
     height: 70px;
     width: 70px;
 }
 
-.logoNgo {
+.onglogo {
     display: none;
 }
 
@@ -27,16 +27,16 @@
         padding: 0.1rem;
     }
     
-    .logoNgo {
+    .onglogo {
         display: block;
     }
 
-    .logoCampaign {
+    .logoEscolar {
         height: 120px;
         width: 120px;
     }
 
-    .logoNgo {
+    .onglogo {
         height: 150px;
         width: 150px;
     }
