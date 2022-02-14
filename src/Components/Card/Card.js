@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import "./Card.css";
 
 const Card = ({ id, title, image, description, url }) => {
+  const descriptionSlice = description && description.slice(0, 70) + "...";
+
   return (
     <div className="card">
       {image ? (
@@ -20,9 +22,9 @@ const Card = ({ id, title, image, description, url }) => {
       <div className="card-body">
         <h5 className="card-title text-uppercase">{title}</h5>
         {description && (
-          <p dangerouslySetInnerHTML={{ __html: `${description}` }} className="card-text" />
+          <p dangerouslySetInnerHTML={{ __html: `${descriptionSlice}` }} className="card-text" />
         )}
-        <Link className="general-btn fill-btn text-decoration-none" to={`/${url}/${id}`}>
+        <Link className="general-btn fill-btn card-btn text-decoration-none" to={`/${url}/${id}`}>
           Leer más
         </Link>
       </div>
@@ -31,11 +33,11 @@ const Card = ({ id, title, image, description, url }) => {
 };
 
 Card.propTypes = {
-  id: PropTypes.number.isRequired,
+  id: PropTypes.number,
   title: PropTypes.string,
   description: PropTypes.string,
   image: PropTypes.string,
-  url: PropTypes.string.isRequired,
+  url: PropTypes.string,
 };
 
 export default Card;
