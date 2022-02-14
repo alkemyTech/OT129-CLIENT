@@ -1,41 +1,43 @@
 import React from "react";
 import "../FormStyles.css";
-import { Formik, Field, ErrorMessage } from "formik";
+import { Formik, ErrorMessage, Form } from "formik";
 import * as Yup from "yup";
 import PropTypes from "prop-types";
 
 import { toBase64 } from "../../utils/toBase64";
-import { editUsers, createUsers } from "../../Services/UsersService";
-import ContainerFormCard from "../../Containers/ContainerFormCard";
 
-const UsersForm = ({ users = {} }) => {
+const UsersForm = ({ users = {}, handleSub }) => {
   const initialValues = {
     name: users?.name || "",
     email: users?.email || "",
     role_id: users?.role_id || "",
+    password: "1234",
     profile_image: users?.profile_image || "",
   };
 
+  const onSubmit = async (formData) => {
+    const resultBase = await toBase64(formData.profile_image);
+    const newUsers = { ...formData, profile_image: resultBase };
+
+    handleSub(newUsers);
+  };
+
   return (
-    <ContainerFormCard>
+    <div className="container mt-4">
       <Formik
         initialValues={initialValues}
         validationSchema={validationUserSchema}
-        onSubmit={async (formData) => {
-          const resultBase = await toBase64(formData.image);
-          const newUsers = { ...formData, image: resultBase };
-
-          !users.id ? createUsers(newUsers) : editUsers(newUsers, users.id);
-        }}
+        onSubmit={onSubmit}
       >
         {(formik) => (
-          <form className="mt-3" onSubmit={formik.handleSubmit}>
+          <Form className="mt-3" onSubmit={formik.handleSubmit}>
             <div className="mb-3">
               <label className="form-label fx-bold">Nombre</label>
-              <Field
+              <input
                 className="form-control mb-3"
+                id="name"
                 name="name"
-                placeholder="Nombre"
+                placeholder={initialValues?.name || "Nombre"}
                 type="text"
                 {...formik.getFieldProps("name")}
               />
@@ -43,10 +45,10 @@ const UsersForm = ({ users = {} }) => {
             </div>
             <div className="form-group mb-3">
               <label className="form-label fx-bold"> Email:</label>
-              <Field
+              <input
                 className="form-control mb-3"
                 name="email"
-                placeholder="Email"
+                placeholder={initialValues?.email || "Email"}
                 type="email"
                 {...formik.getFieldProps("email")}
               />
@@ -54,6 +56,7 @@ const UsersForm = ({ users = {} }) => {
             </div>
 
             <input
+              accept="image/png, image/jpeg, image/jpg"
               className="form-control mb-3"
               name="profile_image"
               type="file"
@@ -64,16 +67,11 @@ const UsersForm = ({ users = {} }) => {
             <ErrorMessage className="text-danger" component="span" name="image" />
 
             <div className="mb-3">
-              <Field
-                as="select"
-                className="form-select"
-                name="role_id"
-                {...formik.getFieldProps("role_id")}
-              >
+              <select className="form-select" name="role_id" {...formik.getFieldProps("role_id")}>
                 <option defaultValue>Choose</option>
                 <option value="1">Admin</option>
                 <option value="2">User</option>
-              </Field>
+              </select>
             </div>
             <ErrorMessage className="text-danger" component="span" name="image" />
 
@@ -82,10 +80,10 @@ const UsersForm = ({ users = {} }) => {
                 {users.id ? "EDITAR" : "CREAR"}
               </button>
             </div>
-          </form>
+          </Form>
         )}
       </Formik>
-    </ContainerFormCard>
+    </div>
   );
 };
 
@@ -98,10 +96,10 @@ UsersForm.propTypes = {
     password: PropTypes.string,
     profile_image: PropTypes.string,
   }),
+  handleSub: PropTypes.func,
 };
 
-export default UsersForm;
-const SUPPORTED_FORMATS = ["image/jpg", "image/png"];
+const SUPPORTED_FORMATS = ["image/jpg", "image/png", "image/jpeg"];
 const validationUserSchema = Yup.object().shape({
   name: Yup.string().required("Field Required").min(4, "Must have at least 4 characters"),
   email: Yup.string().required("Field Required").email("Is not a valid format"),
@@ -109,8 +107,10 @@ const validationUserSchema = Yup.object().shape({
   profile_image: Yup.mixed()
     .required("Field Required")
     .test(
-      "format",
+      "fileType",
       "El formato no es valido",
       (value) => !value || (value && SUPPORTED_FORMATS.includes(value.type))
     ),
 });
+
+export default UsersForm;
