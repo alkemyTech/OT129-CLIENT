@@ -29,8 +29,10 @@ import UsersFormContainer from "./Containers/Users/UsersFormContainer";
 import SchoolCampaign from "./Campaigns/School/SchoolCampaign";
 import ThankYou from "./Components/Donations/ThankYou";
 import ToysCampaign from "./Campaigns/Toys/ToysCampaign";
+import Backoffice from "./Containers/Backoffice/Backoffice";
 import Route from "./Components/Route";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/js/dist/offcanvas";
 import "./App.css";
 import RegisterPage from "./Pages/RegisterPage";
 
@@ -38,8 +40,8 @@ function App() {
   return (
     <>
       <Router>
-        <Switch>
-          <div className="container-app">
+        <div className="container-app">
+          <Switch>
             <Route exact component={HomePage} path="/" />
             <Route exact component={ContactPage} path="/contacto" />
             <Route exact component={Donation} path="/donar" />
@@ -55,6 +57,7 @@ function App() {
 
             <Route exact component={TestimonialForm} path="/testimonials/create" />
             <Route exact component={ProjectsForm} path="/projects/create" />
+            <Route exact component={Backoffice} path="/backoffice" />
             <Route exact component={HomeForm} path="/backoffice/home" />
             <Route exact component={ActivitiesListContainer} path="/backoffice/activities" />
             <Route exact component={ActivitiesFormContainer} path="/backoffice/activities/create" />
@@ -75,8 +78,8 @@ function App() {
             <Route exact component={MembersFormContainer} path="/backoffice/members/:id" />
             <Route exact component={OrganizationContainer} path="/backoffice/organization" />
             <Route exact component={EditOrganization} path="/backoffice/organization/edit" />
-          </div>
-        </Switch>
+          </Switch>
+        </div>
       </Router>
     </>
   );

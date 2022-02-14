@@ -1,30 +1,41 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
+import {
+  fetchActivities,
+  removeActivity,
+  selectorActivities,
+} from "../../features/Activities/activitiesSlice";
 import ActivitiesList from "../../Components/Activities/Backoffice/ActivitiesList";
-import { getActivities } from "../../Services/ActivitiesService";
-import { alerts } from "../../utils/alerts";
+import { confirmAlerts, alerts } from "../../utils/alerts";
 
 function ActivitiesListContainer() {
-  const [activities, setActivities] = useState([]);
+  const { activities } = useSelector(selectorActivities);
+  const dispatch = useDispatch();
+
+  const deleteHandler = (id) => {
+    confirmAlerts(
+      "¿Estás seguro?",
+      `La actividad id: ${id} se eliminará permanentemente`,
+      function (response) {
+        if (response) {
+          dispatch(removeActivity(id))
+            .then(() => {
+              alerts(`La actividad id: ${id} se eliminó correctamente`, "success");
+            })
+            .catch(() => {
+              alerts(`Ocurrió un error al eliminar la actividad id: ${id} `, "error");
+            });
+        }
+      }
+    );
+  };
 
   useEffect(() => {
-    getActivities()
-      .then((res) => {
-        const result = res.data.data;
-        const activities = result.map((activity) => {
-          const { id, name, created_at, image } = activity;
+    dispatch(fetchActivities());
+  }, [dispatch]);
 
-          return { id, name, created_at, image };
-        });
-
-        setActivities(activities);
-      })
-      .catch(() => {
-        alerts("Ups! ocurrió un error inesperado al solicitar las actividades", "error");
-      });
-  }, []);
-
-  return <ActivitiesList data={activities} />;
+  return <ActivitiesList data={activities} deleteHandler={deleteHandler} />;
 }
 
 export default ActivitiesListContainer;
