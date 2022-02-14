@@ -1,13 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
-import Popup from "reactjs-popup";
 
 import { getRegistered } from "../../features/auth/authSlice";
+import RegisterPopup from "../Popups/RegisterPopup";
 
-import "reactjs-popup/dist/index.css";
 import "../../index.css";
 import "./RegisterForm.css";
 
@@ -19,6 +18,10 @@ const initialValues = {
   password: "",
   confirmPassword: "",
   conditions: false,
+};
+
+const handleConfirm = (value) => {
+  initialValues.conditions = value;
 };
 
 const validationSchema = Yup.object({
@@ -41,7 +44,7 @@ const validationSchema = Yup.object({
       "Tu CONTRASEÑA debe contener al menos un número y un caracter especial"
     )
     .oneOf([Yup.ref("password"), null], "Las CONTRASEÑAS deben coincidir"),
-  conditions: Yup.boolean().required("Debes aceptar los TÉRMINOS Y CONDICIONES"),
+  conditions: Yup.boolean().oneOf([true], "Debes aceptar los Términos y Condiciones"),
 });
 
 const Alert = ({ children }) => {
@@ -54,6 +57,7 @@ Alert.propTypes = {
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
+
   const handleRegister = (values) => {
     const body = {
       name: values.name,
@@ -63,35 +67,6 @@ const RegisterForm = () => {
 
     dispatch(getRegistered(body));
   };
-
-  const [conditionsValue, setConditionsValue] = useState(false);
-
-  const handleConditionsChange = (e) => setConditionsValue(e.target.checked);
-
-  const PopUp = () => (
-    <Popup
-      modal
-      trigger={
-        <>
-          <label className="conditions-label" htmlFor="conditions">
-            Aceptar Términos y Condiciones
-          </label>
-          <input
-            className="conditions-checkbox"
-            id="conditions"
-            name="conditions"
-            type="checkbox"
-            value={conditionsValue}
-            onChange={handleConditionsChange}
-          />
-        </>
-      }
-    >
-      <div>MODAL!</div>
-    </Popup>
-  );
-
-  console.log(conditionsValue);
 
   return (
     <div className="container">
@@ -132,6 +107,7 @@ const RegisterForm = () => {
               <div className="form-group mb-3">
                 <label className="form-label" htmlFor="password" />
                 <input
+                  autoComplete="on"
                   className="form-control register-input mb-3"
                   id="password"
                   placeholder="Ingresa tu contraseña"
@@ -144,6 +120,7 @@ const RegisterForm = () => {
               <div className="form-group mb-3">
                 <label className="form-label" htmlFor="confirmPassword" />
                 <input
+                  autoComplete="on"
                   className="form-control register-input mb-3"
                   id="confirmPassword"
                   placeholder="Confirma tu contraseña"
@@ -154,7 +131,14 @@ const RegisterForm = () => {
                 <ErrorMessage component={Alert} name="confirmPassword" />
               </div>
               <div className="conditions-wrapper">
-                <PopUp />
+                <RegisterPopup onConfirm={handleConfirm} />
+                <input
+                  className="conditions-checkbox"
+                  name="conditions"
+                  type="checkbox"
+                  value={formik.values.conditions}
+                  onChange={formik.handleChange}
+                />
                 <ErrorMessage component={Alert} name="conditions" />
               </div>
               <button className="general-btn register-btn my-3" type="submit">

@@ -28,7 +28,7 @@
   width: 100%;
   min-height: 50px;
   display: flex;
-  flex-flow: column wrap;
+  flex-flow: row wrap;
   gap: 1rem;
   justify-content: center;
   align-items: center;
@@ -38,16 +38,19 @@
 .conditions-checkbox {
   display: none;
 }
+.conditions-checkbox:checked + .conditions-label {
+  background-color: var(--blue);
+  color: var(--white);
+}
 .conditions-label {
-  width: 100%;
   padding: 0.5rem 1rem;
   text-align: center;
   font-weight: 700;
   color: var(--dark-blue);
   transition: all 150ms ease-in-out;
+  cursor: pointer;
 }
 .conditions-label:hover {
-  cursor: pointer;
   background-color: var(--blue);
   color: var(--white);
 }
