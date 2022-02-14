@@ -5,7 +5,7 @@ import { fetchUsers, removeUser, selectorUsers } from "../../features/user/users
 import BackUsersList from "../../Components/Users/BackUsersList";
 import TitleNav from "../../Components/TitleNav/TitleNav";
 import Spinner from "../../Components/Spinner/Spinner";
-import { confirmAlerts } from "../../utils/alerts";
+import { confirmAlerts, alerts } from "../../utils/alerts";
 
 const UsersListContainer = () => {
   const { users, status } = useSelector(selectorUsers);
@@ -37,7 +37,6 @@ const UsersListContainer = () => {
     <div className="container mt-5">
       <TitleNav link="/backoffice/users/create" linkTitle="Crear" title="Users" />
       <BackUsersList data={users} onDelete={onDelete} />
-      {status === "loading" ? <Spinner /> : null}
     </div>
   );
 };
