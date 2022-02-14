@@ -8,7 +8,7 @@ import "reactjs-popup/dist/index.css";
 import "./RegisterPopup.css";
 import MOCKUP_PDF from "../../assets/mockup.pdf";
 
-const RegisterPopup = ({ onConfirm }) => {
+const RegisterPopup = ({ onConfirm, state }) => {
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
 
@@ -28,8 +28,8 @@ const RegisterPopup = ({ onConfirm }) => {
     <Popup
       modal
       trigger={
-        <button className="btn-popup" type="button">
-          Ver Términos y condiciones
+        <button className={state ? "btn-popup accepted" : "btn-popup"} type="button">
+          Términos y condiciones
         </button>
       }
     >
@@ -40,15 +40,19 @@ const RegisterPopup = ({ onConfirm }) => {
               <Page pageNumber={pageNumber} />
             </Document>
             <div className="document-control-wrapper">
-              <button className="btn-control" onClick={previousPage}>
-                {"❮"}
-              </button>
+              {pageNumber === 1 ? null : (
+                <button className="btn-control" onClick={previousPage}>
+                  {"❮"}
+                </button>
+              )}
               <p className="text-center">
                 Página {pageNumber} de {numPages}
               </p>
-              <button className="btn-control" onClick={nextPage}>
-                {"❯"}
-              </button>
+              {pageNumber === numPages ? null : (
+                <button className="btn-control" onClick={nextPage}>
+                  {"❯"}
+                </button>
+              )}
             </div>
           </div>
           <div className="modal-btn-wrapper">
@@ -81,6 +85,7 @@ const RegisterPopup = ({ onConfirm }) => {
 
 RegisterPopup.propTypes = {
   onConfirm: PropTypes.func,
+  state: PropTypes.bool,
 };
 
 export default RegisterPopup;
