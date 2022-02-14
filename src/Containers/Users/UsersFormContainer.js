@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
+import { alerts, confirmAlerts } from "../../utils/alerts";
 import UsersForm from "../../Components/Users/UsersForm";
 import { newUser, selectorUsers, fetchUsersById, putUser } from "../../features/user/users-slice";
 
@@ -44,7 +45,7 @@ const UsersFormContainer = () => {
     }
   }, [id]);
 
-  return <UsersForm handleSubmit={handleSub} users={user} />;
+  return <UsersForm handleSub={handleSub} users={user} />;
 };
 
 export default UsersFormContainer;
