@@ -1,6 +1,24 @@
+.card {
+  margin-top: 0 !important;
+    text-align: center;
+    height: auto !important;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  height: 220px !important;
+}
+
 .img-card {
   width: 100%;
   min-height: 200px;
   max-height: 200px;
   object-fit: cover;
+}
+
+.card-btn {
+  margin: 0 auto;
 }
