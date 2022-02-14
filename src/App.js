@@ -30,6 +30,7 @@ import SchoolCampaign from "./Campaigns/School/SchoolCampaign";
 import ThankYou from "./Components/Donations/ThankYou";
 import ToysCampaign from "./Campaigns/Toys/ToysCampaign";
 import Backoffice from "./Containers/Backoffice/Backoffice";
+import RegisterForm from "./Components/Auth/RegisterForm";
 import Route from "./Components/Route";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/js/dist/offcanvas";
@@ -52,6 +53,7 @@ function App() {
             <Route exact component={ActivitiesIdPage} path="/actividades/:id" />
             <Route exact component={NewsPage} path="/novedades" />
             <Route exact component={NewsIdPage} path="/novedades/:id" />
+            <Route exact component={RegisterForm} path="/registro" />
 
             <Route exact component={TestimonialForm} path="/testimonials/create" />
             <Route exact component={ProjectsForm} path="/projects/create" />
