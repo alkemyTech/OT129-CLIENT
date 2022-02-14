@@ -32,7 +32,7 @@ export const putUser = createAsyncThunk("user/put", async (formData) => {
 });
 
 export const removeUser = createAsyncThunk("users/delete", async (id) => {
-  await deleteUsers();
+  await deleteUsers(id);
 
   return id;
 });
@@ -68,9 +68,8 @@ const usersSlice = createSlice({
     [newUser.pending]: (state) => {
       state.status = "loading";
     },
-    [newUser.fulfilled]: (state, action) => {
+    [newUser.fulfilled]: (state) => {
       state.status = "success";
-      state.users = action.payload;
     },
     [newUser.rejected]: (state) => {
       state.status = "failed";
@@ -78,9 +77,9 @@ const usersSlice = createSlice({
     [putUser.pending]: (state) => {
       state.status = "loading";
     },
-    [putUser.fulfilled]: (state, action) => {
+    [putUser.fulfilled]: (state) => {
       state.status = "success";
-      state.users = action.payload;
+      state.user = {};
     },
     [putUser.rejected]: (state) => {
       state.status = "failed";
@@ -88,9 +87,9 @@ const usersSlice = createSlice({
     [removeUser.pending]: (state) => {
       state.status = "loading";
     },
-    [removeUser.fulfilled]: (state, action) => {
+    [removeUser.fulfilled]: (state, { payload }) => {
       state.status = "success";
-      state.users = action.payload;
+      state.users = state.users.filter(({ id }) => id !== payload);
     },
     [removeUser.rejected]: (state) => {
       state.status = "failed";
