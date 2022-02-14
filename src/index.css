@@ -102,6 +102,10 @@ body {
   background-color: rgba(123, 161, 201, 0.5);
   color: var(--black) !important;
 }
+.accepted {
+  background-color: var(--dark-blue) !important;
+  color: var(--white) !important;
+}
 .btn-control {
   width: 35px;
   height: 35px;
