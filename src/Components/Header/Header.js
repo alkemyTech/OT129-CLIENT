@@ -36,7 +36,7 @@ const Header = () => {
               return (
                 <NavLink
                   key={item.id.toString()}
-                  className="link-to-section"
+                  className="link-to-section container-fluid"
                   to={item.link.toString()}
                 >
                   {item.name}
@@ -59,7 +59,7 @@ const Header = () => {
                 return (
                   <NavLink
                     key={item.id.toString()}
-                    className="link-to-section"
+                    className="link-to-section container-fluid"
                     to={item.link.toString()}
                   >
                     {item.name}
