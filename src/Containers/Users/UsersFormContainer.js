@@ -13,23 +13,23 @@ const UsersFormContainer = () => {
 
   const handleSub = (data) => {
     if (!id) {
-      dispatch(newUser(data))
-        .then(() => {
-          alerts(`Usuario creado correctamente`, "success");
-        })
-        .catch(() => {
+      dispatch(newUser(data)).then((response) => {
+        if (response.error) {
           alerts("Ups! ocurrió un error inesperado al crear el usuario", "error");
-        });
+        } else {
+          alerts(`Usuario creado correctamente`, "success");
+        }
+      });
     } else {
       confirmAlerts("¿Estás seguro?", `Se editará el user id: ${user.id}`, function (response) {
         if (response) {
-          dispatch(putUser({ data, id: user.id }))
-            .then(() => {
-              alerts(`El user id: ${user.id} se editó correctamente`, "success");
-            })
-            .catch(() => {
+          dispatch(putUser({ data, id: user.id })).then((response) => {
+            if (response.error) {
               alerts(`Ocurrió un error al editar el usuario id: ${user.id} `, "error");
-            });
+            } else {
+              alerts(`El user id: ${user.id} se editó correctamente`, "success");
+            }
+          });
         }
       });
     }
