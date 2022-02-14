@@ -16,13 +16,13 @@ const UsersListContainer = () => {
       `El usuario id: ${id} se eliminará permanentemente`,
       function (response) {
         if (response) {
-          dispatch(removeUser(id))
-            .then(() => {
-              alerts(`El usuario id: ${id} se eliminó correctamente`, "success");
-            })
-            .catch(() => {
+          dispatch(removeUser(id)).then((response) => {
+            if (response.error) {
               alerts(`Ocurrió un error al eliminar el usuario id: ${id} `, "error");
-            });
+            } else {
+              alerts(`El usuario id: ${id} se eliminó correctamente`, "success");
+            }
+          });
         }
       }
     );
