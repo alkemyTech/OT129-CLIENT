@@ -131,7 +131,7 @@ const RegisterForm = () => {
                 <ErrorMessage component={Alert} name="confirmPassword" />
               </div>
               <div className="conditions-wrapper">
-                <RegisterPopup onConfirm={handleConfirm} />
+                <RegisterPopup state={formik.values.conditions} onConfirm={handleConfirm} />
                 <input
                   className="conditions-checkbox"
                   name="conditions"
