@@ -21,21 +21,17 @@ const UsersFormContainer = () => {
           alerts("Ups! ocurrió un error inesperado al crear la categoría", "error");
         });
     } else {
-      confirmAlerts(
-        "¿Estás seguro?",
-        `Se editará la categoría id: ${user.id}`,
-        function (response) {
-          if (response) {
-            dispatch(putUser({ data, id: user.id }))
-              .then(() => {
-                alerts(`La categoría id: ${user.id} se editó correctamente`, "success");
-              })
-              .catch(() => {
-                alerts(`Ocurrió un error al editar la categoría id: ${user.id} `, "error");
-              });
-          }
+      confirmAlerts("¿Estás seguro?", `Se editará el user id: ${user.id}`, function (response) {
+        if (response) {
+          dispatch(putUser({ data, id: user.id }))
+            .then(() => {
+              alerts(`El user id: ${user.id} se editó correctamente`, "success");
+            })
+            .catch(() => {
+              alerts(`Ocurrió un error al editar el usuario id: ${user.id} `, "error");
+            });
         }
-      );
+      });
     }
   };
 

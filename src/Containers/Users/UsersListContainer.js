@@ -4,25 +4,24 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchUsers, removeUser, selectorUsers } from "../../features/user/users-slice";
 import BackUsersList from "../../Components/Users/BackUsersList";
 import TitleNav from "../../Components/TitleNav/TitleNav";
-import Spinner from "../../Components/Spinner/Spinner";
 import { confirmAlerts, alerts } from "../../utils/alerts";
 
 const UsersListContainer = () => {
-  const { users, status } = useSelector(selectorUsers);
+  const { users } = useSelector(selectorUsers);
   const dispatch = useDispatch();
 
   const onDelete = (id) => {
     confirmAlerts(
       ";Estas Seguro?",
-      `La categoría id: ${id} se eliminará permanentemente`,
+      `El usuario id: ${id} se eliminará permanentemente`,
       function (response) {
         if (response) {
           dispatch(removeUser(id))
             .then(() => {
-              alerts(`La categoría id: ${id} se eliminó correctamente`, "success");
+              alerts(`El usuario id: ${id} se eliminó correctamente`, "success");
             })
             .catch(() => {
-              alerts(`Ocurrió un error al eliminar la categoría id: ${id} `, "error");
+              alerts(`Ocurrió un error al eliminar el usuario id: ${id} `, "error");
             });
         }
       }
