@@ -1,0 +1,70 @@
+.headerInfo {
+    padding: 0.5rem;
+    display: flex;
+    justify-content: center;
+}
+
+.logoCampaign {
+    height: 70px;
+    width: 70px;
+}
+
+.logoNgo {
+    display: none;
+}
+
+.slogan {
+    display: none;
+}
+
+/* MEDIA QUERIES */
+
+@media (min-width: 768px) {
+    .headerInfo {
+        display: flex;
+        justify-content: space-around;
+        align-content: center;
+        padding: 0.1rem;
+    }
+    
+    .logoNgo {
+        display: block;
+    }
+
+    .logoCampaign {
+        height: 120px;
+        width: 120px;
+    }
+
+    .logoNgo {
+        height: 150px;
+        width: 150px;
+    }
+}
+
+@media (min-width: 992px) {
+   .slogan, .spanbreak {
+       display: block;
+   }
+
+   .headerInfo {
+    justify-content: space-between;
+    align-items: center;
+}
+
+   .spanbreak {
+       margin-top: -5px;
+   }
+
+   .slogan {
+       color: #EC4C4B;
+       font-size: 30px;
+   }
+
+}
+
+@media (min-width: 1400px) {
+    .headerCtn {
+        background-color: transparent;
+    }
+ }
