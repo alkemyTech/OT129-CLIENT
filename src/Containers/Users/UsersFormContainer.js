@@ -15,10 +15,10 @@ const UsersFormContainer = () => {
     if (!id) {
       dispatch(newUser(data))
         .then(() => {
-          alerts(`Categoría creada correctamente`, "success");
+          alerts(`Usuario creado correctamente`, "success");
         })
         .catch(() => {
-          alerts("Ups! ocurrió un error inesperado al crear la categoría", "error");
+          alerts("Ups! ocurrió un error inesperado al crear el usuario", "error");
         });
     } else {
       confirmAlerts("¿Estás seguro?", `Se editará el user id: ${user.id}`, function (response) {
