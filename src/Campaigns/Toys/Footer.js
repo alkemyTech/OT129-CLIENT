@@ -1,10 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./FooterToys.css";
+import PropTypes from "prop-types";
 
 import ONGLogo from "../../assets/onglogo.png";
 
-const Footer = () => {
+const Footer = ({
+  facebook = "https://facebook.com",
+  twitter = "https://twitter.com/ONGSomosMas",
+  linkedin = "https://linkedin.com/in/somos-mas-85b310224/?trk=people-guest_people_search-card&originalSubdomain=ar",
+  instagram = "http://instagram.com",
+}) => {
   return (
     <footer className="container-fluid container-footer">
       <div className="row p-0">
@@ -38,7 +44,7 @@ const Footer = () => {
         <div className="row-social col-sm-4 col-xxl-3">
           <div className="socials-icons-container">
             <div className="icon-container">
-              <a className="social-link " href="www.facebook.com" rel="noreferrer" target="_blank">
+              <a className="social-link " href={facebook} rel="noreferrer" target="_blank">
                 <div className="social-icon">
                   <i className="fab fa-facebook-f" />
                 </div>
@@ -46,12 +52,7 @@ const Footer = () => {
               </a>
             </div>
             <div className="icon-container">
-              <a
-                className="social-link "
-                href="https://twitter.com/ONGSomosMas"
-                rel="noreferrer"
-                target="_blank"
-              >
+              <a className="social-link " href={twitter} rel="noreferrer" target="_blank">
                 <div className="social-icon">
                   <i className="fab fa-twitter" />
                 </div>
@@ -59,7 +60,7 @@ const Footer = () => {
               </a>
             </div>
             <div className="icon-container">
-              <a className="social-link " href="www.instagram.com" rel="noreferrer" target="_blank">
+              <a className="social-link " href={instagram} rel="noreferrer" target="_blank">
                 <div className="social-icon">
                   <i className="fab fa-instagram" />
                 </div>
@@ -67,12 +68,7 @@ const Footer = () => {
               </a>
             </div>
             <div className="icon-container">
-              <a
-                className="social-link "
-                href="https://www.linkedin.com/in/somos-mas-85b310224/?trk=people-guest_people_search-card&originalSubdomain=ar"
-                rel="noreferrer"
-                target="_blank"
-              >
+              <a className="social-link " href={linkedin} rel="noreferrer" target="_blank">
                 <div className="social-icon">
                   <i className="fab fa-linkedin-in" />
                 </div>
@@ -87,6 +83,13 @@ const Footer = () => {
       </div>
     </footer>
   );
+};
+
+Footer.propTypes = {
+  facebook: PropTypes.string,
+  twitter: PropTypes.string,
+  instagram: PropTypes.string,
+  linkedin: PropTypes.string,
 };
 
 export default Footer;
