@@ -1,0 +1,20 @@
+.container-footer {
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  background-color: rgb(207, 207, 207);
+}
+.containerButtonImage {
+  display: flex;
+  align-items: center;
+  background-color: var(--blue);
+  border-radius: 50%;
+  padding: 15px;
+  border: none;
+  text-decoration: none;
+  color: black;
+}
+.text-blue {
+  color: var(--dark-blue);
+  text-decoration: none;
+}
