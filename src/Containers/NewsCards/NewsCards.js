@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import Card from "../../Components/Card/Card";
 import StatusHandler from "../../Components/StatusHandler/StatusHandler";
@@ -15,21 +14,22 @@ const NewsCards = () => {
   }, [dispatch]);
 
   return (
-    <div className="container my-5 d-grid gap-3">
+    <div className="container my-5">
       <div className="row">
         <StatusHandler status={status} />
-        {news &&
-          news.map((el) => (
-            <div key={el.id} className="col">
+        <div className="container-cards">
+          {news &&
+            news.map((el) => (
               <Card
+                key={el.id}
                 description={el.content}
                 id={el.id}
                 image={el.image}
                 title={el.name}
                 url={`./novedades`}
               />
-            </div>
-          ))}
+            ))}
+        </div>
       </div>
     </div>
   );
