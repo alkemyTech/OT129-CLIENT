@@ -114,9 +114,4 @@ export const publicRoute = [
     component: ProjectsForm,
     exact: true,
   },
-  {
-    path: "/*",
-    component: Error404,
-    exact: false,
-  },
 ];
