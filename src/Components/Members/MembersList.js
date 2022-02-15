@@ -26,7 +26,7 @@ const MembersList = ({ data }) => {
                 <p className="mt-3">{member.name}</p>
               </td>
               <td className="align-middle">
-                <img alt="member" className="img-list" src={member.photo} />
+                <img alt="member" className="img-table" src={member.image} />
               </td>
               <td className="align-middle">
                 <Link to={`/backoffice/members/${member.id}`}>
