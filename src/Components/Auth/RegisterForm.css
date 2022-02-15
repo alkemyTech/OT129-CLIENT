@@ -42,15 +42,3 @@
   background-color: var(--blue);
   color: var(--white);
 }
-.conditions-label {
-  padding: 0.5rem 1rem;
-  text-align: center;
-  font-weight: 700;
-  color: var(--dark-blue);
-  transition: all 150ms ease-in-out;
-  cursor: pointer;
-}
-.conditions-label:hover {
-  background-color: var(--blue);
-  color: var(--white);
-}
