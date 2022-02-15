@@ -2,37 +2,34 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { fetchActivities, selectorActivities } from "../../features/Activities/activitiesSlice";
-import Spinner from "../../Components/Spinner/Spinner";
 import Card from "../../Components/Card/Card";
+import StatusHandler from "../../Components/StatusHandler/StatusHandler";
 
 const ActivitiesCards = () => {
-  const { activities } = useSelector(selectorActivities);
   const dispatch = useDispatch();
+  const { activities, status } = useSelector(selectorActivities);
 
   useEffect(() => {
     dispatch(fetchActivities());
   }, [dispatch]);
 
   return (
-    <div className="container mt-5">
+    <div className="container my-5">
       <div className="row">
-        {activities.length === 0 ? (
-          <div className="mt-5">
-            <Spinner />
-          </div>
-        ) : (
-          activities.map((activity) => (
-            <div key={activity.id} className="col">
+        <StatusHandler status={status} />
+        <div className="container-cards">
+          {activities &&
+            activities.map((el) => (
               <Card
-                description={activity.description}
-                id={activity.id}
-                image={activity.image}
-                title={activity.name}
+                key={el.id}
+                description={el.description}
+                id={el.id}
+                image={el.image}
+                title={el.name}
                 url="actividades"
               />
-            </div>
-          ))
-        )}
+            ))}
+        </div>
       </div>
     </div>
   );

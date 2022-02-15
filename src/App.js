@@ -33,9 +33,7 @@ function App() {
             <Suspense fallback={<Spinner />}>
               {publicRoute.map(({ path, component, exact }) => {
                 return (
-                  <>
                     <Route component={component} exact={exact} path={path} />
-                  </>
                 );
               })}
             </Suspense>
