@@ -33,7 +33,7 @@ const Footer = () => {
           <nav className="d-flex justify-content-center mt-4 mt-sm-0 d-md-block col-12 col-sm-4 col-md-4 col-xl-3">
             <div className="m-1 d-md-flex align-items-center">
               <a
-                className="containerButtonImage "
+                className="containerImage "
                 href="https://facebook.com/ONGSomosMas"
                 rel="noreferrer"
                 target="_blank"
@@ -42,9 +42,10 @@ const Footer = () => {
               </a>
               <p className="d-none d-md-inline text-blue m-1">facebook</p>
             </div>
-            <div className="m-1 d-md-flex align-items-center">
+
+            <div className="m-1 d-md-flex align-items-center ">
               <a
-                className="containerButtonImage "
+                className="containerImage "
                 href="https://twitter.com/ONGSomosMas"
                 rel="noreferrer"
                 target="_blank"
@@ -53,9 +54,10 @@ const Footer = () => {
               </a>
               <p className="d-none d-md-inline text-blue m-1">Twitter</p>
             </div>
+
             <div className="m-1 d-md-flex align-items-center">
               <a
-                className="containerButtonImage "
+                className="containerImage "
                 href="https://instagram.com/ONGSomosMas"
                 rel="noreferrer"
                 target="_blank"
@@ -64,9 +66,10 @@ const Footer = () => {
               </a>
               <p className="d-none d-md-inline text-blue m-1">Instagram</p>
             </div>
+
             <div className="m-1 d-md-flex align-items-center">
               <a
-                className="containerButtonImage "
+                className="containerImage "
                 href="https://linkedin.com/ONGSomosMas"
                 rel="noreferrer"
                 target="_blank"
