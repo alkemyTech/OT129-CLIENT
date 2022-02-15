@@ -1,0 +1,51 @@
+.content-image{
+    width: 7rem;
+    display: none;
+}
+.image-tilted-left{
+  
+    transform: rotate(15deg);
+
+}
+.image-tilted-right{
+    transform: rotate(-15deg);
+}
+.image-tilted-left-bottom{
+    transform: rotate(10deg);
+}
+.image-tilted-center-bottom{
+    transform:translateY(-15px);
+    padding-bottom: 10px;
+  
+}
+.image-tilted-right-bottom{
+    transform: rotate(-10deg);
+}
+.images-bottom-container{
+    width: 80%;
+    margin: 0 auto;
+}
+.paragraph{
+    width: 80%;
+    margin: 10px auto;
+}
+.countdown-text{
+    display: none;
+}
+@media screen and (min-width: 768px) {
+    .countdown-text{
+        display: unset;
+    }
+}
+@media screen and (min-width: 1024px) {
+    .content-image{
+        display: unset;
+    }
+}
+
+@media screen and (min-width: 2440px) {
+    .bg-container {
+        min-height: 100vh;
+        background-color: rgba(255, 255, 255, 0.5);
+      }
+}
