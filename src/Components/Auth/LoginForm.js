@@ -4,6 +4,7 @@ import { Formik, ErrorMessage, Field } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 
+import { getLogged } from "../../features/auth/authSlice";
 import Alert from "../Container/Alert";
 
 const startValues = {
