@@ -31,10 +31,10 @@ function App() {
         <div className="container-app">
           <Switch>
             <Suspense fallback={<Spinner />}>
-              {publicRoute.map(({ path, component, exact }) => {
+              {publicRoute.map(({ path, component, exact }, i) => {
                 return (
                   <>
-                    <Route key={path} component={component} exact={exact} path={path} />
+                    <Route key={i} component={component} exact={exact} path={path} />
                   </>
                 );
               })}
