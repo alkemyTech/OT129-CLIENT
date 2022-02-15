@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import "./ShowCard.css";
 import { Link } from "react-router-dom";
 
+import DangerouslySetInnerHTML from "../DangerouslySetInnerHTML/DangerouslySetInnerHTML";
+
 import "./Card.css";
 
 const Card = ({ id, title, image, description, url }) => {
@@ -21,9 +23,7 @@ const Card = ({ id, title, image, description, url }) => {
       )}
       <div className="card-body general-card-body">
         <h5 className="card-title text-uppercase">{title}</h5>
-        {description && (
-          <p dangerouslySetInnerHTML={{ __html: `${descriptionSlice}` }} className="card-text" />
-        )}
+        {description && <DangerouslySetInnerHTML content={descriptionSlice} />}
         <Link className="general-btn fill-btn card-btn text-decoration-none" to={`/${url}/${id}`}>
           Leer más
         </Link>
