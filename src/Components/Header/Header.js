@@ -36,6 +36,8 @@ const Header = () => {
               return (
                 <NavLink
                   key={item.id.toString()}
+                  exact
+                  activeClassName="active"
                   className="link-to-section container-fluid"
                   to={item.link.toString()}
                 >
@@ -46,10 +48,18 @@ const Header = () => {
           </NavLink>
           {isLogged ? (
             <div className="general-btn">
-              <button className="stroke-btn stroke-btn" component={Link} to="/loginForm">
+              <button
+                className="general-btn stroke-btn stroke-btn"
+                component={Link}
+                to="/loginForm"
+              >
                 LOGIN
               </button>
-              <button className="fill-btn fill-btn:hover" component={Link} to="/registerForm">
+              <button
+                className="general-btn fill-btn fill-btn:hover"
+                component={Link}
+                to="/registerForm"
+              >
                 REGISTRATE
               </button>
             </div>
@@ -59,6 +69,8 @@ const Header = () => {
                 return (
                   <NavLink
                     key={item.id.toString()}
+                    exact
+                    activeClassName="active"
                     className="link-to-section container-fluid"
                     to={item.link.toString()}
                   >

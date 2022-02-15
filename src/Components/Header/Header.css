@@ -4,12 +4,17 @@
     justify-content:space-between;
 }
 
+
 .link-to-section {
     text-decoration: none;
     align-items:center;
     color: #7c97ad;
     transition: color 0.3s ease;
     justify-content:space-between;
+}
+
+.active {
+   color: #f35b5b;
 }
   /* logo    */
 .logo {
@@ -18,11 +23,28 @@
 }
 
   /* button */
+
+  .general-btn {
+    width: var(--width-button);
+    height: var(--heigth-button);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: var(--border-radius);
+    border: none;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition-duration: 0.4s;
+    margin: 1rem;
+  }
+
   .stroke-btn {
     border: 2px solid var(--blue);
     color: var(--black);  
     background: transparent;
     box-sizing: border-box;
+    
   }
   
   .stroke-btn {
