@@ -33,6 +33,7 @@ import Backoffice from "./Containers/Backoffice/Backoffice";
 import Error404 from "./Pages/Error404Page";
 import Route from "./Components/Route";
 import RegisterPage from "./Pages/RegisterPage";
+import LayoutPublic from "./Components/Layout/LayoutPublic";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/js/dist/offcanvas";
@@ -44,18 +45,20 @@ function App() {
       <Router>
         <div className="container-app">
           <Switch>
-            <Route exact component={HomePage} path="/" />
-            <Route exact component={ContactPage} path="/contacto" />
-            <Route exact component={Donation} path="/donar" />
-            <Route exact component={ThankYou} path="/gracias" />
-            <Route exact component={AboutPage} path="/nosotros" />
-            <Route exact component={SchoolCampaign} path="/school-campaign" />
-            <Route exact component={ToysCampaign} path="/toys-campaign" />
-            <Route exact component={ActivitiesPage} path="/actividades" />
-            <Route exact component={ActivitiesIdPage} path="/actividades/:id" />
-            <Route exact component={NewsPage} path="/novedades" />
-            <Route exact component={NewsIdPage} path="/novedades/:id" />
-            <Route exact component={RegisterPage} path="/registro" />
+            <LayoutPublic>
+              <Route exact component={HomePage} path="/" />
+              <Route exact component={ContactPage} path="/contacto" />
+              <Route exact component={Donation} path="/donar" />
+              <Route exact component={ThankYou} path="/gracias" />
+              <Route exact component={AboutPage} path="/nosotros" />
+              <Route exact component={SchoolCampaign} path="/school-campaign" />
+              <Route exact component={ToysCampaign} path="/toys-campaign" />
+              <Route exact component={ActivitiesPage} path="/actividades" />
+              <Route exact component={ActivitiesIdPage} path="/actividades/:id" />
+              <Route exact component={NewsPage} path="/novedades" />
+              <Route exact component={NewsIdPage} path="/novedades/:id" />
+              <Route exact component={RegisterPage} path="/registro" />
+            </LayoutPublic>
             <Route exact component={TestimonialForm} path="/testimonials/create" />
             <Route exact component={ProjectsForm} path="/projects/create" />
             <Route exact component={Backoffice} path="/backoffice" />
