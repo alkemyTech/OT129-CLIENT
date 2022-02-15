@@ -2,11 +2,12 @@
   width: 90%;
   max-width: 600px;
   height: auto;
+  max-height: 600px;
   margin: auto;
   background-color: white;
   border: none;
   border-radius: 10px;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 .modal-container {
   width: 100%;
