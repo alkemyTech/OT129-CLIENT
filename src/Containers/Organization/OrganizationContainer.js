@@ -8,7 +8,6 @@ const OrganizationContainer = () => {
 
   useEffect(() => {
     getOrganizations().then((res) => {
-      res = res.json();
       setData(res.data);
     });
   });
