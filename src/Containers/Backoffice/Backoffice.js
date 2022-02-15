@@ -1,6 +1,6 @@
 import React from "react";
 
-import BackNavBar from "../../Components/BackNavBar/BackNavBar";
+import BackNavBar from "../../Components/Navigation/BackNavBar/BackNavBar";
 
 import BackCards from "./BackCards";
 
