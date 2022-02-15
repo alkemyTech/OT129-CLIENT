@@ -1,0 +1,31 @@
+.general-container {
+  margin: 120px 0;
+}
+
+.row-widgets {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.col-timeline {
+  display: flex;
+  justify-content: center;
+}
+
+.container-timeline {
+  border: 1px solid rgb(216, 216, 216);
+  box-shadow: 2px 2px 4px rgb(223, 223, 223);
+}
+
+.container-followWidgets {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-followButton {
+  margin-bottom: 40px; 
+}
+
