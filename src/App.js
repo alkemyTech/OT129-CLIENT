@@ -30,11 +30,13 @@ import SchoolCampaign from "./Campaigns/School/SchoolCampaign";
 import ThankYou from "./Components/Donations/ThankYou";
 import ToysCampaign from "./Campaigns/Toys/ToysCampaign";
 import Backoffice from "./Containers/Backoffice/Backoffice";
+import Error404 from "./Pages/Error404Page";
 import Route from "./Components/Route";
+import RegisterPage from "./Pages/RegisterPage";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/js/dist/offcanvas";
 import "./App.css";
-import RegisterPage from "./Pages/RegisterPage";
 
 function App() {
   return (
@@ -54,7 +56,6 @@ function App() {
             <Route exact component={NewsPage} path="/novedades" />
             <Route exact component={NewsIdPage} path="/novedades/:id" />
             <Route exact component={RegisterPage} path="/registro" />
-
             <Route exact component={TestimonialForm} path="/testimonials/create" />
             <Route exact component={ProjectsForm} path="/projects/create" />
             <Route exact component={Backoffice} path="/backoffice" />
@@ -78,6 +79,7 @@ function App() {
             <Route exact component={MembersFormContainer} path="/backoffice/members/:id" />
             <Route exact component={OrganizationContainer} path="/backoffice/organization" />
             <Route exact component={EditOrganization} path="/backoffice/organization/edit" />
+            <Route component={Error404} path="*" />
           </Switch>
         </div>
       </Router>
