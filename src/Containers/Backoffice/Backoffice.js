@@ -1,7 +1,5 @@
 import React from "react";
 
-import BackNavBar from "../../Components/BackNavBar/BackNavBar";
-
 import BackCards from "./BackCards";
 
 import "./backoffice.css";
@@ -52,7 +50,6 @@ const BACK_CARDS = [
 function Backoffice() {
   return (
     <>
-      <BackNavBar />
       <div className="bg-container">
         <BackCards data={BACK_CARDS} />
       </div>
