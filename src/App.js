@@ -30,6 +30,7 @@ import SchoolCampaign from "./Campaigns/School/SchoolCampaign";
 import ThankYou from "./Components/Donations/ThankYou";
 import ToysCampaign from "./Campaigns/Toys/ToysCampaign";
 import Backoffice from "./Containers/Backoffice/Backoffice";
+import Error404 from "./Pages/Error404Page";
 import Route from "./Components/Route";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/js/dist/offcanvas";
@@ -76,6 +77,7 @@ function App() {
             <Route exact component={MembersFormContainer} path="/backoffice/members/:id" />
             <Route exact component={OrganizationContainer} path="/backoffice/organization" />
             <Route exact component={EditOrganization} path="/backoffice/organization/edit" />
+            <Route component={Error404} path="*" />
           </Switch>
         </div>
       </Router>
