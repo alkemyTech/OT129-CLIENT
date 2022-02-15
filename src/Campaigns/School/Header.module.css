@@ -11,7 +11,7 @@
 
 .onglogo {
     display: none;
-}
+    }
 
 .slogan {
     display: none;
@@ -37,8 +37,8 @@
     }
 
     .onglogo {
-        height: 150px;
-        width: 150px;
+        height: 90px;
+        width: 180px;
     }
 }
 
