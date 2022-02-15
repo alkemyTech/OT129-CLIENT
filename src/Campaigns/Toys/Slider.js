@@ -19,19 +19,19 @@ const Slider = () => {
           <div className={`carousel-item active ${styles["slide-image"]}`}>
             <img alt="slide-toys" className="d-block w-100" src={slide1} />
             <div className={`carousel-caption d-none d-lg-block ${styles["slider-caption"]}`}>
-              <p className="text-dark fs-4 text">{slide1Text}</p>
+              <p className="text-dark fs-5 text">{slide1Text}</p>
             </div>
           </div>
           <div className={`carousel-item ${styles["slide-image"]}`}>
             <img alt="slide-toys" className="d-block w-100" src={slide2} />
             <div className={`carousel-caption d-none d-lg-block ${styles["slider-caption"]}`}>
-              <p className="text-dark fs-4 text">{slide2Text}</p>
+              <p className="text-dark fs-5 text">{slide2Text}</p>
             </div>
           </div>
           <div className={`carousel-item ${styles["slide-image"]}`}>
             <img alt="slide-toys" className="d-block w-100" src={slide3} />
             <div className={`carousel-caption d-none d-lg-block ${styles["slider-caption"]}`}>
-              <p className="text-dark fs-4 text">{slide3Text}</p>
+              <p className="text-dark fs-5 text">{slide3Text}</p>
             </div>
           </div>
         </div>
