@@ -9,7 +9,7 @@ const Card = ({ id, title, image, description, url }) => {
   const descriptionSlice = description && description.slice(0, 70) + "...";
 
   return (
-    <div className="card">
+    <div className="card general-card">
       {image ? (
         <img alt="Card image cap" className="card-img-top img-card" src={image} />
       ) : (
@@ -19,7 +19,7 @@ const Card = ({ id, title, image, description, url }) => {
           src="\images\placeholder\emptyImage.png"
         />
       )}
-      <div className="card-body">
+      <div className="card-body general-card-body">
         <h5 className="card-title text-uppercase">{title}</h5>
         {description && (
           <p dangerouslySetInnerHTML={{ __html: `${descriptionSlice}` }} className="card-text" />

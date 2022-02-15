@@ -1,14 +1,13 @@
-.card {
-  margin-top: 0 !important;
-    text-align: center;
-    height: auto !important;
+.general-card {
+  margin-top: 0 ;
+  text-align: center;
+  height: auto ;
 }
 
-.card-body {
+.general-card-body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
   height: 220px !important;
 }
 
