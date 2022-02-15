@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Switch } from "react-router-dom";
 
-import Header from "./Components/Header/Header";
 import ActivitiesListContainer from "./Containers/Activities/ActivitiesListContainer";
 import ActivitiesFormContainer from "./Containers/Activities/ActivitiesFormContainer/ActivitiesFormContainer";
 import ActivitiesPage from "./Pages/ActivitiesPage";
@@ -41,7 +40,6 @@ function App() {
     <>
       <Router>
         <div className="container-app">
-          <Header />
           <Switch>
             <Route exact component={HomePage} path="/" />
             <Route exact component={ContactPage} path="/contacto" />
