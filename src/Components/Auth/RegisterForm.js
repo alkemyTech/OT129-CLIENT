@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import PropTypes from "prop-types";
-import "bootstrap/dist/css/bootstrap.css";
-import "../FormStyles.css";
 import { useDispatch } from "react-redux";
+import axios from "axios";
+import { Wrapper } from "@googlemaps/react-wrapper";
 
 import { getRegistered } from "../../features/auth/authSlice";
+import "../../index.css";
+import "./RegisterForm.css";
+
+import Map from "./Map";
 
 const PASSWORD_REGEX = new RegExp("(?=.*[A-Za-z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{6,})");
 
@@ -15,19 +19,30 @@ const initialValues = {
   email: "",
   password: "",
   confirmPassword: "",
+  address: "",
 };
 
 const validationSchema = Yup.object({
-  email: Yup.string().required("The field is required").email("This is not a valid email format"),
+  name: Yup.string().required("El campo NOMBRE es requerido"),
+  email: Yup.string()
+    .required("El campo EMAIL es requerido")
+    .email("Ingresa un formato válido de EMAIL"),
   password: Yup.string()
-    .required("The field is required")
-    .min(6, "Password must be at least 6 characters")
-    .matches(PASSWORD_REGEX, "Password must have at least one special character and a number"),
+    .required("El campo CONTRASEÑA es requerido")
+    .min(6, "Tu CONTRASEÑA debe contener al menos 6 caracteres")
+    .matches(
+      PASSWORD_REGEX,
+      "Tu CONTRASEÑA debe contener al menos un número y un caracter especial"
+    ),
   confirmPassword: Yup.string()
-    .required("The field is required")
-    .min(6, "Password must be at least 6 characters")
-    .matches(PASSWORD_REGEX, "Password must have at least one special character and a number")
-    .oneOf([Yup.ref("password"), null], "Passwords must match"),
+    .required("El campo CONFIRMAR CONTRASEÑA es requerido")
+    .min(6, "Tu CONTRASEÑA debe contener al menos 6 caracteres")
+    .matches(
+      PASSWORD_REGEX,
+      "Tu CONTRASEÑA debe contener al menos un número y un caracter especial"
+    )
+    .oneOf([Yup.ref("password"), null], "Las CONTRASEÑAS deben coincidir"),
+  address: Yup.string().required("Ingrese su DIRECCIÓN"),
 });
 
 const Alert = ({ children }) => {
@@ -39,15 +54,39 @@ Alert.propTypes = {
 };
 
 const RegisterForm = () => {
+  const [map, setMap] = useState({});
+  const [address, setAddress] = useState("");
   const dispatch = useDispatch();
+
+  const handleSearchClick = async () => {
+    const getLocation = async () => {
+      const response = await axios.get("https://maps.googleapis.com/maps/api/geocode/json", {
+        params: {
+          address: address,
+          key: process.env.REACT_APP_API_GOOGLE_KEY,
+        },
+      });
+
+      return response.data.results[0].geometry.location;
+    };
+    const result = await getLocation();
+
+    setMap(result);
+  };
+
   const handleRegister = (values) => {
     const body = {
       name: values.name,
       email: values.email,
       password: values.password,
+      address: address,
+      latitude: map.lat,
+      longitude: map.lng,
     };
 
-    dispatch(getRegistered(body));
+    if (map) {
+      dispatch(getRegistered(body));
+    }
   };
 
   return (
@@ -117,12 +156,41 @@ const RegisterForm = () => {
               />
               <ErrorMessage component={Alert} name="confirmPassword" />
             </div>
-            <button className="btn btn-primary" type="submit">
-              Submit
+            <div className="form-group input-group mb-3">
+              <label className="form-label" htmlFor="address">
+                Dirección:
+              </label>
+              <div className="input-group">
+                <input
+                  className="form-control mb-3"
+                  id="address"
+                  name="address"
+                  placeholder="Ingresa tu dirección"
+                  type="text"
+                  onChange={(e) => {
+                    formik.setFieldValue("address", e.target.value);
+                    setAddress(e.target.value);
+                  }}
+                />
+                <button
+                  className="general-btn fill-btn mb-3"
+                  type="button"
+                  onClick={() => handleSearchClick()}
+                >
+                  <i className="fas fa-search-location" />
+                </button>
+              </div>
+              <ErrorMessage component={Alert} name="address" />
+            </div>
+            <button className="general-btn register-btn my-3" type="submit">
+              REGISTRAR
             </button>
           </form>
         )}
       </Formik>
+      <Wrapper apiKey={process.env.REACT_APP_API_GOOGLE_KEY}>
+        <Map center={map} zoom={14} />
+      </Wrapper>
     </div>
   );
 };
