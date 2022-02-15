@@ -1,18 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 
 import HomeSlidesContainer from "../Containers/HomeSlide/HomeSlidesContainer";
-import HomeCards from "../Containers/HomeCards/HomeCards";
+import HomeNewsCards from "../Containers/HomeCards/HomeNewsCards";
+import { fetchOrganization } from "../features/Organization/organizationSlice";
 
 const HomePage = () => {
   const cardNews = "Cards Desde la API Novedades";
   const welcomeText = "Texto de Bienvenida";
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchOrganization());
+  });
 
   return (
     <div className="container">
       <h1 className="text-center mt-3">Home Page</h1>
       <HomeSlidesContainer />
       <h2> {welcomeText}</h2>
-      <HomeCards card={cardNews} />
+      <HomeNewsCards card={cardNews} />
     </div>
   );
 };

@@ -73,6 +73,19 @@ body {
   color: var(--dark-blue);
 }
 
+.register-btn {
+  width: 100%;
+  max-width: 450px;
+  height: 50px;
+  margin: auto;
+  background: var(--blue);
+  color: var(--white);
+  text-transform: uppercase;
+}
+.register-btn:hover {
+  background: var(--dark-blue);
+}
+
 /* Cards */
 
 .card {

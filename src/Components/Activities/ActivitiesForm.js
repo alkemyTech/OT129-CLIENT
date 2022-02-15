@@ -1,15 +1,13 @@
 /* eslint-disable no-console */
 import React, { useState, useEffect } from "react";
-import { Formik, Field, Form, ErrorMessage } from "formik";
+import { Formik, Form, ErrorMessage } from "formik";
 import PropTypes from "prop-types";
 import * as Yup from "yup";
 import "../FormStyles.css";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
-import { createActivity, editActivity } from "../../Services/ActivitiesService";
 import { toBase64 } from "../../utils/toBase64";
-import { alerts } from "../../utils/alerts";
 
 const validationSchema = Yup.object({
   name: Yup.string().required("El nombre de la actividad es obligatorio"),
@@ -22,7 +20,7 @@ const validationSchema = Yup.object({
     }),
 });
 
-const ActivitiesForm = ({ activity = {} }) => {
+const ActivitiesForm = ({ activity = {}, decideAction }) => {
   const [activityImage, setActivityImage] = useState("");
 
   const initialValues = {
@@ -35,7 +33,7 @@ const ActivitiesForm = ({ activity = {} }) => {
     if (activity.id) {
       setActivityImage(activity.image);
     }
-  }, []);
+  }, [activity]);
 
   return (
     <div className="container mt-4">
@@ -46,33 +44,20 @@ const ActivitiesForm = ({ activity = {} }) => {
           const resultBase = await toBase64(formData.image);
           const newActivity = { ...formData, image: resultBase };
 
-          if (activity.id === undefined) {
-            createActivity(newActivity).catch(() => {
-              alerts("Ups! ocurrió un error inesperado al crear la Actividad", "error");
-            });
-          } else {
-            editActivity({
-              ...newActivity,
-              id: activity.id,
-            }).catch(() => {
-              alerts(
-                `Ups! ocurrió un error inesperado editar la actividad id: ${activity.id}`,
-                "error"
-              );
-            });
-          }
+          decideAction(newActivity);
         }}
       >
         {(formik) => (
           <Form className="row justify-content-center align-items-center">
             <div className="col-sm-6 ">
               <div className="input-group mb-3">
-                <Field
+                <input
                   className="p-2 w-100"
                   id="name"
                   name="name"
-                  placeholder="Nombre de la actividad"
+                  placeholder={initialValues?.name || "Título"}
                   type="text"
+                  {...formik.getFieldProps("name")}
                 />
                 <ErrorMessage className="alert-danger" name="name" />
               </div>
@@ -103,9 +88,13 @@ const ActivitiesForm = ({ activity = {} }) => {
                   }}
                 />
                 <ErrorMessage className="alert-danger" name="image" />
-                {activityImage ? (
-                  <img alt="Imagen actual" className="current-img" src={activityImage} />
-                ) : null}
+                {activityImage && (
+                  <img
+                    alt="Imagen actual"
+                    className="d-block current-img mt-3"
+                    src={activityImage}
+                  />
+                )}
               </div>
               <button className="submit-btn" type="submit">
                 {activity?.id ? "EDITAR" : "CREAR"}
@@ -125,6 +114,7 @@ ActivitiesForm.propTypes = {
     description: PropTypes.string,
     image: PropTypes.string,
   }),
+  decideAction: PropTypes.func,
 };
 
 export default ActivitiesForm;
