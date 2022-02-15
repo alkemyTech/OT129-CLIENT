@@ -1,4 +1,5 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
@@ -7,18 +8,20 @@ import PropTypes from "prop-types";
 
 import { toBase64 } from "../../utils/toBase64";
 import { isValidUrl } from "../../utils/isValidUrl";
-import { editMember, createMember } from "../../Services/MembersService";
+import { newMember, putMember } from "../../features/Members/membersSlice";
 import ContainerFormCard from "../../Containers/ContainerFormCard";
 
 import "../FormStyles.css";
 
-const MembersForm = ({ member = {} }) => {
+const MembersForm = ({ member }) => {
+  const dispatch = useDispatch();
+
   const initialValues = {
-    name: member?.name || "",
-    description: member?.description || "",
-    image: member?.image || "",
-    facebookUrl: member?.facebookUrl || "",
-    linkedinUrl: member?.linkedinUrl || "",
+    name: member.name ?? "",
+    description: member.description ?? "",
+    image: member.image ?? "",
+    facebookUrl: member.facebookUrl ?? "",
+    linkedinUrl: member.linkedinUrl ?? "",
   };
 
   return (
@@ -26,11 +29,11 @@ const MembersForm = ({ member = {} }) => {
       <Formik
         initialValues={initialValues}
         validationSchema={validationMemberSchema}
-        onSubmit={async (formData) => {
-          const resultBase = await toBase64(formData.image);
-          const newMember = { ...formData, image: resultBase };
+        onSubmit={(formData) => {
+          const resultBase = toBase64(formData.image);
+          const NEW_MEMBER = { ...formData, image: resultBase };
 
-          !member.id ? createMember(newMember) : editMember(newMember, member.id);
+          !member.id ? dispatch(newMember(NEW_MEMBER)) : dispatch(putMember(NEW_MEMBER, member.id));
         }}
       >
         {(formik) => (
@@ -141,6 +144,6 @@ const validationMemberSchema = Yup.object({
     .test(
       "format",
       "El formato no es valido",
-      (value) => !value || (value && SUPPORTED_FORMATS.includes(value.type))
+      (value) => value || (value && SUPPORTED_FORMATS.includes(value.type))
     ),
 });
