@@ -19,7 +19,7 @@ const Footer = () => {
               rel="noreferrer"
               target="_blank"
             >
-              www.somosnas.ong
+              www.somosmas.ong
             </a>
           </div>
 
@@ -30,7 +30,7 @@ const Footer = () => {
             </Link>
           </div>
 
-          <nav className="d-flex justify-content-center mt-4 mt-sm-0 d-md-block col-12 col-sm-4 col-md-4 col-xl-3">
+          <nav className="d-flex justify-content-center align-items-center mt-4 mt-sm-0 d-md-block col-12 col-sm-4 col-md-4 col-xl-3">
             <div className="m-1 d-md-flex align-items-center">
               <a
                 className="containerImage "
