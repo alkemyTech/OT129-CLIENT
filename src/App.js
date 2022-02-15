@@ -23,6 +23,8 @@ import PrivateRoute from "./Components/Route/PrivateRoute";
 import ProtectedRoutes from "./Components/Route/ProtectedRoutes";
 import { getToken, selectAuth } from "./features/auth/authSlice";
 import { isLogin } from "./utils/isLogin";
+import Backoffice from "./Containers/Backoffice/Backoffice";
+import RegisterPage from "./Pages/RegisterPage";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/js/dist/offcanvas";
@@ -47,8 +49,7 @@ function App() {
             <Route exact component={ActivitiesIdPage} path="/actividades/:id" />
             <Route exact component={NewsPage} path="/novedades" />
             <Route exact component={NewsIdPage} path="/novedades/:id" />
-            <Route exact component={RegisterForm} path="/registro" />
-
+            <Route exact component={RegisterPage} path="/registro" />
             <Route exact component={TestimonialForm} path="/testimonials/create" />
             <Route exact component={ProjectsForm} path="/projects/create" />
             <Route exact component={LoginForm} path="/login" />
