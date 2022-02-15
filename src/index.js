@@ -7,6 +7,7 @@ import store from "./app/store";
 import * as serviceWorker from "./serviceWorker";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
+import "bootstrap/js/dist/modal";
 
 ReactDOM.render(
   <React.StrictMode>

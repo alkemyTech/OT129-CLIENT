@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
+
 import "./Donation.css";
+import DonationAmountModal from "./DonationAmountModal";
 
 const Donation = ({ text }) => {
   return (
@@ -11,7 +13,7 @@ const Donation = ({ text }) => {
             <p className="text">{text}</p>
           </div>
           <div className="col-4 col-button">
-            <button className="general-btn fill-btn">Contribuye</button>
+            <DonationAmountModal />
           </div>
         </div>
       </div>

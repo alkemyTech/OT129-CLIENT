@@ -71,7 +71,7 @@ body {
   box-sizing: border-box;
 }
 
-.stroke-btn:hover {
+.stroke-btn {
   border: 2px solid var(--dark-blue);
   color: var(--dark-blue);
 }
