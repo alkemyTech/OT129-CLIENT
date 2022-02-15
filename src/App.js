@@ -22,7 +22,6 @@ import MembersListContainer from "./Containers/Members/MembersListContainer";
 import MembersFormContainer from "./Containers/Members/MembersFormContainer";
 import NewsContainer from "./Containers/News/NewsContainer";
 import OrganizationContainer from "./Containers/Organization/OrganizationContainer";
-import SlidesContainer from "./Components/Slides/SlidesContainer";
 import SlidesForm from "./Components/Slides/SlidesForm";
 import UsersListContainer from "./Containers/Users/UsersListContainer";
 import UsersFormContainer from "./Containers/Users/UsersFormContainer";
@@ -32,8 +31,8 @@ import ToysCampaign from "./Campaigns/Toys/ToysCampaign";
 import Backoffice from "./Containers/Backoffice/Backoffice";
 import RegisterForm from "./Components/Auth/RegisterForm";
 import Error404 from "./Pages/Error404Page";
+import SlidesContainer from "./Components/Slides/SlidesContainer";
 import Route from "./Components/Route";
-
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/js/dist/offcanvas";
 import "./App.css";
@@ -71,6 +70,7 @@ function App() {
             <Route exact component={CategoriesFormContainer} path="/backoffice/categories/create" />
             <Route exact component={CategoriesFormContainer} path="/backoffice/categories/:id" />
             <Route exact component={SlidesContainer} path="/backoffice/slides" />
+            <Route exact component={SlidesForm} path="/backoffice/slides/:id" />
             <Route exact component={SlidesForm} path="/backoffice/slides/create" />
             <Route exact component={UsersListContainer} path="/backoffice/users" />
             <Route exact component={UsersFormContainer} path="/backoffice/users/create" />
