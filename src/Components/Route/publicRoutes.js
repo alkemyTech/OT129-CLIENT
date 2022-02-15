@@ -1,5 +1,7 @@
 import { lazy } from "react";
 
+import Error404 from "../Error404/Error404";
+
 const HomePage = lazy(() => import(/* webpackChunkName: "LazyHomePage"*/ "../../Pages/HomePage"));
 const TestimonialForm = lazy(() =>
   import(/* webpackChunkName: "LazyTestimonialsPage"*/ "../Testimonials/TestimonialsForm")
@@ -111,5 +113,10 @@ export const publicRoute = [
     path: "/projects/create",
     component: ProjectsForm,
     exact: true,
+  },
+  {
+    path: "/*",
+    component: Error404,
+    exact: false,
   },
 ];

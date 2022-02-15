@@ -17,7 +17,6 @@ import SlidesForm from "./Components/Slides/SlidesForm";
 import UsersListContainer from "./Containers/Users/UsersListContainer";
 import UsersFormContainer from "./Containers/Users/UsersFormContainer";
 import Backoffice from "./Containers/Backoffice/Backoffice";
-import Error404 from "./Pages/Error404Page";
 import Route from "./Components/Route";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/js/dist/offcanvas";
@@ -30,8 +29,8 @@ function App() {
     <>
       <Router>
         <div className="container-app">
-          <Switch>
-            <Suspense fallback={<Spinner />}>
+          <Suspense fallback={<Spinner />}>
+            <Switch>
               {publicRoute.map(({ path, component, exact }) => {
                 return (
                   <>
@@ -39,37 +38,30 @@ function App() {
                   </>
                 );
               })}
-              <Route exact component={Backoffice} path="/backoffice" />
-              <Route exact component={HomeForm} path="/backoffice/home" />
-              <Route exact component={ActivitiesListContainer} path="/backoffice/activities" />
-              <Route
-                exact
-                component={ActivitiesFormContainer}
-                path="/backoffice/activities/create"
-              />
-              <Route exact component={ActivitiesFormContainer} path="/backoffice/activities/:id" />
-              <Route exact component={NewsList} path="/backoffice/news" />
-              <Route exact component={NewsContainer} path="/backoffice/news/create" />
-              <Route exact component={NewsContainer} path="/backoffice/news/:id" />
-              <Route exact component={CategoriesListContainer} path="/backoffice/categories" />
-              <Route
-                exact
-                component={CategoriesFormContainer}
-                path="/backoffice/categories/create"
-              />
-              <Route exact component={CategoriesFormContainer} path="/backoffice/categories/:id" />
-              <Route exact component={SlidesContainer} path="/backoffice/slides" />
-              <Route exact component={SlidesForm} path="/backoffice/slides/create" />
-              <Route exact component={UsersListContainer} path="/backoffice/users" />
-              <Route exact component={UsersFormContainer} path="/backoffice/users/create" />
-              <Route exact component={UsersFormContainer} path="/backoffice/users/create/:id" />
-              <Route exact component={MembersListContainer} path="/backoffice/members" />
-              <Route exact component={MembersFormContainer} path="/backoffice/members/create" />
-              <Route exact component={MembersFormContainer} path="/backoffice/members/:id" />
-              <Route exact component={OrganizationContainer} path="/backoffice/organization" />
-              <Route exact component={EditOrganization} path="/backoffice/organization/edit" />
-            </Suspense>
-          </Switch>
+            </Switch>
+          </Suspense>
+
+          <Route exact component={Backoffice} path="/backoffice" />
+          <Route exact component={HomeForm} path="/backoffice/home" />
+          <Route exact component={ActivitiesListContainer} path="/backoffice/activities" />
+          <Route exact component={ActivitiesFormContainer} path="/backoffice/activities/create" />
+          <Route exact component={ActivitiesFormContainer} path="/backoffice/activities/:id" />
+          <Route exact component={NewsList} path="/backoffice/news" />
+          <Route exact component={NewsContainer} path="/backoffice/news/create" />
+          <Route exact component={NewsContainer} path="/backoffice/news/:id" />
+          <Route exact component={CategoriesListContainer} path="/backoffice/categories" />
+          <Route exact component={CategoriesFormContainer} path="/backoffice/categories/create" />
+          <Route exact component={CategoriesFormContainer} path="/backoffice/categories/:id" />
+          <Route exact component={SlidesContainer} path="/backoffice/slides" />
+          <Route exact component={SlidesForm} path="/backoffice/slides/create" />
+          <Route exact component={UsersListContainer} path="/backoffice/users" />
+          <Route exact component={UsersFormContainer} path="/backoffice/users/create" />
+          <Route exact component={UsersFormContainer} path="/backoffice/users/create/:id" />
+          <Route exact component={MembersListContainer} path="/backoffice/members" />
+          <Route exact component={MembersFormContainer} path="/backoffice/members/create" />
+          <Route exact component={MembersFormContainer} path="/backoffice/members/:id" />
+          <Route exact component={OrganizationContainer} path="/backoffice/organization" />
+          <Route exact component={EditOrganization} path="/backoffice/organization/edit" />
         </div>
       </Router>
     </>
