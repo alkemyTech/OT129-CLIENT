@@ -1,20 +1,23 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 :root {
   --black: #2c2c2c;
   --white: #ffffff;
-  --blue: #9AC9FB;
-  --dark-blue: #7BA1C9;
-  --grey: #C2C2C2;
-  --red: #DB5752;
-  --yellow: #FAFA88;
+  --blue: #9ac9fb;
+  --blue-hover: rgba(154, 201, 251, 0.8);
+  --dark-blue: #7ba1c9;
+  --grey: #c2c2c2;
+  --red: #db5752;
+  --red-hover: rgba(219, 87, 82, 0.8);
+  --yellow: #fafa88;
   --bg-light-blue: #edf2f7;
   --width-button: 140px;
   --heigth-button: 40px;
   --border-radius: 6px;
-  --font-family: 'Montserrat', sans-serif;
+  --font-family: "Montserrat", sans-serif;
   --font-size: 15px;
   --card-shadow: 2px 2px 6px rgb(224, 224, 224);
+  --form-shadow: 0 10px 6px -4px rgba(123, 161, 201, 0.5);
 }
 
 body {
@@ -63,14 +66,76 @@ body {
 
 .stroke-btn {
   border: 2px solid var(--blue);
-  color: var(--black);  
+  color: var(--black);
   background: transparent;
   box-sizing: border-box;
 }
 
-.stroke-btn:hover {
+.stroke-btn {
   border: 2px solid var(--dark-blue);
   color: var(--dark-blue);
+}
+.register-btn {
+  width: 100%;
+  max-width: 450px;
+  height: 50px;
+  margin: auto;
+  background: var(--blue);
+  color: var(--white);
+  text-transform: uppercase;
+}
+.register-btn:hover {
+  background: var(--dark-blue);
+}
+.btn-popup {
+  width: 100%;
+  max-width: 450px;
+  height: 30px;
+  margin: auto;
+  color: var(--dark-blue) !important;
+  font-size: 0.75rem;
+  font-weight: 700;
+  font-family: var(--font-family);
+  border: none !important;
+}
+.btn-popup:hover {
+  background-color: rgba(123, 161, 201, 0.5);
+  color: var(--black) !important;
+}
+.accepted {
+  background-color: var(--dark-blue) !important;
+  color: var(--white) !important;
+}
+.btn-control {
+  width: 35px;
+  height: 35px;
+  display: block;
+  background-color: var(--blue);
+  border: none;
+  transition: all 150ms ease-in-out;
+}
+.btn-control:hover {
+  background-color: var(--dark-blue);
+  color: var(--white);
+}
+.btn-accept {
+  background-color: var(--blue) !important;
+  color: var(--white) !important;
+  font-weight: 700;
+  font-family: var(--font-family);
+}
+.btn-accept:hover {
+  background-color: var(--blue-hover) !important;
+}
+
+.btn-decline {
+  background-color: var(--red) !important;
+  color: var(--white) !important;
+  font-weight: 700;
+  font-family: var(--font-family);
+}
+.btn-decline:hover {
+  background-color: var(--red-hover) !important;
 }
 
 .register-btn {
@@ -136,3 +201,4 @@ code {
   margin: auto;
   object-fit: cover;
 }
+
