@@ -5,7 +5,12 @@ import PropTypes from "prop-types";
 import "./Footer.css";
 import ONGLogo from "../../assets/onglogo.png";
 
-const Footer = ({ facebook, twitter, linkedin, instagram }) => {
+const Footer = ({
+  facebook = "https://facebook.com",
+  twitter = "https://twitter.com/ONGSomosMas",
+  linkedin = "https://linkedin.com/in/somos-mas-85b310224/?trk=people-guest_people_search-card&originalSubdomain=ar",
+  instagram = "http://instagram.com",
+}) => {
   return (
     <footer className="container-fluid container-footer">
       <div className="container">
