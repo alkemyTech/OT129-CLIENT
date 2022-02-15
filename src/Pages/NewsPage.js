@@ -1,6 +1,7 @@
 import React from "react";
 
 import Title from "../Components/Titles/Titles";
+import UltimoEvento from "../Components/UltimoEvento/UltimoEvento";
 import NewsCards from "../Containers/NewsCards/NewsCards";
 
 const NewsPage = () => {
@@ -8,6 +9,7 @@ const NewsPage = () => {
     <>
       <Title title={"Novedades"} />
       <NewsCards />
+      <UltimoEvento />
     </>
   );
 };
