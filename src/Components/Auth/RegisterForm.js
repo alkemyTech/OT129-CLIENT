@@ -68,7 +68,7 @@ const RegisterForm = () => {
 
   const handleSearchClick = async () => {
     const getLocation = async () => {
-      const response = await axios.get("https://maps.googleapis.com/maps/api/geocode/json", {
+      const response = await axios.get(process.env.REACT_APP_API_GOOGLE_URL, {
         params: {
           address: address,
           key: process.env.REACT_APP_API_GOOGLE_KEY,
