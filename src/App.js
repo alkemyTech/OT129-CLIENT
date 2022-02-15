@@ -34,7 +34,7 @@ function App() {
               {publicRoute.map(({ path, component, exact }) => {
                 return (
                   <>
-                    <Route component={component} exact={exact} path={path} />
+                    <Route key={path} component={component} exact={exact} path={path} />
                   </>
                 );
               })}
