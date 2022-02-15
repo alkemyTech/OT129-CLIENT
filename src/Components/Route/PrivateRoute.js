@@ -1,20 +1,23 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import { Route, Redirect } from "react-router-dom";
 
-import { isLogin } from "../../utils/isLogin";
+import { selectAuth } from "../../features/auth/authSlice";
 
-const PrivateRoute = ({ component: Component, ...anotherProps }) => {
+const PrivateRoute = ({ comp: Component, isAuthenticated, ...rest }) => {
+  const { auth } = useSelector(selectAuth);
+
+  console.log(auth);
+
   return (
-    <Route
-      {...anotherProps}
-      render={(props) => (isLogin() ? <Component {...props} /> : <Redirect to="/login" />)}
-    />
+    <Route {...rest} comp={() => (isAuthenticated ? <Component /> : <Redirect to="/login" />)} />
   );
 };
 
 PrivateRoute.propTypes = {
-  component: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
+  comp: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
+  isAuthenticated: PropTypes.bool,
 };
 
 export default PrivateRoute;
