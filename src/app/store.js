@@ -7,6 +7,7 @@ import slidesReducer from "../features/slides/slidesSlice";
 import activitiesReducer from "../features/Activities/activitiesSlice";
 import organizationReducer from "../features/Organization/organizationSlice";
 import membersReducer from "../features/Members/membersSlice";
+import usersReducer from "../features/user/users-slice";
 
 const store = configureStore({
   reducer: {
@@ -17,6 +18,7 @@ const store = configureStore({
     activities: activitiesReducer,
     organization: organizationReducer,
     members: membersReducer,
+    users: usersReducer,
   },
 });
 
