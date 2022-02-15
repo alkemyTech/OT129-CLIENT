@@ -1,24 +1,29 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 
+import { fetchMemberById, selectorMembers } from "../../features/Members/membersSlice";
 import MembersForm from "../../Components/Members/MembersForm";
-import { getMemberByID } from "../../Services/MembersService";
+import StatusHandler from "../../Components/StatusHandler/StatusHandler";
 
 const MembersFormContainer = () => {
   const { id } = useParams();
-  const [member, setMember] = useState({});
+  const dispatch = useDispatch();
+  const { members, status } = useSelector(selectorMembers);
 
   useEffect(() => {
     if (id) {
-      getMemberByID(id).then((result) => {
-        const response = result.data.data;
-
-        setMember(response);
-      });
+      dispatch(fetchMemberById(id));
     }
-  }, [id]);
+  }, [id, dispatch]);
 
-  return <MembersForm member={member} />;
+  return (
+    <>
+      <MembersForm member={members} />
+      <StatusHandler status={status} />
+    </>
+  );
 };
 
 export default MembersFormContainer;
