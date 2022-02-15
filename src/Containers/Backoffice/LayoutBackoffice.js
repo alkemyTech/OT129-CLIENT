@@ -1,13 +1,12 @@
 import React from "react";
-import Backoffice from "./Backoffice";
 import BackNavBar from "../../Components/BackNavBar/BackNavBar";
+import Backoffice from "./Backoffice";
 
 const LayoutBackoffice = () => {
   return (
     <>
       <BackNavBar />
       <Backoffice />
-            
     </>
   );
 };
