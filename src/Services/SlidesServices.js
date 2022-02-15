@@ -16,5 +16,5 @@ export const putSlides = (id, data) => {
 };
 
 export const removeSlides = (id) => {
-  return remove(`${ENDPOINT}/${id}`);
+  return remove(ENDPOINT, id);
 };

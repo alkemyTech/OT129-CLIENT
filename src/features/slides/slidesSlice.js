@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-import { getSlides } from "../../Services/SlidesServices";
+import { getSlides, removeSlides } from "../../Services/SlidesServices";
 import { STATUS } from "../../constants";
 
 export const fetchSlides = createAsyncThunk("slides/get", async () => {
@@ -9,6 +9,11 @@ export const fetchSlides = createAsyncThunk("slides/get", async () => {
   } = await getSlides();
 
   return data;
+});
+export const removeSlide = createAsyncThunk("slide/delete", async (id) => {
+  await removeSlides(id);
+
+  return id;
 });
 
 const slidesSlice = createSlice({
@@ -27,6 +32,17 @@ const slidesSlice = createSlice({
     },
     [fetchSlides.rejected]: (state) => {
       state.status = STATUS.FAILED;
+    },
+
+    [removeSlide.pending]: (state) => {
+      state.status = "loading";
+    },
+    [removeSlide.fulfilled]: (state, { payload }) => {
+      state.status = "success";
+      state.slides = state.slides.filter(({ id }) => id !== payload);
+    },
+    [removeSlide.rejected]: (state) => {
+      state.status = "failed";
     },
   },
 });
