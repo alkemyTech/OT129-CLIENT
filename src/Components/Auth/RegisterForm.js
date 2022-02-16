@@ -78,11 +78,11 @@ const RegisterForm = () => {
     setMap(result);
   };
 
-  const handleRegister = (values) => {
+  const handleRegister = ({ name, email, password }) => {
     const body = {
-      name: values.name,
-      email: values.email,
-      password: values.password,
+      name,
+      email,
+      password,
       address: address,
       latitude: map.lat,
       longitude: map.lng,
