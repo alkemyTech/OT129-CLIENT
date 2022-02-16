@@ -1,19 +1,9 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { BrowserRouter as Router, Switch } from "react-router-dom";
 
 import ActivitiesListContainer from "./Containers/Activities/ActivitiesListContainer";
 import ActivitiesFormContainer from "./Containers/Activities/ActivitiesFormContainer/ActivitiesFormContainer";
-import ActivitiesPage from "./Pages/ActivitiesPage";
-import ActivitiesIdPage from "./Pages/ActivitiesIdPage";
-import NewsPage from "./Pages/NewsPage";
-import NewsIdPage from "./Pages/NewsIdPage";
-import TestimonialForm from "./Components/Testimonials/TestimonialsForm";
-import ProjectsForm from "./Components/Projects/ProjectsForm";
-import AboutPage from "./Pages/AboutPage";
-import ContactPage from "./Pages/ContactPage";
-import Donation from "./Components/Donations/Donation";
 import EditOrganization from "./Containers/EditOrganization/EditOrganization";
-import HomePage from "./Pages/HomePage";
 import HomeForm from "./Components/Home/HomeForm";
 import NewsList from "./Components/News/NewsList";
 import CategoriesListContainer from "./Containers/Categories/CategoriesListContainer";
@@ -32,11 +22,11 @@ import ToysCampaign from "./Campaigns/Toys/ToysCampaign";
 import LayoutBackoffice from "./Containers/Backoffice/LayoutBackoffice";
 import Error404 from "./Pages/Error404Page";
 import Route from "./Components/Route";
-import RegisterPage from "./Pages/RegisterPage";
-
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/js/dist/offcanvas";
 import "./App.css";
+import Spinner from "./Components/Spinner/Spinner";
+import { publicRoute } from "./Components/Route/publicRoutes";
 
 function App() {
   return (
@@ -44,20 +34,17 @@ function App() {
       <Router>
         <div className="container-app">
           <Switch>
-            <Route exact component={HomePage} path="/" />
-            <Route exact component={ContactPage} path="/contacto" />
-            <Route exact component={Donation} path="/donar" />
-            <Route exact component={ThankYou} path="/gracias" />
-            <Route exact component={AboutPage} path="/nosotros" />
-            <Route exact component={SchoolCampaign} path="/school-campaign" />
-            <Route exact component={ToysCampaign} path="/toys-campaign" />
-            <Route exact component={ActivitiesPage} path="/actividades" />
-            <Route exact component={ActivitiesIdPage} path="/actividades/:id" />
-            <Route exact component={NewsPage} path="/novedades" />
-            <Route exact component={NewsIdPage} path="/novedades/:id" />
-            <Route exact component={RegisterPage} path="/registro" />
-            <Route exact component={TestimonialForm} path="/testimonials/create" />
-            <Route exact component={ProjectsForm} path="/projects/create" />
+            <Suspense fallback={<Spinner />}>
+              {publicRoute.map(({ path, component, exact }, i) => {
+                return (
+                  <>
+                    <Route key={i} component={component} exact={exact} path={path} />
+                  </>
+                );
+              })}
+            </Suspense>
+          </Switch>
+          <Switch>
             <Route exact component={LayoutBackoffice} path="/backoffice" />
             <Route exact component={HomeForm} path="/backoffice/home" />
             <Route exact component={ActivitiesListContainer} path="/backoffice/activities" />
@@ -79,7 +66,6 @@ function App() {
             <Route exact component={MembersFormContainer} path="/backoffice/members/:id" />
             <Route exact component={OrganizationContainer} path="/backoffice/organization" />
             <Route exact component={EditOrganization} path="/backoffice/organization/edit" />
-            <Route component={Error404} path="*" />
           </Switch>
         </div>
       </Router>

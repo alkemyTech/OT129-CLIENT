@@ -16,7 +16,7 @@ const Footer = ({
       <div className="container">
         <div className="row row-nav">
           <div className="col col-nav">
-            <nav className="nav">
+            <nav className="nav-footer">
               <Link className="link-nav" to="/actividades">
                 Actividades
               </Link>
