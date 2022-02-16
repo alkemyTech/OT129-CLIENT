@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { alerts, confirmAlerts } from "../../utils/alerts";
 
+import { alerts, confirmAlerts } from "../../utils/alerts";
 import {
   fetchMemberById,
   selectorMembers,
