@@ -170,7 +170,7 @@ const RegisterForm = () => {
                     }}
                   />
                   <button
-                    className="general-btn fill-btn mb-3"
+                    className="general-btn fill-btn my-1"
                     type="button"
                     onClick={() => handleSearchClick()}
                   >
@@ -183,6 +183,7 @@ const RegisterForm = () => {
                 <RegisterPopup
                   state={formik.values.conditions}
                   onConfirm={() => formik.setFieldValue("conditions", true)}
+                  onDecline={() => formik.setFieldValue("conditions", false)}
                 />
                 <input
                   className="conditions-checkbox"
