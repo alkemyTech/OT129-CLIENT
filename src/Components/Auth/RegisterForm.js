@@ -25,10 +25,6 @@ const initialValues = {
   address: "",
 };
 
-const handleConfirm = (value) => {
-  initialValues.conditions = value;
-};
-
 const validationSchema = Yup.object({
   name: Yup.string().required("El campo NOMBRE es requerido"),
   email: Yup.string()
@@ -184,7 +180,10 @@ const RegisterForm = () => {
                 <ErrorMessage component={Alert} name="address" />
               </div>
               <div className="conditions-wrapper">
-                <RegisterPopup state={formik.values.conditions} onConfirm={handleConfirm} />
+                <RegisterPopup
+                  state={formik.values.conditions}
+                  onConfirm={() => formik.setFieldValue("conditions", true)}
+                />
                 <input
                   className="conditions-checkbox"
                   name="conditions"
