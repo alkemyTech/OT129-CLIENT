@@ -6,11 +6,11 @@ import "./BackCards.css";
 
 const BackCards = ({ data }) => {
   return (
-    <div className="container">
-      <div className="cardCtn">
-        {data?.map((el) => {
-          return (
-            <div key={el.title} className="card">
+    <div className="container cardCtn">
+      {data?.map((el) => {
+        return (
+          <div key={el.title} className="card-backoffice">
+            <div className="content-card">
               <h3 className="titleCard">{el.title}</h3>
               <div className="container-icon">
                 <i className={el.icon} />
@@ -19,9 +19,9 @@ const BackCards = ({ data }) => {
                 Ir
               </Link>
             </div>
-          );
-        })}
-      </div>
+          </div>
+        );
+      })}
     </div>
   );
 };
