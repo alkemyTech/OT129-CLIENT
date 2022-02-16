@@ -2,9 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-import { deleteMember } from "../../Services/MembersService";
-
-const MembersList = ({ data }) => {
+const MembersList = ({ data, onDelete }) => {
   return (
     <table className="table table-striped table-list">
       <thead className="thead-list">
@@ -37,7 +35,7 @@ const MembersList = ({ data }) => {
                 <button
                   className="btn-list btn-delete"
                   title="Eliminar"
-                  onClick={() => deleteMember(member.id)}
+                  onClick={() => onDelete(member.id)}
                 >
                   <i className="fas fa-trash-alt" />
                 </button>
@@ -57,7 +55,8 @@ MembersList.propTypes = {
       photo: PropTypes.string,
       id: PropTypes.number.isRequired,
     })
-  ),
+  ).isRequired,
+  onDelete: PropTypes.func,
 };
 
 export default MembersList;

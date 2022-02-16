@@ -1,24 +1,57 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 
+import { alerts, confirmAlerts } from "../../utils/alerts";
+import {
+  fetchMemberById,
+  selectorMembers,
+  putMember,
+  newMember,
+} from "../../features/Members/membersSlice";
 import MembersForm from "../../Components/Members/MembersForm";
-import { getMemberByID } from "../../Services/MembersService";
 
 const MembersFormContainer = () => {
   const { id } = useParams();
-  const [member, setMember] = useState({});
+  const dispatch = useDispatch();
+  const { members } = useSelector(selectorMembers);
+
+  const handleSub = (data) => {
+    if (!id) {
+      dispatch(newMember(data)).then((response) => {
+        if (response.error) {
+          alerts("Ups! ocurrió un error inesperado", "error");
+        } else {
+          alerts(`creado correctamente`, "success");
+        }
+      });
+    } else {
+      confirmAlerts("¿Estás seguro?", `Se editará el id: ${member.id}`, function (response) {
+        if (response) {
+          dispatch(putMember({ data, id: member.id })).then((response) => {
+            if (response.error) {
+              alerts(`Ocurrió un error al editar el id: ${member.id} `, "error");
+            } else {
+              alerts(`El id: ${member.id} se editó correctamente`, "success");
+            }
+          });
+        }
+      });
+    }
+  };
 
   useEffect(() => {
     if (id) {
-      getMemberByID(id).then((result) => {
-        const response = result.data.data;
-
-        setMember(response);
-      });
+      dispatch(fetchMemberById(id));
     }
-  }, [id]);
+  }, [id, dispatch]);
 
-  return <MembersForm member={member} />;
+  return (
+    <>
+      <MembersForm handleSub={handleSub} member={members} />
+    </>
+  );
 };
 
 export default MembersFormContainer;

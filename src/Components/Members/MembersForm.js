@@ -7,18 +7,23 @@ import PropTypes from "prop-types";
 
 import { toBase64 } from "../../utils/toBase64";
 import { isValidUrl } from "../../utils/isValidUrl";
-import { editMember, createMember } from "../../Services/MembersService";
 import ContainerFormCard from "../../Containers/ContainerFormCard";
 
 import "../FormStyles.css";
 
-const MembersForm = ({ member = {} }) => {
+const MembersForm = ({ member = {}, handleSub }) => {
   const initialValues = {
-    name: member?.name || "",
-    description: member?.description || "",
-    image: member?.image || "",
-    facebookUrl: member?.facebookUrl || "",
-    linkedinUrl: member?.linkedinUrl || "",
+    name: member.name ?? "",
+    description: member.description ?? "",
+    image: member.image ?? "",
+    facebookUrl: member.facebookUrl ?? "",
+    linkedinUrl: member.linkedinUrl ?? "",
+  };
+  const onSubmit = async (formData) => {
+    const resultBase = toBase64(formData.image);
+    const newMember = { ...formData, image: resultBase };
+
+    handleSub(newMember);
   };
 
   return (
@@ -26,12 +31,7 @@ const MembersForm = ({ member = {} }) => {
       <Formik
         initialValues={initialValues}
         validationSchema={validationMemberSchema}
-        onSubmit={async (formData) => {
-          const resultBase = await toBase64(formData.image);
-          const newMember = { ...formData, image: resultBase };
-
-          !member.id ? createMember(newMember) : editMember(newMember, member.id);
-        }}
+        onSubmit={onSubmit}
       >
         {(formik) => (
           <Form className="p-4" onSubmit={formik.handleSubmit}>
@@ -119,6 +119,7 @@ MembersForm.propTypes = {
     facebookUrl: PropTypes.string,
     linkedinUrl: PropTypes.string,
   }),
+  handleSub: PropTypes.func,
 };
 
 export default MembersForm;
@@ -141,6 +142,6 @@ const validationMemberSchema = Yup.object({
     .test(
       "format",
       "El formato no es valido",
-      (value) => !value || (value && SUPPORTED_FORMATS.includes(value.type))
+      (value) => value || (value && SUPPORTED_FORMATS.includes(value.type))
     ),
 });
