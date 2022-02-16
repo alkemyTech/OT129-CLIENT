@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import { formatDate } from "../../utils/formatDate";
 
-const CategoriesList = ({ data, onDelete }) => {
+const TestimonialsList = ({ data, onDelete }) => {
   return (
     <table className="table table-striped table-list">
       <thead className="thead-list">
@@ -50,9 +50,9 @@ const CategoriesList = ({ data, onDelete }) => {
   );
 };
 
-CategoriesList.propTypes = {
+TestimonialsList.propTypes = {
   data: PropTypes.array,
   onDelete: PropTypes.func,
 };
 
-export default CategoriesList;
+export default TestimonialsList;
