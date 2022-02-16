@@ -1,14 +1,19 @@
 import React from "react";
-import BackNavBar from "../../Components/BackNavBar/BackNavBar";
-import Backoffice from "./Backoffice";
+import PropTypes from "prop-types";
 
-const LayoutBackoffice = () => {
+import BackNavBar from "../../Components/BackNavBar/BackNavBar";
+
+const LayoutBackoffice = ({ children }) => {
   return (
     <>
       <BackNavBar />
-      <Backoffice />
+      <main> {children} </main>
     </>
   );
+};
+
+LayoutBackoffice.propTypes = {
+  children: PropTypes.arrayOf(PropTypes.element),
 };
 
 export default LayoutBackoffice;
