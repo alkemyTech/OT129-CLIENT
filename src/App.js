@@ -18,6 +18,8 @@ import UsersListContainer from "./Containers/Users/UsersListContainer";
 import UsersFormContainer from "./Containers/Users/UsersFormContainer";
 import Backoffice from "./Containers/Backoffice/Backoffice";
 import Route from "./Components/Route";
+import TestimonialsListContainer from "./Containers/Testimonials/TestimonialsListContainer";
+import TesimonialsFormContainer from "./Containers/Testimonials/TestimonialsFormContainer";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/js/dist/offcanvas";
 import "./App.css";
@@ -62,6 +64,18 @@ function App() {
             <Route exact component={MembersFormContainer} path="/backoffice/members/:id" />
             <Route exact component={OrganizationContainer} path="/backoffice/organization" />
             <Route exact component={EditOrganization} path="/backoffice/organization/edit" />
+            <Route exact component={TestimonialsListContainer} path="/backoffice/testimonials" />
+            <Route
+              exact
+              component={TesimonialsFormContainer}
+              path="/backoffice/testimonials/create"
+            />
+            <Route
+              exact
+              component={TesimonialsFormContainer}
+              path="/backoffice/testimonials/edit/:id"
+            />
+            TesimonialsFormContainer
           </Switch>
         </div>
       </Router>
