@@ -1,6 +1,12 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-import { getMembers, getMemberByID, createMember, editMember } from "../../Services/MembersService";
+import {
+  getMembers,
+  getMemberByID,
+  createMember,
+  editMember,
+  deleteMember,
+} from "../../Services/MembersService";
 import { STATUS } from "../../constants";
 
 export const fetchMembers = createAsyncThunk("members/get", async () => {
@@ -25,6 +31,12 @@ export const newMember = createAsyncThunk("member/post", async (data) => {
 
 export const putMember = createAsyncThunk("member/put", async (data) => {
   await editMember(data, data.id);
+});
+
+export const removeMember = createAsyncThunk("members/delete", async (id) => {
+  await deleteMember(id);
+
+  return id;
 });
 
 const memberSlice = createSlice({
@@ -68,11 +80,21 @@ const memberSlice = createSlice({
       state.status = STATUS.PENDING;
     },
     [putMember.fulfilled]: (state, action) => {
-      state.status = STATUS.SUCCESSFUL;
+      state.status = STATUS.PENDING;
       state.members = action.payload;
     },
     [putMember.rejected]: (state) => {
-      state.status = STATUS.FAILED;
+      state.status = STATUS.PENDING;
+    },
+    [removeMember.pending]: (state) => {
+      state.status = STATUS.PENDING;
+    },
+    [removeMember.fulfilled]: (state, { payload }) => {
+      state.status = STATUS.PENDING;
+      state.members = state.users.filter(({ id }) => id !== payload);
+    },
+    [removeMember.rejected]: (state) => {
+      state.status = STATUS.PENDING;
     },
   },
 });

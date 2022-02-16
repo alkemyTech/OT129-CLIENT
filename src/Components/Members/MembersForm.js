@@ -1,5 +1,4 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
@@ -8,14 +7,11 @@ import PropTypes from "prop-types";
 
 import { toBase64 } from "../../utils/toBase64";
 import { isValidUrl } from "../../utils/isValidUrl";
-import { newMember, putMember } from "../../features/Members/membersSlice";
 import ContainerFormCard from "../../Containers/ContainerFormCard";
 
 import "../FormStyles.css";
 
-const MembersForm = ({ member }) => {
-  const dispatch = useDispatch();
-
+const MembersForm = ({ member = {}, handleSub }) => {
   const initialValues = {
     name: member.name ?? "",
     description: member.description ?? "",
@@ -23,18 +19,19 @@ const MembersForm = ({ member }) => {
     facebookUrl: member.facebookUrl ?? "",
     linkedinUrl: member.linkedinUrl ?? "",
   };
+  const onSubmit = async (formData) => {
+    const resultBase = toBase64(formData.image);
+    const newMember = { ...formData, image: resultBase };
+
+    handleSub(newMember);
+  };
 
   return (
     <ContainerFormCard>
       <Formik
         initialValues={initialValues}
         validationSchema={validationMemberSchema}
-        onSubmit={(formData) => {
-          const resultBase = toBase64(formData.image);
-          const NEW_MEMBER = { ...formData, image: resultBase };
-
-          !member.id ? dispatch(newMember(NEW_MEMBER)) : dispatch(putMember(NEW_MEMBER, member.id));
-        }}
+        onSubmit={onSubmit}
       >
         {(formik) => (
           <Form className="p-4" onSubmit={formik.handleSubmit}>
@@ -122,6 +119,7 @@ MembersForm.propTypes = {
     facebookUrl: PropTypes.string,
     linkedinUrl: PropTypes.string,
   }),
+  handleSub: PropTypes.func,
 };
 
 export default MembersForm;
