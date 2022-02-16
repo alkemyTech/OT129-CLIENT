@@ -126,7 +126,7 @@ MembersForm.propTypes = {
 
 export default MembersForm;
 
-const SUPPORTED_FORMATS = ["image/jpg", "image/png"]; //Formatos soportados
+const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/png"]; //Formatos soportados
 const validationMemberSchema = Yup.object({
   name: Yup.string()
     .min(4, "Debe contener al menos 4 caracteres")
