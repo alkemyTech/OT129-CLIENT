@@ -3,11 +3,15 @@ import PropTypes from "prop-types";
 import "./ShowCard.css";
 import { Link } from "react-router-dom";
 
+import DangerouslySetInnerHTML from "../DangerouslySetInnerHTML/DangerouslySetInnerHTML";
+
 import "./Card.css";
 
 const Card = ({ id, title, image, description, url }) => {
+  const descriptionSlice = description && description.slice(0, 70) + "...";
+
   return (
-    <div className="card">
+    <div className="card general-card">
       {image ? (
         <img alt="Card image cap" className="card-img-top img-card" src={image} />
       ) : (
@@ -17,12 +21,10 @@ const Card = ({ id, title, image, description, url }) => {
           src="\images\placeholder\emptyImage.png"
         />
       )}
-      <div className="card-body">
+      <div className="card-body general-card-body">
         <h5 className="card-title text-uppercase">{title}</h5>
-        {description && (
-          <p dangerouslySetInnerHTML={{ __html: `${description}` }} className="card-text" />
-        )}
-        <Link className="general-btn fill-btn text-decoration-none" to={`/${url}/${id}`}>
+        {description && <DangerouslySetInnerHTML content={descriptionSlice} />}
+        <Link className="general-btn fill-btn card-btn text-decoration-none" to={`/${url}/${id}`}>
           Leer más
         </Link>
       </div>
@@ -31,11 +33,11 @@ const Card = ({ id, title, image, description, url }) => {
 };
 
 Card.propTypes = {
-  id: PropTypes.number.isRequired,
+  id: PropTypes.number,
   title: PropTypes.string,
   description: PropTypes.string,
   image: PropTypes.string,
-  url: PropTypes.string.isRequired,
+  url: PropTypes.string,
 };
 
 export default Card;
