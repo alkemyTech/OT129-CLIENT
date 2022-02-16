@@ -8,7 +8,7 @@ import "reactjs-popup/dist/index.css";
 import "./RegisterPopup.css";
 import MOCKUP_PDF from "../../assets/mockup.pdf";
 
-const RegisterPopup = ({ onConfirm, state }) => {
+const RegisterPopup = ({ onConfirm, onDecline, state }) => {
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
 
@@ -60,7 +60,7 @@ const RegisterPopup = ({ onConfirm, state }) => {
               className="btn btn-decline"
               type="button"
               onClick={() => {
-                onConfirm(false);
+                onDecline();
                 close();
               }}
             >
@@ -70,7 +70,7 @@ const RegisterPopup = ({ onConfirm, state }) => {
               className="btn btn-accept"
               type="button"
               onClick={() => {
-                onConfirm(true);
+                onConfirm();
                 close();
               }}
             >
@@ -85,6 +85,7 @@ const RegisterPopup = ({ onConfirm, state }) => {
 
 RegisterPopup.propTypes = {
   onConfirm: PropTypes.func,
+  onDecline: PropTypes.func,
   state: PropTypes.bool,
 };
 
