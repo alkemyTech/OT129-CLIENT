@@ -9,6 +9,9 @@ import Spinner from "./Components/Spinner/Spinner";
 import { publicRoute } from "./Components/Route/publicRoutes";
 import PrivateRoute from "./Components/Route/PrivateRoute";
 import ProtectedRoutes from "./Components/Route/ProtectedRoutes";
+import Backoffice from "./Containers/Backoffice/Backoffice";
+import LayoutBackoffice from "./Containers/Backoffice/LayoutBackoffice";
+import Error404Page from "./Pages/Error404Page";
 
 function App() {
   return (
@@ -16,7 +19,7 @@ function App() {
       <Router>
         <div className="container-app">
           <Switch>
-          <Suspense fallback={<Spinner />}>
+            <Suspense fallback={<Spinner />}>
               {publicRoute.map(({ path, component, exact }, i) => {
                 return (
                   <>
@@ -25,10 +28,11 @@ function App() {
                 );
               })}
             </Suspense>
-            <PrivateRoute>
+          </Switch>
+          <Switch>
+            <LayoutBackoffice>
               <ProtectedRoutes />
-            </PrivateRoute>
-            <Route component={Error404} path="*" />
+            </LayoutBackoffice>
           </Switch>
         </div>
       </Router>
