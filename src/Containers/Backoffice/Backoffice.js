@@ -1,10 +1,5 @@
 import React from "react";
 
-<<<<<<< HEAD
-import BackNavBar from "../../Components/Navigation/BackNavBar/BackNavBar";
-
-=======
->>>>>>> development
 import BackCards from "./BackCards";
 
 import "./backoffice.css";
