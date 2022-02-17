@@ -11,21 +11,19 @@ const NewsCards = () => {
   const { news, status } = useSelector(selectorNews);
 
   useEffect(() => {
-    dispatch(fetchNews());
-  }, [dispatch]);
+    dispatch(fetchNews(search));
+  }, [dispatch, search]);
 
-  const debounceRef = useRef();
-  //Function debouncer
-  const handleSearchChange = (e) => {
-    if (debounceRef.current) {
-      clearTimeout(debounceRef.current);
-    }
-    debounceRef.current = setTimeout(() => {
-      setSearch(e.target.value);
-    }, [300]);
-  };
-
-  console.log(search);
+  // const debounceRef = useRef();
+  // //Function debouncer
+  // const handleSearchChange = (e) => {
+  //   if (debounceRef.current) {
+  //     clearTimeout(debounceRef.current);
+  //   }
+  //   debounceRef.current = setTimeout(() => {
+  //     setSearch(e.target.value);
+  //   }, [400]);
+  // };
 
   return (
     <div className="container my-5">
@@ -35,7 +33,7 @@ const NewsCards = () => {
             aria-label="Dollar amount (with dot and two decimal places)"
             className="form-control form-control-sm"
             type="text"
-            onChange={handleSearchChange}
+            // onChange={handleSearchChange}
           />
           <span className="input-group-text">
             <i className="fas fa-search-plus text-primary" />
