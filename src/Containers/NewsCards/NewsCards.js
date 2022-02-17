@@ -6,7 +6,7 @@ import Card from "../../Components/Card/Card";
 import StatusHandler from "../../Components/StatusHandler/StatusHandler";
 import { fetchNews, selectorNews } from "../../features/News/news-slice";
 
-const NewsCards = ({ searchNew }) => {
+const NewsCards = () => {
   const dispatch = useDispatch();
   const { news, status } = useSelector(selectorNews);
 
