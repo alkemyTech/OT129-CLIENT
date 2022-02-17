@@ -5,11 +5,9 @@ import routes from "./routes";
 
 const ProtectedRoutes = () => (
   <Switch>
-    {routes.map(({ component: Component, path, exact }) => (
-      <Route key={path} exact={exact} path={`/${path}`}>
-        <Component />
-      </Route>
-    ))}
+    {routes.map(({ component, path, exact }, i) => {
+      return <Route key={i} exact={exact} path={`/${path}`} component={component} />;
+    })}
   </Switch>
 );
 
