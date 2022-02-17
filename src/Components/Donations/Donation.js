@@ -1,10 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
 
 import "./Donation.css";
 import DonationAmountModal from "./DonationAmountModal";
 
 const Donation = ({ text }) => {
+  const auth = true;
+  const history = useHistory();
+
+  useEffect(() => {
+    if (!auth) {
+      history.push("/");
+    }
+  }, [history]);
+
   return (
     <div className="container-fluid container-donation">
       <div className="container">
