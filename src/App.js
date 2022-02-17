@@ -31,7 +31,9 @@ function App() {
           </Switch>
           <Switch>
             <LayoutBackoffice>
-              <ProtectedRoutes />
+              <PrivateRoute>
+                <ProtectedRoutes />
+              </PrivateRoute>
             </LayoutBackoffice>
           </Switch>
         </div>
