@@ -21,7 +21,7 @@ const initialValues = {
   email: "",
   password: "",
   confirmPassword: "",
-  conditions: false,
+  conditions: true,
   address: "",
 };
 
