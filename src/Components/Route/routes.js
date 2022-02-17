@@ -92,7 +92,7 @@ const routes = [
     exact: true,
   },
   {
-    path: "backoffice/users/create/:id",
+    path: "backoffice/users/:id",
     component: UsersFormContainer,
     exact: true,
   },
