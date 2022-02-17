@@ -153,6 +153,12 @@ body {
 
 /* Cards */
 
+.container-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
 .card {
   box-shadow: var(--card-shadow);
 }
@@ -195,3 +201,4 @@ code {
   margin: auto;
   object-fit: cover;
 }
+

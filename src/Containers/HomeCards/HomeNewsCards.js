@@ -12,7 +12,7 @@ const HomeCards = () => {
   const [spinnerShow, setSpinnerShow] = useState(true);
 
   useEffect(() => {
-    getLastNews("4")
+    getLastNews("3")
       .then((response) => {
         setLastNewsData(response.data.data);
         setNewsDataExist(true);
@@ -26,19 +26,23 @@ const HomeCards = () => {
 
   return (
     <div className="container my-5 d-grid gap-3">
+      <div className="row mb-4">
+        <h2 className="text-center text-uppercase">Últimas Novedades</h2>
+      </div>
       <div className="row">
-        {newsDataExist &&
-          lastNewsData.map((el) => (
-            <div key={el.id} className="col-3 mb-4">
+        <div className="container-cards">
+          {newsDataExist &&
+            lastNewsData.map((el) => (
               <Card
-                description={el.description}
+                key={el.id}
+                description={el.content}
                 id={el.id}
                 image={el.image}
                 title={el.name}
                 url={"novedades"}
               />
-            </div>
-          ))}
+            ))}
+        </div>
         {spinnerShow && <Spinner />}
       </div>
     </div>
