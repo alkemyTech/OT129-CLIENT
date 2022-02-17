@@ -1,7 +1,6 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 
-import DonationAmountModal from "../Donations/DonationAmountModal";
 import ONGLogo from "../../assets/onglogo.png";
 
 import "./Header.css";
@@ -61,7 +60,11 @@ const Header = () => {
               >
                 <i className="fas fa-sign-out-alt" />
               </Link>
-              {role === "standard" && <DonationAmountModal />}
+              {role === "standard" && (
+                <Link className="general-btn fill-btn text-decoration-none" to="/donar">
+                  Donar
+                </Link>
+              )}
             </>
           ) : (
             <>
