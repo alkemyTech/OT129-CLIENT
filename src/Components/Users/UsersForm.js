@@ -19,8 +19,6 @@ const UsersForm = ({ users = {}, handleSub }) => {
     const resultBase = await toBase64(formData.profile_image);
     const newUsers = { ...formData, profile_image: resultBase };
 
-    console.log(formData);
-
     handleSub(newUsers);
   };
 
