@@ -1,16 +1,17 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 
+import { selectAuth } from "../../features/auth/authSlice";
 import ONGLogo from "../../assets/onglogo.png";
 
 import "./Header.css";
 
 const Header = () => {
-  //constante que luego será reemplazado por el estado del usaurio.
-
-  const role = "standard";
-
-  const auth = true;
+  const {
+    auth,
+    user: { role_id },
+  } = useSelector(selectAuth);
 
   const menuPublic = [
     { link: "/", name: "Inicio", id: 1 },
@@ -60,7 +61,7 @@ const Header = () => {
               >
                 <i className="fas fa-sign-out-alt" />
               </Link>
-              {role === "standard" && (
+              {role_id === 2 && (
                 <Link className="general-btn fill-btn text-decoration-none" to="/donar">
                   Donar
                 </Link>
