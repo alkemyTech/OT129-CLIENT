@@ -1,45 +1,44 @@
 import React from "react";
-import { mockReactRedux } from "mock-react-redux";
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor, fireEvent } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { mockReactRedux } from "mock-react-redux";
 
 import RegisterForm from "../Components/Auth/RegisterForm";
 
 const { dispatch } = mockReactRedux();
 
+/**
+ *
+ * @param {string} query
+ * @returns {Function}
+ */
+const querySetter = (query) => {
+  return screen.getByPlaceholderText(`Ingresa tu ${query}`);
+};
+
 describe("Should submit?", () => {
   it("Successful submit", async () => {
-    const handleSubmit = jest.fn();
+    const handleRegister = jest.fn();
 
-    const registerComponent = render(<RegisterForm onSubmit={handleSubmit} />);
+    render(<RegisterForm onSubmit={handleRegister} />);
 
-    const nameInput = registerComponent.findByPlaceholderText("Ingresa tu nombre");
-    const emailInput = registerComponent.findByPlaceholderText("Ingresa tu email");
-    const passwordInput = registerComponent.findByPlaceholderText("Ingresa tu contraseña");
-    const confirmPassowrdInput = registerComponent.findByPlaceholderText("Confirma tu contraseña");
-    const conditionsInput = registerComponent.getByTestId("conditions");
-    const addressInput = registerComponent.getByPlaceholderText("Ingresa tu dirección");
-    const submitButton = registerComponent.getByText("REGISTRARSE");
+    userEvent.type(querySetter("nombre"), "Shinji");
+    userEvent.type(querySetter("email"), "ikarishinji@nerv.com");
+    userEvent.type(querySetter("contraseña"), "!1ikarikun");
+    userEvent.type(screen.getByPlaceholderText("Confirma tu contraseña"), "!1ikarikun");
+    userEvent.type(querySetter("dirección"), "Misato's house 123, Tokyo 3");
+    userEvent.click(screen.getByTestId("conditions"));
+    fireEvent.submit(screen.getByTestId("registerForm"));
 
-    //MOCKED VALUES ACCORDING WITH EXISTENT VALIDATIONS
-    userEvent.type(nameInput, "Shinji");
-    userEvent.type(emailInput, "ikarishinji@nerv.com");
-    userEvent.type(passwordInput, "deeplydepressedboy1!");
-    userEvent.type(confirmPassowrdInput, "deeplydepressedboy1!");
-    userEvent.type(addressInput, "Misato's house 123");
-    userEvent.click(conditionsInput);
-    //SUBMITTING THE FORM
-    userEvent.click(submitButton);
-
-    await waitFor(() =>
-      expect(handleSubmit).toHaveBeenCalledWith({
+    await waitFor(() => {
+      expect(handleRegister).toHaveBeenCalledWith({
         name: "Shinji",
         email: "ikarishinji@nerv.com",
-        password: "deeplydepressedboy1!",
-        confirmPassword: "deeplydepressedboy1!",
+        password: "!1ikarikun",
+        confirmPassword: "!1ikarikun",
+        address: "Misato's house 123, Tokyo 3",
         conditions: true,
-        address: "Misato's house 123",
-      })
-    );
+      });
+    });
   });
 });

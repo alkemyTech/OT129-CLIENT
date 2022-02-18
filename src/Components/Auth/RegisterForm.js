@@ -96,7 +96,12 @@ const RegisterForm = () => {
           }}
         >
           {(formik) => (
-            <form noValidate className="register-form" onSubmit={formik.handleSubmit}>
+            <form
+              noValidate
+              className="register-form"
+              data-testid="registerForm"
+              onSubmit={formik.handleSubmit}
+            >
               <div className="form-group mb-3">
                 <label className="form-label" htmlFor="name" />
                 <input
