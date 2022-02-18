@@ -1,40 +1,64 @@
 import React, { Suspense } from "react";
-import { BrowserRouter as Router, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import Route from "./Components/Route";
+import SuperRoute from "./Components/Route";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/js/dist/offcanvas";
 import "./App.css";
 import Spinner from "./Components/Spinner/Spinner";
 import { publicRoute } from "./Components/Route/publicRoutes";
 import PrivateRoute from "./Components/Route/PrivateRoute";
-import ProtectedRoutes from "./Components/Route/ProtectedRoutes";
-import Backoffice from "./Containers/Backoffice/Backoffice";
-import LayoutBackoffice from "./Containers/Backoffice/LayoutBackoffice";
+import LayoutPublic from "./Components/Layout/LayoutPublic";
 import Error404Page from "./Pages/Error404Page";
 
 function App() {
+  const publicRoutes = [
+    "/",
+    "/contacto",
+    "/donar",
+    "/gracias",
+    "/nosotros",
+    "/school-campaign",
+    "/toys-campaign",
+    "/actividades",
+    "/actividades/:id",
+    "/novedades",
+    "/novedades/:id",
+    "/registro",
+    "/testimonials/create",
+    "/projects/create",
+    "/login",
+  ];
+  const privatesRoutes = ["/backoffice", "/backoffice/*"];
+
   return (
     <>
       <Router>
         <div className="container-app">
           <Switch>
-            <Suspense fallback={<Spinner />}>
-              {publicRoute.map(({ path, component, exact }, i) => {
-                return (
-                  <>
-                    <Route key={i} component={component} exact={exact} path={path} />
-                  </>
-                );
-              })}
-            </Suspense>
-          </Switch>
-          <Switch>
-            <LayoutBackoffice>
-              <PrivateRoute>
-                <ProtectedRoutes />
-              </PrivateRoute>
-            </LayoutBackoffice>
+            <Route exact path={publicRoutes}>
+              <LayoutPublic>
+                <Suspense fallback={<Spinner />}>
+                  {publicRoute.map(({ path, component, exact }) => {
+                    return (
+                      <SuperRoute key={path} component={component} exact={exact} path={path} />
+                    );
+                  })}
+                </Suspense>
+              </LayoutPublic>
+            </Route>
+
+            <Route path={privatesRoutes}>
+              <PrivateRoute />
+            </Route>
+
+            <Route path="/">
+              <LayoutPublic>
+                <Switch>
+                  <Route component={Error404Page} />
+                </Switch>
+              </LayoutPublic>
+            </Route>
           </Switch>
         </div>
       </Router>
