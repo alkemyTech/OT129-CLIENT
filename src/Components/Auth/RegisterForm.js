@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { Wrapper } from "@googlemaps/react-wrapper";
 
 import { getRegistered } from "../../features/auth/authSlice";
 import RegisterPopup from "../Popups/RegisterPopup";
+import Alert from "../Alert/Alert";
 
 import "../../index.css";
 import "./RegisterForm.css";
@@ -48,14 +48,6 @@ const validationSchema = Yup.object({
   conditions: Yup.boolean().oneOf([true], "Debes aceptar los Términos y Condiciones"),
   address: Yup.string().required("Ingrese su DIRECCIÓN"),
 });
-
-const Alert = ({ children }) => {
-  return <div className="alert alert-danger">{children}</div>;
-};
-
-Alert.propTypes = {
-  children: PropTypes.node.isRequired,
-};
 
 const RegisterForm = () => {
   const [map, setMap] = useState({});
@@ -164,6 +156,7 @@ const RegisterForm = () => {
                     name="address"
                     placeholder="Ingresa tu dirección"
                     type="text"
+                    value={formik.values.address}
                     onChange={(e) => {
                       formik.setFieldValue("address", e.target.value);
                       setAddress(e.target.value);
@@ -185,8 +178,10 @@ const RegisterForm = () => {
                   onConfirm={() => formik.setFieldValue("conditions", true)}
                   onDecline={() => formik.setFieldValue("conditions", false)}
                 />
+                <label className="form-label" htmlFor="conditions" />
                 <input
                   className="conditions-checkbox"
+                  data-testid="conditions"
                   name="conditions"
                   type="checkbox"
                   value={formik.values.conditions}
@@ -194,7 +189,11 @@ const RegisterForm = () => {
                 />
                 <ErrorMessage component={Alert} name="conditions" />
               </div>
-              <button className="general-btn register-btn my-3" type="submit">
+              <button
+                className="general-btn register-btn my-3"
+                id="submitRegisterBtn"
+                type="submit"
+              >
                 REGISTRARSE
               </button>
             </form>
