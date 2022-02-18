@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 
-import HomeSlides from "../../Components/Home/HomeSlides";
+import HomeSlides from "../../Components/Home/HomeSlides/HomeSlides";
 import StatusHandler from "../../Components/StatusHandler/StatusHandler";
 import { fetchSlides, selectorSlides } from "../../features/slides/slidesSlice";
 
@@ -15,8 +15,8 @@ const HomeSlidesContainer = () => {
   }, [dispatch]);
 
   return (
-    <div className="container my-5">
-      <div className="row">{slides && <HomeSlides data={slides} />}</div>
+    <div className="container-fluid p-0">
+      <div className="row m-0">{slides && <HomeSlides data={slides} />}</div>
       <StatusHandler status={status} />
     </div>
   );

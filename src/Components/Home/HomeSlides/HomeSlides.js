@@ -1,21 +1,33 @@
 import React from "react";
 import PropTypes from "prop-types";
+
 import "bootstrap/js/dist/carousel";
+import "./HomeSlides.css";
+import DangerouslySetInnerHTML from "../../DangerouslySetInnerHTML/DangerouslySetInnerHTML";
 
 const HomeSlides = ({ data }) => {
   return (
-    <div className="carousel slide" data-bs-ride="carousel" id="carousel">
+    <div
+      className="carousel slide carousel-fade container-slide"
+      data-bs-ride="carousel"
+      id="carousel"
+    >
       <div className="carousel-inner">
         {data.map((el, index) => {
           return (
             <div
               key={el.id ?? `CarouselItem-${index}`}
-              className={index === 0 ? "carousel-item active" : "carousel-item"}
+              className={
+                index === 0
+                  ? "carousel-item active container-img-slide"
+                  : "carousel-item container-img-slide"
+              }
+              data-bs-interval="5000"
             >
-              <img alt="ong-carousel" className="d-block w-100" src={el.image} />
-              <div className="carousel-caption d-md-block">
-                {el.name && <h4>{el.name}</h4>}
-                <p>{el.description}</p>
+              <img alt="ong-carousel" className="d-block img-slide" src={el.image} />
+              <div className="carousel-caption carousel-text pb-0 pt-3">
+                {el.name && <h4 className="mb-2 text-uppercase">{el.name}</h4>}
+                {el.description && <DangerouslySetInnerHTML content={el.description} />}
               </div>
             </div>
           );
