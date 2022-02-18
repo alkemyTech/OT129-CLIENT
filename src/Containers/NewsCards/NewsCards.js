@@ -23,7 +23,7 @@ const NewsCards = () => {
       <div className="row">
         <StatusHandler status={status} />
         <div className="container-cards">
-          {news &&
+          {news.length != 0 ? (
             news.map((el) => (
               <Card
                 key={el.id}
@@ -33,7 +33,10 @@ const NewsCards = () => {
                 title={el.name}
                 url={`./novedades`}
               />
-            ))}
+            ))
+          ) : (
+            <p>No se encontraron novedades con este título</p>
+          )}
         </div>
       </div>
     </div>
