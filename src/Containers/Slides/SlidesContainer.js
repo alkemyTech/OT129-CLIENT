@@ -1,21 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import { getSlides } from "../../Services/SlidesServices";
-import SlidesList from "../../Components/Slides/SlidesList";
+import { fetchSlides, selectorSlides } from "../../features/slides/slidesSlice";
 import TitleNav from "../../Components/TitleNav/TitleNav";
+import SlidesList from "../../Components/Slides/SlidesList";
 
 const SlidesContainer = () => {
-  const [slides, setSlides] = useState([]);
+  const dispatch = useDispatch();
+  const { slides } = useSelector(selectorSlides);
 
   useEffect(() => {
-    const data = async () => {
-      const slides = await getSlides();
-
-      setSlides(slides.data.data);
-    };
-
-    data();
+    dispatch(fetchSlides());
   }, []);
+
+  console.log(slides);
 
   return (
     <div className="container mt-5">
