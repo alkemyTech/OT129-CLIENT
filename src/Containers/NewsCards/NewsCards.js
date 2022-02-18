@@ -35,7 +35,7 @@ const NewsCards = () => {
               />
             ))
           ) : (
-            <p>No se encontraron novedades con este título</p>
+            <p>No hay novedades</p>
           )}
         </div>
       </div>
