@@ -4,7 +4,7 @@ import { CSSTransition } from "react-transition-group";
 import PropTypes from "prop-types";
 import "./Route.css";
 
-const Route = ({ component: Component, isAuthenticated, ...anotherProps }) => {
+const SuperRoute = ({ component: Component, isAuthenticated, ...anotherProps }) => {
   return (
     <ReactRouterRoute {...anotherProps}>
       {({ match }) =>
@@ -22,9 +22,9 @@ const Route = ({ component: Component, isAuthenticated, ...anotherProps }) => {
   );
 };
 
-Route.propTypes = {
+SuperRoute.propTypes = {
   component: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
   isAuthenticated: PropTypes.bool,
 };
 
-export default Route;
+export default SuperRoute;
