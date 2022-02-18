@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Titles /> Should render without crash 1`] = `
+<DocumentFragment>
+  <div
+    class="container-fluid d-flex justify-content-center align-items-center banner py-5"
+  >
+    <img
+      alt="Titulo"
+      class="image-banner"
+      src="background-title.jpg"
+    />
+    <div
+      class="row"
+    >
+      <div
+        class="container text-banner"
+      >
+        <div
+          class="row row-banner"
+        >
+          <div
+            class="col-12"
+          >
+            <h1
+              class="mb-0 title-banner"
+            >
+              Titulo
+            </h1>
+            <p
+              class="mb-0 mt-3"
+            >
+              Descripcion
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
