@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "../FormStyles.css";
 import { Formik, ErrorMessage, Field } from "formik";
 import * as Yup from "yup";
@@ -26,23 +26,7 @@ const validationSchema = Yup.object().shape({
 const LoginForm = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const {
-    auth,
-    user: { role_id },
-  } = useSelector(selectAuth);
-
-  const role = 1;
-
-  useEffect(() => {
-    if (auth) {
-      console.log(role_id);
-      if (role === 1) {
-        history.push("/backoffice");
-      } else if (role === 2) {
-        history.push("/");
-      }
-    }
-  }, [auth]);
+  const { auth, user } = useSelector(selectAuth);
 
   const handleLogin = (values) => {
     const body = {
@@ -52,9 +36,13 @@ const LoginForm = () => {
 
     dispatch(getLogged(body));
 
-    console.log(role_id);
-
-    console.log(body);
+    if (auth) {
+      if (user.role_id === 1) {
+        history.push("/backoffice");
+      } else {
+        history.push("/");
+      }
+    }
   };
 
   return (
