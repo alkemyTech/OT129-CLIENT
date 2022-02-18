@@ -23,8 +23,8 @@ const NewsCards = () => {
       <div className="row">
         <StatusHandler status={status} />
         <div className="container-cards">
-          {news.length != 0 ? (
-            news.map((el) => (
+          {news?.length != 0 ? (
+            news?.map((el) => (
               <Card
                 key={el.id}
                 description={el.content}
