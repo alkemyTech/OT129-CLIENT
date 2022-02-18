@@ -1,10 +1,10 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import Card from "../../Components/Card/Card";
+import InputSearch from "../../Components/InputSearch";
 import StatusHandler from "../../Components/StatusHandler/StatusHandler";
 import { fetchNews, selectorNews } from "../../features/News/news-slice";
-import { debouncerSearch } from "../../utils/debounceSearch";
 
 const NewsCards = () => {
   const [search, setSearch] = useState("");
@@ -15,23 +15,10 @@ const NewsCards = () => {
     dispatch(fetchNews(search));
   }, [dispatch, search]);
 
-  //this is needed for the debouncer function
-  const debounceRef = useRef();
-
   return (
     <div className="container my-5">
-      <div className="d-flex align-items-center w-25 mb-4 ">
-        <div className="input-group">
-          <input
-            aria-label="Dollar amount (with dot and two decimal places)"
-            className="form-control form-control-sm"
-            type="text"
-            onChange={(e) => debouncerSearch(e, debounceRef, setSearch, 300)}
-          />
-          <span className="input-group-text">
-            <i className="fas fa-search-plus text-primary" />
-          </span>
-        </div>
+      <div className="text-center d-block w-25 mb-4 m-auto ">
+        <InputSearch setSearch={setSearch} />
       </div>
       <div className="row">
         <StatusHandler status={status} />
