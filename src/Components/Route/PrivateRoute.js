@@ -1,26 +1,42 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import PropTypes from "prop-types";
-import { Route, Redirect } from "react-router-dom";
+import React from "react";
+import { useSelector } from "react-redux";
+import { Redirect } from "react-router-dom";
 
-import { selectAuth, getToken } from "../../features/auth/authSlice";
-import { selectorUsers } from "../../features/user/users-slice";
+import LayoutBackoffice from "../../Containers/Backoffice/LayoutBackoffice";
+import { selectAuth } from "../../features/auth/authSlice";
 
-const PrivateRoute = ({ children }) => {
-  const {
-    user: { role_id },
-  } = useSelector(selectAuth);
-  const dispatch = useDispatch();
+import routes from "./routes";
 
-  useEffect(() => {
-    dispatch(getToken());
-  }, [dispatch]);
+import SuperRoute from "./index";
 
-  return <Route> {role_id === 1 ? children : <Redirect to="/" />} </Route>;
-};
+const PrivateRoute = () => {
+  const { auth, user } = useSelector(selectAuth);
 
-PrivateRoute.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
+  return (
+    <>
+      {auth ? (
+        user.role_id === 1 ? (
+          <LayoutBackoffice>
+            {routes.map(({ component, path, exact }) => {
+              return <SuperRoute key={path} component={component} exact={exact} path={path} />;
+            })}
+          </LayoutBackoffice>
+        ) : (
+          <Redirect
+            to={{
+              pathname: "/",
+            }}
+          />
+        )
+      ) : (
+        <Redirect
+          to={{
+            pathname: "/login",
+          }}
+        />
+      )}
+    </>
+  );
 };
 
 export default PrivateRoute;
