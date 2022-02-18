@@ -1,0 +1,25 @@
+.testimonials-card {
+  background: #fff;
+  flex-grow: 1;
+  display: flex;
+  box-shadow: 0px 0px 4px rgb(179, 179, 179);
+  border-radius: var(--border-radius);
+}
+
+.img-testimonials-card {
+  display: block;
+  width: 240px;
+  height: 240px;
+}
+
+.testimonials-card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+  background: #f2f3e6;
+}
+
+.quote-description {
+  display: flex;
+}
