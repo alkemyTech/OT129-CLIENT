@@ -8,7 +8,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 220px !important;
+  height: 200px !important;
 }
 
 .img-card {

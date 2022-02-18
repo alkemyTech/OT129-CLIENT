@@ -11,12 +11,12 @@
   --red-hover: rgba(219, 87, 82, 0.8);
   --yellow: #fafa88;
   --bg-light-blue: #edf2f7;
-  --width-button: 140px;
+  --width-button: 120px;
   --heigth-button: 40px;
   --border-radius: 6px;
   --font-family: "Montserrat", sans-serif;
   --font-size: 15px;
-  --card-shadow: 2px 2px 6px rgb(224, 224, 224);
+  --card-shadow: 2px 2px 6px rgb(187, 187, 187);
   --form-shadow: 0 10px 6px -4px rgba(123, 161, 201, 0.5);
 }
 
@@ -154,12 +154,14 @@ body {
 /* Cards */
 
 .container-cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 50px;
 }
 
 .card {
+  width: 30%;
   box-shadow: var(--card-shadow);
 }
 
