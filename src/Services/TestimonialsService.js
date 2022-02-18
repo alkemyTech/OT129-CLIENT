@@ -6,6 +6,12 @@ export const getTestimonials = () => {
   return get(ENDPOINT);
 };
 
+export const getLastTestimonials = (entries) => {
+  const url = entries ? `${ENDPOINT}?limit=${entries}` : ENDPOINT;
+
+  return get(url);
+};
+
 export const createTestimonial = () => {
   return post(ENDPOINT);
 };
