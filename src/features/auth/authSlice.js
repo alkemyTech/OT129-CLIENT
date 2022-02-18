@@ -19,16 +19,6 @@ export const getRegistered = createAsyncThunk("auth/getRegistered", async (data)
   return response.data.data;
 });
 
-export const getToken = createAsyncThunk("auth/getToken", async () => {
-  const response = localStorage.getItem("token");
-
-  console.log(response);
-
-  if (!response === "") {
-    return true;
-  }
-});
-
 export const authSlice = createSlice({
   name: "auth",
   initialState: {
@@ -45,18 +35,6 @@ export const authSlice = createSlice({
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.auth = true;
-    },
-    [getLogged.rejected]: (state) => {
-      state.status = STATUS.FAILED;
-    },
-    [getToken.pending]: (state) => {
-      state.status = STATUS.PENDING;
-    },
-    [getToken.fulfilled]: (state, action) => {
-      state.token = action.payload;
-    },
-    [getToken.rejected]: (state) => {
-      state.status = STATUS.FAILED;
     },
   },
 });
