@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
-import Card from "../../Components/Card/Card";
-import { getLastNews } from "../../Services/NewsService";
-import Spinner from "../../Components/Spinner/Spinner";
-import { alerts } from "../../utils/alerts";
+import Card from "../../Card/Card";
+import { getLastNews } from "../../../Services/NewsService";
+import Spinner from "../../Spinner/Spinner";
+import { alerts } from "../../../utils/alerts";
+
+import "./HomeNewsCards.css";
 
 const HomeCards = () => {
   const [lastNewsData, setLastNewsData] = useState([]);
@@ -25,12 +27,12 @@ const HomeCards = () => {
   }, []);
 
   return (
-    <div className="container my-5 d-grid gap-3">
-      <div className="row mb-4">
-        <h2 className="text-center text-uppercase">Últimas Novedades</h2>
+    <div className="container-fluid d-grid gap-3 container-home-news">
+      <div className="container-title-news mb-4">
+        <h2 className="text-center text-uppercase title-home-news">Últimas Novedades</h2>
       </div>
-      <div className="row">
-        <div className="container-cards">
+      <div>
+        <div className="container container-cards">
           {newsDataExist &&
             lastNewsData.map((el) => (
               <Card
