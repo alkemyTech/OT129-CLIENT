@@ -6,7 +6,6 @@ import HomeNewsCards from "../Containers/HomeCards/HomeNewsCards";
 import { fetchOrganization } from "../features/Organization/organizationSlice";
 
 const HomePage = () => {
-  const cardNews = "Cards Desde la API Novedades";
   const welcomeText = "Texto de Bienvenida";
   const dispatch = useDispatch();
 
@@ -19,7 +18,7 @@ const HomePage = () => {
       <h1 className="text-center mt-3">Home Page</h1>
       <HomeSlidesContainer />
       <h2> {welcomeText}</h2>
-      <HomeNewsCards card={cardNews} />
+      <HomeNewsCards />
     </div>
   );
 };
