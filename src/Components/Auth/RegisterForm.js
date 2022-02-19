@@ -46,7 +46,7 @@ const validationSchema = Yup.object({
     )
     .oneOf([Yup.ref("password"), null], "Las CONTRASEÑAS deben coincidir"),
   conditions: Yup.boolean().oneOf([true], "Debes aceptar los Términos y Condiciones"),
-  address: Yup.string().required("Ingrese su DIRECCIÓN"),
+  address: Yup.string().required("El campo DIRECCIÓN es requerido"),
 });
 
 const RegisterForm = () => {
@@ -196,7 +196,7 @@ const RegisterForm = () => {
               </div>
               <button
                 className="general-btn register-btn my-3"
-                id="submitRegisterBtn"
+                data-testid="registerButton"
                 type="submit"
               >
                 REGISTRARSE
