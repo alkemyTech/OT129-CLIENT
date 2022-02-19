@@ -194,3 +194,9 @@ confirmAlerts(
 ### Result:
 
 ![plot](https://imgur.com/4qLJ6E2.png)
+
+---
+
+## Unit Tests of components:
+
+- [Titles](./src/Components/Titles/README.test.md)

@@ -40,6 +40,7 @@ const NewsIdPage = lazy(() =>
 const RegisterPage = lazy(() =>
   import(/* webpackChunkName: "LazyRegisterPagePage"*/ "../../Pages/RegisterPage")
 );
+const LoginForm = lazy(() => import(/* webpackChunkName: "LazyLoginPage"*/ "../Auth/LoginForm"));
 
 export const publicRoute = [
   {
@@ -110,6 +111,11 @@ export const publicRoute = [
   {
     path: "/projects/create",
     component: ProjectsForm,
+    exact: true,
+  },
+  {
+    path: "/login",
+    component: LoginForm,
     exact: true,
   },
 ];
