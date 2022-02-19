@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { ErrorMessage, Form, Formik } from "formik";
 import * as Yup from "yup";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
@@ -7,30 +7,14 @@ import PropTypes from "prop-types";
 
 import { toBase64 } from "../../utils/toBase64";
 import ContainerFormCard from "../../Containers/ContainerFormCard";
-import { createNews, editNews } from "../../Services/NewsService";
-import { getCategories } from "../../Services/CategoriesService";
 
-const NewsForm = ({ newId = {} }) => {
+const NewsForm = ({ _new = {}, categories = [], handleSubmit, status }) => {
   const initialValues = {
-    name: newId.name || "",
-    content: newId.content || "",
-    image: newId.image || "",
-    category_id: newId.category_id || undefined,
+    name: _new.name || "",
+    content: _new.content || "",
+    image: _new.image || "",
+    category_id: _new.category_id || undefined,
   };
-
-  const [categories, setCategories] = useState([]);
-  const [loading, setLoading] = useState(false);
-
-  // ejecuta la funcion getCategories para traer y mostrar todas las categorias
-  useEffect(() => {
-    const data = async () => {
-      const result = await getCategories();
-
-      setCategories(result?.data?.data);
-    };
-
-    data();
-  }, []);
 
   return (
     <>
@@ -39,8 +23,6 @@ const NewsForm = ({ newId = {} }) => {
           initialValues={initialValues}
           validationSchema={validationNewSchema}
           onSubmit={async (formData) => {
-            setLoading(true);
-            // Convertirmos la imagen en formato base64
             const resultbase = await toBase64(formData.image);
             const data = {
               name: formData.name,
@@ -49,24 +31,7 @@ const NewsForm = ({ newId = {} }) => {
               image: resultbase,
             };
 
-            // Validamos si el objeto novedad esta vacio o no
-            if (newId.id === undefined) {
-              await createNews(data);
-
-              setLoading(false);
-            } else {
-              const resultbase = await toBase64(formData.image);
-              const data = {
-                name: formData.name,
-                content: formData.content,
-                category_id: formData.category_id,
-                image: resultbase,
-              };
-
-              await editNews(data, newId.id);
-
-              setLoading(false);
-            }
+            handleSubmit(data);
           }}
         >
           {(formik) => (
@@ -125,10 +90,10 @@ const NewsForm = ({ newId = {} }) => {
               <button className="btn btn-primary w-100 mt-2 fw-bold" type="submit">
                 <span
                   aria-hidden="true"
-                  className={loading ? "spinner-border spinner-border-sm" : null}
+                  className={status === "PENDING" ? "spinner-border spinner-border-sm" : null}
                   role="status"
                 />
-                {newId.id === undefined ? "AGREGAR NOVEDAD" : "EDITAR NOTICIA"}
+                {_new.id === undefined ? "AGREGAR NOVEDAD" : "EDITAR NOTICIA"}
               </button>
             </Form>
           )}
@@ -147,13 +112,16 @@ const validationNewSchema = Yup.object({
 });
 
 NewsForm.propTypes = {
-  newId: PropTypes.shape({
+  categories: PropTypes.array,
+  handleSubmit: PropTypes.func,
+  _new: PropTypes.shape({
     id: PropTypes.number,
     name: PropTypes.string,
     content: PropTypes.string,
     image: PropTypes.string,
     category_id: PropTypes.number,
   }),
+  status: PropTypes.string,
 };
 
 export default NewsForm;
