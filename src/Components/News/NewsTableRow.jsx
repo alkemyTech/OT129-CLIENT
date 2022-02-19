@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { format } from "date-fns";
 import { Link } from "react-router-dom";
 
-import { removeNews } from "../../Services/NewsService";
+import { removeNew } from "../../features/News/news-slice";
 
 const NewsTableRow = ({ data }) => {
   return (
@@ -20,11 +20,7 @@ const NewsTableRow = ({ data }) => {
             <i className="fas fa-pencil-alt" />
           </button>
         </Link>
-        <button
-          className="btn-list btn-delete"
-          title="Eliminar"
-          onClick={() => removeNews(data.id)}
-        >
+        <button className="btn-list btn-delete" title="Eliminar" onClick={() => removeNew(data.id)}>
           <i className="fas fa-trash-alt" />
         </button>
       </td>
