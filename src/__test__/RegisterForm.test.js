@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen, waitFor, fireEvent, act } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { mockReactRedux } from "mock-react-redux";
 
@@ -25,9 +25,9 @@ const errorMsg = (field) => {
 
 //TESTS
 describe("Should submit?", () => {
-  const { dispatch } = mockReactRedux();
-
   it("Displaying error messages if required fields are empty", async () => {
+    const { dispatch } = mockReactRedux();
+
     render(<RegisterForm onSubmit={dispatch} />);
 
     userEvent.click(screen.getByTestId("registerButton"));
@@ -42,7 +42,8 @@ describe("Should submit?", () => {
     });
   });
   it("Preventing submit dispatch if form insn't validated", async () => {
-    mockReactRedux().dispatch.mockReset();
+    const { dispatch } = mockReactRedux();
+
     render(<RegisterForm onSubmit={dispatch} />);
 
     userEvent.click(screen.getByTestId("registerButton"));
@@ -52,7 +53,8 @@ describe("Should submit?", () => {
     });
   });
   it("If required fields are valid, should dispatch onSubmit", async () => {
-    mockReactRedux().dispatch.mockReset();
+    const { dispatch } = mockReactRedux();
+
     render(<RegisterForm onSubmit={dispatch} />);
 
     userEvent.type(querySetter("nombre"), "Shinji");
@@ -65,6 +67,7 @@ describe("Should submit?", () => {
 
     await waitFor(() => {
       expect(dispatch).toHaveBeenCalled();
+      expect(dispatch).toHaveBeenCalledWith(expect.any(Function));
     });
   });
 });
