@@ -14,6 +14,8 @@ import MembersListContainer from "../../Containers/Members/MembersListContainer"
 import MembersFormContainer from "../../Containers/Members/MembersFormContainer";
 import OrganizationContainer from "../../Containers/Organization/OrganizationContainer";
 import EditOrganization from "../../Containers/EditOrganization/EditOrganization";
+import TestimonialFormContainer from "../../Containers/Testimonials/TestimonialsFormContainer";
+import TestimonialListContainer from "../../Containers/Testimonials/TestimonialsListContainer";
 
 const routes = [
   {
@@ -119,6 +121,21 @@ const routes = [
   {
     path: "/backoffice/organization/edit",
     component: EditOrganization,
+    exact: true,
+  },
+  {
+    path: "/backoffice/testimonials",
+    component: TestimonialListContainer,
+    exact: true,
+  },
+  {
+    path: "/backoffice/testimonials/create",
+    component: TestimonialFormContainer,
+    exact: true,
+  },
+  {
+    path: "/backoffice/testimonials/edit/:id",
+    component: TestimonialFormContainer,
     exact: true,
   },
 ];

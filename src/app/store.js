@@ -11,6 +11,7 @@ import slidesReducer from "../features/slides/slidesSlice";
 import activitiesReducer from "../features/Activities/activitiesSlice";
 import organizationReducer from "../features/Organization/organizationSlice";
 import membersReducer from "../features/Members/membersSlice";
+import testimonialsReducer from "../features/Testimonials/testimonialsSlice";
 import usersReducer from "../features/user/users-slice";
 
 const reducers = combineReducers({
@@ -22,6 +23,7 @@ const reducers = combineReducers({
   organization: organizationReducer,
   members: membersReducer,
   users: usersReducer,
+  testimonials: testimonialsReducer,
 });
 
 const persistConfig = {
