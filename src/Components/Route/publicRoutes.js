@@ -19,12 +19,7 @@ const ThankYou = lazy(() =>
 const AboutPage = lazy(() =>
   import(/* webpackChunkName: "LazyAboutPage"*/ "../../Pages/AboutPage")
 );
-const SchoolCampaign = lazy(() =>
-  import(/* webpackChunkName: "LazySchoolCampaignPage"*/ "../../Campaigns/School/SchoolCampaign")
-);
-const ToysCampaign = lazy(() =>
-  import(/* webpackChunkName: "LazyToysCampaignPage"*/ "../../Campaigns/Toys/ToysCampaign")
-);
+
 const ActivitiesPage = lazy(() =>
   import(/* webpackChunkName: "LazyActivitiesPagePage"*/ "../../Pages/ActivitiesPage")
 );
@@ -66,16 +61,6 @@ export const publicRoute = [
   {
     path: "/nosotros",
     component: AboutPage,
-    exact: true,
-  },
-  {
-    path: "/school-campaign",
-    component: SchoolCampaign,
-    exact: true,
-  },
-  {
-    path: "/toys-campaign",
-    component: ToysCampaign,
     exact: true,
   },
   {
