@@ -2,8 +2,10 @@ import React from "react";
 import "../FormStyles.css";
 import { Formik, ErrorMessage, Field } from "formik";
 import * as Yup from "yup";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router";
 
+import { getLogged, selectAuth } from "../../features/auth/authSlice";
 import Alert from "../Container/Alert";
 
 const startValues = {
@@ -22,7 +24,10 @@ const validationSchema = Yup.object().shape({
 });
 
 const LoginForm = () => {
+  const history = useHistory();
   const dispatch = useDispatch();
+  const { auth, user } = useSelector(selectAuth);
+
   const handleLogin = (values) => {
     const body = {
       email: values.email,
@@ -30,6 +35,14 @@ const LoginForm = () => {
     };
 
     dispatch(getLogged(body));
+
+    if (auth) {
+      if (user.role_id === 1) {
+        history.push("/backoffice");
+      } else {
+        history.push("/");
+      }
+    }
   };
 
   return (
