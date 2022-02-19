@@ -34,17 +34,17 @@ function App() {
   return (
     <>
       <Router>
-        <div className="container-app">
+        <Suspense fallback={Spinner}>
           <Switch>
             <Route exact path={publicRoutes}>
               <LayoutPublic>
-                <Suspense fallback={<Spinner />}>
+                <div className="container-app">
                   {publicRoute.map(({ path, component, exact }) => {
                     return (
                       <SuperRoute key={path} component={component} exact={exact} path={path} />
                     );
                   })}
-                </Suspense>
+                </div>
               </LayoutPublic>
             </Route>
 
@@ -60,7 +60,7 @@ function App() {
               </LayoutPublic>
             </Route>
           </Switch>
-        </div>
+        </Suspense>
       </Router>
     </>
   );
