@@ -10,8 +10,8 @@ const UsersForm = ({ users = {}, handleSub }) => {
   const initialValues = {
     name: users?.name || "",
     email: users?.email || "",
-    role_id: users?.role_id || "",
-    password: "1234",
+    role_id: users?.role_id || undefined,
+    password: "1234!a",
     profile_image: users?.profile_image || "",
   };
 
@@ -92,7 +92,7 @@ UsersForm.propTypes = {
     id: PropTypes.number,
     name: PropTypes.string,
     email: PropTypes.string,
-    role_id: PropTypes.string,
+    role_id: PropTypes.number,
     password: PropTypes.string,
     profile_image: PropTypes.string,
   }),

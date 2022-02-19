@@ -12,6 +12,7 @@
 
 .logoNgo {
     display: none;
+    object-fit: contain;
 }
 
 .slogan {
