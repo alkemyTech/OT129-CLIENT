@@ -21,7 +21,7 @@ const initialValues = {
   email: "",
   password: "",
   confirmPassword: "",
-  conditions: true,
+  conditions: false,
   address: "",
 };
 
@@ -83,13 +83,13 @@ const RegisterForm = () => {
       name,
       email,
       password,
-      address: address,
-      latitude: map.lat,
-      longitude: map.lng,
+      // address: address,
+      // latitude: map.lat,
+      // longitude: map.lng,
     };
 
+    dispatch(getRegistered(body));
     if (map) {
-      dispatch(getRegistered(body));
     }
   };
 
