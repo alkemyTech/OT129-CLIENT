@@ -24,12 +24,12 @@ instance.interceptors.response.use(
  * Method to make a get with public endpoint
  * @param {string} url
  * @param {number|null} id
- * @returns {Promise}
+ * @param {object} params
  */
-export const get = (url, id = null) => {
+export const get = (url, search, id = null) => {
   let processedURL = id ? `${url}/${id}` : url;
 
-  return instance.get(processedURL);
+  return instance.get(processedURL, { params: search });
 };
 /**
  * Method to make a post with
