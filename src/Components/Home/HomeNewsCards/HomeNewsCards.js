@@ -1,30 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
+import { useDispatch, useSelector } from "react-redux";
 
 import Card from "../../Card/Card";
-import { getLastNews } from "../../../Services/NewsService";
-import Spinner from "../../Spinner/Spinner";
-import { alerts } from "../../../utils/alerts";
+import { fetchLastNews, selectorNews } from "../../../features/News/news-slice";
+import StatusHandler from "../../StatusHandler/StatusHandler";
 
 import "./HomeNewsCards.css";
 
 const HomeCards = () => {
-  const [lastNewsData, setLastNewsData] = useState([]);
-  const [newsDataExist, setNewsDataExist] = useState(false);
-  const [spinnerShow, setSpinnerShow] = useState(true);
+  const { last_news, state } = useSelector(selectorNews);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    getLastNews("3")
-      .then((response) => {
-        setLastNewsData(response.data.data);
-        setNewsDataExist(true);
-        setSpinnerShow(false);
-      })
-      .catch(() => {
-        alerts("Lo sentimos! La información no se encuentra disponible.", "error");
-        setSpinnerShow(false);
-      });
-  }, []);
+    dispatch(fetchLastNews());
+  }, [dispatch]);
 
   return (
     <div className="container-fluid d-grid gap-3 container-home-news">
@@ -33,8 +23,8 @@ const HomeCards = () => {
       </div>
       <div>
         <div className="container container-cards">
-          {newsDataExist &&
-            lastNewsData.map((el) => (
+          {last_news &&
+            last_news.map((el) => (
               <Card
                 key={el.id}
                 description={el.content}
@@ -45,7 +35,7 @@ const HomeCards = () => {
               />
             ))}
         </div>
-        {spinnerShow && <Spinner />}
+        <StatusHandler status={state} />
       </div>
     </div>
   );
