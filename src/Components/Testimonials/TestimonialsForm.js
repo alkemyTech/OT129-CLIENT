@@ -2,63 +2,54 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import "../FormStyles.css";
 import "bootstrap/dist/css/bootstrap.css";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, ErrorMessage } from "formik";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
-import { alerts } from "../../utils/alerts";
 import { toBase64 } from "../../utils/toBase64";
-import { createTestimonial, editTestimonial } from "../../Services/TestimonialsService";
 
 import PreviewImage from "./PreviewImage";
 import { testimonialSchema } from "./formValidation";
 
-const TestimonialForm = ({ testimony = {} }) => {
+const TestimonialForm = ({ handleSubmit, testimonial = {} }) => {
   const [testimonyImage, setTestimonyImage] = useState("");
+
+  const initialValues = {
+    name: testimonial?.name || "",
+    description: testimonial?.description || "",
+    image: testimonial?.image || "",
+  };
 
   return (
     <React.Fragment>
       <Formik
         validateOnMount
-        initialValues={{
-          name: testimony?.name || "",
-          description: testimony?.description || "",
-          image: testimony?.image || "",
-        }}
+        initialValues={initialValues}
         validationSchema={testimonialSchema}
         onSubmit={async (values) => {
           //Eleccion de ruta para crear o editar
           const resultBase = await toBase64(values.image);
-          const newTestimony = { ...values, image: resultBase };
+          const newTestimonial = { ...values, image: resultBase };
 
-          if (!testimony.id) {
-            await createTestimonial(newTestimony).catch(() => {
-              alerts("Lo sentimos! Su mensaje no se ha podido enviar.", "error");
-            });
-
-            setFormSend(true);
-          } else {
-            await editTestimonial(newTestimony, testimony.id).catch(() => {
-              alerts("Lo sentimos! Su mensaje no se ha podido enviar.", "error");
-            });
-
-            setFormSend(true);
-          }
+          handleSubmit(newTestimonial);
         }}
       >
-        {({ errors, isValid, setFieldValue }) => (
+        {({ errors, setFieldValue }) => (
           <Form className="form-container">
             <div className="mt-3">
               <label className="form-label" htmlFor="name">
                 Nombre
                 <span>:</span>
               </label>
-              <Field
+              <input
                 className="form-control"
                 id="name"
                 name="name"
                 placeholder="Testimonio Nombre"
                 type="text"
+                onChange={(e) => {
+                  setFieldValue("name", e.target.value);
+                }}
               />
               <ErrorMessage component={() => <p className="error">{errors.name}</p>} name="name" />
             </div>
@@ -68,9 +59,9 @@ const TestimonialForm = ({ testimony = {} }) => {
                 <span>:</span>
               </label>
               <CKEditor
-                data={testimony.description}
+                config={{ placeholder: `${initialValues.description}` }}
+                data={initialValues.description}
                 editor={ClassicEditor}
-                id="description"
                 name="description"
                 onChange={(event, editor) => {
                   const data = editor.getData();
@@ -102,7 +93,7 @@ const TestimonialForm = ({ testimony = {} }) => {
               <ErrorMessage component={() => <p className="error">{errors.file}</p>} name="file" />
               {testimonyImage && <PreviewImage file={testimonyImage} />}
             </div>
-            <button className="btn btn-primary" disabled={!isValid} type="submit">
+            <button className="btn btn-primary" type="submit">
               Enviar
             </button>
           </Form>
@@ -113,7 +104,8 @@ const TestimonialForm = ({ testimony = {} }) => {
 };
 
 TestimonialForm.propTypes = {
-  testimony: PropTypes.shape({
+  handleSubmit: PropTypes.func,
+  testimonial: PropTypes.shape({
     id: PropTypes.number,
     name: PropTypes.string,
     description: PropTypes.string,

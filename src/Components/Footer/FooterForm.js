@@ -32,7 +32,6 @@ const FooterForm = () => {
           validationSchema={newsletterSchema}
           onSubmit={(values, { resetForm }) => {
             try {
-              console.log(values);
               setFormSend(true);
               // setTimeout(() => setFormSend(false), 5000); ver validacion
               resetForm();

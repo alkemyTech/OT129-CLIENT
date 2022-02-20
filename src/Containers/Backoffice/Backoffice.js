@@ -23,7 +23,7 @@ const BACK_CARDS = [
   {
     icon: "fas fa-comment-alt fa-5x",
     title: "Testimonios",
-    link: "/backoffice/testimonies",
+    link: "/backoffice/testimonials",
   },
   {
     icon: "fas fa-project-diagram fa-5x",
