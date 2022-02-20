@@ -25,6 +25,13 @@ export const authSlice = createSlice({
     user: {},
     token: "",
   },
+  reducers: {
+    logout: (state) => {
+      localStorage.clear();
+      state.auth = false;
+    },
+  },
+
   extraReducers: {
     [getLogged.pending]: (state) => {
       state.status = STATUS.PENDING;
