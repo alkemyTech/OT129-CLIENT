@@ -5,7 +5,9 @@ import { mockReactRedux } from "mock-react-redux";
 
 import RegisterForm from "../Components/Auth/RegisterForm";
 
-//HELPER FUNCTIONS
+//SETUP
+const mockRegister = require("../__mocks__/apiRequest");
+
 /**
  *
  * @param {string} query
@@ -69,5 +71,10 @@ describe("Should submit?", () => {
       expect(dispatch).toHaveBeenCalled();
       expect(dispatch).toHaveBeenCalledWith(expect.any(Function));
     });
+  });
+  it("The request is matching the right endpoint", async () => {
+    const response = await mockRegister();
+
+    expect(response).toHaveErrorMessage("some shit");
   });
 });
