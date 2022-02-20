@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 import { STATUS } from "../../constants";
 import { login, register } from "../../Services/authServices";
+import { alerts } from "../../utils/alerts";
 
 export const getLogged = createAsyncThunk("auth/getLogged", async (data) => {
   const response = await login(data);
@@ -34,6 +35,7 @@ export const authSlice = createSlice({
     [getLogged.rejected]: (state) => {
       state.status = STATUS.FAILED;
       state.isLoading = false;
+      alerts("Datos incorrectos, intente nuevamente.", "error");
     },
     [getLogged.fulfilled]: (state, action) => {
       state.status = STATUS.SUCCESSFUL;
