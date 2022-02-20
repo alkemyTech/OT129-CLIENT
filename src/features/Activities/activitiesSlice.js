@@ -2,25 +2,16 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 import {
   getActivities,
-  getActivitiesBySearch,
   getActivityByID,
   editActivity,
   createActivity,
   deleteActivity,
 } from "../../Services/ActivitiesService";
 
-export const fetchActivities = createAsyncThunk("activities/get", async () => {
+export const fetchActivities = createAsyncThunk("activities/get", async (search = null) => {
   const {
     data: { data },
-  } = await getActivities();
-
-  return data;
-});
-
-export const fetchActivitiesBySearch = createAsyncThunk("activities/get", async (search) => {
-  const {
-    data: { data },
-  } = await getActivitiesBySearch(search);
+  } = await getActivities(search);
 
   return data;
 });
@@ -68,16 +59,6 @@ const activitiesSlice = createSlice({
       state.activity = {};
     },
     [fetchActivities.rejected]: (state) => {
-      state.status = "failed";
-    },
-    [fetchActivitiesBySearch.pending]: (state) => {
-      state.status = "loading";
-    },
-    [fetchActivitiesBySearch.fulfilled]: (state, action) => {
-      state.status = "success";
-      state.activities = action.payload;
-    },
-    [fetchActivitiesBySearch.rejected]: (state) => {
       state.status = "failed";
     },
     [fetchActivity.pending]: (state) => {
