@@ -7,8 +7,8 @@ import logo from "../../assets/onglogo.png";
 
 const BackNavBar = () => {
   return (
-    <nav className="navbar navbar-light bg-white">
-      <div className="container-fluid">
+    <div className="container d-flex justify-content-between">
+      <nav className="navbar navbar-light bg-white">
         <button
           aria-controls="offcanvasNavbar"
           className="navbar-toggler border-0"
@@ -78,18 +78,18 @@ const BackNavBar = () => {
                 </NavLink>
               </li>
               <li className="nav-item space">
-                <NavLink activeClassName="active" className="links" to="/backoffice/testimonies">
+                <NavLink activeClassName="active" className="links" to="/backoffice/testimonials">
                   Testimonios
                 </NavLink>
               </li>
             </ul>
           </div>
         </div>
-        <Link className="navbar-brand" to="/">
-          <img alt="logo" className="img-fluid " src={logo} style={{ width: "7rem" }} />
-        </Link>
-      </div>
-    </nav>
+      </nav>
+      <Link className="navbar-brand" to="/">
+        <img alt="logo" className="img-fluid " src={logo} style={{ width: "7rem" }} />
+      </Link>
+    </div>
   );
 };
 

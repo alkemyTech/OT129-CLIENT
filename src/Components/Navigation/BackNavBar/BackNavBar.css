@@ -7,17 +7,12 @@
 .links:hover,
 .links:active,
 .links.active {
-  padding-bottom: 0.2rem;
-  border-bottom: 2px solid var(--dark-blue);
+  padding-bottom: 0.25rem;
+  border-bottom: 4px solid #EC4C4B;
   color: #8dc9ff;
   text-decoration: none;
 }
 
 .space {
     margin-bottom: 1rem;
-}
-
-#offcanvasNavbar {
-  width: 300px;
-  padding-left: 10px;
 }
