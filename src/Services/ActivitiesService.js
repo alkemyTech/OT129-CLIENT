@@ -7,6 +7,12 @@ export const getActivities = () => {
   return get(ENDPOINT);
 };
 
+export const getActivitiesBySearch = (search) => {
+  const url = `${ENDPOINT}?search=${search}`;
+
+  return get(url);
+};
+
 export const getActivityByID = (id) => {
   return get(ENDPOINT, id);
 };
