@@ -39,11 +39,10 @@ const NewsForm = ({ _new = {}, categories = [], handleSubmit, status }) => {
               <div className="mb-1">
                 <label className="form-label fw-bold">Título</label>
                 <input
-                  autoComplete="off"
                   className="form-control form-control-sm w-100"
+                  name="name"
                   placeholder={initialValues.name}
                   type="text"
-                  value={initialValues.name}
                   {...formik.getFieldProps("name")}
                 />
                 <ErrorMessage className="text-danger" component="span" name="name" />
@@ -54,7 +53,11 @@ const NewsForm = ({ _new = {}, categories = [], handleSubmit, status }) => {
                   data={initialValues.content}
                   editor={ClassicEditor}
                   id="content"
-                  onChange={(event, editor) => formik.setFieldValue("content", editor.getData())}
+                  onChange={(event, editor) => {
+                    const data = editor.getData();
+
+                    formik.setFieldValue("content", data);
+                  }}
                 />
               </div>
               <ErrorMessage className="text-danger" component="span" name="content" />
@@ -104,8 +107,8 @@ const NewsForm = ({ _new = {}, categories = [], handleSubmit, status }) => {
 };
 const validationNewSchema = Yup.object({
   name: Yup.string()
-    .min(4, "Debe contener al menos 4 caracteres")
-    .required("El titulo es obligatorio"),
+    .required("El titulo es obligatorio.")
+    .min(4, "Debe contener al menos 4 caracteres"),
   content: Yup.string().required("El contenido es obligatorio"),
   category_id: Yup.string().required("La categoría es obligatoria"),
   image: Yup.string().required("La imagen es obligatoria"),
