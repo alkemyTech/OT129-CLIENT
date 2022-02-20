@@ -7,8 +7,9 @@ import PropTypes from "prop-types";
 import { createContact } from "../../Services/ContactService";
 import { alerts } from "../../utils/alerts";
 
-const ErrorComponent = (props) => <p>{props.children}</p>;
+import styles from "./ContactForm.module.css";
 
+const ErrorComponent = (props) => <div className={styles.alert}>{props.children}</div>;
 const initialValues = {
   name: "",
   email: "",
@@ -40,26 +41,51 @@ const ContactForm = () => {
   };
 
   return (
-    <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
-      <Form className="form-container">
-        <Field className="form-control" name="name" placeholder="Nombre" type="text" />
-        <ErrorMessage component={ErrorComponent} name="name" />
-        <Field className="form-control" name="email" placeholder="Email" type="text" />
-        <ErrorMessage component={ErrorComponent} name="email" />
-        <Field className="form-control" name="phone" placeholder="Teléfono" type="tel" />
-        <ErrorMessage component={ErrorComponent} name="phone" />
-        <Field
-          as="textarea"
-          className="form-control"
-          name="message"
-          placeholder="Escribe tu mensaje"
-        />
-        <ErrorMessage component={ErrorComponent} name="message" />
-        <button className="btn btn-primary" type="submit">
-          Enviar
-        </button>
-      </Form>
-    </Formik>
+    <div className={`container ${styles.formContainer}`}>
+      <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
+        <Form className={styles.form}>
+          <div className="mb-4">
+            <Field
+              className={`form-control ${styles.input}`}
+              name="name"
+              placeholder="Nombre"
+              type="text"
+            />
+            <ErrorMessage component={ErrorComponent} name="name" />
+          </div>
+          <div className="mb-4">
+            <Field
+              className={`form-control ${styles.input}`}
+              name="email"
+              placeholder="Email"
+              type="text"
+            />
+            <ErrorMessage component={ErrorComponent} name="email" />
+          </div>
+          <div className="mb-4">
+            <Field
+              className={`form-control ${styles.input}`}
+              name="phone"
+              placeholder="Teléfono"
+              type="tel"
+            />
+            <ErrorMessage component={ErrorComponent} name="phone" />
+          </div>
+          <div className="mb-4">
+            <Field
+              as="textarea"
+              className={`form-control ${styles.input}`}
+              name="message"
+              placeholder="Escribe tu mensaje"
+            />
+            <ErrorMessage component={ErrorComponent} name="message" />
+          </div>
+          <button className={`form-control ${styles.contactBtn}`} type="submit">
+            Enviar
+          </button>
+        </Form>
+      </Formik>
+    </div>
   );
 };
 
