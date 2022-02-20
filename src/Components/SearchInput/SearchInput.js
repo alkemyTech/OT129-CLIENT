@@ -10,9 +10,6 @@ const SearchInput = ({ handleSearch, title = "Ingresa tu búsqueda" }) => {
         type="text"
         onChange={handleSearch}
       />
-      <span className="input-group-text">
-        <i className="fas fa-search-plus color-icon-search" />
-      </span>
     </div>
   );
 };
