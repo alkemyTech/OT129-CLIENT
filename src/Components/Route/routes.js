@@ -6,7 +6,7 @@ import NewsList from "../News/NewsList";
 import NewsContainer from "../../Containers/News/NewsContainer";
 import CategoriesListContainer from "../../Containers/Categories/CategoriesListContainer";
 import CategoriesFormContainer from "../../Containers/Categories/CategoriesFormContainer";
-import SlidesContainer from "../Slides/SlidesContainer";
+import SlidesContainer from "../../Containers/Slides/SlidesContainer";
 import SlidesForm from "../Slides/SlidesForm";
 import UsersListContainer from "../../Containers/Users/UsersListContainer";
 import UsersFormContainer from "../../Containers/Users/UsersFormContainer";

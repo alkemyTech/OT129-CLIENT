@@ -35,6 +35,9 @@ const NewsIdPage = lazy(() =>
 const RegisterPage = lazy(() =>
   import(/* webpackChunkName: "LazyRegisterPagePage"*/ "../../Pages/RegisterPage")
 );
+const TestimonialsPage = lazy(() =>
+  import(/* webpackChunkName: "LazyRegisterPagePage"*/ "../../Pages/TestimonialsPage")
+);
 const LoginForm = lazy(() => import(/* webpackChunkName: "LazyLoginPage"*/ "../Auth/LoginForm"));
 
 export const publicRoute = [
@@ -86,6 +89,11 @@ export const publicRoute = [
   {
     path: "/registro",
     component: RegisterPage,
+    exact: true,
+  },
+  {
+    path: "/testimonios",
+    component: TestimonialsPage,
     exact: true,
   },
   {
