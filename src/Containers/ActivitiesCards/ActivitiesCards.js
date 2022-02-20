@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import {
-  fetchActivities,
-  fetchActivitiesBySearch,
-  selectorActivities,
-} from "../../features/Activities/activitiesSlice";
+import { fetchActivities, selectorActivities } from "../../features/Activities/activitiesSlice";
 import Card from "../../Components/Card/Card";
 import StatusHandler from "../../Components/StatusHandler/StatusHandler";
 
@@ -24,17 +20,8 @@ const ActivitiesCards = () => {
   const handleChange = (e) => {
     setWordToSearch(e.target.value);
     if (wordToSearch.length >= 2) {
-      dispatch(fetchActivitiesBySearch(wordToSearch));
+      dispatch(dispatch(fetchActivities(wordToSearch)));
     } else if (wordToSearch.length < 2) {
-      dispatch(fetchActivities());
-    }
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (wordToSearch.length >= 2) {
-      dispatch(fetchActivitiesBySearch(wordToSearch));
-    } else if (wordToSearch.length === 0) {
       dispatch(fetchActivities());
     }
   };
@@ -42,7 +29,7 @@ const ActivitiesCards = () => {
   return (
     <div className="container my-5">
       <div className="row">
-        <form className={styles.activitiesSearchForm} onSubmit={handleSubmit}>
+        <form className={styles.activitiesSearchForm}>
           <input
             className={`form-control ${styles.activitiesSearchInput}`}
             name="search"
