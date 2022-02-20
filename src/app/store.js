@@ -8,6 +8,7 @@ import activitiesReducer from "../features/Activities/activitiesSlice";
 import organizationReducer from "../features/Organization/organizationSlice";
 import membersReducer from "../features/Members/membersSlice";
 import usersReducer from "../features/user/users-slice";
+import contactReducer from "../features/Contact/contactSlice";
 
 const store = configureStore({
   reducer: {
@@ -19,6 +20,7 @@ const store = configureStore({
     organization: organizationReducer,
     members: membersReducer,
     users: usersReducer,
+    contact: contactReducer,
   },
 });
 

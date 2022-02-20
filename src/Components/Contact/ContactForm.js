@@ -3,13 +3,15 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import "../FormStyles.css";
 import * as Yup from "yup";
 import PropTypes from "prop-types";
+import { useDispatch } from "react-redux";
 
-import { createContact } from "../../Services/ContactService";
+import { newContact } from "../../features/Contact/contactSlice";
 import { alerts } from "../../utils/alerts";
 
 import styles from "./ContactForm.module.css";
 
 const ErrorComponent = (props) => <div className={styles.alert}>{props.children}</div>;
+
 const initialValues = {
   name: "",
   email: "",
@@ -28,16 +30,12 @@ const validationSchema = Yup.object({
 });
 
 const ContactForm = () => {
+  const dispatch = useDispatch();
   const onSubmit = (values, { resetForm }) => {
+    dispatch(newContact(values))
+      .then(() => alerts("Su mensaje ha sido enviado.", "success"))
+      .catch(() => alerts("Lo sentimos. Su mensaje no ha podido ser enviado", "error"));
     resetForm();
-
-    createContact(values)
-      .then(() => {
-        alerts("Mensaje enviado correctamente.", "success");
-      })
-      .catch(() => {
-        alerts("Lo sentimos! Su mensaje no se ha podido enviar.", "error");
-      });
   };
 
   return (
