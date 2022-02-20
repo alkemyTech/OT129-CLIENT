@@ -1,42 +1,35 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
-import { getLastTestimonials } from "../../../Services/TestimonialsService";
-import Spinner from "../../Spinner/Spinner";
-import { alerts } from "../../../utils/alerts";
+import {
+  fetchLastTestimonials,
+  selectorTestimonials,
+} from "../../../features/Testimonials/testimonialsSlice";
+import StatusHandler from "../../StatusHandler/StatusHandler";
 
 import CardsTestimonials from "./CardsTestimonials";
 
 import "./HomeTestimonialsCards.css";
 
 const HomeCards = () => {
-  const [lastTestimonialData, setLastTestimonialData] = useState([]);
-  const [testimonialDataExist, setTestimonialDataExist] = useState(false);
-  const [spinnerShow, setSpinnerShow] = useState(true);
+  const { lastTestimonials, state } = useSelector(selectorTestimonials);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    getLastTestimonials("2")
-      .then((response) => {
-        setLastTestimonialData(response.data.data);
-        setTestimonialDataExist(true);
-        setSpinnerShow(false);
-      })
-      .catch(() => {
-        alerts("Lo sentimos! La información no se encuentra disponible.", "error");
-        setSpinnerShow(false);
-      });
-  }, []);
+    dispatch(fetchLastTestimonials("2"));
+  }, [dispatch]);
 
   return (
     <div className="container-fluid container-home-testimonials d-grid gap-3">
       <div className="container-title mb-4">
         <h2 className="text-center text-uppercase title-home-testimonials">Testimonios</h2>
       </div>
-      <div className="container text-end">
+      <div className="container text-end p-0">
         <div className="container-cards-testimonials">
-          {testimonialDataExist &&
-            lastTestimonialData.map((el) => (
+          {lastTestimonials &&
+            lastTestimonials.map((el) => (
               <CardsTestimonials
                 key={el.id}
                 description={el.description}
@@ -50,7 +43,7 @@ const HomeCards = () => {
           Ver Testimonios
         </Link>
       </div>
-      {spinnerShow && <Spinner />}
+      <StatusHandler status={state} />
     </div>
   );
 };
