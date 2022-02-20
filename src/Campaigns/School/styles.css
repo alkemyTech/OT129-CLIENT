@@ -1,8 +1,5 @@
 .container-footer {
-  position: fixed;
-  bottom: 0;
-  width: 100vw;
-  background-color: rgb(207, 207, 207);
+  background-color: rgb(243, 243, 243);
 }
 .containerImage {
   display: flex;
