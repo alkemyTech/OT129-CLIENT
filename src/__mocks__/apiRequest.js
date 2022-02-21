@@ -1,4 +1,4 @@
-import axios from "axios";
+const axios = require("axios");
 //MOCKING API REQUEST FOR TESTING LOGINFORM
 const mockRegister = () => {
   //Already existent user
@@ -9,10 +9,7 @@ const mockRegister = () => {
     address: "Misato's house 123, Tokyo 3",
   };
 
-  return axios.post(
-    `${process.env.REACT_APP_API_BASE_URL}/${process.env.REACT_APP_API_REGISTER}`,
-    body
-  );
+  return axios.post("http://ongapi.alkemy.org/public/api/register", body);
 };
 
 module.exports = mockRegister;
