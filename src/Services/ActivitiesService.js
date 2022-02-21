@@ -8,7 +8,7 @@ export const getActivities = (search = null) => {
 };
 
 export const getActivityByID = (id) => {
-  return get(ENDPOINT, id);
+  return get(ENDPOINT, null, id);
 };
 
 export const createActivity = (data) => {
