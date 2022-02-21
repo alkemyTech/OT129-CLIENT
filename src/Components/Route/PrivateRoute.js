@@ -17,9 +17,11 @@ const PrivateRoute = () => {
       {auth ? (
         user.role_id === 1 ? (
           <LayoutBackoffice>
-            {routes.map(({ component, path, exact }) => {
-              return <SuperRoute key={path} component={component} exact={exact} path={path} />;
-            })}
+            <div className="container-app">
+              {routes.map(({ component, path, exact }) => {
+                return <SuperRoute key={path} component={component} exact={exact} path={path} />;
+              })}
+            </div>
           </LayoutBackoffice>
         ) : (
           <Redirect

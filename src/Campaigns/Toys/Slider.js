@@ -14,24 +14,40 @@ const slide3Text = "Some representative placeholder content for the thirst slide
 const Slider = () => {
   return (
     <>
-      <div className="carousel slide" data-bs-ride="carousel" id="carouselExampleCaptions">
+      <div
+        className={`carousel slide ${styles["slide-container"]}`}
+        data-bs-ride="carousel"
+        id="carouselExampleCaptions"
+      >
         <div className="carousel-inner">
-          <div className={`carousel-item active ${styles["slide-image"]}`}>
-            <img alt="slide-toys" className="d-block w-100" src={slide1} />
-            <div className={`carousel-caption d-none d-lg-block ${styles["slider-caption"]}`}>
-              <p className="text-dark fs-5 text">{slide1Text}</p>
+          <div className={`carousel-item active ${styles["slide-image-container"]}`}>
+            <img
+              alt="slide-toys"
+              className={`d-block w-100 ${styles["slide-image"]} `}
+              src={slide1}
+            />
+            <div className={`carousel-caption d-lg-block ${styles["slider-caption"]}`}>
+              <p className="text-white fs-3 text">{slide1Text}</p>
             </div>
           </div>
-          <div className={`carousel-item ${styles["slide-image"]}`}>
-            <img alt="slide-toys" className="d-block w-100" src={slide2} />
-            <div className={`carousel-caption d-none d-lg-block ${styles["slider-caption"]}`}>
-              <p className="text-dark fs-5 text">{slide2Text}</p>
+          <div className={`carousel-item ${styles["slide-image-container"]}`}>
+            <img
+              alt="slide-toys"
+              className={`d-block w-100 ${styles["slide-image"]} `}
+              src={slide2}
+            />
+            <div className={`carousel-caption d-lg-block ${styles["slider-caption"]}`}>
+              <p className="text-white fs-3 text">{slide2Text}</p>
             </div>
           </div>
-          <div className={`carousel-item ${styles["slide-image"]}`}>
-            <img alt="slide-toys" className="d-block w-100" src={slide3} />
-            <div className={`carousel-caption d-none d-lg-block ${styles["slider-caption"]}`}>
-              <p className="text-dark fs-5 text">{slide3Text}</p>
+          <div className={`carousel-item ${styles["slide-image-container"]}`}>
+            <img
+              alt="slide-toys"
+              className={`d-block w-100 ${styles["slide-image"]} `}
+              src={slide3}
+            />
+            <div className={`carousel-caption d-lg-block ${styles["slider-caption"]}`}>
+              <p className="text-white fs-3 text">{slide3Text}</p>
             </div>
           </div>
         </div>

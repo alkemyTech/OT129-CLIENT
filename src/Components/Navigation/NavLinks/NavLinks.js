@@ -46,7 +46,7 @@ const NavLinks = () => {
           </NavLink>
         </li>
         <li className="nav-item space">
-          <NavLink activeClassName="active" className="links" to="/backoffice/testimonies">
+          <NavLink activeClassName="active" className="links" to="/backoffice/testimonials">
             Testimonios
           </NavLink>
         </li>

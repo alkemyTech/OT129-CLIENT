@@ -8,6 +8,7 @@ const NewsPage = () => {
   return (
     <>
       <Title title={"Novedades"} />
+
       <NewsCards />
       <UltimoEvento />
     </>
