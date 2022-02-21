@@ -1,10 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
+
+import { selectAuth } from "../../features/auth/authSlice";
 
 import "./Donation.css";
 import DonationAmountModal from "./DonationAmountModal";
 
 const Donation = ({ text }) => {
+  const {
+    auth,
+    user: { role_id },
+  } = useSelector(selectAuth);
+  const history = useHistory();
+
+  useEffect(() => {
+    if (!auth || (auth && role_id === 1)) {
+      history.push("/");
+    }
+  }, [history]);
+
   return (
     <div className="container-fluid container-donation">
       <div className="container">
