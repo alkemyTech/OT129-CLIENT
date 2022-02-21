@@ -25,8 +25,9 @@ instance.interceptors.response.use(
  * @param {string} url
  * @param {number|null} id
  * @param {object} params
+ * @returns {Promise}
  */
-export const get = (url, search, id = null) => {
+export const get = (url, search = null, id = null) => {
   let processedURL = id ? `${url}/${id}` : url;
 
   return instance.get(processedURL, { params: search });

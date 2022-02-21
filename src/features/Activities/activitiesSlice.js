@@ -8,7 +8,7 @@ import {
   deleteActivity,
 } from "../../Services/ActivitiesService";
 
-export const fetchActivities = createAsyncThunk("activities/get", async (search = null) => {
+export const fetchActivities = createAsyncThunk("activities/get", async (search) => {
   const {
     data: { data },
   } = await getActivities(search);
