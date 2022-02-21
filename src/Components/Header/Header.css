@@ -1,0 +1,28 @@
+.link-to-section {
+    text-decoration: none;
+    align-items:center;
+    color: var(--blue);
+    transition: color 0.3s ease;
+    justify-content:space-between;
+}
+
+.active {
+   color: var(--dark-blue);
+}
+  /* logo    */
+.logo {
+    display: block;
+    width: 100%;
+}
+
+  /* button */  
+
+.icono-btn {
+  width: 60px;
+  margin-right: 10px;
+}
+
+.icono-btn i {
+  font-size: 22px;
+  color: var(--black);
+}

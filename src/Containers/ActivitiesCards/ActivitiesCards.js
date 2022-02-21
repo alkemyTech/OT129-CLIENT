@@ -1,50 +1,35 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import Spinner from "../../Components/Spinner/Spinner";
-import { getActivities } from "../../Services/ActivitiesService";
+import { fetchActivities, selectorActivities } from "../../features/Activities/activitiesSlice";
 import Card from "../../Components/Card/Card";
-import { alerts } from "../../utils/alerts";
+import StatusHandler from "../../Components/StatusHandler/StatusHandler";
 
 const ActivitiesCards = () => {
-  const [activities, setActivities] = useState([]);
+  const dispatch = useDispatch();
+  const { activities, status } = useSelector(selectorActivities);
 
   useEffect(() => {
-    getActivities()
-      .then((response) => {
-        const result = response.data.data;
-        const activities = result.map((activity) => {
-          const { id, image, name, description } = activity;
-
-          return { id, image, name, description };
-        });
-
-        setActivities(activities);
-      })
-      .catch(() => {
-        alerts("Ups! ocurrió un error inesperado al solicitar las actividades", "error");
-      });
-  }, []);
+    dispatch(fetchActivities());
+  }, [dispatch]);
 
   return (
-    <div className="container mt-5">
+    <div className="container my-5">
       <div className="row">
-        {activities.length === 0 ? (
-          <div className="mt-5">
-            <Spinner />
-          </div>
-        ) : (
-          activities.map((activity) => (
-            <div key={activity.id} className="col">
+        <StatusHandler status={status} />
+        <div className="container-cards">
+          {activities &&
+            activities.map((el) => (
               <Card
-                description={activity.description}
-                id={activity.id}
-                image={activity.image}
-                title={activity.name}
+                key={el.id}
+                description={el.description}
+                id={el.id}
+                image={el.image}
+                title={el.name}
                 url="actividades"
               />
-            </div>
-          ))
-        )}
+            ))}
+        </div>
       </div>
     </div>
   );

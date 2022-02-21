@@ -164,7 +164,6 @@ confirmAlerts(
           deleteSlide(913)
             .then((res) => {
               alerts(`Slide id: 913 eliminado correctamente`, "success");
-              console.log(res);
             })
             .catch(() => {
               alerts(`Ocurrió un error al eliminar el slide 913`, "error");
@@ -195,3 +194,17 @@ confirmAlerts(
 ### Result:
 
 ![plot](https://imgur.com/4qLJ6E2.png)
+
+---
+
+## Unit Tests of components:
+
+- [Titles](./src/Components/Titles/README.test.md)
+
+## Hooks:
+
+- [useDebounceEffect](./src/hooks/useDebounceSearch.md)
+
+## Components:
+
+- [SearchInput](./src/Components/SearchInput/searchInput.md)
