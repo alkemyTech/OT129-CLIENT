@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchActivities, selectorActivities } from "../../features/Activities/activitiesSlice";
 import Card from "../../Components/Card/Card";
 import StatusHandler from "../../Components/StatusHandler/StatusHandler";
+import { useDebounceSearch } from "../../hooks/useDebounceSearch";
 
 import styles from "./ActivitiesCards.module.css";
 
@@ -12,24 +13,20 @@ const ActivitiesCards = () => {
   const { activities, status } = useSelector(selectorActivities);
 
   const [wordToSearch, setWordToSearch] = useState("");
-
-  useEffect(() => {
-    dispatch(fetchActivities());
-  }, [dispatch]);
+  const searchValue = useDebounceSearch(wordToSearch, 3);
 
   const handleChange = (e) => {
     setWordToSearch(e.target.value);
-    if (wordToSearch.length >= 2) {
-      dispatch(dispatch(fetchActivities(wordToSearch)));
-    } else if (wordToSearch.length < 2) {
-      dispatch(fetchActivities());
-    }
   };
+
+  useEffect(() => {
+    dispatch(fetchActivities(searchValue));
+  }, [dispatch, searchValue]);
 
   return (
     <div className="container my-5">
       <div className="row">
-        <form className={styles.activitiesSearchForm}>
+        <div className={styles.activitiesSearchForm}>
           <input
             className={`form-control ${styles.activitiesSearchInput}`}
             name="search"
@@ -37,8 +34,7 @@ const ActivitiesCards = () => {
             type="text"
             onChange={handleChange}
           />
-          <button className={`general-btn ${styles.activitiesSearchButton}`}>Buscar</button>
-        </form>
+        </div>
         <StatusHandler status={status} />
         <div className="container-cards mt-5">
           {activities.length > 0 ? (
@@ -53,7 +49,7 @@ const ActivitiesCards = () => {
               />
             ))
           ) : (
-            <p>No hay activiades</p>
+            <p>No hay actividades</p>
           )}
         </div>
       </div>

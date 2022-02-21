@@ -1,11 +1,9 @@
 .activitiesSearchForm {
   width: 100%;
-  display: flex;
-  justify-content: space-between;
 }
 .activitiesSearchInput {
   display: block;
-  width: 85%;
+  width: 100%;
   padding: 0.5rem 1rem;
   font-family: var(--font-family);
   font-weight: 500;
@@ -16,18 +14,5 @@
 .activitiesSearchInput::placeholder {
   font-family: var(--font-family);
   color: var(--dark-blue);
-}
-.activitiesSearchButton {
-  width: 13%;
-  max-width: 450px;
-  height: 50px;
-  margin: auto;
-  background: var(--blue);
-  color: var(--white);
-  text-transform: uppercase;
-  border-radius: 0.5rem;
-}
-.activitiesSearchButton:hover {
-  background: var(--dark-blue);
 }
 
