@@ -51,7 +51,6 @@ function App() {
                       <SuperRoute key={path} component={component} exact={exact} path={path} />
                     );
                   })}
-                  <NewsletterButton />
                 </div>
               </LayoutPublic>
             </Route>
