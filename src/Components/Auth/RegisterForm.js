@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import PropTypes from "prop-types";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { Wrapper } from "@googlemaps/react-wrapper";
+import { Redirect } from "react-router-dom";
 
+import { selectAuth } from "../../features/auth/authSlice";
 import { getRegistered } from "../../features/auth/authSlice";
 import RegisterPopup from "../Popups/RegisterPopup";
 
@@ -58,9 +60,10 @@ Alert.propTypes = {
 };
 
 const RegisterForm = () => {
+  const dispatch = useDispatch();
+  const { auth } = useSelector(selectAuth);
   const [map, setMap] = useState({});
   const [address, setAddress] = useState("");
-  const dispatch = useDispatch();
 
   const handleSearchClick = async () => {
     const getLocation = async () => {
@@ -89,11 +92,11 @@ const RegisterForm = () => {
     };
 
     dispatch(getRegistered(body));
-    if (map) {
-    }
   };
 
-  return (
+  return auth ? (
+    <Redirect to="/" />
+  ) : (
     <div className="container">
       <div className="form-container my-3">
         <Formik
