@@ -29,10 +29,10 @@ describe("Form validations", () => {
     );
 
     await waitFor(() => {
-      expect(screen.getByText("El titulo es obligatorio")).toBeInTheDocument;
-      expect(screen.getByText("El contenido es obligatorio")).toBeInTheDocument;
-      expect(screen.getByText("La categoría es obligatoria")).toBeInTheDocument;
-      expect(screen.getByText("La imagen es obligatoria")).toBeInTheDocument;
+      expect(screen.getByText("El titulo es obligatorio")).toBeInTheDocument();
+      expect(screen.getByText("El contenido es obligatorio")).toBeInTheDocument();
+      expect(screen.getByText("La categoría es obligatoria")).toBeInTheDocument();
+      expect(screen.getByText("La imagen es obligatoria")).toBeInTheDocument();
     });
   });
 });
