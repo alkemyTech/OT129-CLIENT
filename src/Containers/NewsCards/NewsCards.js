@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import PropTypes from "prop-types";
 
 import Card from "../../Components/Card/Card";
 import StatusHandler from "../../Components/StatusHandler/StatusHandler";
@@ -14,7 +15,7 @@ const NewsCards = () => {
   }, [dispatch]);
 
   return (
-    <div className="container my-5">
+    <div className="container mt-3">
       <div className="row">
         <StatusHandler status={status} />
         <div className="container-cards">
@@ -36,3 +37,7 @@ const NewsCards = () => {
 };
 
 export default NewsCards;
+
+NewsCards.propTypes = {
+  searchNew: PropTypes.string,
+};
