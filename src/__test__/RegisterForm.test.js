@@ -5,9 +5,8 @@ import { mockReactRedux } from "mock-react-redux";
 import axios from "axios";
 
 import mockAxios from "../__mocks__/axios.js";
+import { STATUS } from "../constants/index.js";
 import RegisterForm from "../Components/Auth/RegisterForm";
-
-const mockRegister = require("../__mocks__/apiRequest.js");
 
 /**
  *
@@ -73,12 +72,21 @@ describe("Should submit?", () => {
       expect(dispatch).toHaveBeenCalledWith(expect.any(Function));
     });
   });
+});
+
+describe("The form is handling properly the HTTP request", () => {
   it("The HTTP request is matching the correct endpoint", async () => {
     mockAxios.post(`${process.env.REACT_APP_API_BASE_URL}/${process.env.REACT_APP_API_REGISTER}`);
 
     await waitFor(() => {
-      expect(axios.post).toHaveBeenCalled();
+      expect(axios.post).toHaveBeenCalled(); //If you set this expect to .not.toHaveBeenCalled, it will fail and show you the right endpoint in the output
     });
   });
-  it("The HTTP request returns the according status messages", async () => {});
+  it("The HTTP request returns the according status messages", async () => {
+    await waitFor(() => {
+      expect(status).not.toHaveProperty("status", STATUS.FAILED);
+      expect(status).not.toHaveProperty("status", STATUS.PENDING);
+      expect(status).toHaveProperty("status", STATUS.SUCCESSFUL);
+    });
+  });
 });
