@@ -12,7 +12,7 @@ const SlidesItem = ({ slide }) => {
       </td>
       <td className="align-middle">{slide.order}</td>
       <td className="align-middle">
-        <Link to={`/backoffice/slides/edit/${el.id}`}>
+        <Link to={`/backoffice/slides/edit/${slide.id}`}>
           <button className="btn-list btn-edit" title="Editar">
             <i className="fas fa-pencil-alt" />
           </button>
