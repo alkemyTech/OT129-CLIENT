@@ -41,8 +41,8 @@ const MembersForm = ({ member = {}, handleSub }) => {
                 autoComplete="off"
                 className="form-control form-control-sm w-100"
                 name="name"
-                type="text"
                 placeholder="Ingrese un título"
+                type="text"
                 {...formik.getFieldProps("name")}
               />
               <ErrorMessage className="text-danger" component="span" name="name" />
