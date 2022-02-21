@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router";
 
 import { getLogged, selectAuth } from "../../features/auth/authSlice";
-import Alert from "../Container/Alert";
+import Alert from "../Alert/Alert";
 import Spinner from "../Spinner/Spinner";
 
 const startValues = {
