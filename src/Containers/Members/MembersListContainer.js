@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 
@@ -6,10 +6,18 @@ import { fetchMembers, selectorMembers, removeMember } from "../../features/Memb
 import MembersList from "../../Components/Members/MembersList";
 import TitleNav from "../../Components/TitleNav/TitleNav";
 import { confirmAlerts, alerts } from "../../utils/alerts";
+import { useDebounceSearch } from "../../hooks/useDebounceSearch";
+import SearchInput from "../../Components/SearchInput/SearchInput";
 
 const MembersListContainer = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const searchValues = useDebounceSearch(searchTerm, 2);
   const dispatch = useDispatch();
   const { members } = useSelector(selectorMembers);
+
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value);
+  };
 
   const onDelete = (id) => {
     confirmAlerts(
@@ -30,12 +38,16 @@ const MembersListContainer = () => {
   };
 
   useEffect(() => {
-    dispatch(fetchMembers());
-  }, [dispatch]);
+    dispatch(fetchMembers(searchValues));
+  }, [dispatch, searchValues]);
 
   return (
     <div className="container mt-5">
       <TitleNav link="/backoffice/members/create" linkTitle="Crear" title="Miembros" />
+      <SearchInput
+        handleSearch={handleSearch}
+        title="Ingresa el nombre del miembro que desea buscar"
+      />
       <MembersList data={members} onDelete={onDelete} />
     </div>
   );
