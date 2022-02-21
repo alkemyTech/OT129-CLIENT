@@ -8,10 +8,10 @@ import {
   deleteActivity,
 } from "../../Services/ActivitiesService";
 
-export const fetchActivities = createAsyncThunk("activities/get", async () => {
+export const fetchActivities = createAsyncThunk("activities/get", async (search) => {
   const {
     data: { data },
-  } = await getActivities();
+  } = await getActivities(search);
 
   return data;
 });
