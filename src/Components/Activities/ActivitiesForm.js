@@ -53,13 +53,14 @@ const ActivitiesForm = ({ activity = {}, decideAction }) => {
               <div className="input-group mb-3">
                 <input
                   className="p-2 w-100"
+                  data-testid="inputName"
                   id="name"
                   name="name"
                   placeholder={initialValues?.name || "Título"}
                   type="text"
                   {...formik.getFieldProps("name")}
                 />
-                <ErrorMessage className="alert-danger" name="name" />
+                <ErrorMessage className="alert-danger" data-testid="errorName" name="name" />
               </div>
               <div className="input-group mb-3">
                 <CKEditor
@@ -87,7 +88,7 @@ const ActivitiesForm = ({ activity = {}, decideAction }) => {
                     setActivityImage(URL.createObjectURL(event.currentTarget.files[0]));
                   }}
                 />
-                <ErrorMessage className="alert-danger" name="image" />
+                <ErrorMessage className="alert-danger" data-testid="imageError" name="image" />
                 {activityImage && (
                   <img
                     alt="Imagen actual"
@@ -96,7 +97,7 @@ const ActivitiesForm = ({ activity = {}, decideAction }) => {
                   />
                 )}
               </div>
-              <button className="submit-btn" type="submit">
+              <button className="submit-btn" data-testid="btnSubmit" type="submit">
                 {activity?.id ? "EDITAR" : "CREAR"}
               </button>
             </div>
