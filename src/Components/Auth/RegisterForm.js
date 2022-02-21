@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { Wrapper } from "@googlemaps/react-wrapper";
 
-import { getRegistered } from "../../features/auth/authSlice";
+import { getRegistered, selectAuth } from "../../features/auth/authSlice";
 import RegisterPopup from "../Popups/RegisterPopup";
 import Alert from "../Alert/Alert";
 
@@ -75,9 +75,9 @@ const RegisterForm = () => {
       name,
       email,
       password,
-      // address: address,
-      // latitude: map.lat,
-      // longitude: map.lng,
+      address: address,
+      latitude: map.lat,
+      longitude: map.lng,
     };
 
     dispatch(getRegistered(body));
