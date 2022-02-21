@@ -8,7 +8,7 @@ export const getNews = () => {
 };
 
 export const getNewsById = (id) => {
-  return get(ENDPOINT, id);
+  return get(ENDPOINT, null, id);
 };
 
 export const getLastNews = (entries) => {

@@ -8,7 +8,7 @@ export const getMembers = () => {
 };
 
 export const getMemberByID = (id) => {
-  return get(ENDPOINT, id);
+  return get(ENDPOINT, null, id);
 };
 
 export const createMember = (data) => {
