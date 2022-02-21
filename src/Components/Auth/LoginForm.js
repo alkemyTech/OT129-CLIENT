@@ -3,7 +3,7 @@ import "../FormStyles.css";
 import { Formik, ErrorMessage, Field } from "formik";
 import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router";
+import { useHistory } from "react-router";
 
 import { getLogged, selectAuth } from "../../features/auth/authSlice";
 import Alert from "../Container/Alert";
@@ -36,15 +36,15 @@ const LoginForm = () => {
     };
 
     dispatch(getLogged(body));
-
-    if (auth) {
-      if (user.role_id === 1) {
-        return <Redirect to="/backoffice" />;
-      } else {
-        return <Redirect to="/" />;
-      }
-    }
   };
+
+  if (auth) {
+    if (user.role_id === 1) {
+      history.push("/backoffice");
+    } else {
+      history.push("/");
+    }
+  }
 
   return (
     <div
