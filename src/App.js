@@ -10,6 +10,7 @@ import { publicRoute } from "./Components/Route/publicRoutes";
 import PrivateRoute from "./Components/Route/PrivateRoute";
 import LayoutPublic from "./Components/Layout/LayoutPublic";
 import Error404Page from "./Pages/Error404Page";
+import NewsletterButton from "./Components/Home/NewsletterButton";
 
 const SchoolCampaign = lazy(() =>
   import(/* webpackChunkName: "LazySchoolCampaignPage"*/ "./Campaigns/School/SchoolCampaign")
@@ -50,6 +51,7 @@ function App() {
                       <SuperRoute key={path} component={component} exact={exact} path={path} />
                     );
                   })}
+                  <NewsletterButton />
                 </div>
               </LayoutPublic>
             </Route>
