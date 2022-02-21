@@ -1,24 +1,31 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import PropTypes from "prop-types";
 
 import Card from "../../Components/Card/Card";
-import InputSearch from "../../Components/InputSearch";
 import StatusHandler from "../../Components/StatusHandler/StatusHandler";
 import { fetchNews, selectorNews } from "../../features/News/news-slice";
+import { useDebouceSearch } from "../../hooks/useDebouceSearch";
+import SearchInput from "../../Components/SearchInput/SearchInput";
 
 const NewsCards = () => {
   const [search, setSearch] = useState("");
+  const searchValue = useDebouceSearch(search);
   const dispatch = useDispatch();
   const { news, status } = useSelector(selectorNews);
 
+  const changeHandler = (e) => {
+    setSearch(e.target.value);
+  };
+
   useEffect(() => {
-    dispatch(fetchNews(search));
-  }, [dispatch, search]);
+    dispatch(fetchNews(searchValue));
+  }, [dispatch, searchValue]);
 
   return (
-    <div className="container my-5">
-      <div className="text-center d-block w-25 mb-4 m-auto ">
-        <InputSearch setSearch={setSearch} />
+    <div className="container mt-3">
+      <div className="w-25 mb-3">
+        <SearchInput handleSearch={changeHandler} title="Busca tus novedades por NOMBRE" />
       </div>
       <div className="row">
         <StatusHandler status={status} />
@@ -44,3 +51,7 @@ const NewsCards = () => {
 };
 
 export default NewsCards;
+
+NewsCards.propTypes = {
+  searchNew: PropTypes.string,
+};
