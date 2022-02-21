@@ -1,13 +1,14 @@
 import React from "react";
-import "../FormStyles.css";
 import { Formik, ErrorMessage, Field } from "formik";
 import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router";
+import { useHistory } from "react-router-dom";
 
 import { getLogged, selectAuth } from "../../features/auth/authSlice";
 import Alert from "../Alert/Alert";
 import Spinner from "../Spinner/Spinner";
+
+import "../FormStyles.css";
 
 const startValues = {
   email: "",
@@ -26,6 +27,8 @@ const validationSchema = Yup.object().shape({
 
 const LoginForm = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
+
   const { auth, user, isLoading } = useSelector(selectAuth);
 
   const handleLogin = (values) => {
@@ -35,15 +38,15 @@ const LoginForm = () => {
     };
 
     dispatch(getLogged(body));
-
-    if (auth) {
-      if (user.role_id === 1) {
-        return <Redirect to="/backoffice" />;
-      } else {
-        return <Redirect to="/" />;
-      }
-    }
   };
+
+  if (auth) {
+    if (user.role_id === 1) {
+      history.push("/backoffice");
+    } else {
+      history.push("/");
+    }
+  }
 
   return (
     <div
