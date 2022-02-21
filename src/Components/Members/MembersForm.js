@@ -42,7 +42,7 @@ const MembersForm = ({ member = {}, handleSub }) => {
                 className="form-control form-control-sm w-100"
                 name="name"
                 type="text"
-                // placeholder="Ingrese un título"
+                placeholder="Ingrese un título"
                 {...formik.getFieldProps("name")}
               />
               <ErrorMessage className="text-danger" component="span" name="name" />
@@ -64,10 +64,13 @@ const MembersForm = ({ member = {}, handleSub }) => {
             <ErrorMessage className="text-danger" component="span" name="description" />
 
             <div className="mb-1">
-              <label className="form-label fw-bold mt-1">Imagen</label>
+              <label className="form-label fw-bold mt-1" htmlFor="image">
+                Imagen
+              </label>
               <input
                 autoComplete="off"
                 className="form-control form-control-sm"
+                id="image"
                 name="image"
                 type="file"
                 onChange={(event) => {
