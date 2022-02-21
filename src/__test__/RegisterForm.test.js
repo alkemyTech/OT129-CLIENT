@@ -2,9 +2,13 @@ import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { mockReactRedux } from "mock-react-redux";
+import axios from "axios";
 
+import mockAxios from "../__mocks__/axios.js";
 import RegisterForm from "../Components/Auth/RegisterForm";
-jest.mock("../__mocks__/apiRequest");
+
+const mockRegister = require("../__mocks__/apiRequest.js");
+
 /**
  *
  * @param {string} query
@@ -69,7 +73,12 @@ describe("Should submit?", () => {
       expect(dispatch).toHaveBeenCalledWith(expect.any(Function));
     });
   });
-  it("The onSubmit dispatch should handle the HTTP request properly at the endpoint", async () => {
-    expect.assertions(1);
+  it("The HTTP request is matching the correct endpoint", async () => {
+    mockAxios.post(`${process.env.REACT_APP_API_BASE_URL}/${process.env.REACT_APP_API_REGISTER}`);
+
+    await waitFor(() => {
+      expect(axios.post).toHaveBeenCalled();
+    });
   });
+  it("The HTTP request returns the according status messages", async () => {});
 });
