@@ -33,6 +33,7 @@ function App() {
     "/testimonials/create",
     "/projects/create",
     "/login",
+    "/newsletter",
   ];
   const privatesRoutes = ["/backoffice", "/backoffice/*"];
 
