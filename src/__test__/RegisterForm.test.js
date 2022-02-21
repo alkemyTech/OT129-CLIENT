@@ -4,10 +4,7 @@ import userEvent from "@testing-library/user-event";
 import { mockReactRedux } from "mock-react-redux";
 
 import RegisterForm from "../Components/Auth/RegisterForm";
-
-//SETUP
-const mockRegister = require("../__mocks__/apiRequest");
-
+jest.mock("../__mocks__/apiRequest");
 /**
  *
  * @param {string} query
@@ -72,9 +69,7 @@ describe("Should submit?", () => {
       expect(dispatch).toHaveBeenCalledWith(expect.any(Function));
     });
   });
-  it("The request is matching the right endpoint", async () => {
-    const response = await mockRegister();
-
-    expect(response).toHaveErrorMessage("some shit");
+  it("The onSubmit dispatch should handle the HTTP request properly at the endpoint", async () => {
+    expect.assertions(1);
   });
 });
