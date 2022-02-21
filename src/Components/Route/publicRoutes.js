@@ -35,7 +35,9 @@ const NewsIdPage = lazy(() =>
 const RegisterPage = lazy(() =>
   import(/* webpackChunkName: "LazyRegisterPagePage"*/ "../../Pages/RegisterPage")
 );
-const LoginForm = lazy(() => import(/* webpackChunkName: "LazyLoginPage"*/ "../Auth/LoginForm"));
+const LoginPage = lazy(() =>
+  import(/* webpackChunkName: "LazyRegisterPagePage"*/ "../../Pages/LoginPage")
+);
 
 export const publicRoute = [
   {
@@ -100,7 +102,7 @@ export const publicRoute = [
   },
   {
     path: "/login",
-    component: LoginForm,
+    component: LoginPage,
     exact: true,
   },
 ];

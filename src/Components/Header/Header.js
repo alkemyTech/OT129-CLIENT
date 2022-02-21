@@ -1,13 +1,15 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { selectAuth } from "../../features/auth/authSlice";
+import { logout } from "../../features/auth/authSlice";
 import ONGLogo from "../../assets/onglogo.png";
 
 import "./Header.css";
 
 const Header = () => {
+  const dispatch = useDispatch();
   const {
     auth,
     user: { role_id },
@@ -57,7 +59,10 @@ const Header = () => {
                 data-bs-placement="bottom"
                 data-bs-toggle="tooltip"
                 title="Cerrar Sesión"
-                to="/logout"
+                to="/"
+                onClick={() => {
+                  dispatch(logout());
+                }}
               >
                 <i className="fas fa-sign-out-alt" />
               </Link>
