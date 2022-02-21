@@ -5,6 +5,8 @@ import userEvent from "@testing-library/user-event";
 import MembersForm from "../Components/Members/MembersForm";
 
 describe("validaciones del formulario", () => {
+
+
     it("mostrar los mensajes de error si los campos del formulario estan vacios", async () => {
         const handleSubmit = jest.fn();
 
@@ -36,4 +38,26 @@ describe("validaciones del formulario", () => {
             expect(handleClick).not.toHaveBeenCalled();
         })
     })
+
+      it('rendering and submitting a basic Formik form', async () => {
+        const handleForm = jest.fn()
+        render(<MembersForm onSubmit={handleForm} />)
+      
+        userEvent.type(screen.getByLabelText(/name/i))
+        userEvent.type(screen.getByLabelText(/linkedinUrl/i))
+        userEvent.type(screen.getByLabelText(/facebookUrl/i))
+      
+        userEvent.click(screen.getByRole('button', {
+            name: /crear/i
+        }))
+      
+        await waitFor(() =>
+          expect(handleForm).toHaveBeenCalledWith({
+            name: 'Prueba',
+            facebookUrl: 'John',
+            linkedinUrl: 'Dee',
+          }),
+        )
+    })
+
 })
