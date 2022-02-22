@@ -15,7 +15,7 @@ import { useDebounceSearch } from "../../hooks/useDebounceSearch";
 
 const CategoriesListContainer = () => {
   const [search, setSearch] = useState("");
-  const searchValue = useDebouceSearch(search);
+  const searchValue = useDebounceSearch(search);
   const { categories, status } = useSelector(selectorCategories);
 
   const dispatch = useDispatch();
