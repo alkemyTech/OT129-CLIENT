@@ -8,7 +8,7 @@ const activity = {
   id: 1,
   name: "Apoyo Escolar para el nivel Primario",
   description: "descripcion",
-  image: "image",
+  image: new File(["hello"], "hello.png", { type: "image/png" }),
 };
 const mockdecideAction = jest.fn();
 
@@ -59,5 +59,24 @@ describe("<ActivitiesForm/>", () => {
     render(<ActivitiesForm activity={activity} />);
 
     expect(screen.getByText("EDITAR")).toBeInTheDocument();
+  });
+
+  test("should do the submit and create an activity correctly", () => {
+    const mockdecideAction = jest.fn();
+
+    render(<ActivitiesForm decideAction={mockdecideAction} />);
+
+    waitFor(async () => {
+      const inputName = screen.findByTestId("inputTitle");
+      const inputDescription = screen.findByTestId("inputDescription");
+      const inputImage = screen.findByTestId("inputImage");
+
+      userEvent.type(inputName, "Prueba X");
+      userEvent.type(inputDescription, "Descripcion de prueba");
+      userEvent.type(inputImage, "miagendeprueba");
+      userEvent.click(screen.getByTestId("btnSubmit"));
+      expect(mockdecideAction).toBeCalled();
+      expect(screen.findByText("La actividad se creó correctamente.")).toBeInTheDocument();
+    });
   });
 });
