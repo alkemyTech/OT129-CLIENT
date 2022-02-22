@@ -67,6 +67,7 @@ const ActivitiesForm = ({ activity = {}, decideAction }) => {
                   className="p-2 w-75"
                   config={{ placeholder: "Descripción" }}
                   data={activity?.description || ""}
+                  data-testid="inputDescription"
                   editor={ClassicEditor}
                   id="description"
                   onChange={(event, editor) => {

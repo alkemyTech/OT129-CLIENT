@@ -6,7 +6,7 @@ import ActivitiesForm from "../Components/Activities/ActivitiesForm";
 
 const activity = {
   id: 1,
-  name: "Pablo",
+  name: "Apoyo Escolar para el nivel Primario",
   description: "descripcion",
   image: "image",
 };
@@ -45,7 +45,7 @@ describe("<ActivitiesForm/>", () => {
     await waitFor(() => {
       expect(screen.queryByText(/El nombre de la actividad es obligatorio/i)).toBeInTheDocument();
       expect(screen.queryByText(/Debe adjuntar una imagen/i)).toBeInTheDocument();
-      expect(mockdecideAction.mock.calls).toHaveLength(0);
+      expect(mockdecideAction).not.toBeCalled();
     });
   });
 
