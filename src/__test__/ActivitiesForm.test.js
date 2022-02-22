@@ -8,7 +8,7 @@ const activity = {
   id: 1,
   name: "Apoyo Escolar para el nivel Primario",
   description: "descripcion",
-  image: new File(["hello"], "hello.png", { type: "image/png" }),
+  image: "imagen de prueba",
 };
 
 const mockdecideAction = jest.fn();
@@ -72,9 +72,9 @@ describe("<ActivitiesForm/>", () => {
     render(<ActivitiesForm decideAction={mockdecideAction} />);
 
     waitFor(async () => {
-      const inputName = screen.findByTestId("inputTitle");
-      const inputDescription = screen.findByTestId("inputDescription");
-      const inputImage = screen.findByTestId("inputImage");
+      const inputName = await screen.findByTestId("inputTitle");
+      const inputDescription = await screen.findByTestId("inputDescription");
+      const inputImage = await screen.findByTestId("inputImage");
 
       userEvent.type(inputName, activity.name);
       userEvent.type(inputDescription, activity.description);
@@ -99,11 +99,10 @@ describe("<ActivitiesForm/>", () => {
       userEvent.type(inputImage, activity.image);
       userEvent.click(screen.getByTestId("btnSubmit"));
       expect(mockdecideAction).toBeCalled();
-      const createdMessage = await screen.findByText(
-        /Lo sentimos. La actividad no pudo ser creada./i
-      );
 
-      expect(createdMessage).toBeInTheDocument();
+      expect(
+        screen.findByText(/Lo sentimos. La actividad no pudo ser creada./i)
+      ).toBeInTheDocument();
     });
   });
 
@@ -112,9 +111,9 @@ describe("<ActivitiesForm/>", () => {
     render(<ActivitiesForm activity={activity} decideAction={mockdecideAction} />);
 
     waitFor(async () => {
-      const inputName = screen.findByTestId("inputTitle");
-      const inputDescription = screen.findByTestId("inputDescription");
-      const inputImage = screen.findByTestId("inputImage");
+      const inputName = await screen.findByTestId("inputTitle");
+      const inputDescription = await screen.findByTestId("inputDescription");
+      const inputImage = await screen.findByTestId("inputImage");
 
       userEvent.type(inputName, activity.name);
       userEvent.type(inputDescription, activity.description);
@@ -139,11 +138,10 @@ describe("<ActivitiesForm/>", () => {
       userEvent.type(inputImage, activity.image);
       userEvent.click(screen.getByTestId("btnSubmit"));
       expect(mockdecideAction).toBeCalled();
-      const createdMessage = await screen.findByText(
-        /Lo sentimos! La actividad con id: 1 no pudo ser editada./i
-      );
 
-      expect(createdMessage).toBeInTheDocument();
+      expect(
+        screen.findByText(/Lo sentimos! La actividad con id: 1 no pudo ser editada./i)
+      ).toBeInTheDocument();
     });
   });
 });
