@@ -162,10 +162,28 @@ body {
   display: flex;
   flex-flow: row;
   gap: 30px;
-  overflow-y: visible;
+  overflow-x: scroll;
   scroll-behavior: smooth;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+}
+@media screen and (min-width: 1024px) {
+  .container-cards {
+    flex-flow: row wrap;
+    overflow: hidden;
+  }
+}
+.container-cards::-webkit-scrollbar {
+  width: 12px;
+}
+.container-cards::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: .5rem;
+  cursor: pointer;
+}
+.container-cards::-webkit-scrollbar-thumb {
+  border-radius: .5rem;
+  -webkit-box-shadow: inset 0 0 6px var(--blue);
+  box-shadow: inset 0 0 6px var(--blue);
 }
 
 .card {
