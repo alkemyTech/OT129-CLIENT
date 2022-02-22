@@ -3,10 +3,10 @@ import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { mockReactRedux } from "mock-react-redux";
 
-const mockAxios = require("axios").default;
-
 import RegisterForm from "../Components/Auth/RegisterForm";
 import { getRegistered } from "../features/auth/authSlice";
+
+const mockAxios = require("axios").default;
 
 /**
  *
