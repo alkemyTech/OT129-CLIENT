@@ -7,10 +7,11 @@ import {
   getUsersByID,
   deleteUsers,
 } from "../../Services/UsersService";
-export const fetchUsers = createAsyncThunk("users/get", async () => {
+
+export const fetchUsers = createAsyncThunk("users/get", async (search) => {
   const {
     data: { data },
-  } = await getUsers();
+  } = await getUsers(search);
 
   return data;
 });
