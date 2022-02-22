@@ -23,6 +23,17 @@ describe("<ActivitiesForm/>", () => {
     });
   });
 
+  test("Prevent form submission if fields are not validated", async () => {
+    render(<ActivitiesForm decideAction={decideAction} />);
+
+    userEvent.click(screen.getByTestId("btnSubmit"));
+    await waitFor(() => {
+      expect(screen.getByText(/El nombre de la actividad es obligatorio/i)).toBeInTheDocument();
+      expect(screen.getByText(/Debe adjuntar una imagen/i)).toBeInTheDocument();
+    });
+    expect(decideAction.mock.calls).toHaveLength(0);
+  });
+
   test("Should show create form", () => {
     render(<ActivitiesForm />);
 
@@ -33,12 +44,5 @@ describe("<ActivitiesForm/>", () => {
     render(<ActivitiesForm activity={activity} />);
 
     expect(screen.getByText("EDITAR")).toBeInTheDocument();
-  });
-
-  test("Prevent form submission if fields are not validated", () => {
-    render(<ActivitiesForm decideAction={decideAction} />);
-
-    userEvent.click(screen.getByTestId("btnSubmit"));
-    expect(decideAction.mock.calls).toHaveLength(0);
   });
 });
