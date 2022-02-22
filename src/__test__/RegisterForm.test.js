@@ -3,10 +3,10 @@ import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { mockReactRedux } from "mock-react-redux";
 
+const mockAxios = require("axios").default;
+
 import RegisterForm from "../Components/Auth/RegisterForm";
 import { getRegistered } from "../features/auth/authSlice";
-
-const mockAxios = require("axios").default;
 
 /**
  *
@@ -79,26 +79,32 @@ describe("<RegisterForm /> ", () => {
 
     render(<RegisterForm onSubmit={dispatch} />);
 
-    // userEvent.type(querySetter("nombre"), "Shinji");
-    // userEvent.type(querySetter("email"), "ikarishinji@nerv.com");
-    // userEvent.type(querySetter("contraseña"), "!1ikarikun");
-    // userEvent.type(screen.getByPlaceholderText("Confirma tu contraseña"), "!1ikarikun");
-    // userEvent.type(querySetter("dirección"), "Misato's house 123, Tokyo 3");
-    // userEvent.click(screen.getByTestId("conditions"));
-    // userEvent.click(screen.getByTestId("registerButton"));
+    userEvent.type(querySetter("nombre"), "Shinji");
+    userEvent.type(querySetter("email"), "ikarishinji@nerv.com");
+    userEvent.type(querySetter("contraseña"), "!1ikarikun");
+    userEvent.type(screen.getByPlaceholderText("Confirma tu contraseña"), "!1ikarikun");
+    userEvent.type(querySetter("dirección"), "Misato's house 123, Tokyo 3");
+    userEvent.click(screen.getByTestId("conditions"));
+    userEvent.click(screen.getByTestId("registerButton"));
 
-    await getRegistered({ nombre: "", email: "", contrasena: "" })(dispatch, getState);
+    // await getRegistered({ nombre: "Shinji", email: "ikarishinji@nerv.com", contrasena: "!1ikarikun", direccion "Misato's house 123, Tokyo 3" })(dispatch, getState);
 
-    await waitFor(() => {
-      expect(dispatch).toHaveBeenCalledWith({
-        meta: {
-          arg: { contrasena: "", email: "", nombre: "" },
-          requestId: expect.any(String),
-          requestStatus: "pending",
+    mockAxios.post = jest.fn().mockResolvedValue({
+      data: {
+        data: {
+          token: "",
         },
-        payload: undefined,
-        type: "auth/getRegistered/pending",
-      });
+      },
+    });
+    await waitFor(() => {
+      expect(dispatch).toHaveBeenCalledWith(
+        getRegistered({
+          nombre: "Shinji",
+          email: "ikarishinji@nerv.com",
+          contrasena: "!1ikarikun",
+          direccion: "Misato's house 123, Tokyo 3",
+        })(dispatch, getState)
+      );
       expect(mockAxios.post).toHaveBeenCalled();
       // expect(dispatch).toHaveBeenNthCalledWith(expect.any(Function));
     });
