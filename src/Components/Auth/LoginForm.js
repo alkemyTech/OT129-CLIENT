@@ -3,7 +3,7 @@ import "../FormStyles.css";
 import { Formik, ErrorMessage, Field } from "formik";
 import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router";
+import { useHistory } from "react-router-dom";
 
 import { getLogged, selectAuth } from "../../features/auth/authSlice";
 import Alert from "../Container/Alert";
@@ -26,8 +26,17 @@ const validationSchema = Yup.object().shape({
 
 const LoginForm = () => {
   const dispatch = useDispatch();
-  const { auth, user, isLoading } = useSelector(selectAuth);
+  const history = useHistory();
 
+  const { isLoading, auth, user } = useSelector(selectAuth);
+
+  if (auth) {
+    if (user.role_id === 1) {
+      history.push("/backoffice");
+    } else {
+      history.push("/");
+    }
+  }
   const handleLogin = (values) => {
     const body = {
       email: values.email,
@@ -35,14 +44,6 @@ const LoginForm = () => {
     };
 
     dispatch(getLogged(body));
-
-    if (auth) {
-      if (user.role_id === 1) {
-        return <Redirect to="/backoffice" />;
-      } else {
-        return <Redirect to="/" />;
-      }
-    }
   };
 
   return (
