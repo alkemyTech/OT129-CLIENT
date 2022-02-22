@@ -1,25 +1,33 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import { getSlides } from "../../Services/SlidesServices";
 import SlidesList from "../../Components/Slides/SlidesList";
 import TitleNav from "../../Components/TitleNav/TitleNav";
+import { useDebounceSearch } from "../../hooks/useDebounceSearch";
+import SearchInput from "../../Components/SearchInput/SearchInput";
+import { fetchSlides, selectorSlides } from "../../features/slides/slidesSlice";
 
 const SlidesContainer = () => {
-  const [slides, setSlides] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const searchValues = useDebounceSearch(searchTerm, 2);
+  const { slides } = useSelector(selectorSlides);
+  const dispatch = useDispatch();
+
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value);
+  };
 
   useEffect(() => {
-    const data = async () => {
-      const slides = await getSlides();
-
-      setSlides(slides.data.data);
-    };
-
-    data();
-  }, []);
+    dispatch(fetchSlides(searchValues));
+  }, [dispatch]);
 
   return (
     <div className="container mt-5">
       <TitleNav link="/backoffice/slides/create" linkTitle="Crear" title="Slides" />
+      <SearchInput
+        handleSearch={handleSearch}
+        title="Ingresa el nombre del Slide que desea buscar"
+      />
       <SlidesList slides={slides} />
     </div>
   );
