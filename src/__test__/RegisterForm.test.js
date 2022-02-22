@@ -4,8 +4,10 @@ import userEvent from "@testing-library/user-event";
 import { mockReactRedux } from "mock-react-redux";
 
 import RegisterForm from "../Components/Auth/RegisterForm";
+import { getRegistered } from "../features/auth/authSlice";
 
-jest.mock("../features/auth/authSlice");
+const mockAxios = require("axios").default;
+
 /**
  *
  * @param {string} query
@@ -22,7 +24,6 @@ const querySetter = (query) => {
 const errorMsg = (field) => {
   return screen.getByText(`El campo ${field.toUpperCase()} es requerido`);
 };
-const axios = jest.mocked("axios").default;
 
 //TESTS
 describe("<RegisterForm /> ", () => {
@@ -72,22 +73,34 @@ describe("<RegisterForm /> ", () => {
     });
   });
 
-  it.only("Should make request with all fields", async () => {
+  it.only("Should make request in action Creator", async () => {
     const { dispatch } = mockReactRedux();
+    const getState = jest.fn();
 
     render(<RegisterForm onSubmit={dispatch} />);
 
-    userEvent.type(querySetter("nombre"), "Shinji");
-    userEvent.type(querySetter("email"), "ikarishinji@nerv.com");
-    userEvent.type(querySetter("contraseña"), "!1ikarikun");
-    userEvent.type(screen.getByPlaceholderText("Confirma tu contraseña"), "!1ikarikun");
-    userEvent.type(querySetter("dirección"), "Misato's house 123, Tokyo 3");
-    userEvent.click(screen.getByTestId("conditions"));
-    userEvent.click(screen.getByTestId("registerButton"));
+    // userEvent.type(querySetter("nombre"), "Shinji");
+    // userEvent.type(querySetter("email"), "ikarishinji@nerv.com");
+    // userEvent.type(querySetter("contraseña"), "!1ikarikun");
+    // userEvent.type(screen.getByPlaceholderText("Confirma tu contraseña"), "!1ikarikun");
+    // userEvent.type(querySetter("dirección"), "Misato's house 123, Tokyo 3");
+    // userEvent.click(screen.getByTestId("conditions"));
+    // userEvent.click(screen.getByTestId("registerButton"));
+
+    await getRegistered({ nombre: "", email: "", contrasena: "" })(dispatch, getState);
 
     await waitFor(() => {
-      expect(axios.post).toHaveBeenCalled();
-      expect(getRegisteredMocked).toHaveBeenCalled();
+      expect(dispatch).toHaveBeenCalledWith({
+        meta: {
+          arg: { contrasena: "", email: "", nombre: "" },
+          requestId: expect.any(String),
+          requestStatus: "pending",
+        },
+        payload: undefined,
+        type: "auth/getRegistered/pending",
+      });
+      expect(mockAxios.post).toHaveBeenCalled();
+      // expect(dispatch).toHaveBeenNthCalledWith(expect.any(Function));
     });
   });
 });
