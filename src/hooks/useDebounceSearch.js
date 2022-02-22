@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 
-export const useDebounceSearch = (value, delay = 300) => {
+export const useDebounceSearch = (value, minValueLength = 3) => {
   const [debouncedValue, setDebouncedValue] = useState("");
 
   useEffect(() => {
-    if (value.length >= 3) {
+    if (value.length >= minValueLength) {
       const handler = setTimeout(() => {
         setDebouncedValue(value);
-      }, delay);
+      }, 300);
 
       return () => {
         clearTimeout(handler);
@@ -15,7 +15,7 @@ export const useDebounceSearch = (value, delay = 300) => {
     } else {
       setDebouncedValue("");
     }
-  }, [value, delay]);
+  }, [value, minValueLength]);
 
   return debouncedValue;
 };

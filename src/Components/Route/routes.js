@@ -6,7 +6,7 @@ import NewsList from "../News/NewsList";
 import NewsContainer from "../../Containers/News/NewsContainer";
 import CategoriesListContainer from "../../Containers/Categories/CategoriesListContainer";
 import CategoriesFormContainer from "../../Containers/Categories/CategoriesFormContainer";
-import SlidesContainer from "../Slides/SlidesContainer";
+import SlidesContainer from "../../Containers/Slides/SlidesContainer";
 import SlidesForm from "../Slides/SlidesForm";
 import UsersListContainer from "../../Containers/Users/UsersListContainer";
 import UsersFormContainer from "../../Containers/Users/UsersFormContainer";
@@ -16,8 +16,14 @@ import OrganizationContainer from "../../Containers/Organization/OrganizationCon
 import EditOrganization from "../../Containers/EditOrganization/EditOrganization";
 import TestimonialFormContainer from "../../Containers/Testimonials/TestimonialsFormContainer";
 import TestimonialListContainer from "../../Containers/Testimonials/TestimonialsListContainer";
+import Newsletter from "../../Pages/Newsletter";
 
 const routes = [
+  {
+    path: "/newsletter",
+    component: Newsletter,
+    exact: true,
+  },
   {
     path: "/backoffice",
     component: Backoffice,

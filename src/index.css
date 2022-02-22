@@ -28,7 +28,7 @@ body {
 /* Buttons */
 
 .general-btn {
-  width: var(--width-button);
+  min-width: var(--width-button);
   height: var(--heigth-button);
   display: flex;
   justify-content: center;
