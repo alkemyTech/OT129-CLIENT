@@ -202,3 +202,7 @@ code {
   object-fit: cover;
 }
 
+/* Others */
+.color-icon-search {
+  color: var(--dark-blue);
+}
