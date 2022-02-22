@@ -1,4 +1,7 @@
 .general-card {
+  min-width: 200px;
+  width: 60%;
+  max-width: 300px;
   margin-top: 0 ;
   text-align: center;
   height: auto ;

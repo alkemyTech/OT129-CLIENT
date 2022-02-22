@@ -14,33 +14,29 @@ const Footer = ({
   return (
     <footer className="container-fluid container-footer">
       <div className="container">
-        <div className="row row-nav">
-          <div className="col col-nav">
-            <nav className="nav-footer">
-              <Link className="link-nav" to="/actividades">
-                Actividades
-              </Link>
-              <Link className="link-nav" to="/novedades">
-                Novedades
-              </Link>
-              <Link className="link-nav" to="/nosotros">
-                Nosotros
-              </Link>
-              <Link className="link-nav" to="/">
-                <img className="logo" src={ONGLogo} />
-              </Link>
-              <Link className="link-nav" to="/">
-                Testimonios
-              </Link>
-              <Link className="link-nav" to="/donar">
-                Contribuye
-              </Link>
-              <Link className="link-nav" to="/contacto">
-                Contacto
-              </Link>
-            </nav>
-          </div>
-        </div>
+        <nav className="nav-footer">
+          <Link className="link-nav" to="/actividades">
+            Actividades
+          </Link>
+          <Link className="link-nav" to="/novedades">
+            Novedades
+          </Link>
+          <Link className="link-nav" to="/nosotros">
+            Nosotros
+          </Link>
+          <Link className="link-nav" to="/">
+            <img className="logo" src={ONGLogo} />
+          </Link>
+          <Link className="link-nav" to="/">
+            Testimonios
+          </Link>
+          <Link className="link-nav" to="/donar">
+            Contribuye
+          </Link>
+          <Link className="link-nav" to="/contacto">
+            Contacto
+          </Link>
+        </nav>
         <div className="row row-social">
           <div className="col">
             <div className="social-icon-container">

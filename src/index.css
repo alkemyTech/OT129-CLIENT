@@ -18,6 +18,8 @@
   --font-size: 15px;
   --card-shadow: 2px 2px 6px rgb(224, 224, 224);
   --form-shadow: 0 10px 6px -4px rgba(123, 161, 201, 0.5);
+  --bp-medium: 768px;
+  --bp-large: 1024px;
 }
 
 body {
@@ -154,9 +156,16 @@ body {
 /* Cards */
 
 .container-cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  width: 100%;
+  height: auto;
+  margin: 1rem auto;
+  display: flex;
+  flex-flow: row;
   gap: 30px;
+  overflow-y: visible;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 .card {

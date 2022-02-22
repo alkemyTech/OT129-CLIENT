@@ -25,27 +25,23 @@ const HomeCards = () => {
   }, []);
 
   return (
-    <div className="container my-5 d-grid gap-3">
-      <div className="row mb-4">
-        <h2 className="text-center text-uppercase">Últimas Novedades</h2>
-      </div>
-      <div className="row">
-        <div className="container-cards">
-          {newsDataExist &&
-            lastNewsData.map((el) => (
-              <Card
-                key={el.id}
-                description={el.content}
-                id={el.id}
-                image={el.image}
-                title={el.name}
-                url={"novedades"}
-              />
-            ))}
-        </div>
+    <>
+      <h2 className="text-center text-uppercase my-3">Últimas Novedades</h2>
+      <div className="container-cards">
+        {newsDataExist &&
+          lastNewsData.map((el) => (
+            <Card
+              key={el.id}
+              description={el.content}
+              id={el.id}
+              image={el.image}
+              title={el.name}
+              url={"novedades"}
+            />
+          ))}
         {spinnerShow && <Spinner />}
       </div>
-    </div>
+    </>
   );
 };
 
