@@ -7,14 +7,13 @@ import ActivitiesForm from "../Components/Activities/ActivitiesForm";
 const activity = {
   id: 1,
   name: "Apoyo Escolar para el nivel Primario",
-  description: "descripcion",
+  description: "Esto es una descripcion de prueba",
   image: "imagen de prueba",
 };
 
 const mockdecideAction = jest.fn();
 
 describe("<ActivitiesForm/>", () => {
-  //Test que verifica que se muestren correctamente los mensajes de validacion
   test("Should show validation errors", async () => {
     render(<ActivitiesForm />);
     userEvent.click(screen.getByTestId("btnSubmit"));
@@ -25,7 +24,6 @@ describe("<ActivitiesForm/>", () => {
     });
   });
 
-  //Test que verifica que si los inputs estan completos no se muestren los errores de validacion
   test("Should pass the validations and not show validation errors", async () => {
     render(<ActivitiesForm />);
 
@@ -41,7 +39,6 @@ describe("<ActivitiesForm/>", () => {
     });
   });
 
-  //Test para verificar si hay errores de validaciones no se haga correctamente la peticion
   test("Should show validation errors and not let the submit be done", async () => {
     render(<ActivitiesForm decideAction={mockdecideAction} />);
 
@@ -53,21 +50,18 @@ describe("<ActivitiesForm/>", () => {
     });
   });
 
-  //Test para ver que se renderice correctamente el formulario de crear una actividad
   test("Should show create form", () => {
     render(<ActivitiesForm />);
 
     expect(screen.getByText("CREAR")).toBeInTheDocument();
   });
 
-  //Test para ver que se renderice correctamente el formulario de editar una actividad
   test("Should show edit form", () => {
     render(<ActivitiesForm activity={activity} />);
 
     expect(screen.getByText("EDITAR")).toBeInTheDocument();
   });
 
-  //Test para verificar que se haya hecho correctamente la peticion post
   test("Should do the submit and create an activity correctly", () => {
     render(<ActivitiesForm decideAction={mockdecideAction} />);
 
@@ -85,7 +79,6 @@ describe("<ActivitiesForm/>", () => {
     });
   });
 
-  //Test para verificar que no se haya hecho correctamente la peticion post
   test("Should make the shipment and show the error that it could not be created correctly.", () => {
     render(<ActivitiesForm decideAction={mockdecideAction} />);
 
@@ -106,7 +99,6 @@ describe("<ActivitiesForm/>", () => {
     });
   });
 
-  //Test para verificar que se haya hecho correctamente la peticion put
   test("Should do the submit and edit an activity correctly", () => {
     render(<ActivitiesForm activity={activity} decideAction={mockdecideAction} />);
 
@@ -124,7 +116,6 @@ describe("<ActivitiesForm/>", () => {
     });
   });
 
-  //Test para verificar que no se haya hecho correctamente la peticion put
   test("Should make the shipment and show the error that it could not be edit correctly.", () => {
     render(<ActivitiesForm activity={activity} decideAction={mockdecideAction} />);
 
