@@ -122,7 +122,11 @@ const NewsForm = ({ newId = {} }) => {
                 />
               </div>
               <ErrorMessage className="text-danger" component="span" name="image" />
-              <button className="btn btn-primary w-100 mt-2 fw-bold" type="submit">
+              <button
+                className="btn btn-primary w-100 mt-2 fw-bold"
+                data-testid="btnSubmit"
+                type="submit"
+              >
                 <span
                   aria-hidden="true"
                   className={loading ? "spinner-border spinner-border-sm" : null}
