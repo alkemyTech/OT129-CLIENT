@@ -8,10 +8,10 @@ import {
   editCategory,
 } from "../../Services/CategoriesService";
 
-export const fetchCategories = createAsyncThunk("categories/get", async () => {
+export const fetchCategories = createAsyncThunk("categories/get", async (search) => {
   const {
     data: { data },
-  } = await getCategories();
+  } = await getCategories(search);
 
   return data;
 });
