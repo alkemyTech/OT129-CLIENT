@@ -53,6 +53,7 @@ const ActivitiesForm = ({ activity = {}, decideAction }) => {
               <div className="input-group mb-3">
                 <input
                   className="p-2 w-100"
+                  data-testid="inputTitle"
                   id="name"
                   name="name"
                   placeholder={initialValues?.name || "Título"}
@@ -66,6 +67,7 @@ const ActivitiesForm = ({ activity = {}, decideAction }) => {
                   className="p-2 w-75"
                   config={{ placeholder: "Descripción" }}
                   data={activity?.description || ""}
+                  data-testid="inputDescription"
                   editor={ClassicEditor}
                   id="description"
                   onChange={(event, editor) => {
@@ -79,6 +81,7 @@ const ActivitiesForm = ({ activity = {}, decideAction }) => {
                 <input
                   accept="image/png, image/jpeg"
                   className="w-100"
+                  data-testid="inputImage"
                   id="image"
                   name="image"
                   type="file"
@@ -87,7 +90,7 @@ const ActivitiesForm = ({ activity = {}, decideAction }) => {
                     setActivityImage(URL.createObjectURL(event.currentTarget.files[0]));
                   }}
                 />
-                <ErrorMessage className="alert-danger" name="image" />
+                <ErrorMessage className="alert-danger" data-testid="imageError" name="image" />
                 {activityImage && (
                   <img
                     alt="Imagen actual"
@@ -96,7 +99,7 @@ const ActivitiesForm = ({ activity = {}, decideAction }) => {
                   />
                 )}
               </div>
-              <button className="submit-btn" type="submit">
+              <button className="submit-btn" data-testid="btnSubmit" type="submit">
                 {activity?.id ? "EDITAR" : "CREAR"}
               </button>
             </div>
