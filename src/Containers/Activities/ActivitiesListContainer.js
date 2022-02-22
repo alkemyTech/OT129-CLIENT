@@ -6,7 +6,7 @@ import {
   removeActivity,
   selectorActivities,
 } from "../../features/Activities/activitiesSlice";
-import { useDebouceSearch } from "../../hooks/useDebouceSearch";
+import { useDebounceSearch } from "../../hooks/useDebounceSearch";
 import ActivitiesList from "../../Components/Activities/Backoffice/ActivitiesList";
 import { confirmAlerts, alerts } from "../../utils/alerts";
 import SearchInput from "../../Components/SearchInput/SearchInput";
@@ -15,7 +15,7 @@ function ActivitiesListContainer() {
   const [search, setSearch] = useState("");
   const { activities } = useSelector(selectorActivities);
   const dispatch = useDispatch();
-  const searchValue = useDebouceSearch(search);
+  const searchValue = useDebounceSearch(search);
   const changeHandler = (e) => {
     setSearch(e.target.value);
   };
