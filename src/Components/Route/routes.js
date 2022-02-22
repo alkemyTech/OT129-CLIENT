@@ -16,8 +16,14 @@ import OrganizationContainer from "../../Containers/Organization/OrganizationCon
 import EditOrganization from "../../Containers/EditOrganization/EditOrganization";
 import TestimonialFormContainer from "../../Containers/Testimonials/TestimonialsFormContainer";
 import TestimonialListContainer from "../../Containers/Testimonials/TestimonialsListContainer";
+import Newsletter from "../../Pages/Newsletter";
 
 const routes = [
+  {
+    path: "/newsletter",
+    component: Newsletter,
+    exact: true,
+  },
   {
     path: "/backoffice",
     component: Backoffice,

@@ -3,8 +3,8 @@ import { remove, post, put } from "./privateApiService";
 
 const ENDPOINT = process.env.REACT_APP_API_NEWS_ENDPOINT;
 
-export const getNews = () => {
-  return get(ENDPOINT);
+export const getNews = (search = null) => {
+  return get(ENDPOINT, { search: search });
 };
 
 export const getNewsById = (id) => {

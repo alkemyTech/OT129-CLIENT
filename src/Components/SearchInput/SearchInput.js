@@ -3,13 +3,8 @@ import PropTypes from "prop-types";
 
 const SearchInput = ({ handleSearch, title = "Ingresa tu búsqueda" }) => {
   return (
-    <div className="input-group mt-3">
-      <input
-        className="form-control form-control-sm"
-        placeholder={title}
-        type="text"
-        onChange={handleSearch}
-      />
+    <div className="input-group my-3">
+      <input className="form-control" placeholder={title} type="text" onChange={handleSearch} />
     </div>
   );
 };
