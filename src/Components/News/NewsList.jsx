@@ -23,11 +23,7 @@ const NewsList = () => {
 
   return (
     <div className="container mt-5">
-      <TitleNav
-        link="/backoffice/news/create"
-        linkTitle="Crear"
-        title="Novedades"
-      />
+      <TitleNav link="/backoffice/news/create" linkTitle="Crear" title="Novedades" />
       <SearchInput
         handleSearch={handleSearch}
         title="Ingresa el nombre de la novedad que desea buscar"
