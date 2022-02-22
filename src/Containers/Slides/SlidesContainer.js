@@ -9,7 +9,7 @@ import { fetchSlides, selectorSlides } from "../../features/slides/slidesSlice";
 
 const SlidesContainer = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const searchValues = useDebounceSearch(searchTerm, 2);
+  const searchValues = useDebounceSearch(searchTerm, 3);
   const { slides } = useSelector(selectorSlides);
   const dispatch = useDispatch();
 
@@ -19,7 +19,7 @@ const SlidesContainer = () => {
 
   useEffect(() => {
     dispatch(fetchSlides(searchValues));
-  }, [dispatch]);
+  }, [dispatch, searchValues]);
 
   return (
     <div className="container mt-5">
