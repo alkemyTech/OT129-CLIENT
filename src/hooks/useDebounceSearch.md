@@ -14,7 +14,6 @@
 
 - With a simple `useState`, handle your searches (eg.: `const [search, setSearch] = useState("");`).
 - Import the hook wherever your `useEffect` is handling the HTTP Request.
-- Set a new variable for storing the hook values (eg.: `const searchValue = useDebounceSearch(search, 400);`). Here we are passing the `search` state as the first arg (`value`).
 - Set a new variable for storing the hook values (eg.: `const searchValue = useDebouceSearch(search, 2);`). Here we are passing the `search` state as the first arg (`value`), and `2` as the minValueLenght.
 - Pass the hook variable as argument to the HTTP request service and add it to the `useEffect` dependecies array (eg.: `useEffect(() => { dispatch(fetchActivities(searchValue)); }, [dispatch, searchValue]);`)
 
