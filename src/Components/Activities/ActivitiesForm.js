@@ -53,14 +53,14 @@ const ActivitiesForm = ({ activity = {}, decideAction }) => {
               <div className="input-group mb-3">
                 <input
                   className="p-2 w-100"
-                  data-testid="inputName"
+                  data-testid="inputTitle"
                   id="name"
                   name="name"
                   placeholder={initialValues?.name || "Título"}
                   type="text"
                   {...formik.getFieldProps("name")}
                 />
-                <ErrorMessage className="alert-danger" data-testid="errorName" name="name" />
+                <ErrorMessage className="alert-danger" name="name" />
               </div>
               <div className="input-group mb-3">
                 <CKEditor
@@ -80,6 +80,7 @@ const ActivitiesForm = ({ activity = {}, decideAction }) => {
                 <input
                   accept="image/png, image/jpeg"
                   className="w-100"
+                  data-testid="inputImage"
                   id="image"
                   name="image"
                   type="file"

@@ -10,7 +10,7 @@ const activity = {
   description: "descripcion",
   image: "image",
 };
-const decideAction = jest.fn();
+const mockdecideAction = jest.fn();
 
 describe("<ActivitiesForm/>", () => {
   test("should show validation errors", async () => {
@@ -23,15 +23,30 @@ describe("<ActivitiesForm/>", () => {
     });
   });
 
-  test("Prevent form submission if fields are not validated", async () => {
-    render(<ActivitiesForm decideAction={decideAction} />);
+  test("Should pass the validations and not show validation errors", async () => {
+    render(<ActivitiesForm />);
+
+    userEvent.type(screen.getByTestId("inputTitle"), "titulo de prueba");
+    userEvent.type(screen.getByTestId("inputImage"), "imagen de prueba");
+    userEvent.click(screen.getByTestId("btnSubmit"));
+
+    await waitFor(() => {
+      expect(
+        screen.queryByText(/El nombre de la actividad es obligatorio/i)
+      ).not.toBeInTheDocument();
+      expect(screen.queryByText(/Debe adjuntar una imagen/i)).not.toBeInTheDocument();
+    });
+  });
+
+  test("Should show validation errors and not let the submit be done", async () => {
+    render(<ActivitiesForm decideAction={mockdecideAction} />);
 
     userEvent.click(screen.getByTestId("btnSubmit"));
     await waitFor(() => {
-      expect(screen.getByText(/El nombre de la actividad es obligatorio/i)).toBeInTheDocument();
-      expect(screen.getByText(/Debe adjuntar una imagen/i)).toBeInTheDocument();
+      expect(screen.queryByText(/El nombre de la actividad es obligatorio/i)).toBeInTheDocument();
+      expect(screen.queryByText(/Debe adjuntar una imagen/i)).toBeInTheDocument();
+      expect(mockdecideAction.mock.calls).toHaveLength(0);
     });
-    expect(decideAction.mock.calls).toHaveLength(0);
   });
 
   test("Should show create form", () => {
