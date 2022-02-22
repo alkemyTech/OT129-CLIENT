@@ -40,6 +40,7 @@ const MembersForm = ({ member = {}, handleSub }) => {
               <Field
                 autoComplete="off"
                 className="form-control form-control-sm w-100"
+                data-testid="inputName"
                 name="name"
                 placeholder="Ingrese un título"
                 type="text"
@@ -47,11 +48,12 @@ const MembersForm = ({ member = {}, handleSub }) => {
               />
               <ErrorMessage className="text-danger" component="span" name="name" />
             </div>
-            <div className="mb-1">
+            {/* <div className="mb-1">
               <label className="form-label fw-bold mt-1">Descripción</label>
               <CKEditor
                 config={{ placeholder: "Descripción" }}
                 data={member?.description || ""}
+                data-testid="inputDescription"
                 editor={ClassicEditor}
                 id="description"
                 onChange={(event, editor) => {
@@ -61,7 +63,7 @@ const MembersForm = ({ member = {}, handleSub }) => {
                 }}
               />
             </div>
-            <ErrorMessage className="text-danger" component="span" name="description" />
+            <ErrorMessage className="text-danger" component="span" name="description" /> */}
 
             <div className="mb-1">
               <label className="form-label fw-bold mt-1" htmlFor="image">
@@ -70,6 +72,7 @@ const MembersForm = ({ member = {}, handleSub }) => {
               <input
                 autoComplete="off"
                 className="form-control form-control-sm"
+                data-testid="inputImage"
                 id="image"
                 name="image"
                 type="file"
@@ -87,6 +90,7 @@ const MembersForm = ({ member = {}, handleSub }) => {
               <input
                 autoComplete="off"
                 className="form-control form-control-sm w-100"
+                data-testid="inputFacebook"
                 id="facebookUrl"
                 name="facebookUrl"
                 type="url"
@@ -102,6 +106,7 @@ const MembersForm = ({ member = {}, handleSub }) => {
               <input
                 autoComplete="off"
                 className="form-control form-control-sm w-100"
+                data-testid="inputLinkedin"
                 id="linkedinUrl"
                 name="linkedinUrl"
                 type="url"
