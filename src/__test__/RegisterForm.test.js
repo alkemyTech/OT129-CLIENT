@@ -2,12 +2,10 @@ import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { mockReactRedux } from "mock-react-redux";
-import axios from "axios";
 
-import mockAxios from "../__mocks__/axios.js";
-import { STATUS } from "../constants/index.js";
 import RegisterForm from "../Components/Auth/RegisterForm";
 
+jest.mock("../features/auth/authSlice");
 /**
  *
  * @param {string} query
@@ -24,9 +22,10 @@ const querySetter = (query) => {
 const errorMsg = (field) => {
   return screen.getByText(`El campo ${field.toUpperCase()} es requerido`);
 };
+const axios = jest.mocked("axios").default;
 
 //TESTS
-describe("Should submit?", () => {
+describe("<RegisterForm /> ", () => {
   it("Displaying error messages if required fields are empty", async () => {
     const { dispatch } = mockReactRedux();
 
@@ -72,21 +71,23 @@ describe("Should submit?", () => {
       expect(dispatch).toHaveBeenCalledWith(expect.any(Function));
     });
   });
-});
 
-describe("The form is handling properly the HTTP request", () => {
-  it("The HTTP request is matching the correct endpoint", async () => {
-    mockAxios.post(`${process.env.REACT_APP_API_BASE_URL}/${process.env.REACT_APP_API_REGISTER}`);
+  it.only("Should make request with all fields", async () => {
+    const { dispatch } = mockReactRedux();
+
+    render(<RegisterForm onSubmit={dispatch} />);
+
+    userEvent.type(querySetter("nombre"), "Shinji");
+    userEvent.type(querySetter("email"), "ikarishinji@nerv.com");
+    userEvent.type(querySetter("contraseña"), "!1ikarikun");
+    userEvent.type(screen.getByPlaceholderText("Confirma tu contraseña"), "!1ikarikun");
+    userEvent.type(querySetter("dirección"), "Misato's house 123, Tokyo 3");
+    userEvent.click(screen.getByTestId("conditions"));
+    userEvent.click(screen.getByTestId("registerButton"));
 
     await waitFor(() => {
-      expect(axios.post).toHaveBeenCalled(); //If you set this expect to .not.toHaveBeenCalled, it will fail and show you the right endpoint in the output
-    });
-  });
-  it("The HTTP request returns the according status messages", async () => {
-    await waitFor(() => {
-      expect(status).not.toHaveProperty("status", STATUS.FAILED);
-      expect(status).not.toHaveProperty("status", STATUS.PENDING);
-      expect(status).toHaveProperty("status", STATUS.SUCCESSFUL);
+      expect(axios.post).toHaveBeenCalled();
+      expect(getRegisteredMocked).toHaveBeenCalled();
     });
   });
 });

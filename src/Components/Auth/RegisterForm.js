@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
 import { Wrapper } from "@googlemaps/react-wrapper";
 
 import { getRegistered, selectAuth } from "../../features/auth/authSlice";
