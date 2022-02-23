@@ -40,7 +40,7 @@ describe("<MembersForm />", () => {
         })
     })
 
-    it("prevent submiting form whith empty fields", async () => {
+    it("should prevent submiting form with empty fields", async () => {
         const handleClick = jest.fn();
 
         render(<MembersForm onSubmit={handleClick} />)
@@ -122,7 +122,7 @@ describe("<MembersForm />", () => {
         });
     });
 
-    it("show error message if the user was not created", async () => {
+    it("should show error message if the user was not created", async () => {
         const { dispatch } = mockReactRedux();
       
         render(<MembersForm onSubmit={dispatch} />);
@@ -156,7 +156,7 @@ describe("<MembersForm />", () => {
         });
     });
 
-    it("show the error that it could not be edited correctly.", () => {
+    it("should show error that it could not be edited correctly.", () => {
         const mockdecideAction = jest.fn();
         render(<MembersForm member={dataForm} decideAction={mockdecideAction} />);
     
