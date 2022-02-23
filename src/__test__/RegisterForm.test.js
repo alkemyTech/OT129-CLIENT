@@ -75,14 +75,34 @@ describe("<RegisterForm /> ", () => {
     });
   });
   it.only("Should make request in action Creator", async () => {
-    const { store, invoke } = create();
+    const { dispatch } = mockReactRedux();
+    const getState = jest.fn();
 
-    invoke((dispatch, getState) => {
-      dispatch(mockedUser);
-      getState();
+    render(<RegisterForm onSubmit={dispatch} />);
+
+    // userEvent.type(querySetter("nombre"), "Shinji");
+    // userEvent.type(querySetter("email"), "ikarishinji@nerv.com");
+    // userEvent.type(querySetter("contraseña"), "!1ikarikun");
+    // userEvent.type(screen.getByPlaceholderText("Confirma tu contraseña"), "!1ikarikun");
+    // userEvent.type(querySetter("dirección"), "Misato's house 123, Tokyo 3");
+    // userEvent.click(screen.getByTestId("conditions"));
+    // userEvent.click(screen.getByTestId("registerButton"));
+
+    await getRegistered({ nombre: "", email: "", contrasena: "" })(dispatch, getState);
+
+    await waitFor(() => {
+      expect(dispatch).toHaveBeenCalledWith({
+        meta: {
+          arg: { contrasena: "", email: "", nombre: "" },
+          requestId: expect.any(String),
+          requestStatus: "pending",
+        },
+        payload: undefined,
+        type: "auth/getRegistered/pending",
+      });
+      expect(mockAxios.post).toHaveBeenCalled();
+      // expect(dispatch).toHaveBeenNthCalledWith(expect.any(Function));
     });
-    expect(store.dispatch).toHaveBeenCalledWith(mockedUser);
-    expect(store.getState).toHaveBeenCalled();
   });
   // it.only("Should make request in action Creator", async () => {
   //   const { dispatch } = mockReactRedux();
