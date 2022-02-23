@@ -6,6 +6,7 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import PropTypes from "prop-types";
 
 import { toBase64 } from "../../utils/toBase64";
+import { alerts } from "../../utils/alerts";
 import ContainerFormCard from "../../Containers/ContainerFormCard";
 import { createNews, editNews } from "../../Services/NewsService";
 import { getCategories } from "../../Services/CategoriesService";
@@ -51,7 +52,13 @@ const NewsForm = ({ newId = {} }) => {
 
             // Validamos si el objeto novedad esta vacio o no
             if (newId.id === undefined) {
-              await createNews(data);
+              await createNews(data)
+                .then(() => {
+                  alerts("La novedad se creo correctamente", "success");
+                })
+                .catch(() => {
+                  alerts("Error al crear novedad", "error");
+                });
 
               setLoading(false);
             } else {
@@ -63,7 +70,13 @@ const NewsForm = ({ newId = {} }) => {
                 image: resultbase,
               };
 
-              await editNews(data, newId.id);
+              await editNews(data, newId.id)
+                .then(() => {
+                  alerts("La novedad se editó correctamente", "success");
+                })
+                .catch(() => {
+                  alerts("Error al editar novedad", "error");
+                });
 
               setLoading(false);
             }
@@ -76,6 +89,7 @@ const NewsForm = ({ newId = {} }) => {
                 <input
                   autoComplete="off"
                   className="form-control form-control-sm w-100"
+                  data-testid="inputTitle"
                   placeholder={initialValues.name}
                   type="text"
                   value={initialValues.name}
@@ -87,6 +101,7 @@ const NewsForm = ({ newId = {} }) => {
                 <label className="form-label fw-bold mt-1">Contenido</label>
                 <CKEditor
                   data={initialValues.content}
+                  data-testid="inputContent"
                   editor={ClassicEditor}
                   id="content"
                   onChange={(event, editor) => formik.setFieldValue("content", editor.getData())}
@@ -98,6 +113,7 @@ const NewsForm = ({ newId = {} }) => {
                 <select
                   aria-label="Default select example"
                   className="form-select form-select-sm"
+                  data-testid="inputCategory"
                   {...formik.getFieldProps("category_id")}
                 >
                   <option defaultValue>Seleccione una categoria</option>
@@ -114,6 +130,7 @@ const NewsForm = ({ newId = {} }) => {
                 <input
                   autoComplete="off"
                   className="form-control form-control-sm"
+                  data-testid="inputImage"
                   name="image"
                   type="file"
                   onChange={(event) => {
@@ -122,7 +139,11 @@ const NewsForm = ({ newId = {} }) => {
                 />
               </div>
               <ErrorMessage className="text-danger" component="span" name="image" />
-              <button className="btn btn-primary w-100 mt-2 fw-bold" type="submit">
+              <button
+                className="btn btn-primary w-100 mt-2 fw-bold"
+                data-testid="btnSubmit"
+                type="submit"
+              >
                 <span
                   aria-hidden="true"
                   className={loading ? "spinner-border spinner-border-sm" : null}
