@@ -34,6 +34,7 @@
     "react-transition-group": "4.4.2",
     "react-twitter-embed": "4.0.4",
     "reactjs-popup": "2.0.5",
+    "redux-persist": "6.0.0",
     "sweetalert2": "11.3.10",
     "sweetalert2-react-content": "4.2.0",
     "yup": "0.32.11"
@@ -67,6 +68,7 @@
     "eslint-plugin-prettier": "3.4.0",
     "eslint-plugin-react": "7.28.0",
     "eslint-plugin-react-hooks": "4.3.0",
+    "mock-react-redux": "0.4.0",
     "prettier": "2.5.1"
   }
 }
