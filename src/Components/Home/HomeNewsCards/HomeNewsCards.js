@@ -18,9 +18,7 @@ const HomeCards = () => {
 
   return (
     <div className="container-fluid d-grid gap-3 container-home-news">
-      <div className="container-title-news mb-4">
-        <h2 className="text-center text-uppercase title-home-news">Últimas Novedades</h2>
-      </div>
+      <h2 className="container text-uppercase title-home-news">Últimas Novedades</h2>
       <div>
         <div className="container container-cards">
           {last_news &&

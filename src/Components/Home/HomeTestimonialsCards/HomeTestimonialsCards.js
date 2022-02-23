@@ -23,9 +23,7 @@ const HomeCards = () => {
 
   return (
     <div className="container-fluid container-home-testimonials d-grid gap-3">
-      <div className="container-title mb-4">
-        <h2 className="text-center text-uppercase title-home-testimonials">Testimonios</h2>
-      </div>
+      <h2 className="container text-uppercase title-home-testimonials">Testimonios</h2>
       <div className="container text-end p-0">
         <div className="container-cards-testimonials">
           {lastTestimonials &&
