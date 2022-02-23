@@ -1,9 +1,7 @@
 import { lazy } from "react";
 
 const HomePage = lazy(() => import(/* webpackChunkName: "LazyHomePage"*/ "../../Pages/HomePage"));
-const TestimonialForm = lazy(() =>
-  import(/* webpackChunkName: "LazyTestimonialsPage"*/ "../Testimonials/TestimonialsForm")
-);
+
 const ProjectsForm = lazy(() =>
   import(/* webpackChunkName: "LazyProjectsPage"*/ "../Projects/ProjectsForm")
 );
@@ -34,6 +32,9 @@ const NewsIdPage = lazy(() =>
 );
 const RegisterPage = lazy(() =>
   import(/* webpackChunkName: "LazyRegisterPagePage"*/ "../../Pages/RegisterPage")
+);
+const TestimonialsPage = lazy(() =>
+  import(/* webpackChunkName: "LazyRegisterPagePage"*/ "../../Pages/TestimonialsPage")
 );
 const LoginPage = lazy(() =>
   import(/* webpackChunkName: "LazyRegisterPagePage"*/ "../../Pages/LoginPage")
@@ -94,8 +95,8 @@ export const publicRoute = [
     exact: true,
   },
   {
-    path: "/testimonials/create",
-    component: TestimonialForm,
+    path: "/testimonios",
+    component: TestimonialsPage,
     exact: true,
   },
   {

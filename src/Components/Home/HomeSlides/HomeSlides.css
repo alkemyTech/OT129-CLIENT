@@ -1,0 +1,23 @@
+.container-slide {
+  padding: 0px !important;
+  height: 500px;
+}
+
+.carousel-inner {
+  width: 100px;
+}
+
+.container-img-slide {
+  height: 500px;
+}
+
+.img-slide {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.carousel-text {
+  background: rgba(26, 26, 26, 0.7);
+  padding: 0;
+}
