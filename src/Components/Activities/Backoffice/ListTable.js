@@ -29,7 +29,7 @@ function ListTable({ data, deleteHandler }) {
               </td>
               <td className="align-middle">{formatDate(el.created_at)}</td>
               <td className="align-middle">
-                <Link to={`/backoffice/activities/${el.id}`}>
+                <Link to={`/backoffice/activities/edit/${el.id}`}>
                   <button className="btn-list btn-edit" title="Editar">
                     <i className="fas fa-pencil-alt" />
                   </button>

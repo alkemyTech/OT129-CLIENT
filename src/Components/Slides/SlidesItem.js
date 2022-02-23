@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 const SlidesItem = ({ slide }) => {
   return (
@@ -11,9 +12,11 @@ const SlidesItem = ({ slide }) => {
       </td>
       <td className="align-middle">{slide.order}</td>
       <td className="align-middle">
-        <button className="btn-list btn-edit" title="Editar">
-          <i className="fas fa-pencil-alt" />
-        </button>
+        <Link to={`/backoffice/slides/edit/${slide.id}`}>
+          <button className="btn-list btn-edit" title="Editar">
+            <i className="fas fa-pencil-alt" />
+          </button>
+        </Link>
         <button className="btn-list btn-delete" title="Eliminar">
           <i className="far fa-trash-alt" />
         </button>

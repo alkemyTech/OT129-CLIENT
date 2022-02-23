@@ -86,9 +86,9 @@ const RegisterForm = () => {
       name,
       email,
       password,
-      // address: address,
-      // latitude: map.lat,
-      // longitude: map.lng,
+      address: address,
+      latitude: map.lat,
+      longitude: map.lng,
     };
 
     dispatch(getRegistered(body));
