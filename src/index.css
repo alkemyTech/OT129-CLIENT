@@ -40,37 +40,31 @@ body {
   text-transform: uppercase;
   transition-duration: 0.4s;
 }
-
 .fill-btn {
   background: var(--blue);
   color: var(--black);
 }
-
 .fill-btn:hover {
   background: var(--dark-blue);
   color: var(--black);
 }
-
 .fill-black-btn {
   background: var(--black);
   border: 2px solid var(--black);
   box-sizing: border-box;
   color: var(--white);
 }
-
 .fill-black-btn:hover {
   border: 2px solid var(--black);
   background: none;
   color: var(--black);
 }
-
 .stroke-btn {
   border: 2px solid var(--blue);
   color: var(--black);
   background: transparent;
   box-sizing: border-box;
 }
-
 .stroke-btn {
   border: 2px solid var(--dark-blue);
   color: var(--dark-blue);
@@ -127,7 +121,6 @@ body {
 .btn-accept:hover {
   background-color: var(--blue-hover) !important;
 }
-
 .btn-decline {
   background-color: var(--red) !important;
   color: var(--white) !important;
@@ -137,7 +130,6 @@ body {
 .btn-decline:hover {
   background-color: var(--red-hover) !important;
 }
-
 .register-btn {
   width: 100%;
   max-width: 450px;
@@ -158,7 +150,6 @@ body {
   grid-template-columns: repeat(3, 1fr);
   gap: 30px;
 }
-
 .card {
   box-shadow: var(--card-shadow);
 }
@@ -169,6 +160,19 @@ code {
 }
 
 /* Tablas Listados */
+/*Mobile*/
+.table-container {
+  display: flex;
+  flex-flow: row;
+  overflow-x: scroll;
+}
+/*Desktop and up*/
+@media screen and (min-width: 1024px) {
+  .table-container {
+    flex-flow: column;
+    overflow: hidden;
+  }
+}
 
 .table-list {
   border: 2px solid rgb(207, 207, 207);
