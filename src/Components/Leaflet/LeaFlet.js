@@ -29,7 +29,7 @@ const darkTheme = L.tileLayer(
 );
 let theme = defaultTheme;
 
-const LeaFlet = ({ address, position, dark, height }) => {
+const LeaFlet = ({ address, position, dark }) => {
   L.Marker.prototype.options.icon = DefaultIcon;
 
   if (dark) {
@@ -37,17 +37,25 @@ const LeaFlet = ({ address, position, dark, height }) => {
   }
 
   return (
-    <div>
-      <MapContainer center={position} maxZoom={theme.maxZoom} style={{ height }} zoom={13}>
-        <ErrorHandler />
-        <TileLayer attribution={theme.attribution} url={theme._url} />
-        <Marker position={position}>
-          <Popup>
-            Ubicación: <br /> {address}
-          </Popup>
-        </Marker>
-      </MapContainer>
-    </div>
+    <MapContainer
+      center={position}
+      maxZoom={theme.maxZoom}
+      style={{
+        width: "100%",
+        height: "300px",
+        borderRadius: "0.5rem",
+        display: "block",
+      }}
+      zoom={13}
+    >
+      <ErrorHandler />
+      <TileLayer attribution={theme.attribution} url={theme._url} />
+      <Marker position={position}>
+        <Popup>
+          Ubicación: <br /> {address}
+        </Popup>
+      </Marker>
+    </MapContainer>
   );
 };
 
@@ -55,7 +63,6 @@ LeaFlet.propTypes = {
   dark: PropTypes.bool,
   address: PropTypes.string.isRequired,
   position: PropTypes.array.isRequired,
-  height: PropTypes.string,
 };
 LeaFlet.defaultProps = {
   dark: false,
