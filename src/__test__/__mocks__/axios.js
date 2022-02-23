@@ -1,5 +1,7 @@
 const mockAxios = jest.genMockFromModule("axios");
 
+mockAxios.post = jest.fn();
+
 mockAxios.interceptors = mockAxios.interceptors || {};
 mockAxios.interceptors.response = mockAxios.interceptors.response || {};
 mockAxios.interceptors.response.use = jest.fn();
