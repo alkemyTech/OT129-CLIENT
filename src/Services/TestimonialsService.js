@@ -8,7 +8,13 @@ export const getTestimonials = () => {
 };
 
 export const getTestimonialById = (id) => {
-  return get(ENDPOINT, id);
+  return get(ENDPOINT, null, id);
+};
+
+export const getLastTestimonials = (entries) => {
+  const url = entries ? `${ENDPOINT}?limit=${entries}` : ENDPOINT;
+
+  return get(url);
 };
 
 export const createTestimonial = (data) => {

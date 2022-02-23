@@ -16,7 +16,7 @@
   --border-radius: 6px;
   --font-family: "Montserrat", sans-serif;
   --font-size: 15px;
-  --card-shadow: 2px 2px 6px rgb(224, 224, 224);
+  --card-shadow: 2px 2px 6px rgb(187, 187, 187);
   --form-shadow: 0 10px 6px -4px rgba(123, 161, 201, 0.5);
 }
 
@@ -28,7 +28,7 @@ body {
 /* Buttons */
 
 .general-btn {
-  width: var(--width-button);
+  min-width: var(--width-button);
   height: var(--heigth-button);
   display: flex;
   justify-content: center;
@@ -154,12 +154,14 @@ body {
 /* Cards */
 
 .container-cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 50px;
 }
 
 .card {
+  width: 30%;
   box-shadow: var(--card-shadow);
 }
 
@@ -202,3 +204,7 @@ code {
   object-fit: cover;
 }
 
+/* Others */
+.color-icon-search {
+  color: var(--dark-blue);
+}

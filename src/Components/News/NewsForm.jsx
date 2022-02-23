@@ -40,6 +40,7 @@ const NewsForm = ({ _new = {}, categories = [], handleSubmit, status }) => {
                 <label className="form-label fw-bold">Título</label>
                 <input
                   className="form-control form-control-sm w-100"
+                  data-testid="inputTitle"
                   name="name"
                   placeholder={initialValues.name}
                   type="text"
@@ -51,6 +52,7 @@ const NewsForm = ({ _new = {}, categories = [], handleSubmit, status }) => {
                 <label className="form-label fw-bold mt-1">Contenido</label>
                 <CKEditor
                   data={initialValues.content}
+                  data-testid="inputContent"
                   editor={ClassicEditor}
                   id="content"
                   onChange={(event, editor) => {
@@ -66,6 +68,7 @@ const NewsForm = ({ _new = {}, categories = [], handleSubmit, status }) => {
                 <select
                   aria-label="Default select example"
                   className="form-select form-select-sm"
+                  data-testid="inputCategory"
                   {...formik.getFieldProps("category_id")}
                 >
                   <option defaultValue>Seleccione una categoria</option>
@@ -82,6 +85,7 @@ const NewsForm = ({ _new = {}, categories = [], handleSubmit, status }) => {
                 <input
                   autoComplete="off"
                   className="form-control form-control-sm"
+                  data-testid="inputImage"
                   name="image"
                   type="file"
                   onChange={(event) => {
@@ -90,7 +94,11 @@ const NewsForm = ({ _new = {}, categories = [], handleSubmit, status }) => {
                 />
               </div>
               <ErrorMessage className="text-danger" component="span" name="image" />
-              <button className="btn btn-primary w-100 mt-2 fw-bold" type="submit">
+              <button
+                className="btn btn-primary w-100 mt-2 fw-bold"
+                data-testid="btnSubmit"
+                type="submit"
+              >
                 <span
                   aria-hidden="true"
                   className={status === "PENDING" ? "spinner-border spinner-border-sm" : null}

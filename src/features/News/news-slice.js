@@ -10,10 +10,18 @@ import {
 } from "../../Services/NewsService";
 import { STATUS } from "../../constants";
 
-export const fetchNews = createAsyncThunk("news/get", async () => {
+export const fetchNews = createAsyncThunk("news/get", async (search) => {
   const {
     data: { data },
-  } = await getNews();
+  } = await getNews(search);
+
+  return data;
+});
+
+export const fetchLastNews = createAsyncThunk("news/get", async (entries) => {
+  const {
+    data: { data },
+  } = await getLastNews(entries);
 
   return data;
 });
@@ -22,14 +30,6 @@ export const fetchNewsById = createAsyncThunk("new/get", async (id) => {
   const {
     data: { data },
   } = await getNewsById(id);
-
-  return data;
-});
-
-export const fetchLastNews = createAsyncThunk("last_news/get", async () => {
-  const {
-    data: { data },
-  } = await getLastNews("3");
 
   return data;
 });

@@ -3,6 +3,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import {
   getTestimonials,
   getTestimonialById,
+  getLastTestimonials,
   createTestimonial,
   editTestimonial,
   deleteTestimonial,
@@ -20,6 +21,14 @@ export const fetchTestimonialById = createAsyncThunk("testimonial/get", async (i
   const {
     data: { data },
   } = await getTestimonialById(id);
+
+  return data;
+});
+
+export const fetchLastTestimonials = createAsyncThunk("testimonial/get", async (entries) => {
+  const {
+    data: { data },
+  } = await getLastTestimonials(entries);
 
   return data;
 });
@@ -43,6 +52,7 @@ const TestimonialSlice = createSlice({
   initialState: {
     testimonials: [],
     testimonial: {},
+    lastTestimonials: [],
     status: null,
   },
   extraReducers: {
@@ -65,6 +75,16 @@ const TestimonialSlice = createSlice({
       state.testimonial = payload;
     },
     [fetchTestimonialById.rejected]: (state) => {
+      state.status = "failed";
+    },
+    [fetchLastTestimonials.pending]: (state) => {
+      state.status = "loading";
+    },
+    [fetchLastTestimonials.fulfilled]: (state, { payload }) => {
+      state.status = "success";
+      state.lastTestimonials = payload;
+    },
+    [fetchLastTestimonials.rejected]: (state) => {
       state.status = "failed";
     },
     [newTestimonial.pending]: (state) => {

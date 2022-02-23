@@ -15,7 +15,7 @@ const NewsTableRow = ({ data }) => {
       </td>
       <td className="align-middle">{format(new Date(data.created_at), "dd/MM/yyyy")}</td>
       <td className="align-middle">
-        <Link to={`/backoffice/news/${data.id}`}>
+        <Link to={`/backoffice/news/edit/${data.id}`}>
           <button className="btn-list btn-edit" title="Editar">
             <i className="fas fa-pencil-alt" />
           </button>

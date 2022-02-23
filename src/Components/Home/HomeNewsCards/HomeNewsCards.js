@@ -1,26 +1,26 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
-import Card from "../../Components/Card/Card";
-import { fetchLastNews, selectorNews } from "../../features/News/news-slice";
-import StatusHandler from "../../Components/StatusHandler/StatusHandler";
+import Card from "../../Card/Card";
+import { fetchLastNews, selectorNews } from "../../../features/News/news-slice";
+import StatusHandler from "../../StatusHandler/StatusHandler";
+
+import "./HomeNewsCards.css";
 
 const HomeCards = () => {
+  const { last_news, state } = useSelector(selectorNews);
   const dispatch = useDispatch();
-  const { last_news, status } = useSelector(selectorNews);
 
   useEffect(() => {
-    dispatch(fetchLastNews());
+    dispatch(fetchLastNews(3));
   }, [dispatch]);
 
   return (
-    <div className="container my-5 d-grid gap-3">
-      <div className="row mb-4">
-        <h2 className="text-center text-uppercase">Últimas Novedades</h2>
-      </div>
-      <div className="row">
-        <div className="container-cards">
+    <div className="container-fluid d-grid gap-3 container-home-news">
+      <h2 className="container text-uppercase title-home-news">Últimas Novedades</h2>
+      <div>
+        <div className="container container-cards">
           {last_news &&
             last_news.map((el) => (
               <Card
@@ -33,7 +33,7 @@ const HomeCards = () => {
               />
             ))}
         </div>
-        <StatusHandler status={status} />
+        <StatusHandler status={state} />
       </div>
     </div>
   );
