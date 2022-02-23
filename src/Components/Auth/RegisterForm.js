@@ -6,12 +6,13 @@ import { Wrapper } from "@googlemaps/react-wrapper";
 
 import { getRegistered } from "../../features/auth/authSlice";
 import RegisterPopup from "../Popups/RegisterPopup";
+import { alerts } from "../../utils/alerts";
 import Alert from "../Alert/Alert";
+
+import Map from "./Map";
 
 import "../../index.css";
 import "./RegisterForm.css";
-
-import Map from "./Map";
 
 const PASSWORD_REGEX = new RegExp("(?=.*[A-Za-z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{6,})");
 
@@ -79,7 +80,9 @@ const RegisterForm = () => {
       longitude: map.lng,
     };
 
-    dispatch(getRegistered(body));
+    dispatch(getRegistered(body))
+      .then(() => alerts("Registro exitoso, inicie sesión.", "success"))
+      .catch(() => alerts("El email ingresado ya se encuentra registrado", "error"));
   };
 
   return (
