@@ -40,6 +40,7 @@ const MembersForm = ({ member = {}, handleSub }) => {
               <Field
                 autoComplete="off"
                 className="form-control form-control-sm w-100"
+                data-testid="inputName"
                 name="name"
                 type="text"
                 // placeholder="Ingrese un título"
@@ -52,6 +53,7 @@ const MembersForm = ({ member = {}, handleSub }) => {
               <CKEditor
                 config={{ placeholder: "Descripción" }}
                 data={member?.description || ""}
+                data-testid="inputDescription"
                 editor={ClassicEditor}
                 id="description"
                 onChange={(event, editor) => {
@@ -68,6 +70,7 @@ const MembersForm = ({ member = {}, handleSub }) => {
               <input
                 autoComplete="off"
                 className="form-control form-control-sm"
+                data-testid="inputImage"
                 name="image"
                 type="file"
                 onChange={(event) => {
@@ -82,6 +85,7 @@ const MembersForm = ({ member = {}, handleSub }) => {
               <input
                 autoComplete="off"
                 className="form-control form-control-sm w-100"
+                data-testid="inputFacebook"
                 type="url"
                 // placeholder="Ingrese un título"
                 {...formik.getFieldProps("facebookUrl")}
@@ -93,6 +97,7 @@ const MembersForm = ({ member = {}, handleSub }) => {
               <input
                 autoComplete="off"
                 className="form-control form-control-sm w-100"
+                data-testid="inputLinkedin"
                 type="url"
                 // placeholder="Ingrese un título"
                 {...formik.getFieldProps("linkedinUrl")}
