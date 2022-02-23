@@ -58,7 +58,6 @@ export const authSlice = createSlice({
     [getRegistered.rejected]: (state) => {
       state.status = STATUS.FAILED;
       state.isLoading = false;
-      alerts("El email ingresado ya se encuentra registrado", "error");
     },
     [getRegistered.fulfilled]: (state, action) => {
       state.status = STATUS.SUCCESSFUL;
@@ -66,7 +65,6 @@ export const authSlice = createSlice({
       state.token = action.payload.token;
       state.auth = true;
       state.isLoading = false;
-      alerts("Registro exitoso, inicie sesión.", "success");
     },
   },
 });
