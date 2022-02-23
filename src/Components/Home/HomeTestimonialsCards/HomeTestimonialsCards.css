@@ -5,6 +5,7 @@
 }
 
 .container-cards-testimonials {
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -55,6 +56,10 @@
 }
 
 @media (max-width: 576px) {
+  .content-home-testimonials {
+    width: 90%;
+    margin: auto;
+  }
   .title-home-testimonials::before {
     content: none;
   }

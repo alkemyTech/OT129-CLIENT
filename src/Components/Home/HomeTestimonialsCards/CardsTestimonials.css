@@ -7,9 +7,10 @@
 }
 .img-testimonials-card {
   display: block;
-  width: 240px;
-  height: 240px;
+  width: 250px;
+  height: 250px;
   object-fit: cover;
+  border-radius: 6px 0 0 6px;
 }
 .testimonials-card-body {
   display: flex;
@@ -20,6 +21,7 @@
 }
 .quote-description {
   display: flex;
+  flex-wrap: wrap;
 }
 
 @media (max-width: 1200px) {
@@ -28,8 +30,8 @@
   }
   .img-testimonials-card {
     display: block;
-    width: 180px;
-    height: 200px;
+    width: 40%;
+    height: 300px;
   }
 }
 @media (max-width: 992px) {
@@ -39,14 +41,20 @@
   }
   .img-testimonials-card {
     display: block;
-    width: 40%;
-    height: auto;
+    width: 220px;
+    height: 220px;
   }
 }
-@media (max-width: 576px) {
+@media (max-width: 768px) {
+  .testimonials-card {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
   .img-testimonials-card {
-    width: 30%;
-    height: auto;
+    width: 100%;
+    height: 240px;
   }
 }
+
 

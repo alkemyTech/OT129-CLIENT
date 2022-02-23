@@ -20,9 +20,9 @@ const CardsTestimonials = ({ title, image, description }) => {
       <div className="card-body testimonials-card-body">
         <h5 className="card-title text-uppercase">{title}</h5>
         {description && (
-          <q className="quote-description">
+          <p className="quote-description">
             <DangerouslySetInnerHTML content={description} />
-          </q>
+          </p>
         )}
       </div>
     </div>
