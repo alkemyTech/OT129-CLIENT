@@ -1,0 +1,49 @@
+.formContainer {
+  width: 100%;
+  margin: 1rem auto 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 1.4rem;
+  box-shadow: 1px 2px 4px rgba(123, 161, 201, 0.5);
+  border: 1px solid rgba(123, 161, 201, 0.5);
+  border-radius: 0.5rem;
+}
+.input {
+  display: block;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.8rem;
+  font-family: var(--font-family);
+  font-weight: 500;
+  color: var(--dark-blue);
+  border: 1px solid var(--dark-blue);
+}
+.input::placeholder {
+  font-family: var(--font-family);
+  color: var(--dark-blue);
+}
+.contactBtn {
+  width: 100%;
+  max-width: 450px;
+  height: 50px;
+  margin: auto;
+  background: var(--blue);
+  color: var(--white);
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 15px;
+  transition: all 0.3s ease;
+}
+.contactBtn:hover {
+  background: var(--dark-blue);
+}
+.alert {
+  background-color: rgba(255, 0, 0, 0.1);
+  padding: 0.5rem 1rem;
+  font-family: var(--font-family);
+  font-size: 0.85rem;
+  color: #842029;
+  border: 1px solid #f5c2c7;
+  border-radius: 0.25rem;
+}

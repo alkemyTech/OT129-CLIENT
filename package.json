@@ -68,6 +68,7 @@
     "eslint-plugin-prettier": "3.4.0",
     "eslint-plugin-react": "7.28.0",
     "eslint-plugin-react-hooks": "4.3.0",
+    "mock-react-redux": "0.4.0",
     "prettier": "2.5.1"
   }
 }

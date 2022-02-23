@@ -1,4 +1,5 @@
-import { get, post, put } from "./publicApiService";
+import { get } from "./publicApiService";
+import { post, put } from "./privateApiService";
 
 const ENDPOINT = process.env.REACT_APP_API_CONTACT_ENDPOINT;
 

@@ -1,20 +1,18 @@
 import React, { useState } from "react";
 import { Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import PropTypes from "prop-types";
-import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
+import { useDispatch } from "react-redux";
 import { Wrapper } from "@googlemaps/react-wrapper";
-import { Redirect } from "react-router-dom";
 
-import { selectAuth } from "../../features/auth/authSlice";
 import { getRegistered } from "../../features/auth/authSlice";
 import RegisterPopup from "../Popups/RegisterPopup";
+import { alerts } from "../../utils/alerts";
+import Alert from "../Alert/Alert";
+
+import Map from "./Map";
 
 import "../../index.css";
 import "./RegisterForm.css";
-
-import Map from "./Map";
 
 const PASSWORD_REGEX = new RegExp("(?=.*[A-Za-z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{6,})");
 
@@ -48,20 +46,11 @@ const validationSchema = Yup.object({
     )
     .oneOf([Yup.ref("password"), null], "Las CONTRASEÑAS deben coincidir"),
   conditions: Yup.boolean().oneOf([true], "Debes aceptar los Términos y Condiciones"),
-  address: Yup.string().required("Ingrese su DIRECCIÓN"),
+  address: Yup.string().required("El campo DIRECCIÓN es requerido"),
 });
-
-const Alert = ({ children }) => {
-  return <div className="alert alert-danger">{children}</div>;
-};
-
-Alert.propTypes = {
-  children: PropTypes.node.isRequired,
-};
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
-  const { auth } = useSelector(selectAuth);
   const [map, setMap] = useState({});
   const [address, setAddress] = useState("");
 
@@ -91,12 +80,12 @@ const RegisterForm = () => {
       longitude: map.lng,
     };
 
-    dispatch(getRegistered(body));
+    dispatch(getRegistered(body))
+      .then(() => alerts("Registro exitoso, inicie sesión.", "success"))
+      .catch(() => alerts("El email ingresado ya se encuentra registrado", "error"));
   };
 
-  return auth ? (
-    <Redirect to="/" />
-  ) : (
+  return (
     <div className="container">
       <div className="form-container my-3">
         <Formik
@@ -107,7 +96,12 @@ const RegisterForm = () => {
           }}
         >
           {(formik) => (
-            <form noValidate className="register-form" onSubmit={formik.handleSubmit}>
+            <form
+              noValidate
+              className="register-form"
+              data-testid="registerForm"
+              onSubmit={formik.handleSubmit}
+            >
               <div className="form-group mb-3">
                 <label className="form-label" htmlFor="name" />
                 <input
@@ -167,6 +161,7 @@ const RegisterForm = () => {
                     name="address"
                     placeholder="Ingresa tu dirección"
                     type="text"
+                    value={formik.values.address}
                     onChange={(e) => {
                       formik.setFieldValue("address", e.target.value);
                       setAddress(e.target.value);
@@ -188,8 +183,10 @@ const RegisterForm = () => {
                   onConfirm={() => formik.setFieldValue("conditions", true)}
                   onDecline={() => formik.setFieldValue("conditions", false)}
                 />
+                <label className="form-label" htmlFor="conditions" />
                 <input
                   className="conditions-checkbox"
+                  data-testid="conditions"
                   name="conditions"
                   type="checkbox"
                   value={formik.values.conditions}
@@ -197,7 +194,11 @@ const RegisterForm = () => {
                 />
                 <ErrorMessage component={Alert} name="conditions" />
               </div>
-              <button className="general-btn register-btn my-3" type="submit">
+              <button
+                className="general-btn register-btn my-3"
+                data-testid="registerButton"
+                type="submit"
+              >
                 REGISTRARSE
               </button>
             </form>
