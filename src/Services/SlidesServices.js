@@ -7,6 +7,10 @@ export const getSlides = (search = null) => {
   return get(ENDPOINT, { search: search });
 };
 
+export const getSlidesById = (id) => {
+  return get(ENDPOINT, null, id);
+};
+
 export const postSlides = (data) => {
   return post(ENDPOINT, data);
 };

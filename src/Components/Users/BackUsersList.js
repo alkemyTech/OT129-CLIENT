@@ -27,7 +27,7 @@ const BackUsersList = ({ data, onDelete }) => {
                 <p className="mt-3">{users.email}</p>
               </td>
               <td className="align-middle">
-                <Link to={`/backoffice/users/${users.id}`}>
+                <Link to={`/backoffice/users/edit/${users.id}`}>
                   <button className="btn-list btn-edit" title="Editar">
                     <i className="fas fa-pencil-alt" />
                   </button>
