@@ -17,6 +17,7 @@
     "date-fns": "2.28.0",
     "formik": "2.2.9",
     "leaflet": "1.7.1",
+    "mock-react-redux": "0.4.0",
     "prettier": "2.5.1",
     "prop-types": "15.8.1",
     "react": "17.0.2",
