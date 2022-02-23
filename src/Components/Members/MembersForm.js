@@ -86,24 +86,26 @@ const MembersForm = ({ member = {}, handleSub }) => {
                 autoComplete="off"
                 className="form-control form-control-sm w-100"
                 data-testid="inputFacebook"
+                name="facebook"
                 type="url"
                 // placeholder="Ingrese un título"
                 {...formik.getFieldProps("facebookUrl")}
               />
             </div>
-            <ErrorMessage className="text-danger" component="span" name="link" />
+            <ErrorMessage className="text-danger" component="span" name="facebookUrl" />
             <div className="mb-1">
               <label className="form-label fw-bold">Linkedin Url</label>
               <input
                 autoComplete="off"
                 className="form-control form-control-sm w-100"
                 data-testid="inputLinkedin"
+                name="linkedin"
                 type="url"
                 // placeholder="Ingrese un título"
                 {...formik.getFieldProps("linkedinUrl")}
               />
             </div>
-            <ErrorMessage className="text-danger" component="span" name="link" />
+            <ErrorMessage className="text-danger" component="span" name="linkedinUrl" />
 
             <button className="btn btn-primary w-100 mt-2 fw-bold" type="submit">
               {member.id ? "EDITAR" : "CREAR"}
@@ -136,11 +138,11 @@ const validationMemberSchema = Yup.object({
     .required("El nombre es obligatorio"),
   description: Yup.string().required("La descripción es obligatorio"),
   facebookUrl: Yup.string()
-    .required("La url es obligatoria")
-    .test("is-url-valid", "La url no es valida", (value) => isValidUrl(value)),
+    .required("La url de Facebook es obligatorio")
+    .test("is-url-valid", "La url de Facebook es obligatorio", (value) => isValidUrl(value)),
   linkedinUrl: Yup.string()
-    .required("La url es obligatoria")
-    .test("is-url-valid", "La url no es valida", (value) => isValidUrl(value)),
+    .required("La url de LinkedIn es obligatorio")
+    .test("is-url-valid", "La url de LinkedIn es obligatorio", (value) => isValidUrl(value)),
   image: Yup.mixed()
     .nullable()
     .required("La imagen es obligatoria")
