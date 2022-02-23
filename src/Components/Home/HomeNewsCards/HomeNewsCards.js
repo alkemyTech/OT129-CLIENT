@@ -13,7 +13,7 @@ const HomeCards = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchLastNews());
+    dispatch(fetchLastNews(3));
   }, [dispatch]);
 
   return (
