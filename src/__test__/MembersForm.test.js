@@ -36,7 +36,7 @@ describe("<MembersForm />", () => {
   });
   it("should prevent submiting form with empty fields", async () => {
     const handleClick = jest.fn();
-    
+
     render(<MembersForm onSubmit={handleClick} />);
     userEvent.click(
       screen.getByRole("button", {
