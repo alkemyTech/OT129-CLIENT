@@ -20,13 +20,13 @@ const initialValues = {
 };
 
 const validationSchema = Yup.object({
-  name: Yup.string().required("Requerido"),
-  email: Yup.string().email("Formato de email incorrecto").required("Requerido"),
+  name: Yup.string().required("El nombre es requerido"),
+  email: Yup.string().email("Formato de email incorrecto").required("El email es requerido"),
   phone: Yup.string()
     .matches(/^\d+$/, "Formato incorrecto")
     .min(8, "Debe ingresar un mínimo de 8 números.")
-    .required("Requerido"),
-  message: Yup.string().required("Requerido"),
+    .required("El teléfono es requerido"),
+  message: Yup.string().required("El mensaje es requerido"),
 });
 
 const ContactForm = () => {
@@ -78,7 +78,11 @@ const ContactForm = () => {
             />
             <ErrorMessage component={ErrorComponent} name="message" />
           </div>
-          <button className={`form-control ${styles.contactBtn}`} type="submit">
+          <button
+            className={`form-control ${styles.contactBtn}`}
+            data-testid="contactButton"
+            type="submit"
+          >
             Enviar
           </button>
         </Form>
