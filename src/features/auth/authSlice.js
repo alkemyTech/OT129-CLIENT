@@ -51,6 +51,21 @@ export const authSlice = createSlice({
       state.auth = true;
       state.isLoading = false;
     },
+    [getRegistered.pending]: (state) => {
+      state.status = STATUS.PENDING;
+      state.isLoading = true;
+    },
+    [getRegistered.rejected]: (state) => {
+      state.status = STATUS.FAILED;
+      state.isLoading = false;
+    },
+    [getRegistered.fulfilled]: (state, action) => {
+      state.status = STATUS.SUCCESSFUL;
+      state.user = action.payload.user;
+      state.token = action.payload.token;
+      state.auth = true;
+      state.isLoading = false;
+    },
   },
 });
 

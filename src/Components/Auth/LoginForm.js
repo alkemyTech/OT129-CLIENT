@@ -1,12 +1,11 @@
 import React from "react";
-import "../FormStyles.css";
 import { Formik, ErrorMessage, Field } from "formik";
 import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import { getLogged, selectAuth } from "../../features/auth/authSlice";
-import Alert from "../Container/Alert";
+import Alert from "../Alert/Alert";
 import Spinner from "../Spinner/Spinner";
 
 import "./RegisterForm.css";
