@@ -19,149 +19,111 @@ const dataForm = {
 const mockAxios = require("axios").default;
 
 describe("<MembersForm />", () => {
-
-    it("should show error validation messages", async () => {
-
-        render(<MembersForm />)
-
-        userEvent.click(screen.getByRole('button', {
-            name: /crear/i
-        }))
-
-        await waitFor(() => {
-            expect(screen.getByText("El nombre es obligatorio")).toBeInTheDocument();
-            expect(screen.getByText("La imagen es obligatoria")).toBeInTheDocument();
-            expect(screen.getByText("La descripción es obligatorio")).toBeInTheDocument();
-            expect(screen.getByText("La url de Facebook es obligatorio")).toBeInTheDocument();
-            expect(screen.getByText("La url de LinkedIn es obligatorio")).toBeInTheDocument();
-        })
-    })
-
-    it("should prevent submiting form with empty fields", async () => {
-        const handleClick = jest.fn();
-
-        render(<MembersForm onSubmit={handleClick} />)
-
-        userEvent.click(screen.getByRole('button', {
-            name: /crear/i
-        }))
-
-        await waitFor(() => {
-            expect(handleClick).not.toHaveBeenCalled();
-        })
-    })
-
-    it("should submit and create a member correctly", async () => {
-        const { dispatch } = mockReactRedux();
-      
-        render(<MembersForm onSubmit={dispatch} />);
-      
-        const inputName = await screen.findByTestId("inputName");
-          
-        const inputImage = await screen.findByTestId("inputImage");
-        const inputFacebook = await screen.findByTestId("inputFacebook");
-        const inputLinkedin = await screen.findByTestId("inputLinkedin");
-
-        userEvent.type(inputName, dataForm.name);
-
-        userEvent.type(inputFacebook, dataForm.facebook);
-        userEvent.type(inputLinkedin, dataForm.linkedin);
-        userEvent.upload(inputImage, dataForm.image);
-        userEvent.click(screen.getByRole('button', {
-            name: /crear/i
-        }))
-      
-        mockAxios.post = jest.fn().mockRejectedValue({
-          data: {
-            success: true,
-          },
-        });
-      
-        waitFor( async () => {
-          expect(mockAxios.post).toBeCalledWith("members", dataForm);
-          expect(
-            screen.findByText("creado correctamente")
-          ).toBeInTheDocument();
-        });
+  it("should show error validation messages", async () => {
+    render(<MembersForm />);
+    userEvent.click(
+      screen.getByRole("button", {
+        name: /crear/i,
+      })
+    );
+    await waitFor(() => {
+      expect(screen.getByText("El nombre es obligatorio")).toBeInTheDocument();
+      expect(screen.getByText("La imagen es obligatoria")).toBeInTheDocument();
+      expect(screen.getByText("La descripción es obligatorio")).toBeInTheDocument();
+      expect(screen.getByText("La url de Facebook es obligatorio")).toBeInTheDocument();
+      expect(screen.getByText("La url de LinkedIn es obligatorio")).toBeInTheDocument();
     });
-
-    it("should submit and edit a member correctly", async () => {
-      
-        mockAxios.put = jest.fn().mockRejectedValue({
-          data: {
-            success: true,
-          },
-        });
-      
-        waitFor( async () => {
-          expect(mockAxios.put).toBeCalledWith("members", dataForm);
-          expect(
-            screen.findByText("El id: 1 se editó correctamente")
-          ).toBeInTheDocument();
-        });
-    });
-
-    it("should show error message if the user was not created", async () => {
-      
-        mockAxios.post = jest.fn().mockRejectedValue({
-          data: {
-            success: false,
-          },
-        });
-      
-        waitFor( async () => {
-          expect(mockAxios.post).toBeCalledWith("members", dataForm);
-          expect(
-            screen.findByText("Ups! ocurrió un error inesperado")
-          ).toBeInTheDocument();
-        });
-    });
-
-    it("should show the error that it could not be edited correctly.", async () => {
-      mockAxios.put = jest.fn().mockRejectedValue({
-        data: {
-          success: true,
-        },
-      });
-    
-      waitFor( async () => {
-        expect(mockAxios.put).toBeCalledWith("members", dataForm);
-        expect(
-          screen.findByText("Ocurrio un error al editar el id")
-        ).toBeInTheDocument();
-      });
-
-    });
-
-    //For this test, CKEDITOR (MembersForm.js - lines 51 to 61) and lines 11 and 35, had to be commented/disabled 
-    it("should show create form", () => {
-      render(<MembersForm />);
-
-      expect(screen.getByText("CREAR")).toBeInTheDocument();
   });
-
-  //For this test, CKEDITOR (MembersForm.js - lines 51 to 61) and lines 11 and 35, had to be commented/disabled 
+  it("should prevent submiting form with empty fields", async () => {
+    const handleClick = jest.fn();
+    render(<MembersForm onSubmit={handleClick} />);
+    userEvent.click(
+      screen.getByRole("button", {
+        name: /crear/i,
+      })
+    );
+    await waitFor(() => {
+      expect(handleClick).not.toHaveBeenCalled();
+    });
+  });
+  it("should submit and create a member correctly", async () => {
+    const { dispatch } = mockReactRedux();
+    render(<MembersForm onSubmit={dispatch} />);
+    const inputName = await screen.findByTestId("inputName");
+    const inputImage = await screen.findByTestId("inputImage");
+    const inputFacebook = await screen.findByTestId("inputFacebook");
+    const inputLinkedin = await screen.findByTestId("inputLinkedin");
+    userEvent.type(inputName, dataForm.name);
+    userEvent.type(inputFacebook, dataForm.facebook);
+    userEvent.type(inputLinkedin, dataForm.linkedin);
+    userEvent.upload(inputImage, dataForm.image);
+    userEvent.click(
+      screen.getByRole("button", {
+        name: /crear/i,
+      })
+    );
+    mockAxios.post = jest.fn().mockRejectedValue({
+      data: {
+        success: true,
+      },
+    });
+    waitFor(async () => {
+      expect(mockAxios.post).toBeCalledWith("members", dataForm);
+      expect(screen.findByText("creado correctamente")).toBeInTheDocument();
+    });
+  });
+  it("should submit and edit a member correctly", async () => {
+    mockAxios.put = jest.fn().mockRejectedValue({
+      data: {
+        success: true,
+      },
+    });
+    waitFor(async () => {
+      expect(mockAxios.put).toBeCalledWith("members", dataForm);
+      expect(screen.findByText("El id: 1 se editó correctamente")).toBeInTheDocument();
+    });
+  });
+  it("should show error message if the user was not created", async () => {
+    mockAxios.post = jest.fn().mockRejectedValue({
+      data: {
+        success: false,
+      },
+    });
+    waitFor(async () => {
+      expect(mockAxios.post).toBeCalledWith("members", dataForm);
+      expect(screen.findByText("Ups! ocurrió un error inesperado")).toBeInTheDocument();
+    });
+  });
+  it("should show the error that it could not be edited correctly.", async () => {
+    mockAxios.put = jest.fn().mockRejectedValue({
+      data: {
+        success: true,
+      },
+    });
+    waitFor(async () => {
+      expect(mockAxios.put).toBeCalledWith("members", dataForm);
+      expect(screen.findByText("Ocurrio un error al editar el id")).toBeInTheDocument();
+    });
+  });
+  //For this test, CKEDITOR (MembersForm.js - lines 51 to 61) and lines 11 and 35, had to be commented/disabled
+  it("should show create form", () => {
+    render(<MembersForm />);
+    expect(screen.getByText("CREAR")).toBeInTheDocument();
+  });
+  //For this test, CKEDITOR (MembersForm.js - lines 51 to 61) and lines 11 and 35, had to be commented/disabled
   it("should show edit form", () => {
-      render(<MembersForm member={dataForm} />);
-
-      expect(screen.getByText("CREAR")).toBeInTheDocument();
+    render(<MembersForm member={dataForm} />);
+    expect(screen.getByText("CREAR")).toBeInTheDocument();
   });
-
-
-    it("should make request in action create", async () => {
-        const { dispatch } = mockReactRedux();
-        const getState = jest.fn();
-      
-        await newMember(dataForm)(dispatch, getState);
-      
-        await waitFor(() => {
-          expect(mockAxios.post).toBeCalledWith("members", dataForm);
-        });
+  it("should make request in action create", async () => {
+    const { dispatch } = mockReactRedux();
+    const getState = jest.fn();
+    await newMember(dataForm)(dispatch, getState);
+    await waitFor(() => {
+      expect(mockAxios.post).toBeCalledWith("members", dataForm);
     });
-
-
-})
-
+  });
+});
 
 
 
