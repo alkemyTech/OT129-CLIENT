@@ -7,11 +7,6 @@ const NavLinks = () => {
       <ul className="navbar-nav justify-content-end flex-grow-1 pe-4">
         <li className="nav-item space">
           <NavLink activeClassName="active" className="links" to="/backoffice/organization">
-            Home
-          </NavLink>
-        </li>
-        <li className="nav-item space">
-          <NavLink activeClassName="active" className="links" to="/backoffice/organization">
             Organización
           </NavLink>
         </li>
