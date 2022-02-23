@@ -1,9 +1,7 @@
 import { lazy } from "react";
 
 const HomePage = lazy(() => import(/* webpackChunkName: "LazyHomePage"*/ "../../Pages/HomePage"));
-const TestimonialForm = lazy(() =>
-  import(/* webpackChunkName: "LazyTestimonialsPage"*/ "../Testimonials/TestimonialsForm")
-);
+
 const ProjectsForm = lazy(() =>
   import(/* webpackChunkName: "LazyProjectsPage"*/ "../Projects/ProjectsForm")
 );
@@ -99,11 +97,6 @@ export const publicRoute = [
   {
     path: "/testimonios",
     component: TestimonialsPage,
-    exact: true,
-  },
-  {
-    path: "/testimonials/create",
-    component: TestimonialForm,
     exact: true,
   },
   {
