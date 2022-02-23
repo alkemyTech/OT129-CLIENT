@@ -29,6 +29,7 @@ function App() {
     "/novedades",
     "/novedades/:id",
     "/registro",
+    "/testimonios",
     "/testimonials/create",
     "/projects/create",
     "/login",
