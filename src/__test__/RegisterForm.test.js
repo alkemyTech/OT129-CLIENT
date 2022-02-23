@@ -6,28 +6,23 @@ import { mockReactRedux } from "mock-react-redux";
 import RegisterForm from "../Components/Auth/RegisterForm";
 import { getRegistered } from "../features/auth/authSlice";
 
-import { create, mockedUser } from "./__mocks__/registerThunk";
-
 const mockAxios = require("axios").default;
 
-/**
- *
- * @param {string} query
- * @returns {Function}
- */
+const testUser = {
+  name: "Shinji",
+  email: "ikarishinji@nerv.com",
+  password: "!1ikarikun",
+  address: "Misato's House 123, Tokyo 3",
+};
+
 const querySetter = (query) => {
   return screen.getByPlaceholderText(`Ingresa tu ${query}`);
 };
-/**
- *
- * @param {string} field
- * @returns {Function}
- */
+
 const errorMsg = (field) => {
   return screen.getByText(`El campo ${field.toUpperCase()} es requerido`);
 };
 
-//TESTS
 describe("<RegisterForm /> ", () => {
   it("Displaying error messages if required fields are empty", async () => {
     const { dispatch } = mockReactRedux();
@@ -61,11 +56,11 @@ describe("<RegisterForm /> ", () => {
 
     render(<RegisterForm onSubmit={dispatch} />);
 
-    userEvent.type(querySetter("nombre"), "Shinji");
-    userEvent.type(querySetter("email"), "ikarishinji@nerv.com");
-    userEvent.type(querySetter("contraseña"), "!1ikarikun");
-    userEvent.type(screen.getByPlaceholderText("Confirma tu contraseña"), "!1ikarikun");
-    userEvent.type(querySetter("dirección"), "Misato's house 123, Tokyo 3");
+    userEvent.type(querySetter("nombre"), testUser.name);
+    userEvent.type(querySetter("email"), testUser.email);
+    userEvent.type(querySetter("contraseña"), testUser.password);
+    userEvent.type(screen.getByPlaceholderText("Confirma tu contraseña"), testUser.password);
+    userEvent.type(querySetter("dirección"), testUser.address);
     userEvent.click(screen.getByTestId("conditions"));
     userEvent.click(screen.getByTestId("registerButton"));
 
@@ -74,67 +69,37 @@ describe("<RegisterForm /> ", () => {
       expect(dispatch).toHaveBeenCalledWith(expect.any(Function));
     });
   });
-  it.only("Should make request in action Creator", async () => {
+  it("Should make request at the right endpoint", async () => {
     const { dispatch } = mockReactRedux();
     const getState = jest.fn();
 
-    render(<RegisterForm onSubmit={dispatch} />);
-
-    // userEvent.type(querySetter("nombre"), "Shinji");
-    // userEvent.type(querySetter("email"), "ikarishinji@nerv.com");
-    // userEvent.type(querySetter("contraseña"), "!1ikarikun");
-    // userEvent.type(screen.getByPlaceholderText("Confirma tu contraseña"), "!1ikarikun");
-    // userEvent.type(querySetter("dirección"), "Misato's house 123, Tokyo 3");
-    // userEvent.click(screen.getByTestId("conditions"));
-    // userEvent.click(screen.getByTestId("registerButton"));
-
-    await getRegistered({ nombre: "", email: "", contrasena: "" })(dispatch, getState);
+    await getRegistered(testUser)(dispatch, getState);
 
     await waitFor(() => {
-      expect(dispatch).toHaveBeenCalledWith({
-        meta: {
-          arg: { contrasena: "", email: "", nombre: "" },
-          requestId: expect.any(String),
-          requestStatus: "pending",
-        },
-        payload: undefined,
-        type: "auth/getRegistered/pending",
-      });
-      expect(mockAxios.post).toHaveBeenCalled();
-      // expect(dispatch).toHaveBeenNthCalledWith(expect.any(Function));
+      expect(mockAxios.post).toHaveBeenCalledWith(process.env.REACT_APP_API_REGISTER, testUser);
     });
   });
-  // it.only("Should make request in action Creator", async () => {
-  //   const { dispatch } = mockReactRedux();
-  //   const getState = jest.fn();
+  it("Should display status messages according to the HTTP request", async () => {
+    const { dispatch } = mockReactRedux();
 
-  //   render(<RegisterForm onSubmit={dispatch} />);
+    render(<RegisterForm onSubmit={dispatch} />);
 
-  //   userEvent.type(querySetter("nombre"), "Shinji");
-  //   userEvent.type(querySetter("email"), "ikarishinji@nerv.com");
-  //   userEvent.type(querySetter("contraseña"), "!1ikarikun");
-  //   userEvent.type(screen.getByPlaceholderText("Confirma tu contraseña"), "!1ikarikun");
-  //   userEvent.type(querySetter("dirección"), "Misato's house 123, Tokyo 3");
-  //   userEvent.click(screen.getByTestId("conditions"));
-  //   userEvent.click(screen.getByTestId("registerButton"));
+    userEvent.type(querySetter("nombre"), testUser.name);
+    userEvent.type(querySetter("email"), testUser.email);
+    userEvent.type(querySetter("contraseña"), testUser.password);
+    userEvent.type(screen.getByPlaceholderText("Confirma tu contraseña"), testUser.password);
+    userEvent.type(querySetter("dirección"), testUser.address);
+    userEvent.click(screen.getByTestId("conditions"));
+    userEvent.click(screen.getByTestId("registerButton"));
 
-  //   mockAxios.post = jest.fn().mockResolvedValue({
-  //     data: {
-  //       data: {
-  //         token: "",
-  //       },
-  //     },
-  //   });
-  //   await waitFor(() => {
-  //     expect(dispatch).toHaveBeenCalledWith(
-  //       getRegistered({
-  //         nombre: "Shinji",
-  //         email: "ikarishinji@nerv.com",
-  //         contrasena: "!1ikarikun",
-  //         direccion: "Misato's house 123, Tokyo 3",
-  //       })(dispatch, getState)
-  //     );
-  //     expect(mockAxios.post).toHaveBeenCalled();
-  //   });
-  // });
+    mockAxios.post = jest.fn().mockResolvedValue({
+      data: {
+        success: true,
+      },
+    });
+
+    waitFor(() => {
+      expect(screen.getByText("Registro exitoso, inicie sesión.")).toBeInTheDocument();
+    });
+  });
 });
