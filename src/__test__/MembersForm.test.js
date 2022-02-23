@@ -36,6 +36,7 @@ describe("<MembersForm />", () => {
   });
   it("should prevent submiting form with empty fields", async () => {
     const handleClick = jest.fn();
+    
     render(<MembersForm onSubmit={handleClick} />);
     userEvent.click(
       screen.getByRole("button", {
@@ -48,11 +49,13 @@ describe("<MembersForm />", () => {
   });
   it("should submit and create a member correctly", async () => {
     const { dispatch } = mockReactRedux();
+
     render(<MembersForm onSubmit={dispatch} />);
     const inputName = await screen.findByTestId("inputName");
     const inputImage = await screen.findByTestId("inputImage");
     const inputFacebook = await screen.findByTestId("inputFacebook");
     const inputLinkedin = await screen.findByTestId("inputLinkedin");
+
     userEvent.type(inputName, dataForm.name);
     userEvent.type(inputFacebook, dataForm.facebook);
     userEvent.type(inputLinkedin, dataForm.linkedin);
@@ -118,10 +121,10 @@ describe("<MembersForm />", () => {
   it("should make request in action create", async () => {
     const { dispatch } = mockReactRedux();
     const getState = jest.fn();
+
     await newMember(dataForm)(dispatch, getState);
     await waitFor(() => {
       expect(mockAxios.post).toBeCalledWith("members", dataForm);
     });
   });
 });
-
