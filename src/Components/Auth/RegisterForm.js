@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Wrapper } from "@googlemaps/react-wrapper";
 
-import { getRegistered, selectAuth } from "../../features/auth/authSlice";
+import { getRegistered } from "../../features/auth/authSlice";
 import RegisterPopup from "../Popups/RegisterPopup";
 import Alert from "../Alert/Alert";
 
@@ -80,8 +80,6 @@ const RegisterForm = () => {
     };
 
     dispatch(getRegistered(body));
-    if (map) {
-    }
   };
 
   return (
