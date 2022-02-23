@@ -24,6 +24,7 @@ const LeaFletContainer = () => {
       <LeaFlet address={organization.address} position={position} />
       <p>Dirección: Cra. 22 ## 80-73, Bogotá, Colombia</p>
       <p>Email: somosfundacionmas@gmail.com</p>
+      <p>Teléfono: 1160112988</p>
     </div>
   );
 };
