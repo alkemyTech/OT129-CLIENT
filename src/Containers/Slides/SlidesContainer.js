@@ -21,8 +21,6 @@ const SlidesContainer = () => {
     dispatch(fetchSlides(searchValues));
   }, [dispatch, searchValues]);
 
-  console.log(slides);
-
   return (
     <div className="container mt-5">
       <TitleNav link="/backoffice/slides/create" linkTitle="Crear" title="Slides" />
