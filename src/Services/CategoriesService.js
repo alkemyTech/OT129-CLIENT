@@ -3,12 +3,12 @@ import { post, put, remove } from "./privateApiService";
 
 const ENDPOINT = process.env.REACT_APP_API_CATEGORIES;
 
-export const getCategories = () => {
-  return get(ENDPOINT);
+export const getCategories = (search = null) => {
+  return get(ENDPOINT, { search: search });
 };
 
 export const getCategoryById = (id) => {
-  return get(ENDPOINT, id);
+  return get(ENDPOINT, null, id);
 };
 
 export const createCategory = (data) => {

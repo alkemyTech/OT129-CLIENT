@@ -200,3 +200,11 @@ confirmAlerts(
 ## Unit Tests of components:
 
 - [Titles](./src/Components/Titles/README.test.md)
+
+## Hooks:
+
+- [useDebounceEffect](./src/hooks/useDebounceSearch.md)
+
+## Components:
+
+- [SearchInput](./src/Components/SearchInput/searchInput.md)

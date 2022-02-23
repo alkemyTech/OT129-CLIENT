@@ -16,8 +16,14 @@ import OrganizationContainer from "../../Containers/Organization/OrganizationCon
 import EditOrganization from "../../Containers/EditOrganization/EditOrganization";
 import TestimonialFormContainer from "../../Containers/Testimonials/TestimonialsFormContainer";
 import TestimonialListContainer from "../../Containers/Testimonials/TestimonialsListContainer";
+import Newsletter from "../../Pages/Newsletter";
 
 const routes = [
+  {
+    path: "/newsletter",
+    component: Newsletter,
+    exact: true,
+  },
   {
     path: "/backoffice",
     component: Backoffice,
@@ -39,7 +45,7 @@ const routes = [
     exact: true,
   },
   {
-    path: "/backoffice/activities/:id",
+    path: "/backoffice/activities/edit/:id",
     component: ActivitiesFormContainer,
     exact: true,
   },
@@ -54,7 +60,7 @@ const routes = [
     exact: true,
   },
   {
-    path: "/backoffice/news/:id",
+    path: "/backoffice/news/edit/:id",
     component: NewsContainer,
     exact: true,
   },
@@ -69,7 +75,7 @@ const routes = [
     exact: true,
   },
   {
-    path: "/backoffice/categories/:id",
+    path: "/backoffice/categories/edit/:id",
     component: CategoriesFormContainer,
     exact: true,
   },
@@ -84,6 +90,11 @@ const routes = [
     exact: true,
   },
   {
+    path: "/backoffice/slides/edit/:id",
+    component: SlidesForm,
+    exact: true,
+  },
+  {
     path: "/backoffice/users",
     component: UsersListContainer,
     exact: true,
@@ -94,7 +105,7 @@ const routes = [
     exact: true,
   },
   {
-    path: "/backoffice/users/:id",
+    path: "/backoffice/users/edit/:id",
     component: UsersFormContainer,
     exact: true,
   },
@@ -109,7 +120,7 @@ const routes = [
     exact: true,
   },
   {
-    path: "/backoffice/members/:id",
+    path: "/backoffice/members/edit/:id",
     component: MembersFormContainer,
     exact: true,
   },

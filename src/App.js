@@ -10,7 +10,6 @@ import { publicRoute } from "./Components/Route/publicRoutes";
 import PrivateRoute from "./Components/Route/PrivateRoute";
 import LayoutPublic from "./Components/Layout/LayoutPublic";
 import Error404Page from "./Pages/Error404Page";
-
 const SchoolCampaign = lazy(() =>
   import(/* webpackChunkName: "LazySchoolCampaignPage"*/ "./Campaigns/School/SchoolCampaign")
 );
@@ -34,6 +33,7 @@ function App() {
     "/testimonials/create",
     "/projects/create",
     "/login",
+    "/newsletter",
   ];
   const privatesRoutes = ["/backoffice", "/backoffice/*"];
 

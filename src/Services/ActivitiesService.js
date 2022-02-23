@@ -3,12 +3,12 @@ import { post, put, remove } from "./privateApiService";
 
 const ENDPOINT = process.env.REACT_APP_API_ACTIVITIES_ENDPOINT;
 
-export const getActivities = () => {
-  return get(ENDPOINT);
+export const getActivities = (search = null) => {
+  return get(ENDPOINT, { search: search });
 };
 
 export const getActivityByID = (id) => {
-  return get(ENDPOINT, id);
+  return get(ENDPOINT, null, id);
 };
 
 export const createActivity = (data) => {
