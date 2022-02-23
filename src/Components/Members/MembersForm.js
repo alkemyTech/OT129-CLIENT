@@ -20,7 +20,7 @@ const MembersForm = ({ member = {}, handleSub }) => {
     linkedinUrl: member.linkedinUrl ?? "",
   };
   const onSubmit = async (formData) => {
-    const resultBase = toBase64(formData.image);
+    const resultBase = await toBase64(formData.image);
     const newMember = { ...formData, image: resultBase };
 
     handleSub(newMember);

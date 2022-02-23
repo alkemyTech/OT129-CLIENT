@@ -3,10 +3,10 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { getNews } from "../../Services/NewsService";
 import { STATUS } from "../../constants";
 
-export const fetchNews = createAsyncThunk("news/get", async () => {
+export const fetchNews = createAsyncThunk("news/get", async (search) => {
   const {
     data: { data },
-  } = await getNews();
+  } = await getNews(search);
 
   return data;
 });

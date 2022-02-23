@@ -9,10 +9,10 @@ import {
 } from "../../Services/MembersService";
 import { STATUS } from "../../constants";
 
-export const fetchMembers = createAsyncThunk("members/get", async () => {
+export const fetchMembers = createAsyncThunk("members/get", async (search) => {
   const {
     data: { data },
-  } = await getMembers();
+  } = await getMembers(search);
 
   return data;
 });

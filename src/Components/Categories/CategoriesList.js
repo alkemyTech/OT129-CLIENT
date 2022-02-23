@@ -22,7 +22,7 @@ const CategoriesList = ({ data, onDelete }) => {
             <td>{el.name}</td>
             <td>{formatDate(el.created_at)}</td>
             <td>
-              <Link to={`/backoffice/categories/${el.id}`}>
+              <Link to={`/backoffice/categories/edit/${el.id}`}>
                 <button className="btn-list btn-edit" title="Editar">
                   <i className="fas fa-pencil-alt" />
                 </button>

@@ -6,7 +6,7 @@ import { selectAuth } from "../../features/auth/authSlice";
 import { logout } from "../../features/auth/authSlice";
 import ONGLogo from "../../assets/onglogo.png";
 
-import "./Header.css";
+import styles from "./Header.module.css";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -16,46 +16,51 @@ const Header = () => {
   } = useSelector(selectAuth);
 
   const menuPublic = [
-    { link: "/", name: "Inicio", id: 1 },
-    { link: "/nosotros", name: "Nosotros", id: 2 },
-    { link: "/novedades", name: "Novedades", id: 3 },
-    { link: "/actividades", name: "Actividades", id: 4 },
-    { link: "/school-campaign", name: "Campaña Escolar", id: 5 },
-    { link: "/toys-campaign", name: "Campaña Juguetes", id: 6 },
+    { link: "/", name: "Inicio", id: 1, target: "_self" },
+    { link: "/nosotros", name: "Nosotros", id: 2, target: "_self" },
+    { link: "/novedades", name: "Novedades", id: 3, target: "_self" },
+    { link: "/actividades", name: "Actividades", id: 4, target: "_self" },
+    { link: "/school-campaign", name: "Campaña Escolar", id: 5, target: "_blank" },
+    { link: "/toys-campaign", name: "Campaña Juguetes", id: 6, target: "_blank" },
   ];
 
   return (
     <>
-      <header className="container d-flex align-items-center justify-content-between p-0 my-4">
-        <img alt="logo" className="img-fluid " src={ONGLogo} style={{ width: "7rem" }} />
-        <nav>
+      <header className={`container p-0 my-4 ${styles.header}`}>
+        <NavLink to="/">
+          <img alt="logo" className="img-fluid " src={ONGLogo} style={{ width: "7rem" }} />
+        </NavLink>
+        <nav className={styles["nav"]}>
           {menuPublic.map((item) => {
             return (
               <NavLink
                 key={item.id.toString()}
                 exact
-                activeClassName="active"
-                className="link-to-section container-fluid"
+                activeClassName={styles.active}
+                className={styles.linkToSection}
+                target={item.target}
                 to={item.link.toString()}
               >
                 {item.name}
               </NavLink>
             );
           })}
-          <NavLink
-            exact
-            activeClassName="active"
-            className="link-to-section container-fluid"
-            to="/contacto"
-          >
-            Contacto
-          </NavLink>
+          {(!auth || (auth && role_id === 2)) && (
+            <NavLink
+              exact
+              activeClassName={styles.active}
+              className={styles.linkToSection}
+              to="/contacto"
+            >
+              Contacto
+            </NavLink>
+          )}
         </nav>
-        <div className="d-flex">
+        <div className={styles.containerButtons}>
           {auth ? (
             <>
               <Link
-                className="general-btn stroke-btn icono-btn text-decoration-none"
+                className={`stroke-btn text-decoration-none ${styles.iconoBtn}`}
                 data-bs-placement="bottom"
                 data-bs-toggle="tooltip"
                 title="Cerrar Sesión"
@@ -67,7 +72,7 @@ const Header = () => {
                 <i className="fas fa-sign-out-alt" />
               </Link>
               {role_id === 2 && (
-                <Link className="general-btn fill-btn text-decoration-none" to="/donar">
+                <Link className="general-btn stroke-btn text-decoration-none" to="/donar">
                   Donar
                 </Link>
               )}
@@ -75,7 +80,7 @@ const Header = () => {
           ) : (
             <>
               <Link
-                className="general-btn stroke-btn icono-btn text-decoration-none"
+                className={`stroke-btn text-decoration-none ${styles.iconoBtn}`}
                 data-bs-placement="bottom"
                 data-bs-toggle="tooltip"
                 title="Iniciar Sesión"
@@ -83,7 +88,7 @@ const Header = () => {
               >
                 <i className="fas fa-sign-in-alt" />
               </Link>
-              <Link className="general-btn fill-btn text-decoration-none" to="/registro">
+              <Link className="general-btn stroke-btn text-decoration-none" to="/registro">
                 Registro
               </Link>
             </>
