@@ -3,8 +3,8 @@ import { post, put, remove } from "./privateApiService";
 
 const ENDPOINT = process.env.REACT_APP_API_USERS_ENDPOINT;
 
-export const getUsers = () => {
-  return get(ENDPOINT);
+export const getUsers = (search = null) => {
+  return get(ENDPOINT, { search: search });
 };
 
 export const getUsersByID = (id) => {

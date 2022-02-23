@@ -1,6 +1,6 @@
 import React from "react";
 
-import UsersListContainer from "../Comtainers/Users/UsersListContainer";
+import UsersListContainer from "../Containers/Users/UsersListContainer";
 
 const BackOfficeUsersPage = () => {
   return (
