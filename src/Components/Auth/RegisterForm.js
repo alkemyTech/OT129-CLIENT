@@ -3,9 +3,7 @@ import { Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { Wrapper } from "@googlemaps/react-wrapper";
-import { Redirect } from "react-router-dom";
 
-import { selectAuth } from "../../features/auth/authSlice";
 import { getRegistered } from "../../features/auth/authSlice";
 import RegisterPopup from "../Popups/RegisterPopup";
 import { alerts } from "../../utils/alerts";
@@ -53,7 +51,6 @@ const validationSchema = Yup.object({
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
-  const { auth } = useSelector(selectAuth);
   const [map, setMap] = useState({});
   const [address, setAddress] = useState("");
 
@@ -88,9 +85,7 @@ const RegisterForm = () => {
       .catch(() => alerts("El email ingresado ya se encuentra registrado", "error"));
   };
 
-  return auth ? (
-    <Redirect to="/" />
-  ) : (
+  return (
     <div className="container">
       <div className="form-container my-3">
         <Formik
