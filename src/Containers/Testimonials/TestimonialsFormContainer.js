@@ -25,21 +25,17 @@ const TestimonialsFormContainer = () => {
           alerts("Ups! ocurrió un error inesperado al crear el testimonio", "error");
         });
     } else {
-      confirmAlerts(
-        "¿Estás seguro?",
-        `Se editará el testimonio id: ${testimonial.id}`,
-        function (response) {
-          if (response) {
-            dispatch(putTestimonial({ data, id: testimonial.id }))
-              .then(() => {
-                alerts(`El testimonio id: ${testimonial.id} se editó correctamente`, "success");
-              })
-              .catch(() => {
-                alerts(`Ocurrió un error al editar el testimonio id: ${testimonial.id} `, "error");
-              });
-          }
+      confirmAlerts("¿Estás seguro?", `Se editará el testimonio id: ${id}`, function (response) {
+        if (response) {
+          dispatch(putTestimonial({ data, id: id }))
+            .then(() => {
+              alerts(`El testimonio id: ${id} se editó correctamente`, "success");
+            })
+            .catch(() => {
+              alerts(`Ocurrió un error al editar el testimonio id: ${id} `, "error");
+            });
         }
-      );
+      });
     }
   };
 

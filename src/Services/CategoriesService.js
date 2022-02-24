@@ -8,7 +8,7 @@ export const getCategories = (search = null) => {
 };
 
 export const getCategoryById = (id) => {
-  return get(ENDPOINT, id);
+  return get(ENDPOINT, null, id);
 };
 
 export const createCategory = (data) => {

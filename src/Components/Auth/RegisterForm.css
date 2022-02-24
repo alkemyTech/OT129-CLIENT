@@ -7,6 +7,9 @@
   border: 1px solid rgba(123, 161, 201, 0.5);
   border-radius: 0.5rem;
 }
+.login-container {
+  margin: 5rem auto !important;
+}
 .register-input {
   padding: 0.75rem 1rem;
   font-family: var(--font-family);

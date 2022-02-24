@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import { getSlides } from "../../Services/SlidesServices";
 import { addOrganization } from "../../Services/OrganizationService";
 
-import HomeSlides from "./HomeSlides";
+import HomeSlides from "./HomeSlides/HomeSlides";
 
 const formSchema = Yup.object().shape({
   welcome_text: Yup.string()

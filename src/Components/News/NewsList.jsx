@@ -10,7 +10,7 @@ import NewsTable from "./NewsTable";
 
 const NewsList = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const searchValues = useDebounceSearch(searchTerm, 400);
+  const searchValues = useDebounceSearch(searchTerm);
   const { news } = useSelector(selectorNews);
   const dispatch = useDispatch();
   const handleSearch = (e) => {
