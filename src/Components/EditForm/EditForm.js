@@ -33,17 +33,16 @@ const EditForm = ({ data }) => {
       {(formik) => (
         <form
           noValidate
-          className="mt-3 mb-3"
+          className="form-backoffice"
           id="editOrganizationForm"
-          method=""
           onSubmit={formik.handleSubmit}
         >
-          <div className="form-group mb-3">
-            <label className="form-label" htmlFor="name">
-              Name:
+          <div className="form-group">
+            <label className="form-label fw-bold mt-1" htmlFor="name">
+              Nombre:
             </label>
             <input
-              className="form-control mb-3"
+              className="form-control form-control-sm w-100 mb-3"
               id="name"
               name="name"
               type="text"
@@ -52,51 +51,45 @@ const EditForm = ({ data }) => {
             />
             <ErrorMessage className="alert-danger" component={Alert} name="name" />
           </div>
-          <div className="form-group mb-3">
-            <label className="form-label" htmlFor="logo">
+          <div className="form-group">
+            <label className="form-label fw-bold mt-1" htmlFor="logo">
               Logo:
             </label>
             <input
               accept="image/png, image/jpeg"
-              className="form-control mb-3"
+              className="form-control form-control-sm w-100 mb-3"
               id="logo"
               name="logo"
               type="file"
               onChange={formik.handleChange}
             />
-            <div className="card" style={{ width: "18rem" }}>
-              <img alt="logo" className="card-img-top" loading="lazy" src={IMG_PREVIEW} />
-              <div className="card-body">
-                <h5 className="card-title text-center alert alert-warning">Current Logo</h5>
-              </div>
-            </div>
             <ErrorMessage className="alert-danger" component={Alert} name="logo" />
           </div>
-          <div className="form-group mb-3">
-            <label className="form-label" htmlFor="shortDescription">
-              Short Description:
+          <div className="form-group mb-3" style={{ width: "18rem" }}>
+            <label className="form-label fw-bold mt-1">(Imagen actual)</label>
+            <img alt="logo" className="preview-image" loading="lazy" src={IMG_PREVIEW} />
+          </div>
+          <div className="form-group">
+            <label className="form-label fw-bold mt-1" htmlFor="shortDescription">
+              Descripción corta:
             </label>
-            <div className="alert alert-warning">
-              <h5>Current</h5>
-              <p>{data.shortDescription}</p>
-            </div>
             <CKEditor
               required
               editor={ClassicEditor}
               id="shortDescription"
               name="shortDescription"
               onChange={(event, editor) => {
-                formik.setFieldValue("shortDescription", editor.getData());
+                formik.setFieldValue(data.shortDescription, editor.getData());
               }}
             />
             <ErrorMessage className="alert-danger" component={Alert} name="shortDescription" />
           </div>
-          <div className="form-group mb-3">
-            <label className="form-label" htmlFor="longDescription">
-              Long Description:
+          <div className="form-group">
+            <label className="form-label fw-bold mt-1" htmlFor="longDescription">
+              Descripción larga:
             </label>
             <textarea
-              className="form-control mb-3"
+              className="form-control form-control-sm w-100 mb-3"
               id="longDescription"
               name="longDescription"
               style={{ maxHeight: "250px", minHeight: "250px" }}
@@ -105,12 +98,12 @@ const EditForm = ({ data }) => {
             />
             <ErrorMessage className="alert-danger" component={Alert} name="longDescription" />
           </div>
-          <div className="form-group mb-3">
-            <label className="form-label" htmlFor="emailLink">
+          <div className="form-group">
+            <label className="form-label fw-bold mt-1" htmlFor="emailLink">
               Email:
             </label>
             <input
-              className="form-control mb-3"
+              className="form-control form-control-sm w-100 mb-3"
               id="emailLink"
               name="emailLink"
               type="email"
@@ -119,12 +112,12 @@ const EditForm = ({ data }) => {
             />
             <ErrorMessage className="alert-danger" component={Alert} name="emailLink" />
           </div>
-          <div className="form-group mb-3">
-            <label className="form-label" htmlFor="instagramLink">
+          <div className="form-group">
+            <label className="form-label fw-bold mt-1" htmlFor="instagramLink">
               Instagram:
             </label>
             <input
-              className="form-control mb-3"
+              className="form-control form-control-sm w-100 mb-3"
               id="instagramLink"
               name="instagramLink"
               type="url"
@@ -133,12 +126,12 @@ const EditForm = ({ data }) => {
             />
             <ErrorMessage className="alert-danger" component={Alert} name="instagramLink" />
           </div>
-          <div className="form-group mb-3">
-            <label className="form-label" htmlFor="twitterLink">
+          <div className="form-group">
+            <label className="form-label fw-bold mt-1" htmlFor="twitterLink">
               Twitter:
             </label>
             <input
-              className="form-control mb-3"
+              className="form-control form-control-sm w-100 mb-3"
               id="twitterLink"
               name="twitterLink"
               type="url"
@@ -147,7 +140,7 @@ const EditForm = ({ data }) => {
             />
             <ErrorMessage className="alert-danger" component={Alert} name="twitterLink" />
           </div>
-          <button className="btn btn-primary" type="submit">
+          <button className="submit-btn" type="submit">
             Submit
           </button>
         </form>

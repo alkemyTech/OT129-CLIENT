@@ -10,6 +10,7 @@ import {
   putTestimonial,
   selectorTestimonials,
 } from "../../features/Testimonials/testimonialsSlice";
+import TitleNav from "../../Components/TitleNav/TitleNav";
 
 const TestimonialsFormContainer = () => {
   const { id } = useParams();
@@ -49,7 +50,12 @@ const TestimonialsFormContainer = () => {
     }
   }, [id]);
 
-  return <TestimonialsForm handleSubmit={handleSubmit} testimonial={testimonial} />;
+  return (
+    <div className="container mt-3">
+      <TitleNav link="/backoffice/testimonials" linkTitle="Volver" />
+      <TestimonialsForm handleSubmit={handleSubmit} testimonial={testimonial} />
+    </div>
+  );
 };
 
 export default TestimonialsFormContainer;

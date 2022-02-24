@@ -2,6 +2,7 @@
 import React from "react";
 
 import EditForm from "../../Components/EditForm/EditForm";
+import TitleNav from "../../Components/TitleNav/TitleNav";
 
 //datos mockups
 const data = {
@@ -17,8 +18,8 @@ const data = {
 };
 const EditOrganization = () => {
   return (
-    <div className="container">
-      <div className="alert alert-warning text-center mt-3">Editar organización</div>
+    <div className="container mt-3">
+      <TitleNav link="/backoffice/organization" linkTitle="Volver" />
       <EditForm data={data} />
     </div>
   );

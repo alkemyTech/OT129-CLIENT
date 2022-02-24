@@ -7,8 +7,8 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import PropTypes from "prop-types";
 
 import { toBase64 } from "../../utils/toBase64";
-import ContainerFormCard from "../../Containers/ContainerFormCard";
 import { getSlides, postSlides, putSlides } from "../../Services/SlidesServices";
+import Alert from "../Alert/Alert";
 
 const SlidesForm = () => {
   const [initialValues, setInitialValues] = useState({
@@ -102,103 +102,104 @@ const SlidesForm = () => {
       {loading ? (
         <p>LOADING...</p>
       ) : (
-        <ContainerFormCard>
-          <Formik
-            enableReinitialize
-            initialValues={initialValues}
-            validationSchema={validations}
-            onSubmit={async (values, { resetForm }) => {
-              const resultbase = await toBase64(values.image);
-              let formValues = {
-                name: values.name,
-                description: values.description,
-                order: values.order,
-                image: resultbase,
-              };
+        <Formik
+          enableReinitialize
+          initialValues={initialValues}
+          validationSchema={validations}
+          onSubmit={async (values, { resetForm }) => {
+            const resultbase = await toBase64(values.image);
+            let formValues = {
+              name: values.name,
+              description: values.description,
+              order: values.order,
+              image: resultbase,
+            };
 
-              await handleSubmit(formValues);
+            await handleSubmit(formValues);
 
-              // limpio el input file
-              inputFileRef.current.value = "";
+            // limpio el input file
+            inputFileRef.current.value = "";
 
-              resetForm();
-            }}
-          >
-            {({ setFieldValue }) => (
-              <Form className="p-4">
-                <label className="form-label fw-bold" htmlFor="name">
+            resetForm();
+          }}
+        >
+          {({ setFieldValue }) => (
+            <Form className="form-backoffice">
+              <div className="form-group">
+                <label className="form-label fw-bold mt-1 fw-bold" htmlFor="name">
                   Titulo
                 </label>
                 <Field
-                  className="form-control form-control-sm w-100"
+                  className="form-control form-control-sm w-100 mb-3"
                   id="name"
                   name="name"
                   placeholder="Titulo"
                   type="text"
                 />
 
-                <ErrorMessage className="text-danger" component="span" name="name" />
-                <div className="mb-1">
-                  <label className="form-label fw-bold mt-1" htmlFor="fdescription">
-                    Descripcion
-                  </label>
-                  <Field name="description">
-                    {({ field }) => (
-                      <>
-                        <CKEditor
-                          data={field.value}
-                          editor={ClassicEditor}
-                          onChange={(event, editor) => {
-                            setFieldValue(field.name, editor.getData());
-                          }}
-                        />
-                      </>
-                    )}
-                  </Field>
-                  <ErrorMessage className="text-danger" component="span" name="description" />
-                </div>
-
-                <div className="mb-1">
-                  <label className="form-label fw-bold mt-1" htmlFor="order">
-                    Numero de orden
-                  </label>
-                  <Field
-                    className="input-field"
-                    id="order"
-                    name="order"
-                    placeholder="ingrese un numero"
-                    type="number"
-                    onChange={(e) => {
-                      setFieldValue("order", parseInt(e.currentTarget.value));
-                    }}
-                  />
-                </div>
-                <ErrorMessage className="text-danger" component="span" name="order" />
-                <label className="form-label fw-bold mt-1" htmlFor="order">
+                <ErrorMessage component={Alert} name="name" />
+              </div>
+              <div className="form-group mb-3">
+                <label className="form-label fw-bold mt-1 fw-bold mt-1" htmlFor="fdescription">
+                  Descripcion
+                </label>
+                <Field name="description">
+                  {({ field }) => (
+                    <>
+                      <CKEditor
+                        data={field.value}
+                        editor={ClassicEditor}
+                        onChange={(event, editor) => {
+                          setFieldValue(field.name, editor.getData());
+                        }}
+                      />
+                    </>
+                  )}
+                </Field>
+                <ErrorMessage component={Alert} name="description" />
+              </div>
+              <div className="form-group">
+                <label className="form-label fw-bold mt-1 fw-bold mt-1" htmlFor="order">
+                  Numero de orden
+                </label>
+                <Field
+                  className="form-control form-control-sm w-100 mb-3"
+                  id="order"
+                  name="order"
+                  placeholder="ingrese un numero"
+                  type="number"
+                  onChange={(e) => {
+                    setFieldValue("order", parseInt(e.currentTarget.value));
+                  }}
+                />
+                <ErrorMessage component={Alert} name="order" />
+              </div>
+              <div className="form-group mb-3">
+                <label className="form-label fw-bold mt-1 fw-bold mt-1" htmlFor="order">
                   Cargar Imagen
                 </label>
                 <input
                   ref={inputFileRef}
                   accept=".jpg, .png"
-                  className="input-field"
+                  className="form-control form-control-sm w-100 mb-3"
                   type="file"
                   onChange={(e) => {
                     setFieldValue("image", e.currentTarget.files[0]);
                   }}
                 />
-                <ErrorMessage className="text-danger" component="span" name="image" />
-                <button className="btn btn-primary w-100 mt-2 fw-bold" type="submit">
-                  <span
-                    aria-hidden="true"
-                    className={loading ? "spinner-border spinner-border-sm" : null}
-                    role="status"
-                  />
-                  {id === undefined ? "AGREGAR SLIDES" : "EDITAR SLIDES"}
-                </button>
-              </Form>
-            )}
-          </Formik>
-        </ContainerFormCard>
+                <ErrorMessage component={Alert} name="image" />
+              </div>
+              <button className="btn btn-primary w-100 mt-2 fw-bold" type="submit">
+                <span
+                  aria-hidden="true"
+                  className={loading ? "spinner-border spinner-border-sm" : null}
+                  role="status"
+                />
+                {id === undefined ? "AGREGAR SLIDES" : "EDITAR SLIDES"}
+              </button>
+            </Form>
+          )}
+        </Formik>
       )}
     </>
   );

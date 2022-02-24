@@ -6,21 +6,18 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import PropTypes from "prop-types";
 
 import { toBase64 } from "../../utils/toBase64";
-
-const ErrorComponent = (props) => {
-  return <p>{props.children}</p>;
-};
+import Alert from "../Alert/Alert";
 
 const validationSchema = Yup.object({
   name: Yup.string()
     .min(4, "El título debe contener un mínimo de 4 carácteres.")
-    .required("Requerido"),
+    .required("El título es requerido."),
   image: Yup.mixed()
-    .required("Requerido")
+    .required("La imagen es requerida.")
     .test("fileType", "Formato incorrecto. Sólo se aceptan archivos .jpg, .jpeg, .png", (value) => {
       if (value) return ["image/jpeg", "image/jpg", "image/png"].includes(value.type);
     }),
-  description: Yup.string().required("Requerido"),
+  description: Yup.string().required("La descripción es requerida."),
 });
 
 const CategoriesForm = ({ category = {}, handleSubmit }) => {
@@ -46,50 +43,61 @@ const CategoriesForm = ({ category = {}, handleSubmit }) => {
       value={formik}
       onSubmit={onSubmit}
     >
-      <Form className="form-container">
-        <input
-          className="input-field"
-          id="name"
-          name="name"
-          placeholder={initialValues.name || "Título"}
-          type="text"
-          {...formik.getFieldProps("name")}
-        />
-        <ErrorMessage className="alert-danger" name="name" />
-        {initialValues.image ? (
-          <img alt={initialValues.name} height="150" src={initialValues.image} width="200" />
-        ) : (
-          <p>No hay imagen guardada.</p>
-        )}
-        <input
-          className="input-field"
-          name="image"
-          type="file"
-          onChange={(e) => {
-            formik.setFieldValue("image", e.currentTarget.files[0]);
-          }}
-        />
-        <ErrorMessage component={ErrorComponent} name="image" />
-        <CKEditor
-          config={{ placeholder: `${initialValues.description}` }}
-          data={initialValues.description}
-          editor={ClassicEditor}
-          name="description"
-          onChange={(e, editor) => {
-            formik.setFieldValue("description", editor.getData());
-          }}
-        />
-        <ErrorMessage component={ErrorComponent} name="description" />
+      <Form className="form-backoffice">
+        <div className="form-group">
+          <label className="form-label fw-bold mt-1 fw-bold mt-1">Nombre</label>
+          <input
+            className="form-control form-control-sm w-100 mb-3"
+            id="name"
+            name="name"
+            placeholder={initialValues.name || "Título"}
+            type="text"
+            {...formik.getFieldProps("name")}
+          />
+          <ErrorMessage className="alert-danger" component={Alert} name="name" />
+        </div>
+        <div className="form-group">
+          {initialValues.image ? (
+            <>
+              <label className="form-label fw-bold mt-1 fw-bold mt-1">(Imagen actual)</label>
+              <img
+                alt={initialValues.name}
+                className="preview-image mb-3"
+                src={initialValues.image}
+              />
+            </>
+          ) : (
+            <label className="form-label fw-bold mt-1 fw-bold mt-1">Imagen</label>
+          )}
+          <input
+            className="form-control form-control-sm w-100 mb-3"
+            name="image"
+            type="file"
+            onChange={(e) => {
+              formik.setFieldValue("image", e.currentTarget.files[0]);
+            }}
+          />
+          <ErrorMessage className="alert-danger" component={Alert} name="image" />
+        </div>
+        <div className="form-group mb-3">
+          <label className="form-label fw-bold mt-1 fw-bold mt-1">Descripción</label>
+          <CKEditor
+            config={{ placeholder: `${initialValues.description}` }}
+            data={initialValues.description}
+            editor={ClassicEditor}
+            name="description"
+            onChange={(e, editor) => {
+              formik.setFieldValue("description", editor.getData());
+            }}
+          />
+          <ErrorMessage className="alert-danger" component={Alert} name="description" />
+        </div>
         <button className="submit-btn" type="submit">
           Enviar
         </button>
       </Form>
     </FormikProvider>
   );
-};
-
-ErrorComponent.propTypes = {
-  children: PropTypes.string.isRequired,
 };
 
 CategoriesForm.propTypes = {
