@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import NewsTableRow from "./NewsTableRow";
 
-const NewsTable = ({ news }) => {
+const NewsTable = ({ news, onDelete }) => {
   return (
     <>
       {news ? (
@@ -19,7 +19,7 @@ const NewsTable = ({ news }) => {
           </thead>
           <tbody>
             {news?.map((data) => (
-              <NewsTableRow key={data.id} data={data} />
+              <NewsTableRow key={data.id} data={data} onDelete={onDelete} />
             ))}
           </tbody>
         </table>
@@ -42,5 +42,6 @@ NewsTable.propTypes = {
       id: PropTypes.number.isRequired,
     })
   ),
+  onDelete: PropTypes.func,
 };
 export default NewsTable;
