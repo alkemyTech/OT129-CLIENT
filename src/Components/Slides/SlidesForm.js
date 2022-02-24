@@ -130,7 +130,7 @@ const SlidesForm = () => {
                   Titulo
                 </label>
                 <Field
-                  className="form-control form-control-sm w-100 mb-3"
+                  className="form-control form-control-sm w-100 mb-3 form-control form-control-sm w-100 mb-3-sm w-100 mb-3"
                   id="name"
                   name="name"
                   placeholder="Titulo"
@@ -163,7 +163,7 @@ const SlidesForm = () => {
                   Numero de orden
                 </label>
                 <Field
-                  className="form-control form-control-sm w-100 mb-3"
+                  className="form-control form-control-sm w-100 mb-3 form-control form-control-sm w-100 mb-3-sm w-100 mb-3"
                   id="order"
                   name="order"
                   placeholder="ingrese un numero"
@@ -181,7 +181,7 @@ const SlidesForm = () => {
                 <input
                   ref={inputFileRef}
                   accept=".jpg, .png"
-                  className="form-control form-control-sm w-100 mb-3"
+                  className="form-control form-control-sm w-100 mb-3 form-control form-control-sm w-100 mb-3-sm w-100 mb-3"
                   type="file"
                   onChange={(e) => {
                     setFieldValue("image", e.currentTarget.files[0]);
@@ -189,7 +189,7 @@ const SlidesForm = () => {
                 />
                 <ErrorMessage component={Alert} name="image" />
               </div>
-              <button className="btn btn-primary w-100 mt-2 fw-bold" type="submit">
+              <button className="submit-btn" type="submit">
                 <span
                   aria-hidden="true"
                   className={loading ? "spinner-border spinner-border-sm" : null}

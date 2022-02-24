@@ -36,7 +36,7 @@ const MembersForm = ({ member = {}, handleSub }) => {
             <label className="form-label fw-bold mt-1 fw-bold mt-1">Nombre</label>
             <Field
               autoComplete="off"
-              className="form-control form-control-sm w-100 mb-3"
+              className="form-control form-control-sm w-100 mb-3 form-control form-control-sm w-100 mb-3-sm w-100 mb-3 form-control form-control-sm w-100 mb-3-sm w-100 mb-3"
               data-testid="inputName"
               name="name"
               type="text"
@@ -64,7 +64,7 @@ const MembersForm = ({ member = {}, handleSub }) => {
             <label className="form-label fw-bold mt-1 fw-bold mt-1">Imagen</label>
             <input
               autoComplete="off"
-              className="form-control form-control-sm w-100 mb-3"
+              className="form-control form-control-sm w-100 mb-3 form-control form-control-sm w-100 mb-3-sm w-100 mb-3"
               data-testid="inputImage"
               name="image"
               type="file"
@@ -74,11 +74,17 @@ const MembersForm = ({ member = {}, handleSub }) => {
             />
             <ErrorMessage component={Alert} name="image" />
           </div>
+          {initialValues.image !== "" ? (
+            <div className="form-group mb-3">
+              <label className="form-label fw-bold mt-1 fw-bold mt-1">(Imagen actual)</label>
+              <img alt="Imagen" className="preview-image" src={member?.image} />
+            </div>
+          ) : null}
           <div className="form-group">
             <label className="form-label fw-bold mt-1 fw-bold">Facebook Url</label>
             <input
               autoComplete="off"
-              className="form-control form-control-sm w-100 mb-3"
+              className="form-control form-control-sm w-100 mb-3 form-control form-control-sm w-100 mb-3-sm w-100 mb-3"
               data-testid="inputFacebook"
               name="facebook"
               type="url"
@@ -90,7 +96,7 @@ const MembersForm = ({ member = {}, handleSub }) => {
             <label className="form-label fw-bold mt-1 fw-bold">Linkedin Url</label>
             <input
               autoComplete="off"
-              className="form-control form-control-sm w-100 mb-3"
+              className="form-control form-control-sm w-100 mb-3 form-control form-control-sm w-100 mb-3-sm w-100 mb-3"
               data-testid="inputLinkedin"
               name="linkedin"
               type="url"
@@ -98,7 +104,7 @@ const MembersForm = ({ member = {}, handleSub }) => {
             />
           </div>
           <ErrorMessage component={Alert} name="linkedinUrl" />
-          <button className="btn btn-primary w-100 mt-2 fw-bold" type="submit">
+          <button className="submit-btn" type="submit">
             {member.id ? "EDITAR" : "CREAR"}
           </button>
         </Form>

@@ -47,7 +47,7 @@ const CategoriesForm = ({ category = {}, handleSubmit }) => {
         <div className="form-group">
           <label className="form-label fw-bold mt-1 fw-bold mt-1">Nombre</label>
           <input
-            className="form-control form-control-sm w-100 mb-3"
+            className="form-control form-control-sm w-100 mb-3 form-control form-control-sm w-100 mb-3-sm w-100 mb-3"
             id="name"
             name="name"
             placeholder={initialValues.name || "Título"}
@@ -70,7 +70,7 @@ const CategoriesForm = ({ category = {}, handleSubmit }) => {
             <label className="form-label fw-bold mt-1 fw-bold mt-1">Imagen</label>
           )}
           <input
-            className="form-control form-control-sm w-100 mb-3"
+            className="form-control form-control-sm w-100 mb-3 form-control form-control-sm w-100 mb-3-sm w-100 mb-3"
             name="image"
             type="file"
             onChange={(e) => {

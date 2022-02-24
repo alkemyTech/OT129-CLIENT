@@ -34,7 +34,7 @@ const UsersForm = ({ users = {}, handleSub }) => {
           <div className="form-group">
             <label className="form-label fw-bold mt-1 fw-bold mt-1">Nombre</label>
             <input
-              className="form-control form-control-sm w-100 mb-3"
+              className="form-control form-control-sm w-100 mb-3 form-control form-control-sm w-100 mb-3-sm w-100 mb-3"
               id="name"
               name="name"
               placeholder={initialValues?.name || "Nombre"}
@@ -46,7 +46,7 @@ const UsersForm = ({ users = {}, handleSub }) => {
           <div className="form-group">
             <label className="form-label fw-bold mt-1 fw-bold mt-1"> Email:</label>
             <input
-              className="form-control form-control-sm w-100 mb-3"
+              className="form-control form-control-sm w-100 mb-3 form-control form-control-sm w-100 mb-3-sm w-100 mb-3"
               name="email"
               placeholder={initialValues?.email || "Email"}
               type="email"
@@ -58,7 +58,7 @@ const UsersForm = ({ users = {}, handleSub }) => {
             <label className="form-label fw-bold mt-1 fw-bold mt-1">Imagen:</label>
             <input
               accept="image/png, image/jpeg, image/jpg"
-              className="form-control form-control-sm w-100 mb-3"
+              className="form-control form-control-sm w-100 mb-3 form-control form-control-sm w-100 mb-3-sm w-100 mb-3"
               name="profile_image"
               type="file"
               onChange={(event) => {
@@ -67,6 +67,12 @@ const UsersForm = ({ users = {}, handleSub }) => {
             />
             <ErrorMessage component={Alert} name="image" />
           </div>
+          {initialValues.profile_image !== "" ? (
+            <div className="form-group">
+              <label className="form-label fw-bold mt-1 fw-bold mt-1">(Imagen actual)</label>
+              <img alt="Imagen actual" src={initialValues?.profile_image} />
+            </div>
+          ) : null}
           <div className="form-group mb-3">
             <label className="form-label fw-bold mt-1 fw-bold mt-1">Rol:</label>
             <select className="form-select" name="role_id" {...formik.getFieldProps("role_id")}>
@@ -76,7 +82,7 @@ const UsersForm = ({ users = {}, handleSub }) => {
             </select>
             <ErrorMessage component={Alert} name="role_id" />
           </div>
-          <button className="btn btn-primary w-100" type="submit">
+          <button className="submit-btn" type="submit">
             {users.id ? "EDITAR" : "CREAR"}
           </button>
         </Form>

@@ -53,7 +53,7 @@ const ActivitiesForm = ({ activity = {}, decideAction }) => {
             <div className="form-group">
               <label className="form-label fw-bold mt-1 fw-bold">Nombre</label>
               <input
-                className="form-control form-control-sm w-100 mb-3"
+                className="form-control form-control-sm w-100 mb-3 form-control form-control-sm w-100 mb-3-sm w-100 mb-3"
                 data-testid="inputTitle"
                 id="name"
                 name="name"
@@ -82,7 +82,7 @@ const ActivitiesForm = ({ activity = {}, decideAction }) => {
               <label className="form-label fw-bold mt-1 fw-bold">Imagen</label>
               <input
                 accept="image/png, image/jpeg"
-                className="mb-3"
+                className="form-control form-control-sm w-100 mb-3 form-control form-control-sm w-100 mb-3-sm w-100 mb-3"
                 data-testid="inputImage"
                 id="image"
                 name="image"
@@ -100,13 +100,15 @@ const ActivitiesForm = ({ activity = {}, decideAction }) => {
               />
             </div>
             <div className="form-group">
-              <label className="form-label fw-bold mt-1 fw-bold mt-1">(Imagen actual)</label>
               {activityImage && (
-                <img
-                  alt="Imagen actual"
-                  className="d-block preview-image mb-3"
-                  src={activityImage}
-                />
+                <>
+                  <label className="form-label fw-bold mt-1 fw-bold mt-1">(Imagen actual)</label>
+                  <img
+                    alt="Imagen actual"
+                    className="d-block preview-image mb-3"
+                    src={activityImage}
+                  />
+                </>
               )}
             </div>
             <button className="submit-btn" data-testid="btnSubmit" type="submit">

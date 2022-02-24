@@ -10,7 +10,6 @@ import { toBase64 } from "../../utils/toBase64";
 import { alerts } from "../../utils/alerts";
 import { createNews, editNews } from "../../Services/NewsService";
 import { getCategories } from "../../Services/CategoriesService";
-import "../BackOfficeForms.css";
 
 const NewsForm = ({ newId = {} }) => {
   const initialValues = {
@@ -87,7 +86,7 @@ const NewsForm = ({ newId = {} }) => {
             <label className="form-label fw-bold mt-1 fw-bold">Título</label>
             <input
               autoComplete="off"
-              className="form-control form-control-sm w-100 mb-3"
+              className="form-control form-control-sm w-100 mb-3 form-control form-control-sm w-100 mb-3-sm w-100 mb-3"
               data-testid="inputTitle"
               placeholder={initialValues.name}
               type="text"
@@ -128,7 +127,7 @@ const NewsForm = ({ newId = {} }) => {
             <label className="form-label fw-bold mt-1 fw-bold mt-1">Imagen</label>
             <input
               autoComplete="off"
-              className="form-control form-control-sm w-100 mb-3"
+              className="form-control form-control-sm w-100 mb-3 form-control form-control-sm w-100 mb-3-sm w-100 mb-3"
               data-testid="inputImage"
               name="image"
               type="file"
@@ -138,11 +137,13 @@ const NewsForm = ({ newId = {} }) => {
             />
           </div>
           <ErrorMessage className="text-danger" component={Alert} name="image" />
-          <button
-            className="btn btn-primary w-100 mt-2 fw-bold"
-            data-testid="btnSubmit"
-            type="submit"
-          >
+          {newId.image && (
+            <div className="form-group mb-3">
+              <label className="form-label fw-bold mt-1 fw-bold mt-1">(Imagen actual)</label>
+              <img alt="Imagen actual" className="preview-image" src={newId.image} />
+            </div>
+          )}
+          <button className="submit-btn" data-testid="btnSubmit" type="submit">
             <span
               aria-hidden="true"
               className={loading ? "spinner-border spinner-border-sm" : null}

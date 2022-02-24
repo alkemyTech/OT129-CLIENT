@@ -39,7 +39,7 @@ const TestimonialForm = ({ handleSubmit, testimonial = {} }) => {
               Nombre
             </label>
             <input
-              className="form-control mb-3"
+              className="form-control form-control-sm w-100 mb-3 mb-3"
               id="name"
               name="name"
               placeholder="Testimonio Nombre"
@@ -73,7 +73,7 @@ const TestimonialForm = ({ handleSubmit, testimonial = {} }) => {
             </label>
             <input
               accept="image/png, image/jpg"
-              className="form-control mb-3"
+              className="form-control form-control-sm w-100 mb-3 mb-3"
               id="image"
               name="image"
               type="file"

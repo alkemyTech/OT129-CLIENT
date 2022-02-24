@@ -42,7 +42,7 @@ const EditForm = ({ data }) => {
               Nombre:
             </label>
             <input
-              className="form-control form-control-sm w-100 mb-3"
+              className="form-control form-control-sm w-100 mb-3 form-control form-control-sm w-100 mb-3-sm w-100 mb-3"
               id="name"
               name="name"
               type="text"
@@ -57,7 +57,7 @@ const EditForm = ({ data }) => {
             </label>
             <input
               accept="image/png, image/jpeg"
-              className="form-control form-control-sm w-100 mb-3"
+              className="form-control form-control-sm w-100 mb-3 form-control form-control-sm w-100 mb-3-sm w-100 mb-3"
               id="logo"
               name="logo"
               type="file"
@@ -65,7 +65,7 @@ const EditForm = ({ data }) => {
             />
             <ErrorMessage className="alert-danger" component={Alert} name="logo" />
           </div>
-          <div className="form-group mb-3" style={{ width: "18rem" }}>
+          <div className="form-group mb-3">
             <label className="form-label fw-bold mt-1">(Imagen actual)</label>
             <img alt="logo" className="preview-image" loading="lazy" src={IMG_PREVIEW} />
           </div>
@@ -75,11 +75,15 @@ const EditForm = ({ data }) => {
             </label>
             <CKEditor
               required
+              config={{ placeholder: "Descripción corta" }}
+              data={formik.values.shortDescription}
               editor={ClassicEditor}
               id="shortDescription"
               name="shortDescription"
               onChange={(event, editor) => {
-                formik.setFieldValue(data.shortDescription, editor.getData());
+                const data = editor.getData();
+
+                formik.setFieldValue("shortDescription", data);
               }}
             />
             <ErrorMessage className="alert-danger" component={Alert} name="shortDescription" />
@@ -89,7 +93,7 @@ const EditForm = ({ data }) => {
               Descripción larga:
             </label>
             <textarea
-              className="form-control form-control-sm w-100 mb-3"
+              className="form-control form-control-sm w-100 mb-3 form-control form-control-sm w-100 mb-3-sm w-100 mb-3"
               id="longDescription"
               name="longDescription"
               style={{ maxHeight: "250px", minHeight: "250px" }}
@@ -103,7 +107,7 @@ const EditForm = ({ data }) => {
               Email:
             </label>
             <input
-              className="form-control form-control-sm w-100 mb-3"
+              className="form-control form-control-sm w-100 mb-3 form-control form-control-sm w-100 mb-3-sm w-100 mb-3"
               id="emailLink"
               name="emailLink"
               type="email"
@@ -117,7 +121,7 @@ const EditForm = ({ data }) => {
               Instagram:
             </label>
             <input
-              className="form-control form-control-sm w-100 mb-3"
+              className="form-control form-control-sm w-100 mb-3 form-control form-control-sm w-100 mb-3-sm w-100 mb-3"
               id="instagramLink"
               name="instagramLink"
               type="url"
@@ -131,7 +135,7 @@ const EditForm = ({ data }) => {
               Twitter:
             </label>
             <input
-              className="form-control form-control-sm w-100 mb-3"
+              className="form-control form-control-sm w-100 mb-3 form-control form-control-sm w-100 mb-3-sm w-100 mb-3"
               id="twitterLink"
               name="twitterLink"
               type="url"
