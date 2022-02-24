@@ -18,7 +18,7 @@ export const fetchNews = createAsyncThunk("news/get", async (search) => {
   return data;
 });
 
-export const fetchLastNews = createAsyncThunk("news/get", async (entries) => {
+export const fetchLastNews = createAsyncThunk("last_news/get", async (entries) => {
   const {
     data: { data },
   } = await getLastNews(entries);
@@ -26,7 +26,7 @@ export const fetchLastNews = createAsyncThunk("news/get", async (entries) => {
   return data;
 });
 
-export const fetchNewsById = createAsyncThunk("new/get", async (id) => {
+export const fetchNewsById = createAsyncThunk("_new/get", async (id) => {
   const {
     data: { data },
   } = await getNewsById(id);
@@ -34,14 +34,15 @@ export const fetchNewsById = createAsyncThunk("new/get", async (id) => {
   return data;
 });
 
-export const newNews = createAsyncThunk("new/post", async (data) => {
+export const newNews = createAsyncThunk("_new/post", async (data) => {
   await createNews(data);
 });
 
-export const putNew = createAsyncThunk("new/put", async (formData) => {
+export const putNew = createAsyncThunk("_new/put", async (formData) => {
   editNews(formData.data, formData.id);
 });
-export const removeNew = createAsyncThunk("new/delete", async (id) => {
+
+export const removeNew = createAsyncThunk("_new/delete", async (id) => {
   await removeNews(id);
 
   return id;
@@ -62,6 +63,7 @@ const newsSlice = createSlice({
     [fetchNews.fulfilled]: (state, action) => {
       state.status = STATUS.SUCCESSFUL;
       state.news = action.payload;
+      state._new = {};
     },
     [fetchNews.rejected]: (state) => {
       state.status = STATUS.FAILED;
