@@ -3,6 +3,7 @@ import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import ActivitiesForm from "../Components/Activities/ActivitiesForm";
+import { createActivity, editActivity } from "../Services/ActivitiesService";
 
 const activity = {
   id: 1,
@@ -12,6 +13,7 @@ const activity = {
 };
 
 const mockdecideAction = jest.fn();
+const mockAxios = require("axios").default;
 
 describe("<ActivitiesForm/>", () => {
   test("Should show validation errors", async () => {
@@ -62,8 +64,15 @@ describe("<ActivitiesForm/>", () => {
     expect(screen.getByText("EDITAR")).toBeInTheDocument();
   });
 
-  test("Should do the submit and create an activity correctly", () => {
+  //Aca empieza la pagia
+  test("Should do the submit and create an activity correctly", async () => {
     render(<ActivitiesForm decideAction={mockdecideAction} />);
+    await createActivity(activity);
+    mockAxios.post = jest.fn().mockResolvedValue({
+      data: {
+        success: true,
+      },
+    });
 
     waitFor(async () => {
       const inputName = await screen.findByTestId("inputTitle");
@@ -75,12 +84,20 @@ describe("<ActivitiesForm/>", () => {
       userEvent.upload(inputImage, activity.image);
       userEvent.click(screen.getByTestId("btnSubmit"));
       expect(mockdecideAction).toBeCalled();
+      expect(mockAxios.post).toBeCalledWith("activities", activity);
       expect(screen.findByText(/La actividad se creó correctamente./i)).toBeInTheDocument();
     });
   });
 
-  test("Should make the shipment and show the error that it could not be created correctly.", () => {
+  test("Should make the shipment and show the error that it could not be created correctly.", async () => {
     render(<ActivitiesForm decideAction={mockdecideAction} />);
+    await createActivity(activity);
+
+    mockAxios.post = jest.fn().mockResolvedValue({
+      data: {
+        success: false,
+      },
+    });
 
     waitFor(async () => {
       const inputName = await screen.findByTestId("inputName");
@@ -92,6 +109,7 @@ describe("<ActivitiesForm/>", () => {
       userEvent.type(inputImage, activity.image);
       userEvent.click(screen.getByTestId("btnSubmit"));
       expect(mockdecideAction).toBeCalled();
+      expect(mockAxios.post).toBeCalledWith("activities", activity);
 
       expect(
         screen.findByText(/Lo sentimos. La actividad no pudo ser creada./i)
@@ -99,8 +117,15 @@ describe("<ActivitiesForm/>", () => {
     });
   });
 
-  test("Should do the submit and edit an activity correctly", () => {
+  test("Should do the submit and edit an activity correctly", async () => {
     render(<ActivitiesForm activity={activity} decideAction={mockdecideAction} />);
+    await editActivity(activity, activity.id);
+
+    mockAxios.put = jest.fn().mockResolvedValue({
+      data: {
+        success: true,
+      },
+    });
 
     waitFor(async () => {
       const inputName = await screen.findByTestId("inputTitle");
@@ -112,12 +137,21 @@ describe("<ActivitiesForm/>", () => {
       userEvent.upload(inputImage, activity.image);
       userEvent.click(screen.getByTestId("btnSubmit"));
       expect(mockdecideAction).toBeCalled();
+      expect(mockAxios.put).toBeCalledWith(`activities/${activity.id}`, activity);
       expect(screen.findByText(/La actividad id: 1 se editó correctamente/i)).toBeInTheDocument();
     });
   });
 
-  test("Should make the shipment and show the error that it could not be edit correctly.", () => {
+  test("Should make the shipment and show the error that it could not be edit correctly.", async () => {
     render(<ActivitiesForm activity={activity} decideAction={mockdecideAction} />);
+
+    await editActivity(activity, activity.id);
+
+    mockAxios.put = jest.fn().mockResolvedValue({
+      data: {
+        success: false,
+      },
+    });
 
     waitFor(async () => {
       const inputName = await screen.findByTestId("inputName");
@@ -129,6 +163,7 @@ describe("<ActivitiesForm/>", () => {
       userEvent.type(inputImage, activity.image);
       userEvent.click(screen.getByTestId("btnSubmit"));
       expect(mockdecideAction).toBeCalled();
+      expect(mockAxios.put).toBeCalledWith(`activities/${activity.id}`, activity);
 
       expect(
         screen.findByText(/Lo sentimos! La actividad con id: 1 no pudo ser editada./i)

@@ -1,0 +1,19 @@
+.testimonialsContainer {
+  margin: 4rem 0 8rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+@media (max-width: 1200px) {
+  .testimonialsContainer {
+    gap: 30px;
+  }
+}
+@media (max-width: 992px) {
+  .testimonialsContainer {
+    width: 90%;
+    margin: 4rem auto 8rem auto;
+  }
+}

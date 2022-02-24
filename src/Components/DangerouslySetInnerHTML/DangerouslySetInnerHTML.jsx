@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const DangerouslySetInnerHTML = ({ content }) => {
-  return <p dangerouslySetInnerHTML={{ __html: content }} />;
+  return <span dangerouslySetInnerHTML={{ __html: content }} />;
 };
 
 DangerouslySetInnerHTML.propTypes = {
