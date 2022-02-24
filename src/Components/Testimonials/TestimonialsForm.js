@@ -32,7 +32,7 @@ const TestimonialForm = ({ handleSubmit, testimonial = {} }) => {
         handleSubmit(newTestimonial);
       }}
     >
-      {({ errors, setFieldValue }) => (
+      {({ setFieldValue }) => (
         <Form className="form-backoffice">
           <div className="form-group">
             <label className="form-label fw-bold mt-1" htmlFor="name">
