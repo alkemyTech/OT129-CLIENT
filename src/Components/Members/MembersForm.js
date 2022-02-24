@@ -1,5 +1,5 @@
-import React from "react";
-import { ErrorMessage, Field, Form, Formik } from "formik";
+import React, { useEffect, useState } from "react";
+import { ErrorMessage, Form, Formik } from "formik";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import * as Yup from "yup";
@@ -12,6 +12,7 @@ import ContainerFormCard from "../../Containers/ContainerFormCard";
 import "../FormStyles.css";
 
 const MembersForm = ({ member = {}, handleSub }) => {
+  const [memberImage, setMemberImage] = useState("");
   const initialValues = {
     name: member.name ?? "",
     description: member.description ?? "",
@@ -26,6 +27,12 @@ const MembersForm = ({ member = {}, handleSub }) => {
     handleSub(newMember);
   };
 
+  useEffect(() => {
+    if (member.id) {
+      setMemberImage(member.image);
+    }
+  }, [member]);
+
   return (
     <ContainerFormCard>
       <Formik
@@ -37,13 +44,12 @@ const MembersForm = ({ member = {}, handleSub }) => {
           <Form className="p-4" onSubmit={formik.handleSubmit}>
             <div className="mb-1">
               <label className="form-label fw-bold">Nombre</label>
-              <Field
-                autoComplete="off"
+              <input
                 className="form-control form-control-sm w-100"
                 data-testid="inputName"
                 name="name"
+                placeholder={initialValues?.name || "Nombre"}
                 type="text"
-                // placeholder="Ingrese un título"
                 {...formik.getFieldProps("name")}
               />
               <ErrorMessage className="text-danger" component="span" name="name" />
@@ -68,17 +74,20 @@ const MembersForm = ({ member = {}, handleSub }) => {
             <div className="mb-1">
               <label className="form-label fw-bold mt-1">Imagen</label>
               <input
-                autoComplete="off"
                 className="form-control form-control-sm"
                 data-testid="inputImage"
                 name="image"
                 type="file"
                 onChange={(event) => {
                   formik.setFieldValue("image", event.currentTarget.files[0]);
+                  setMemberImage(URL.createObjectURL(event.currentTarget.files[0]));
                 }}
               />
               <ErrorMessage className="text-danger" component="span" name="image" />
             </div>
+            {memberImage && (
+              <img alt="Imagen actual" className="d-block current-img mt-3" src={memberImage} />
+            )}
 
             <div className="mb-1">
               <label className="form-label fw-bold">Facebook Url</label>
