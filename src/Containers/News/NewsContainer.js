@@ -46,7 +46,7 @@ const NewsContainer = () => {
     if (id) {
       dispatch(fetchNewsById(id));
     }
-  }, []);
+  }, [id]);
 
   return (
     <NewsForm _new={_new} categories={categories} handleSubmit={handleSubmit} status={status} />
