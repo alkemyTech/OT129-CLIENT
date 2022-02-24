@@ -6,13 +6,9 @@
   margin: 1rem auto;
   display: flex;
   flex-flow: column;
-  border: 1px solid var(--blue);
+  border: 2px solid var(--blue);
   border-radius: 5px;
   box-shadow: var(--form-shadow);
-  overflow: hidden;
-}
-input {
-  border-color: var(--blue) !important;
 }
 .preview-image {
   width: 100%;
