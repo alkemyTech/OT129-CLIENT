@@ -15,7 +15,7 @@ import MembersForm from "../../Components/Members/MembersForm";
 const MembersFormContainer = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const { members } = useSelector(selectorMembers);
+  const { member } = useSelector(selectorMembers);
 
   const handleSub = (data) => {
     if (!id) {
@@ -49,7 +49,7 @@ const MembersFormContainer = () => {
 
   return (
     <>
-      <MembersForm handleSub={handleSub} member={members} />
+      <MembersForm handleSub={handleSub} member={member} />
     </>
   );
 };
