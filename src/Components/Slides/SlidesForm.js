@@ -127,10 +127,10 @@ const SlidesForm = () => {
             <Form className="form-backoffice">
               <div className="form-group">
                 <label className="form-label fw-bold mt-1 fw-bold" htmlFor="name">
-                  Titulo
+                  Titulo:
                 </label>
                 <Field
-                  className="form-control form-control-sm w-100 mb-3 form-control form-control-sm w-100 mb-3-sm w-100 mb-3"
+                  className="form-control form-control-sm w-100 mb-3"
                   id="name"
                   name="name"
                   placeholder="Titulo"
@@ -141,7 +141,7 @@ const SlidesForm = () => {
               </div>
               <div className="form-group mb-3">
                 <label className="form-label fw-bold mt-1 fw-bold mt-1" htmlFor="fdescription">
-                  Descripcion
+                  Descripcion:
                 </label>
                 <Field name="description">
                   {({ field }) => (
@@ -160,11 +160,12 @@ const SlidesForm = () => {
               </div>
               <div className="form-group">
                 <label className="form-label fw-bold mt-1 fw-bold mt-1" htmlFor="order">
-                  Numero de orden
+                  Numero de orden:
                 </label>
                 <Field
-                  className="form-control form-control-sm w-100 mb-3 form-control form-control-sm w-100 mb-3-sm w-100 mb-3"
+                  className="form-control form-control-sm w-100 mb-3"
                   id="order"
+                  min="0"
                   name="order"
                   placeholder="ingrese un numero"
                   type="number"
@@ -174,14 +175,14 @@ const SlidesForm = () => {
                 />
                 <ErrorMessage component={Alert} name="order" />
               </div>
-              <div className="form-group mb-3">
+              <div className="form-group">
                 <label className="form-label fw-bold mt-1 fw-bold mt-1" htmlFor="order">
-                  Cargar Imagen
+                  Cargar Imagen:
                 </label>
                 <input
                   ref={inputFileRef}
                   accept=".jpg, .png"
-                  className="form-control form-control-sm w-100 mb-3 form-control form-control-sm w-100 mb-3-sm w-100 mb-3"
+                  className="form-control form-control-sm w-100 mb-3"
                   type="file"
                   onChange={(e) => {
                     setFieldValue("image", e.currentTarget.files[0]);
@@ -195,7 +196,7 @@ const SlidesForm = () => {
                   className={loading ? "spinner-border spinner-border-sm" : null}
                   role="status"
                 />
-                {id === undefined ? "AGREGAR SLIDES" : "EDITAR SLIDES"}
+                {id === undefined ? "AGREGAR" : "EDITAR"}
               </button>
             </Form>
           )}

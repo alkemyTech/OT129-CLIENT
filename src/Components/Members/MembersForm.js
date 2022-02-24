@@ -33,10 +33,10 @@ const MembersForm = ({ member = {}, handleSub }) => {
       {(formik) => (
         <Form className="form-backoffice" onSubmit={formik.handleSubmit}>
           <div className="form-group">
-            <label className="form-label fw-bold mt-1 fw-bold mt-1">Nombre</label>
+            <label className="form-label fw-bold mt-1 fw-bold mt-1">Nombre:</label>
             <Field
               autoComplete="off"
-              className="form-control form-control-sm w-100 mb-3 form-control form-control-sm w-100 mb-3-sm w-100 mb-3 form-control form-control-sm w-100 mb-3-sm w-100 mb-3"
+              className="form-control form-control-sm w-100 mb-3 form-control form-control-sm w-100 mb-3-sm w-100 mb-3"
               data-testid="inputName"
               name="name"
               type="text"
@@ -45,7 +45,7 @@ const MembersForm = ({ member = {}, handleSub }) => {
             <ErrorMessage component={Alert} name="name" />
           </div>
           <div className="form-group mb-3">
-            <label className="form-label fw-bold mt-1 fw-bold mt-1">Descripción</label>
+            <label className="form-label fw-bold mt-1 fw-bold mt-1">Descripción:</label>
             <CKEditor
               config={{ placeholder: "Descripción" }}
               data={member?.description || ""}
@@ -61,10 +61,10 @@ const MembersForm = ({ member = {}, handleSub }) => {
           </div>
           <ErrorMessage component={Alert} name="description" />
           <div className="form-group">
-            <label className="form-label fw-bold mt-1 fw-bold mt-1">Imagen</label>
+            <label className="form-label fw-bold mt-1 fw-bold mt-1">Imagen:</label>
             <input
               autoComplete="off"
-              className="form-control form-control-sm w-100 mb-3 form-control form-control-sm w-100 mb-3-sm w-100 mb-3"
+              className="form-control form-control-sm w-100 mb-3"
               data-testid="inputImage"
               name="image"
               type="file"
@@ -81,10 +81,10 @@ const MembersForm = ({ member = {}, handleSub }) => {
             </div>
           ) : null}
           <div className="form-group">
-            <label className="form-label fw-bold mt-1 fw-bold">Facebook Url</label>
+            <label className="form-label fw-bold mt-1 fw-bold">Facebook Url:</label>
             <input
               autoComplete="off"
-              className="form-control form-control-sm w-100 mb-3 form-control form-control-sm w-100 mb-3-sm w-100 mb-3"
+              className="form-control form-control-sm w-100 mb-3"
               data-testid="inputFacebook"
               name="facebook"
               type="url"
@@ -93,10 +93,10 @@ const MembersForm = ({ member = {}, handleSub }) => {
           </div>
           <ErrorMessage component={Alert} name="facebookUrl" />
           <div className="form-group">
-            <label className="form-label fw-bold mt-1 fw-bold">Linkedin Url</label>
+            <label className="form-label fw-bold mt-1 fw-bold">Linkedin Url:</label>
             <input
               autoComplete="off"
-              className="form-control form-control-sm w-100 mb-3 form-control form-control-sm w-100 mb-3-sm w-100 mb-3"
+              className="form-control form-control-sm w-100 mb-3"
               data-testid="inputLinkedin"
               name="linkedin"
               type="url"

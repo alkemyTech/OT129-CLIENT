@@ -32,9 +32,9 @@ const UsersForm = ({ users = {}, handleSub }) => {
       {(formik) => (
         <Form className="form-backoffice" onSubmit={formik.handleSubmit}>
           <div className="form-group">
-            <label className="form-label fw-bold mt-1 fw-bold mt-1">Nombre</label>
+            <label className="form-label fw-bold mt-1 fw-bold mt-1">Nombre:</label>
             <input
-              className="form-control form-control-sm w-100 mb-3 form-control form-control-sm w-100 mb-3-sm w-100 mb-3"
+              className="form-control form-control-sm w-100 mb-3"
               id="name"
               name="name"
               placeholder={initialValues?.name || "Nombre"}
@@ -46,7 +46,7 @@ const UsersForm = ({ users = {}, handleSub }) => {
           <div className="form-group">
             <label className="form-label fw-bold mt-1 fw-bold mt-1"> Email:</label>
             <input
-              className="form-control form-control-sm w-100 mb-3 form-control form-control-sm w-100 mb-3-sm w-100 mb-3"
+              className="form-control form-control-sm w-100 mb-3"
               name="email"
               placeholder={initialValues?.email || "Email"}
               type="email"
@@ -58,7 +58,7 @@ const UsersForm = ({ users = {}, handleSub }) => {
             <label className="form-label fw-bold mt-1 fw-bold mt-1">Imagen:</label>
             <input
               accept="image/png, image/jpeg, image/jpg"
-              className="form-control form-control-sm w-100 mb-3 form-control form-control-sm w-100 mb-3-sm w-100 mb-3"
+              className="form-control form-control-sm w-100 mb-3"
               name="profile_image"
               type="file"
               onChange={(event) => {

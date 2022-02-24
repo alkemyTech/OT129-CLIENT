@@ -42,14 +42,14 @@ const EditForm = ({ data }) => {
               Nombre:
             </label>
             <input
-              className="form-control form-control-sm w-100 mb-3 form-control form-control-sm w-100 mb-3-sm w-100 mb-3"
+              className="form-control form-control-sm w-100 mb-3"
               id="name"
               name="name"
               type="text"
               value={formik.values.name}
               onChange={formik.handleChange}
             />
-            <ErrorMessage className="alert-danger" component={Alert} name="name" />
+            <ErrorMessage component={Alert} name="name" />
           </div>
           <div className="form-group">
             <label className="form-label fw-bold mt-1" htmlFor="logo">
@@ -57,13 +57,13 @@ const EditForm = ({ data }) => {
             </label>
             <input
               accept="image/png, image/jpeg"
-              className="form-control form-control-sm w-100 mb-3 form-control form-control-sm w-100 mb-3-sm w-100 mb-3"
+              className="form-control form-control-sm w-100 mb-3"
               id="logo"
               name="logo"
               type="file"
               onChange={formik.handleChange}
             />
-            <ErrorMessage className="alert-danger" component={Alert} name="logo" />
+            <ErrorMessage component={Alert} name="logo" />
           </div>
           <div className="form-group mb-3">
             <label className="form-label fw-bold mt-1">(Imagen actual)</label>
@@ -86,66 +86,66 @@ const EditForm = ({ data }) => {
                 formik.setFieldValue("shortDescription", data);
               }}
             />
-            <ErrorMessage className="alert-danger" component={Alert} name="shortDescription" />
+            <ErrorMessage component={Alert} name="shortDescription" />
           </div>
           <div className="form-group">
             <label className="form-label fw-bold mt-1" htmlFor="longDescription">
               Descripción larga:
             </label>
             <textarea
-              className="form-control form-control-sm w-100 mb-3 form-control form-control-sm w-100 mb-3-sm w-100 mb-3"
+              className="form-control form-control-sm w-100 mb-3"
               id="longDescription"
               name="longDescription"
               style={{ maxHeight: "250px", minHeight: "250px" }}
               value={formik.values.longDescription}
               onChange={formik.handleChange}
             />
-            <ErrorMessage className="alert-danger" component={Alert} name="longDescription" />
+            <ErrorMessage component={Alert} name="longDescription" />
           </div>
           <div className="form-group">
             <label className="form-label fw-bold mt-1" htmlFor="emailLink">
               Email:
             </label>
             <input
-              className="form-control form-control-sm w-100 mb-3 form-control form-control-sm w-100 mb-3-sm w-100 mb-3"
+              className="form-control form-control-sm w-100 mb-3"
               id="emailLink"
               name="emailLink"
               type="email"
               value={formik.values.emailLink}
               onChange={formik.handleChange}
             />
-            <ErrorMessage className="alert-danger" component={Alert} name="emailLink" />
+            <ErrorMessage component={Alert} name="emailLink" />
           </div>
           <div className="form-group">
             <label className="form-label fw-bold mt-1" htmlFor="instagramLink">
               Instagram:
             </label>
             <input
-              className="form-control form-control-sm w-100 mb-3 form-control form-control-sm w-100 mb-3-sm w-100 mb-3"
+              className="form-control form-control-sm w-100 mb-3"
               id="instagramLink"
               name="instagramLink"
               type="url"
               value={formik.values.instagramLink}
               onChange={formik.handleChange}
             />
-            <ErrorMessage className="alert-danger" component={Alert} name="instagramLink" />
+            <ErrorMessage component={Alert} name="instagramLink" />
           </div>
           <div className="form-group">
             <label className="form-label fw-bold mt-1" htmlFor="twitterLink">
               Twitter:
             </label>
             <input
-              className="form-control form-control-sm w-100 mb-3 form-control form-control-sm w-100 mb-3-sm w-100 mb-3"
+              className="form-control form-control-sm w-100 mb-3"
               id="twitterLink"
               name="twitterLink"
               type="url"
               value={formik.values.twitterLink}
               onChange={formik.handleChange}
             />
-            <ErrorMessage className="alert-danger" component={Alert} name="twitterLink" />
+            <ErrorMessage component={Alert} name="twitterLink" />
           </div>
           <button className="submit-btn" type="submit">
-            Submit
+            EDITAR
           </button>
         </form>
       )}

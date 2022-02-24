@@ -83,10 +83,10 @@ const NewsForm = ({ newId = {} }) => {
       {(formik) => (
         <Form className="form-backoffice" onSubmit={formik.handleSubmit}>
           <div className="form-group">
-            <label className="form-label fw-bold mt-1 fw-bold">Título</label>
+            <label className="form-label fw-bold mt-1 fw-bold">Título:</label>
             <input
               autoComplete="off"
-              className="form-control form-control-sm w-100 mb-3 form-control form-control-sm w-100 mb-3-sm w-100 mb-3"
+              className="form-control form-control-sm w-100 mb-3"
               data-testid="inputTitle"
               placeholder={initialValues.name}
               type="text"
@@ -96,7 +96,7 @@ const NewsForm = ({ newId = {} }) => {
             <ErrorMessage className="text-danger" component={Alert} name="name" />
           </div>
           <div className="form-group">
-            <label className="form-label fw-bold mt-1 fw-bold mt-1">Contenido</label>
+            <label className="form-label fw-bold mt-1 fw-bold mt-1">Contenido:</label>
             <CKEditor
               data={initialValues.content}
               data-testid="inputContent"
@@ -105,9 +105,9 @@ const NewsForm = ({ newId = {} }) => {
               onChange={(event, editor) => formik.setFieldValue("content", editor.getData())}
             />
           </div>
-          <ErrorMessage className="text-danger mt-3" component={Alert} name="content" />
+          <ErrorMessage component={Alert} name="content" />
           <div className="form-group">
-            <label className="form-label fw-bold mt-1 fw-bold mt-1">Categoría</label>
+            <label className="form-label fw-bold mt-1 fw-bold mt-1">Categoría:</label>
             <select
               aria-label="Default select example"
               className="form-select mb-3"
@@ -122,12 +122,12 @@ const NewsForm = ({ newId = {} }) => {
               ))}
             </select>
           </div>
-          <ErrorMessage className="text-danger" component={Alert} name="category_id" />
+          <ErrorMessage component={Alert} name="category_id" />
           <div className="form-group">
-            <label className="form-label fw-bold mt-1 fw-bold mt-1">Imagen</label>
+            <label className="form-label fw-bold mt-1 fw-bold mt-1">Imagen:</label>
             <input
               autoComplete="off"
-              className="form-control form-control-sm w-100 mb-3 form-control form-control-sm w-100 mb-3-sm w-100 mb-3"
+              className="form-control form-control-sm w-100 mb-3"
               data-testid="inputImage"
               name="image"
               type="file"
@@ -136,7 +136,7 @@ const NewsForm = ({ newId = {} }) => {
               }}
             />
           </div>
-          <ErrorMessage className="text-danger" component={Alert} name="image" />
+          <ErrorMessage component={Alert} name="image" />
           {newId.image && (
             <div className="form-group mb-3">
               <label className="form-label fw-bold mt-1 fw-bold mt-1">(Imagen actual)</label>

@@ -45,16 +45,16 @@ const CategoriesForm = ({ category = {}, handleSubmit }) => {
     >
       <Form className="form-backoffice">
         <div className="form-group">
-          <label className="form-label fw-bold mt-1 fw-bold mt-1">Nombre</label>
+          <label className="form-label fw-bold mt-1 fw-bold mt-1">Nombre:</label>
           <input
-            className="form-control form-control-sm w-100 mb-3 form-control form-control-sm w-100 mb-3-sm w-100 mb-3"
+            className="form-control form-control-sm w-100 mb-3"
             id="name"
             name="name"
             placeholder={initialValues.name || "Título"}
             type="text"
             {...formik.getFieldProps("name")}
           />
-          <ErrorMessage className="alert-danger" component={Alert} name="name" />
+          <ErrorMessage component={Alert} name="name" />
         </div>
         <div className="form-group">
           {initialValues.image ? (
@@ -66,21 +66,20 @@ const CategoriesForm = ({ category = {}, handleSubmit }) => {
                 src={initialValues.image}
               />
             </>
-          ) : (
-            <label className="form-label fw-bold mt-1 fw-bold mt-1">Imagen</label>
-          )}
+          ) : null}
+          <label className="form-label fw-bold mt-1 fw-bold mt-1">Imagen:</label>
           <input
-            className="form-control form-control-sm w-100 mb-3 form-control form-control-sm w-100 mb-3-sm w-100 mb-3"
+            className="form-control form-control-sm w-100 mb-3"
             name="image"
             type="file"
             onChange={(e) => {
               formik.setFieldValue("image", e.currentTarget.files[0]);
             }}
           />
-          <ErrorMessage className="alert-danger" component={Alert} name="image" />
+          <ErrorMessage component={Alert} name="image" />
         </div>
         <div className="form-group mb-3">
-          <label className="form-label fw-bold mt-1 fw-bold mt-1">Descripción</label>
+          <label className="form-label fw-bold mt-1 fw-bold mt-1">Descripción:</label>
           <CKEditor
             config={{ placeholder: `${initialValues.description}` }}
             data={initialValues.description}
@@ -90,10 +89,10 @@ const CategoriesForm = ({ category = {}, handleSubmit }) => {
               formik.setFieldValue("description", editor.getData());
             }}
           />
-          <ErrorMessage className="alert-danger" component={Alert} name="description" />
+          <ErrorMessage component={Alert} name="description" />
         </div>
         <button className="submit-btn" type="submit">
-          Enviar
+          ENVIAR
         </button>
       </Form>
     </FormikProvider>

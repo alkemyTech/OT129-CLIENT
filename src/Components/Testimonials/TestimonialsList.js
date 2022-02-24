@@ -12,7 +12,7 @@ const TestimonialsList = ({ data, onDelete }) => {
           <tr>
             <th scope="col">Id</th>
             <th scope="col">Nombre</th>
-            <th scope="col">Imágen</th>
+            <th scope="col">Imagen</th>
             <th scope="col">Creado</th>
             <th scope="col">Acciones</th>
           </tr>
