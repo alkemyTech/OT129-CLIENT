@@ -1,0 +1,24 @@
+.form-backoffice {
+  width: 90%;
+  max-width: 800px;
+  min-width: 300px;
+  padding: 0.5rem;
+  margin: 1rem auto;
+  display: flex;
+  flex-flow: column;
+  border: 1px solid var(--blue);
+  border-radius: 5px;
+  box-shadow: var(--form-shadow);
+  overflow: hidden;
+}
+input {
+  border-color: var(--blue) !important;
+}
+.preview-image {
+  width: 100%;
+  height: auto;
+  margin: auto;
+}
+.ck-toolbar__items {
+  overflow-x: scroll !important;
+}
