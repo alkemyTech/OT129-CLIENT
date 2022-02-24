@@ -24,6 +24,10 @@ body {
   margin: 0;
   font-family: var(--font-family);
 }
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
 
 /* Buttons */
 
@@ -152,11 +156,6 @@ body {
 }
 .card {
   box-shadow: var(--card-shadow);
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
 }
 
 /* Tablas Listados */
