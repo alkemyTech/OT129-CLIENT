@@ -7,7 +7,7 @@ import NewsContainer from "../../Containers/News/NewsContainer";
 import CategoriesListContainer from "../../Containers/Categories/CategoriesListContainer";
 import CategoriesFormContainer from "../../Containers/Categories/CategoriesFormContainer";
 import SlidesContainer from "../../Containers/Slides/SlidesContainer";
-import SlidesForm from "../Slides/SlidesForm";
+import SlidesBackofficeContainer from "../../Containers/Slides/SlidesBackofficeContainer";
 import UsersListContainer from "../../Containers/Users/UsersListContainer";
 import UsersFormContainer from "../../Containers/Users/UsersFormContainer";
 import MembersListContainer from "../../Containers/Members/MembersListContainer";
@@ -86,12 +86,12 @@ const routes = [
   },
   {
     path: "/backoffice/slides/create",
-    component: SlidesForm,
+    component: SlidesBackofficeContainer,
     exact: true,
   },
   {
     path: "/backoffice/slides/edit/:id",
-    component: SlidesForm,
+    component: SlidesBackofficeContainer,
     exact: true,
   },
   {

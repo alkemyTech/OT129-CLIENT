@@ -11,7 +11,7 @@ export const fetchNews = createAsyncThunk("news/get", async (search) => {
   return data;
 });
 
-export const fetchLastNews = createAsyncThunk("news/get", async (entries) => {
+export const fetchLastNews = createAsyncThunk("last_news/get", async (entries) => {
   const {
     data: { data },
   } = await getLastNews(entries);
