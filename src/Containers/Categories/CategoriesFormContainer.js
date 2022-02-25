@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
+import TitleNav from "../../Components/TitleNav/TitleNav";
 import CategoriesForm from "../../Components/Categories/CategoriesForm";
 import { alerts, confirmAlerts } from "../../utils/alerts";
 import {
@@ -49,7 +50,12 @@ const CategoriesFormContainer = () => {
     }
   }, [id]);
 
-  return <CategoriesForm category={category} handleSubmit={handleSubmit} />;
+  return (
+    <div className="container mt-3">
+      <TitleNav link="/backoffice/categories" linkTitle="Volver" />
+      <CategoriesForm category={category} handleSubmit={handleSubmit} />
+    </div>
+  );
 };
 
 export default CategoriesFormContainer;

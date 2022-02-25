@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { alerts, confirmAlerts } from "../../utils/alerts";
 import UsersForm from "../../Components/Users/UsersForm";
 import { newUser, selectorUsers, fetchUsersById, putUser } from "../../features/user/users-slice";
+import TitleNav from "../../Components/TitleNav/TitleNav";
 
 const UsersFormContainer = () => {
   const { id } = useParams();
@@ -41,7 +42,12 @@ const UsersFormContainer = () => {
     }
   }, [id]);
 
-  return <UsersForm handleSub={handleSub} users={user} />;
+  return (
+    <div className="container mt-3">
+      <TitleNav link="/backoffice/users" linkTitle="Volver" />
+      <UsersForm handleSub={handleSub} users={user} />
+    </div>
+  );
 };
 
 export default UsersFormContainer;

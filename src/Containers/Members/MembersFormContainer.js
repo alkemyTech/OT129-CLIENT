@@ -10,6 +10,7 @@ import {
   putMember,
   newMember,
 } from "../../features/Members/membersSlice";
+import TitleNav from "../../Components/TitleNav/TitleNav";
 import MembersForm from "../../Components/Members/MembersForm";
 
 const MembersFormContainer = () => {
@@ -48,9 +49,10 @@ const MembersFormContainer = () => {
   }, [id, dispatch]);
 
   return (
-    <>
+    <div className="container mt-3">
+      <TitleNav link="/backoffice/members" linkTitle="Volver" />
       <MembersForm handleSub={handleSub} member={members} />
-    </>
+    </div>
   );
 };
 
