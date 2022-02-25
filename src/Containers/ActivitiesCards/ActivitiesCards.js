@@ -5,6 +5,7 @@ import { fetchActivities, selectorActivities } from "../../features/Activities/a
 import Card from "../../Components/Card/Card";
 import StatusHandler from "../../Components/StatusHandler/StatusHandler";
 import { useDebounceSearch } from "../../hooks/useDebounceSearch";
+import SearchInput from "../../Components/SearchInput/SearchInput";
 
 import styles from "./ActivitiesCards.module.css";
 
@@ -25,33 +26,23 @@ const ActivitiesCards = () => {
 
   return (
     <div className="container my-5">
-      <div className="row">
-        <div className={styles.activitiesSearchForm}>
-          <input
-            className={`form-control ${styles.activitiesSearchInput}`}
-            name="search"
-            placeholder={"Buscar actividad"}
-            type="text"
-            onChange={handleChange}
-          />
-        </div>
-        <StatusHandler status={status} />
-        <div className="container-cards mt-5">
-          {activities.length > 0 ? (
-            activities.map((el) => (
-              <Card
-                key={el.id}
-                description={el.description}
-                id={el.id}
-                image={el.image}
-                title={el.name}
-                url="actividades"
-              />
-            ))
-          ) : (
-            <p>No hay actividades</p>
-          )}
-        </div>
+      <SearchInput handleSearch={handleChange} title="Buscar actividad" />
+      <StatusHandler status={status} />
+      <div className={`mt-5 ${styles.activitiesCardsContainer}`}>
+        {activities.length > 0 ? (
+          activities.map((el) => (
+            <Card
+              key={el.id}
+              description={el.description}
+              id={el.id}
+              image={el.image}
+              title={el.name}
+              url="actividades"
+            />
+          ))
+        ) : (
+          <p>No hay actividades</p>
+        )}
       </div>
     </div>
   );
