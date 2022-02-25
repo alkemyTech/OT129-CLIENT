@@ -25,6 +25,10 @@ body {
   font-family: var(--font-family);
 }
 
+input, textarea, select {
+  border: 2px solid var(--blue) !important;
+}
+
 /* Buttons */
 
 .general-btn {

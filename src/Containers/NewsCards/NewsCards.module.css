@@ -1,0 +1,9 @@
+.newsCardsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+}
+
+@media (max-width: 1200px) {
+  
+}
