@@ -11,7 +11,7 @@ const Organization = ({ data }) => {
         <div className="d-flex flex-column">
           <h2 className="text-center">{data.name}</h2>
           <div className="d-flex justify-content-center">
-            <img alt={data.name} src={data.logo} className="image-preview" />
+            <img alt={data.name} src={data.logo} className="preview-image" />
           </div>
           <h5 className="text-center">{data.short_description}</h5>
         </div>
