@@ -11,15 +11,12 @@ const Organization = ({ data }) => {
         <div className="d-flex flex-column">
           <h2 className="text-center">{data.name}</h2>
           <div className="d-flex justify-content-center">
-            <img alt={data.name} src={data.image} />
+            <img alt={data.name} src={data.logo} className="image-preview" />
           </div>
-          <h5 className="text-center">{data.shortDescription}</h5>
+          <h5 className="text-center">{data.short_description}</h5>
         </div>
         <div className="d-flex justify-content-between my-3">
-          <Link
-            className="btn btn-secondary "
-            to={"falta agregar la ruta o algún método para volver"}
-          >
+          <Link className="btn btn-secondary " to="/backoffice">
             Volver
           </Link>
           <Link className="btn btn-primary " to="/backoffice/organization/edit">
@@ -34,8 +31,8 @@ const Organization = ({ data }) => {
 Organization.propTypes = {
   data: PropTypes.shape({
     name: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    shortDescription: PropTypes.string.isRequired,
+    logo: PropTypes.string.isRequired,
+    short_description: PropTypes.string.isRequired,
   }).isRequired,
 };
 
