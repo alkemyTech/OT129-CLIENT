@@ -29,11 +29,13 @@ const Organization = ({ data }) => {
 };
 
 Organization.propTypes = {
-  data: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    logo: PropTypes.string.isRequired,
-    short_description: PropTypes.string.isRequired,
-  }).isRequired,
+  data: PropTypes.objectOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      logo: PropTypes.string.isRequired,
+      short_description: PropTypes.string.isRequired,
+    })
+  ).isRequired,
 };
 
 export default Organization;
