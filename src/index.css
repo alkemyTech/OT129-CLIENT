@@ -18,6 +18,8 @@
   --font-size: 15px;
   --card-shadow: 2px 2px 6px rgb(187, 187, 187);
   --form-shadow: 0 10px 6px -4px rgba(123, 161, 201, 0.5);
+  --bp-medium: 768px;
+  --bp-large: 1024px;
 }
 
 body {
@@ -153,13 +155,41 @@ input, textarea, select {
 /* Cards */
 
 .container-cards {
+  width: 100%;
+  height: auto;
+  margin: 1rem auto;
+  padding: 0 1rem;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 50px;
+  flex-flow: row;
+  align-items: center;
+  gap: 30px;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+}
+@media screen and (min-width: 1024px) {
+  .container-cards {
+    padding: 0 3rem;
+    gap: 50px;
+    flex-flow: row wrap;
+    justify-content: center;
+    overflow: hidden;
+  }
+}
+.container-cards::-webkit-scrollbar {
+  width: 12px;
+}
+.container-cards::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: .5rem;
+  cursor: pointer;
+}
+.container-cards::-webkit-scrollbar-thumb {
+  border-radius: .5rem;
+  -webkit-box-shadow: inset 0 0 6px var(--blue);
+  box-shadow: inset 0 0 6px var(--blue);
 }
 .card {
-  width: 30%;
   box-shadow: var(--card-shadow);
 }
 
