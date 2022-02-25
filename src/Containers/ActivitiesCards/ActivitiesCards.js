@@ -25,7 +25,7 @@ const ActivitiesCards = () => {
   }, [dispatch, searchValue]);
 
   return (
-    <div className="container my-5">
+    <div className={`container ${styles.containerActivitiesPage}`}>
       <SearchInput handleSearch={handleChange} title="Buscar actividad" />
       <StatusHandler status={status} />
       <div className={`mt-5 ${styles.activitiesCardsContainer}`}>

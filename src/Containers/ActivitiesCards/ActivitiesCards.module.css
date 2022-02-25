@@ -1,5 +1,27 @@
+.containerActivitiesPage {
+  margin: 3rem auto 6rem auto;
+}
+
 .activitiesCardsContainer {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 50px;
 }
+
+@media (min-width: 1200px) {
+  .activitiesCardsContainer {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 63px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .activitiesCardsContainer {
+    gap: 77px;
+  }
+}
+
+
