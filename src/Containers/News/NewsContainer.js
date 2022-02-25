@@ -6,6 +6,7 @@ import NewsForm from "../../Components/News/NewsForm";
 import { alerts, confirmAlerts } from "../../utils/alerts";
 import { fetchCategories, selectorCategories } from "../../features/Categories/categoriesSlice";
 import { fetchNewsById, newNews, putNew, selectorNews } from "../../features/News/news-slice";
+import TitleNav from "../../Components/TitleNav/TitleNav";
 
 const NewsContainer = () => {
   const { id } = useParams();
@@ -49,7 +50,10 @@ const NewsContainer = () => {
   }, [id]);
 
   return (
-    <NewsForm _new={_new} categories={categories} handleSubmit={handleSubmit} status={status} />
+    <div className="container mt-3">
+      <TitleNav link="/backoffice/news" linkTitle="Volver" />
+      <NewsForm _new={_new} categories={categories} handleSubmit={handleSubmit} />
+    </div>
   );
 };
 

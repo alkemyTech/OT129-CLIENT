@@ -5,6 +5,7 @@ import * as Yup from "yup";
 import PropTypes from "prop-types";
 
 import { toBase64 } from "../../utils/toBase64";
+import Alert from "../Alert/Alert";
 
 const UsersForm = ({ users = {}, handleSub }) => {
   const initialValues = {
@@ -23,67 +24,70 @@ const UsersForm = ({ users = {}, handleSub }) => {
   };
 
   return (
-    <div className="container mt-4">
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationUserSchema}
-        onSubmit={onSubmit}
-      >
-        {(formik) => (
-          <Form className="mt-3" onSubmit={formik.handleSubmit}>
-            <div className="mb-3">
-              <label className="form-label fx-bold">Nombre</label>
-              <input
-                className="form-control mb-3"
-                id="name"
-                name="name"
-                placeholder={initialValues?.name || "Nombre"}
-                type="text"
-                {...formik.getFieldProps("name")}
-              />
-              <ErrorMessage className="text-danger" component="span" name="name" />
-            </div>
-            <div className="form-group mb-3">
-              <label className="form-label fx-bold"> Email:</label>
-              <input
-                className="form-control mb-3"
-                name="email"
-                placeholder={initialValues?.email || "Email"}
-                type="email"
-                {...formik.getFieldProps("email")}
-              />
-              <ErrorMessage className="text-danger" component="span" name="email" />
-            </div>
-
+    <Formik
+      initialValues={initialValues}
+      validationSchema={validationUserSchema}
+      onSubmit={onSubmit}
+    >
+      {(formik) => (
+        <Form className="form-backoffice" onSubmit={formik.handleSubmit}>
+          <div className="form-group">
+            <label className="form-label fw-bold mt-1 fw-bold mt-1">Nombre:</label>
+            <input
+              className="form-control form-control-sm w-100 mb-3"
+              id="name"
+              name="name"
+              placeholder={initialValues?.name || "Nombre"}
+              type="text"
+              {...formik.getFieldProps("name")}
+            />
+            <ErrorMessage component={Alert} name="name" />
+          </div>
+          <div className="form-group">
+            <label className="form-label fw-bold mt-1 fw-bold mt-1"> Email:</label>
+            <input
+              className="form-control form-control-sm w-100 mb-3"
+              name="email"
+              placeholder={initialValues?.email || "Email"}
+              type="email"
+              {...formik.getFieldProps("email")}
+            />
+            <ErrorMessage component={Alert} name="email" />
+          </div>
+          <div className="form-group">
+            <label className="form-label fw-bold mt-1 fw-bold mt-1">Imagen:</label>
             <input
               accept="image/png, image/jpeg, image/jpg"
-              className="form-control mb-3"
+              className="form-control form-control-sm w-100 mb-3"
               name="profile_image"
               type="file"
               onChange={(event) => {
                 formik.setFieldValue("profile_image", event.currentTarget.files[0]);
               }}
             />
-            <ErrorMessage className="text-danger" component="span" name="image" />
-
-            <div className="mb-3">
-              <select className="form-select" name="role_id" {...formik.getFieldProps("role_id")}>
-                <option defaultValue>Choose</option>
-                <option value="1">Admin</option>
-                <option value="2">User</option>
-              </select>
+            <ErrorMessage component={Alert} name="image" />
+          </div>
+          {initialValues.profile_image !== "" ? (
+            <div className="form-group">
+              <label className="form-label fw-bold mt-1 fw-bold mt-1">(Imagen actual)</label>
+              <img alt="Imagen actual" src={initialValues?.profile_image} />
             </div>
-            <ErrorMessage className="text-danger" component="span" name="image" />
-
-            <div className="mb-3">
-              <button className="btn btn-primary w-100" type="submit">
-                {users.id ? "EDITAR" : "CREAR"}
-              </button>
-            </div>
-          </Form>
-        )}
-      </Formik>
-    </div>
+          ) : null}
+          <div className="form-group mb-3">
+            <label className="form-label fw-bold mt-1 fw-bold mt-1">Rol:</label>
+            <select className="form-select" name="role_id" {...formik.getFieldProps("role_id")}>
+              <option defaultValue>Choose</option>
+              <option value="1">Admin</option>
+              <option value="2">User</option>
+            </select>
+            <ErrorMessage component={Alert} name="role_id" />
+          </div>
+          <button className="submit-btn" type="submit">
+            {users.id ? "EDITAR" : "CREAR"}
+          </button>
+        </Form>
+      )}
+    </Formik>
   );
 };
 

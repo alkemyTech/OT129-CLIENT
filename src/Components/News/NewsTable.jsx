@@ -7,22 +7,24 @@ const NewsTable = ({ news, onDelete }) => {
   return (
     <>
       {news ? (
-        <table className="table table-striped table-list">
-          <thead className="thead-list">
-            <tr>
-              <th scope="col">Id</th>
-              <th scope="col">Nombre</th>
-              <th scope="col">Imagen</th>
-              <th scope="col">Fecha de creación</th>
-              <th scope="col">Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            {news?.map((data) => (
-              <NewsTableRow key={data.id} data={data} onDelete={onDelete} />
-            ))}
-          </tbody>
-        </table>
+        <div className="table-container">
+          <table className="table table-striped table-list">
+            <thead className="thead-list">
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Imagen</th>
+                <th scope="col">Fecha de creación</th>
+                <th scope="col">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              {news?.map((data) => (
+                <NewsTableRow key={data.id} data={data} onDelete={onDelete} />
+              ))}
+            </tbody>
+          </table>
+        </div>
       ) : (
         <div className="text-center">
           <div className="spinner-border text-dark" role="status">
