@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import ReactPlayer from "react-player/youtube";
 
-const UltimoEvento = ({ title = "Ultimo Evento" }) => {
+const LastEvent = ({ title = "Ultimo Evento" }) => {
   return (
     <div className="container d-flex justify-content-center align-items-center banner py-5">
       <div className="row justify-content-center">
@@ -13,10 +13,10 @@ const UltimoEvento = ({ title = "Ultimo Evento" }) => {
   );
 };
 
-UltimoEvento.propTypes = {
+LastEvent.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
   image: PropTypes.string,
 };
 
-export default UltimoEvento;
+export default LastEvent;
