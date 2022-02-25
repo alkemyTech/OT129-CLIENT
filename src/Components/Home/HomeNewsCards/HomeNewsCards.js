@@ -17,10 +17,10 @@ const HomeCards = () => {
   }, [dispatch]);
 
   return (
-    <div className="container-fluid d-grid gap-3 container-home-news">
-      <h2 className="container text-uppercase title-home-news">Últimas Novedades</h2>
-      <div>
-        <div className="container container-cards">
+    <div className="container-home-news">
+      <h2 className="text-uppercase title-home-news">Últimas Novedades</h2>
+      <>
+        <div className="container-cards">
           {last_news &&
             last_news.map((el) => (
               <Card
@@ -34,7 +34,7 @@ const HomeCards = () => {
             ))}
         </div>
         <StatusHandler status={state} />
-      </div>
+      </>
     </div>
   );
 };

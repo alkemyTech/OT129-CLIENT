@@ -14,7 +14,7 @@ const TitleNav = ({ title, link, linkTitle }) => {
 };
 
 TitleNav.propTypes = {
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   link: PropTypes.string.isRequired,
   linkTitle: PropTypes.string.isRequired,
 };

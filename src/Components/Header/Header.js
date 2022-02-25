@@ -26,7 +26,7 @@ const Header = () => {
 
   return (
     <>
-      <header className={`container p-0 my-4 ${styles.header}`}>
+      <header className={`container my-4 ${styles.header}`}>
         <NavLink to="/">
           <img alt="logo" className="img-fluid " src={ONGLogo} style={{ width: "7rem" }} />
         </NavLink>
