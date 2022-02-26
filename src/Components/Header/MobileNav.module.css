@@ -78,6 +78,9 @@
         background-color: var(--blue-hover);
         color: black;
     }
+    .active {
+        font-weight: bold;
+    }
 }
 @media screen and (min-width: 1024px) {
     .menuButton, .modalContainer {
