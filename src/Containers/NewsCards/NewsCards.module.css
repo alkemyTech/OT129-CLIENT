@@ -1,9 +1,26 @@
+.containerNewsPage {
+  margin: 3rem auto 4rem auto;
+}
+
 .newsCardsContainer {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 50px;
 }
 
-@media (max-width: 1200px) {
-  
+@media (min-width: 1200px) {
+  .newsCardsContainer {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 63px;
+  }
 }
+
+@media (min-width: 1400px) {
+  .newsCardsContainer {
+    gap: 77px;
+  }
+}
+

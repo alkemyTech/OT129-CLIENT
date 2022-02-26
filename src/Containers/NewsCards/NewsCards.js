@@ -24,7 +24,7 @@ const NewsCards = () => {
   }, [dispatch, searchValue]);
 
   return (
-    <div className="container my-5">
+    <div className={`container ${styles.containerNewsPage}`}>
       <SearchInput handleSearch={changeHandler} title="Buscar novedad" />
       <div className={`mt-5 ${styles.newsCardsContainer}`}>
         {news?.length != 0 ? (
