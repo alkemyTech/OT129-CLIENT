@@ -20,6 +20,7 @@
   --form-shadow: 0 10px 6px -4px rgba(123, 161, 201, 0.5);
   --bp-medium: 768px;
   --bp-large: 1024px;
+  --transition: 150ms ease-in-out;
 }
 
 body {
