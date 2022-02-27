@@ -3,10 +3,10 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { getSlides, removeSlides } from "../../Services/SlidesServices";
 import { STATUS } from "../../constants";
 
-export const fetchSlides = createAsyncThunk("slides/get", async () => {
+export const fetchSlides = createAsyncThunk("slides/get", async (search) => {
   const {
     data: { data },
-  } = await getSlides();
+  } = await getSlides(search);
 
   return data;
 });

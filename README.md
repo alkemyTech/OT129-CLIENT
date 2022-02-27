@@ -194,3 +194,17 @@ confirmAlerts(
 ### Result:
 
 ![plot](https://imgur.com/4qLJ6E2.png)
+
+---
+
+## Unit Tests of components:
+
+- [Titles](./src/Components/Titles/README.test.md)
+
+## Hooks:
+
+- [useDebounceEffect](./src/hooks/useDebounceSearch.md)
+
+## Components:
+
+- [SearchInput](./src/Components/SearchInput/searchInput.md)

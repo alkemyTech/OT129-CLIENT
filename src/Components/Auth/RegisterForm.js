@@ -1,16 +1,18 @@
 import React, { useState } from "react";
 import { Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
-import axios from "axios";
 import { Wrapper } from "@googlemaps/react-wrapper";
 
 import { getRegistered } from "../../features/auth/authSlice";
-import "../../index.css";
-import "./RegisterForm.css";
+import RegisterPopup from "../Popups/RegisterPopup";
+import { alerts } from "../../utils/alerts";
+import Alert from "../Alert/Alert";
 
 import Map from "./Map";
+
+import "../../index.css";
+import "./RegisterForm.css";
 
 const PASSWORD_REGEX = new RegExp("(?=.*[A-Za-z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{6,})");
 
@@ -19,6 +21,7 @@ const initialValues = {
   email: "",
   password: "",
   confirmPassword: "",
+  conditions: false,
   address: "",
 };
 
@@ -42,25 +45,18 @@ const validationSchema = Yup.object({
       "Tu CONTRASEÑA debe contener al menos un número y un caracter especial"
     )
     .oneOf([Yup.ref("password"), null], "Las CONTRASEÑAS deben coincidir"),
-  address: Yup.string().required("Ingrese su DIRECCIÓN"),
+  conditions: Yup.boolean().oneOf([true], "Debes aceptar los Términos y Condiciones"),
+  address: Yup.string().required("El campo DIRECCIÓN es requerido"),
 });
 
-const Alert = ({ children }) => {
-  return <div className="alert alert-danger">{children}</div>;
-};
-
-Alert.propTypes = {
-  children: PropTypes.node.isRequired,
-};
-
 const RegisterForm = () => {
+  const dispatch = useDispatch();
   const [map, setMap] = useState({});
   const [address, setAddress] = useState("");
-  const dispatch = useDispatch();
 
   const handleSearchClick = async () => {
     const getLocation = async () => {
-      const response = await axios.get("https://maps.googleapis.com/maps/api/geocode/json", {
+      const response = await axios.get(process.env.REACT_APP_API_GOOGLE_URL, {
         params: {
           address: address,
           key: process.env.REACT_APP_API_GOOGLE_KEY,
@@ -74,123 +70,144 @@ const RegisterForm = () => {
     setMap(result);
   };
 
-  const handleRegister = (values) => {
+  const handleRegister = ({ name, email, password }) => {
     const body = {
-      name: values.name,
-      email: values.email,
-      password: values.password,
+      name,
+      email,
+      password,
       address: address,
       latitude: map.lat,
       longitude: map.lng,
     };
 
-    if (map) {
-      dispatch(getRegistered(body));
-    }
+    dispatch(getRegistered(body))
+      .then(() => alerts("Registro exitoso, inicie sesión.", "success"))
+      .catch(() => alerts("El email ingresado ya se encuentra registrado", "error"));
   };
 
   return (
     <div className="container">
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={(values) => {
-          handleRegister(values);
-        }}
-      >
-        {(formik) => (
-          <form noValidate className="mt-3" onSubmit={formik.handleSubmit}>
-            <div className="form-group mb-3">
-              <label className="form-label" htmlFor="name">
-                Nombre:
-              </label>
-              <input
-                className="form-control mb-3"
-                id="name"
-                placeholder="Enter your name"
-                type="name"
-                value={formik.values.name}
-                onChange={formik.handleChange}
-              />
-              <ErrorMessage className="alert-danger" component={Alert} name="name" />
-            </div>
-            <div className="form-group mb-3">
-              <label className="form-label" htmlFor="email">
-                Email:
-              </label>
-              <input
-                className="form-control mb-3"
-                id="email"
-                placeholder="Enter your email"
-                type="email"
-                value={formik.values.email}
-                onChange={formik.handleChange}
-              />
-              <ErrorMessage className="alert-danger" component={Alert} name="email" />
-            </div>
-            <div className="form-group mb-3">
-              <label className="form-label" htmlFor="password">
-                Password:
-              </label>
-              <input
-                className="form-control mb-3"
-                id="password"
-                placeholder="Enter your password"
-                type="password"
-                value={formik.values.password}
-                onChange={formik.handleChange}
-              />
-              <ErrorMessage className="alert-danger" component={Alert} name="password" />
-            </div>
-            <div className="form-group mb-3">
-              <label className="form-label" htmlFor="confirmPassword">
-                Confirm password:
-              </label>
-              <input
-                className="form-control mb-3"
-                id="confirmPassword"
-                placeholder="Confirm your password"
-                type="password"
-                value={formik.values.confirmPassword}
-                onChange={formik.handleChange}
-              />
-              <ErrorMessage component={Alert} name="confirmPassword" />
-            </div>
-            <div className="form-group input-group mb-3">
-              <label className="form-label" htmlFor="address">
-                Dirección:
-              </label>
-              <div className="input-group">
+      <div className="form-container my-3">
+        <Formik
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={(values) => {
+            handleRegister(values);
+          }}
+        >
+          {(formik) => (
+            <form
+              noValidate
+              className="register-form"
+              data-testid="registerForm"
+              onSubmit={formik.handleSubmit}
+            >
+              <div className="form-group mb-3">
+                <label className="form-label" htmlFor="name" />
                 <input
-                  className="form-control mb-3"
-                  id="address"
-                  name="address"
-                  placeholder="Ingresa tu dirección"
-                  type="text"
-                  onChange={(e) => {
-                    formik.setFieldValue("address", e.target.value);
-                    setAddress(e.target.value);
-                  }}
+                  className="form-control register-input mb-3"
+                  id="name"
+                  placeholder="Ingresa tu nombre"
+                  type="name"
+                  value={formik.values.name}
+                  onChange={formik.handleChange}
                 />
-                <button
-                  className="general-btn fill-btn mb-3"
-                  type="button"
-                  onClick={() => handleSearchClick()}
-                >
-                  <i className="fas fa-search-location" />
-                </button>
+                <ErrorMessage className="alert-danger" component={Alert} name="name" />
               </div>
-              <ErrorMessage component={Alert} name="address" />
-            </div>
-            <button className="general-btn register-btn my-3" type="submit">
-              REGISTRAR
-            </button>
-          </form>
-        )}
-      </Formik>
-      <Wrapper apiKey={process.env.REACT_APP_API_GOOGLE_KEY}>
-        <Map center={map} zoom={14} />
-      </Wrapper>
+              <div className="form-group mb-3">
+                <label className="form-label" htmlFor="email" />
+                <input
+                  className="form-control register-input mb-3"
+                  id="email"
+                  placeholder="Ingresa tu email"
+                  type="email"
+                  value={formik.values.email}
+                  onChange={formik.handleChange}
+                />
+                <ErrorMessage className="alert-danger" component={Alert} name="email" />
+              </div>
+              <div className="form-group mb-3">
+                <label className="form-label" htmlFor="password" />
+                <input
+                  autoComplete="on"
+                  className="form-control register-input mb-3"
+                  id="password"
+                  placeholder="Ingresa tu contraseña"
+                  type="password"
+                  value={formik.values.password}
+                  onChange={formik.handleChange}
+                />
+                <ErrorMessage className="alert-danger" component={Alert} name="password" />
+              </div>
+              <div className="form-group mb-3">
+                <label className="form-label" htmlFor="confirmPassword" />
+                <input
+                  autoComplete="on"
+                  className="form-control register-input mb-3"
+                  id="confirmPassword"
+                  placeholder="Confirma tu contraseña"
+                  type="password"
+                  value={formik.values.confirmPassword}
+                  onChange={formik.handleChange}
+                />
+                <ErrorMessage component={Alert} name="confirmPassword" />
+              </div>
+              <div className="form-group input-group mb-3">
+                <label className="form-label" htmlFor="address" />
+                <div className="input-group">
+                  <input
+                    className="form-control register-input mb-3"
+                    id="address"
+                    name="address"
+                    placeholder="Ingresa tu dirección"
+                    type="text"
+                    value={formik.values.address}
+                    onChange={(e) => {
+                      formik.setFieldValue("address", e.target.value);
+                      setAddress(e.target.value);
+                    }}
+                  />
+                  <button
+                    className="general-btn fill-btn my-1"
+                    type="button"
+                    onClick={() => handleSearchClick()}
+                  >
+                    <i className="fas fa-search-location" />
+                  </button>
+                </div>
+                <ErrorMessage component={Alert} name="address" />
+              </div>
+              <div className="conditions-wrapper">
+                <RegisterPopup
+                  state={formik.values.conditions}
+                  onConfirm={() => formik.setFieldValue("conditions", true)}
+                  onDecline={() => formik.setFieldValue("conditions", false)}
+                />
+                <label className="form-label" htmlFor="conditions" />
+                <input
+                  className="conditions-checkbox"
+                  data-testid="conditions"
+                  name="conditions"
+                  type="checkbox"
+                  value={formik.values.conditions}
+                  onChange={formik.handleChange}
+                />
+                <ErrorMessage component={Alert} name="conditions" />
+              </div>
+              <button
+                className="general-btn register-btn my-3"
+                data-testid="registerButton"
+                type="submit"
+              >
+                REGISTRARSE
+              </button>
+            </form>
+          )}
+        </Formik>
+        <Wrapper apiKey={process.env.REACT_APP_API_GOOGLE_KEY}>
+          <Map center={map} zoom={14} />
+        </Wrapper>
+      </div>
     </div>
   );
 };

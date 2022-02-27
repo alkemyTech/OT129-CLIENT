@@ -1,7 +1,5 @@
 import React from "react";
 
-import BackNavBar from "../../Components/BackNavBar/BackNavBar";
-
 import BackCards from "./BackCards";
 
 import "./backoffice.css";
@@ -19,13 +17,13 @@ const BACK_CARDS = [
   },
   {
     icon: "fas fa-folder fa-5x",
-    title: "Categories",
+    title: "Categorías",
     link: "/backoffice/categories",
   },
   {
     icon: "fas fa-comment-alt fa-5x",
     title: "Testimonios",
-    link: "/backoffice/testimonies",
+    link: "/backoffice/testimonials",
   },
   {
     icon: "fas fa-project-diagram fa-5x",
@@ -51,12 +49,9 @@ const BACK_CARDS = [
 
 function Backoffice() {
   return (
-    <>
-      <BackNavBar />
-      <div className="bg-container">
-        <BackCards data={BACK_CARDS} />
-      </div>
-    </>
+    <div className="container-fluid bg-container">
+      <BackCards data={BACK_CARDS} />
+    </div>
   );
 }
 

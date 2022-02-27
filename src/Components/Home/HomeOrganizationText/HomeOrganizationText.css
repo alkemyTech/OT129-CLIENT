@@ -1,0 +1,21 @@
+.container-organization-text {
+  background: #fffef8;
+  padding: 6rem 0 6rem 0;
+}
+
+.organization-title {
+  margin-bottom: 3rem;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.welcome-text {
+  font-size: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.short-description {
+  width: 80%;
+  margin: auto;
+  margin-bottom: 0;
+}

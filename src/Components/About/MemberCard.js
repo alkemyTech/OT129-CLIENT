@@ -5,11 +5,11 @@ import "./MemberCard.css";
 
 const MemberCard = ({ name, image, description, facebookUrl, linkedinUrl }) => {
   return (
-    <div className="card" style={{ width: "18rem" }}>
+    <div className="card">
       <img alt="Member Image" className="card-img-top" src={image} />
       <div className="card-body">
         <h5 className="card-title">{name}</h5>
-        <p className="card-text">{description}</p>
+        <p dangerouslySetInnerHTML={{ __html: `${description}` }} className="card-text" />
         <div className="d-flex justify-content-around">
           <a href={facebookUrl} rel="noreferrer" target="_blank">
             <i className="fab fa-facebook-f" />

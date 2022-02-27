@@ -5,8 +5,9 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import PropTypes from "prop-types";
 
+import Alert from "../Alert/Alert";
 import { toBase64 } from "../../utils/toBase64";
-import ContainerFormCard from "../../Containers/ContainerFormCard";
+import { alerts } from "../../utils/alerts";
 import { createNews, editNews } from "../../Services/NewsService";
 import { getCategories } from "../../Services/CategoriesService";
 
@@ -33,108 +34,126 @@ const NewsForm = ({ newId = {} }) => {
   }, []);
 
   return (
-    <>
-      <ContainerFormCard>
-        <Formik
-          initialValues={initialValues}
-          validationSchema={validationNewSchema}
-          onSubmit={async (formData) => {
-            setLoading(true);
-            // Convertirmos la imagen en formato base64
-            const resultbase = await toBase64(formData.image);
-            const data = {
-              name: formData.name,
-              content: formData.content,
-              category_id: formData.category_id,
-              image: resultbase,
-            };
+    <Formik
+      initialValues={initialValues}
+      validationSchema={validationNewSchema}
+      onSubmit={async (formData) => {
+        setLoading(true);
+        // Convertirmos la imagen en formato base64
+        const resultbase = await toBase64(formData.image);
+        const data = {
+          name: formData.name,
+          content: formData.content,
+          category_id: formData.category_id,
+          image: resultbase,
+        };
 
-            // Validamos si el objeto novedad esta vacio o no
-            if (newId.id === undefined) {
-              await createNews(data);
+        // Validamos si el objeto novedad esta vacio o no
+        if (newId.id === undefined) {
+          await createNews(data)
+            .then(() => {
+              alerts("La novedad se creo correctamente", "success");
+            })
+            .catch(() => {
+              alerts("Error al crear novedad", "error");
+            });
 
-              setLoading(false);
-            } else {
-              const resultbase = await toBase64(formData.image);
-              const data = {
-                name: formData.name,
-                content: formData.content,
-                category_id: formData.category_id,
-                image: resultbase,
-              };
+          setLoading(false);
+        } else {
+          const resultbase = await toBase64(formData.image);
+          const data = {
+            name: formData.name,
+            content: formData.content,
+            category_id: formData.category_id,
+            image: resultbase,
+          };
 
-              await editNews(data, newId.id);
+          await editNews(data, newId.id)
+            .then(() => {
+              alerts("La novedad se editó correctamente", "success");
+            })
+            .catch(() => {
+              alerts("Error al editar novedad", "error");
+            });
 
-              setLoading(false);
-            }
-          }}
-        >
-          {(formik) => (
-            <Form className="p-4" onSubmit={formik.handleSubmit}>
-              <div className="mb-1">
-                <label className="form-label fw-bold">Título</label>
-                <input
-                  autoComplete="off"
-                  className="form-control form-control-sm w-100"
-                  placeholder={initialValues.name}
-                  type="text"
-                  value={initialValues.name}
-                  {...formik.getFieldProps("name")}
-                />
-                <ErrorMessage className="text-danger" component="span" name="name" />
-              </div>
-              <div className="mb-1">
-                <label className="form-label fw-bold mt-1">Contenido</label>
-                <CKEditor
-                  data={initialValues.content}
-                  editor={ClassicEditor}
-                  id="content"
-                  onChange={(event, editor) => formik.setFieldValue("content", editor.getData())}
-                />
-              </div>
-              <ErrorMessage className="text-danger" component="span" name="content" />
-              <div className="mb-1">
-                <label className="form-label fw-bold mt-1">Categoría</label>
-                <select
-                  aria-label="Default select example"
-                  className="form-select form-select-sm"
-                  {...formik.getFieldProps("category_id")}
-                >
-                  <option defaultValue>Seleccione una categoria</option>
-                  {categories?.map((categorie) => (
-                    <option key={categorie.id} value={categorie.id}>
-                      {categorie.name}
-                    </option>
-                  ))}
-                </select>
-              </div>
-              <ErrorMessage className="text-danger" component="span" name="category_id" />
-              <div className="mb-1">
-                <label className="form-label fw-bold mt-1">Imagen</label>
-                <input
-                  autoComplete="off"
-                  className="form-control form-control-sm"
-                  name="image"
-                  type="file"
-                  onChange={(event) => {
-                    formik.setFieldValue("image", event.currentTarget.files[0]);
-                  }}
-                />
-              </div>
-              <ErrorMessage className="text-danger" component="span" name="image" />
-              <button className="btn btn-primary w-100 mt-2 fw-bold" type="submit">
-                <span
-                  aria-hidden="true"
-                  className={loading ? "spinner-border spinner-border-sm" : null}
-                  role="status"
-                />
-                {newId.id === undefined ? "AGREGAR NOVEDAD" : "EDITAR NOTICIA"}
-              </button>
-            </Form>
+          setLoading(false);
+        }
+      }}
+    >
+      {(formik) => (
+        <Form className="form-backoffice" onSubmit={formik.handleSubmit}>
+          <div className="form-group">
+            <label className="form-label fw-bold mt-1 fw-bold">Título:</label>
+            <input
+              autoComplete="off"
+              className="form-control form-control-sm w-100 mb-3"
+              data-testid="inputTitle"
+              placeholder={initialValues.name}
+              type="text"
+              value={initialValues.name}
+              {...formik.getFieldProps("name")}
+            />
+            <ErrorMessage className="text-danger" component={Alert} name="name" />
+          </div>
+          <div className="form-group">
+            <label className="form-label fw-bold mt-1 fw-bold mt-1">Contenido:</label>
+            <CKEditor
+              data={initialValues.content}
+              data-testid="inputContent"
+              editor={ClassicEditor}
+              id="content"
+              onChange={(event, editor) => formik.setFieldValue("content", editor.getData())}
+            />
+          </div>
+          <ErrorMessage component={Alert} name="content" />
+          <div className="form-group">
+            <label className="form-label fw-bold mt-1 fw-bold mt-1">Categoría:</label>
+            <select
+              aria-label="Default select example"
+              className="form-select mb-3"
+              data-testid="inputCategory"
+              {...formik.getFieldProps("category_id")}
+            >
+              <option defaultValue>Seleccione una categoria</option>
+              {categories?.map((categorie) => (
+                <option key={categorie.id} value={categorie.id}>
+                  {categorie.name}
+                </option>
+              ))}
+            </select>
+          </div>
+          <ErrorMessage component={Alert} name="category_id" />
+          <div className="form-group">
+            <label className="form-label fw-bold mt-1 fw-bold mt-1">Imagen:</label>
+            <input
+              autoComplete="off"
+              className="form-control form-control-sm w-100 mb-3"
+              data-testid="inputImage"
+              name="image"
+              type="file"
+              onChange={(event) => {
+                formik.setFieldValue("image", event.currentTarget.files[0]);
+              }}
+            />
+          </div>
+          <ErrorMessage component={Alert} name="image" />
+          {newId.image && (
+            <div className="form-group mb-3">
+              <label className="form-label fw-bold mt-1 fw-bold mt-1">(Imagen actual)</label>
+              <img alt="Imagen actual" className="preview-image" src={newId.image} />
+            </div>
           )}
-        </Formik>
-      </ContainerFormCard>
-    </>
+          <button className="submit-btn" data-testid="btnSubmit" type="submit">
+            <span
+              aria-hidden="true"
+              className={loading ? "spinner-border spinner-border-sm" : null}
+              role="status"
+            />
+            {newId.id === undefined ? "AGREGAR NOVEDAD" : "EDITAR NOTICIA"}
+          </button>
+        </Form>
+      )}
+    </Formik>
   );
 };
 const validationNewSchema = Yup.object({

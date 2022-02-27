@@ -1,57 +1,47 @@
 .form-container {
-    width: 90%;
-    max-width: 600px;
-    margin: auto;
-    padding: 1rem;
-    box-shadow: var(--form-shadow);
-    border: 1px solid rgba(123, 161, 201, 0.5);
-    border-radius: 0.5rem;
-  }
-  .register-input {
-    padding: 0.75rem 1rem;
-    font-family: var(--font-family);
-    font-weight: 500;
-    color: var(--dark-blue);
-    border: 1px solid var(--dark-blue) !important;
-  }
-  .register-input::placeholder {
-    font-family: var(--font-family);
-    color: var(--dark-blue);
-  }
-  .alert {
-    background-color: rgba(255, 0, 0, 0.1);
-    padding: 0.5rem 1rem;
-    font-family: var(--font-family);
-    font-size: 0.85rem;
-  }
-  .conditions-wrapper {
-    width: 100%;
-    min-height: 50px;
-    display: flex;
-    flex-flow: column wrap;
-    gap: 1rem;
-    justify-content: center;
-    align-items: center;
-    font-family: var(--font-family);
-    font-size: 0.85rem;
-  }
-  .conditions-checkbox {
-    display: none;
-  }
-  .conditions-label {
-    width: 100%;
-    padding: 0.5rem 1rem;
-    text-align: center;
-    font-weight: 700;
-    color: var(--dark-blue);
-    transition: all 150ms ease-in-out;
-  }
-  .conditions-label:hover {
-    cursor: pointer;
-    background-color: var(--blue);
-    color: var(--white);
-  }
-
-  .fa-search-location {
-      font-size: 20px
-  }
+  width: 90%;
+  max-width: 600px;
+  margin: auto;
+  padding: 1rem;
+  box-shadow: var(--form-shadow);
+  border: 1px solid rgba(123, 161, 201, 0.5);
+  border-radius: 0.5rem;
+}
+.login-container {
+  margin: 5rem auto !important;
+}
+.register-input {
+  padding: 0.75rem 1rem;
+  font-family: var(--font-family);
+  font-weight: 500;
+  color: var(--dark-blue);
+  border: 1px solid var(--dark-blue) !important;
+}
+.register-input::placeholder {
+  font-family: var(--font-family);
+  color: var(--dark-blue);
+}
+.alert {
+  background-color: rgba(255, 0, 0, 0.1);
+  padding: 0.5rem 1rem;
+  font-family: var(--font-family);
+  font-size: 0.85rem;
+}
+.conditions-wrapper {
+  width: 100%;
+  min-height: 50px;
+  display: flex;
+  flex-flow: row wrap;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--font-family);
+  font-size: 0.85rem;
+}
+.conditions-checkbox {
+  display: none;
+}
+.conditions-checkbox:checked + .conditions-label {
+  background-color: var(--blue);
+  color: var(--white);
+}

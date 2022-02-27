@@ -1,38 +1,57 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { fetchActivities, selectorActivities } from "../../features/Activities/activitiesSlice";
-import Spinner from "../../Components/Spinner/Spinner";
 import Card from "../../Components/Card/Card";
+import StatusHandler from "../../Components/StatusHandler/StatusHandler";
+import { useDebounceSearch } from "../../hooks/useDebounceSearch";
+
+import styles from "./ActivitiesCards.module.css";
 
 const ActivitiesCards = () => {
-  const { activities } = useSelector(selectorActivities);
   const dispatch = useDispatch();
+  const { activities, status } = useSelector(selectorActivities);
+
+  const [wordToSearch, setWordToSearch] = useState("");
+  const searchValue = useDebounceSearch(wordToSearch, 3);
+
+  const handleChange = (e) => {
+    setWordToSearch(e.target.value);
+  };
 
   useEffect(() => {
-    dispatch(fetchActivities());
-  }, [dispatch]);
+    dispatch(fetchActivities(searchValue));
+  }, [dispatch, searchValue]);
 
   return (
-    <div className="container mt-5">
+    <div className="container my-5">
       <div className="row">
-        {activities.length === 0 ? (
-          <div className="mt-5">
-            <Spinner />
-          </div>
-        ) : (
-          activities.map((activity) => (
-            <div key={activity.id} className="col">
+        <div className={styles.activitiesSearchForm}>
+          <input
+            className={`form-control ${styles.activitiesSearchInput}`}
+            name="search"
+            placeholder={"Buscar actividad"}
+            type="text"
+            onChange={handleChange}
+          />
+        </div>
+        <StatusHandler status={status} />
+        <div className="container-cards mt-5">
+          {activities.length > 0 ? (
+            activities.map((el) => (
               <Card
-                description={activity.description}
-                id={activity.id}
-                image={activity.image}
-                title={activity.name}
+                key={el.id}
+                description={el.description}
+                id={el.id}
+                image={el.image}
+                title={el.name}
                 url="actividades"
               />
-            </div>
-          ))
-        )}
+            ))
+          ) : (
+            <p>No hay actividades</p>
+          )}
+        </div>
       </div>
     </div>
   );

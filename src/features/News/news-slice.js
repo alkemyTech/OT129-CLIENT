@@ -1,12 +1,20 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-import { getNews } from "../../Services/NewsService";
+import { getNews, getLastNews } from "../../Services/NewsService";
 import { STATUS } from "../../constants";
 
-export const fetchNews = createAsyncThunk("news/get", async () => {
+export const fetchNews = createAsyncThunk("news/get", async (search) => {
   const {
     data: { data },
-  } = await getNews();
+  } = await getNews(search);
+
+  return data;
+});
+
+export const fetchLastNews = createAsyncThunk("last_news/get", async (entries) => {
+  const {
+    data: { data },
+  } = await getLastNews(entries);
 
   return data;
 });
@@ -15,6 +23,7 @@ const newsSlice = createSlice({
   name: "news",
   initialState: {
     news: [],
+    last_news: [],
     status: null,
   },
   extraReducers: {
@@ -26,6 +35,16 @@ const newsSlice = createSlice({
       state.news = action.payload;
     },
     [fetchNews.rejected]: (state) => {
+      state.status = STATUS.FAILED;
+    },
+    [fetchLastNews.pending]: (state) => {
+      state.status = STATUS.PENDING;
+    },
+    [fetchLastNews.fulfilled]: (state, action) => {
+      state.status = STATUS.SUCCESSFUL;
+      state.last_news = action.payload;
+    },
+    [fetchLastNews.rejected]: (state) => {
       state.status = STATUS.FAILED;
     },
   },

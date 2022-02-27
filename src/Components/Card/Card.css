@@ -1,6 +1,23 @@
+.general-card {
+  min-width: 250px;
+  max-width: 350px;
+  margin-top: 0 ;
+  text-align: center;
+  height: auto ;
+}
+
+.general-card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 200px !important;
+}
+
 .img-card {
   width: 100%;
-  min-height: 200px;
-  max-height: 200px;
   object-fit: cover;
+}
+
+.card-btn {
+  margin: 0 auto;
 }

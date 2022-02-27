@@ -1,4 +1,7 @@
 .bg-container{
   background-color: var(--bg-light-blue);
   min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 50px 0;
 }

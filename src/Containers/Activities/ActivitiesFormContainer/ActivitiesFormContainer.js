@@ -10,6 +10,7 @@ import {
   selectorActivities,
 } from "../../../features/Activities/activitiesSlice";
 import { confirmAlerts, alerts } from "../../../utils/alerts";
+import TitleNav from "../../../Components/TitleNav/TitleNav";
 
 const ActivitiesFormContainer = () => {
   const { id } = useParams();
@@ -43,7 +44,8 @@ const ActivitiesFormContainer = () => {
   }, [id]);
 
   return (
-    <div>
+    <div className="container mt-3">
+      <TitleNav link="/backoffice/activities" linkTitle="Volver" />
       <ActivitiesForm activity={activity} decideAction={decideAction} />
     </div>
   );
