@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
 
+import { selectAuth } from "../../features/auth/authSlice";
 import "./Footer.css";
 import ONGLogo from "../../assets/onglogo.png";
 
@@ -11,6 +13,11 @@ const Footer = ({
   linkedin = "https://linkedin.com/in/somos-mas-85b310224/?trk=people-guest_people_search-card&originalSubdomain=ar",
   instagram = "http://instagram.com",
 }) => {
+  const {
+    auth,
+    user: { role_id },
+  } = useSelector(selectAuth);
+
   return (
     <footer className="container-fluid container-footer">
       <div className="container">
@@ -18,9 +25,11 @@ const Footer = ({
           <Link className="link-nav" to="/actividades">
             Actividades
           </Link>
-          <Link className="link-nav" to="/novedades">
-            Novedades
-          </Link>
+          {(!auth || (auth && role_id === 2)) && (
+            <Link className="link-nav" to="/donar">
+              Donar
+            </Link>
+          )}
           <Link className="link-nav" to="/nosotros">
             Nosotros
           </Link>
@@ -30,12 +39,14 @@ const Footer = ({
           <Link className="link-nav" to="/">
             Testimonios
           </Link>
-          <Link className="link-nav" to="/donar">
-            Contribuye
+          <Link className="link-nav" to="/novedades">
+            Novedades
           </Link>
-          <Link className="link-nav" to="/contacto">
-            Contacto
-          </Link>
+          {(!auth || (auth && role_id === 2)) && (
+            <Link className="link-nav" to="/contacto">
+              Contacto
+            </Link>
+          )}
         </nav>
         <div className="row row-social">
           <div className="col">
