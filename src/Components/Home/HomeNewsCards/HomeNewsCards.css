@@ -1,7 +1,26 @@
 .container-home-news {
   width: 100%;
   background: #f2f3e6;
-  padding: 5rem 0 6rem 0;
+  padding: 5rem 0 5rem 0;
+}
+
+.news-cards {
+  width: 100%;
+  margin: auto;
+  height: auto;
+  margin: 1rem auto;
+  padding: 0 1rem;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+}
+
+.news-card-home {
+  width: 300px !important;
 }
 
 .title-home-news {
