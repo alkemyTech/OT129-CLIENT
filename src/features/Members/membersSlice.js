@@ -43,6 +43,7 @@ const memberSlice = createSlice({
   name: "members",
   initialState: {
     members: [],
+    member: {},
     status: null,
   },
   extraReducers: {
@@ -52,6 +53,7 @@ const memberSlice = createSlice({
     [fetchMembers.fulfilled]: (state, action) => {
       state.status = STATUS.SUCCESSFUL;
       state.members = action.payload;
+      state.member = {};
     },
     [fetchMembers.rejected]: (state) => {
       state.status = STATUS.FAILED;
@@ -61,7 +63,7 @@ const memberSlice = createSlice({
     },
     [fetchMemberById.fulfilled]: (state, action) => {
       state.status = STATUS.SUCCESSFUL;
-      state.members = action.payload;
+      state.member = action.payload;
     },
     [fetchMemberById.rejected]: (state) => {
       state.status = STATUS.FAILED;
