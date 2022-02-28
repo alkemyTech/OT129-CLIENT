@@ -64,6 +64,9 @@ const Header = () => {
             >
               <i className="fas fa-sign-out-alt" />
             </Link>
+            <Link className="general-btn fill-btn text-decoration-none" to="/backoffice">
+              Backoffice
+            </Link>
             {role_id === 2 && (
               <Link className="general-btn stroke-btn text-decoration-none" to="/donar">
                 Donar
@@ -81,7 +84,7 @@ const Header = () => {
             >
               <i className="fas fa-sign-in-alt" />
             </Link>
-            <Link className="general-btn stroke-btn text-decoration-none" to="/registro">
+            <Link className="general-btn fill-btn text-decoration-none" to="/registro">
               Registro
             </Link>
           </>
