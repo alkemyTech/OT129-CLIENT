@@ -1,0 +1,41 @@
+.generalContainer {
+  margin: 12rem auto;
+}
+
+.colTimeline {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3rem; 
+}
+
+.containerFollowWidgets {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
+}
+
+.containerFollowButton {
+  margin-top: 3rem; 
+}
+
+@media (min-width: 768px) {
+  .generalContainer {
+    margin: 5rem auto;
+  }
+  .containerFollowWidgets {
+    flex-direction: column;
+  }
+  .colTimeline {
+    margin-bottom: 0; 
+  }
+  .widgetsRow {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .containerFollowButton {
+    margin-top: 0; 
+    margin-bottom: 3rem;
+  }
+}

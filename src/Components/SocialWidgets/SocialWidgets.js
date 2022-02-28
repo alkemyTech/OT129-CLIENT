@@ -1,27 +1,26 @@
 import React from "react";
-import "./SocialWidgets.css";
 import { TwitterTimelineEmbed, TwitterFollowButton } from "react-twitter-embed";
 import LinkedInProfileBadge from "react-linkedin-profile-badge";
 
+import styles from "./SocialWidgets.module.css";
+
 const SocialWidgets = () => {
   return (
-    <div className="container general-container">
+    <div className={`container ${styles.generalContainer}`}>
       <div className="row mb-5">
         <h2 className="text-center text-uppercase">Buscanos en nuestras redes sociales!</h2>
       </div>
-      <div className="row row-widgets">
-        <div className="col-6 col-timeline">
-          <div className="container-timeline">
-            <TwitterTimelineEmbed
-              noFooter="true"
-              options={{ width: 450, height: 350 }}
-              screenName="ONGSomosMas"
-              sourceType="profile"
-            />
-          </div>
+      <div className={`row ${styles.widgetsRow}`}>
+        <div className={`col-xs-12 col-md-6 ${styles.colTimeline}`}>
+          <TwitterTimelineEmbed
+            noFooter="true"
+            options={{ width: 450, height: 350 }}
+            screenName="ONGSomosMas"
+            sourceType="profile"
+          />
         </div>
-        <div className="col-6 container-followWidgets">
-          <div className="container-followButton">
+        <div className={`col-xs-12 col-md-6 ${styles.containerFollowWidgets}`}>
+          <div className={styles.containerFollowButton}>
             <TwitterFollowButton
               options={{
                 size: "large",
