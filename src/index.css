@@ -206,7 +206,7 @@ input, textarea, select {
   overflow-x: scroll;
 }
 /*Desktop and up*/
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 768px) {
   .table-container {
     flex-flow: column;
     overflow: hidden;
