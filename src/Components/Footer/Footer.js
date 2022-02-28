@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { selectAuth } from "../../features/auth/authSlice";
 import "./Footer.css";
 import ONGLogo from "../../assets/onglogo.png";
+import NewsletterButton from "../Home/NewsletterButton";
 
 const Footer = ({
   facebook = "https://facebook.com",
@@ -57,6 +58,7 @@ const Footer = ({
               <a className="link-social" href={twitter} rel="noreferrer" target="_blank">
                 <i className="fab fa-twitter" />
               </a>
+              {(!auth || role_id === 2) && <NewsletterButton />}
               <a className="link-social" href={instagram} rel="noreferrer" target="_blank">
                 <i className="fab fa-instagram" />
               </a>

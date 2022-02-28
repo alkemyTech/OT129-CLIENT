@@ -45,7 +45,7 @@
 }
 
 .social-icon-container {
-  width: 260px;
+  width: fit-content;
   margin: auto;
   display: flex;
   justify-content: space-between;
@@ -61,6 +61,11 @@
   align-items: center;
   border-radius: 100%;
   transition: all 0.3s ease;
+  margin-right: 1.5rem;
+}
+
+.link-social:last-child {
+  margin-right: 0;
 }
 
 .link-social i {
