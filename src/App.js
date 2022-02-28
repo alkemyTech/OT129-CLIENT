@@ -27,13 +27,15 @@ function App() {
     "/projects/create",
     "/login",
     "/newsletter",
+    "/school-campaign",
+    "/toys-campaign",
   ];
   const privatesRoutes = ["/backoffice", "/backoffice/*"];
 
   return (
     <>
       <Router>
-        <Suspense fallback={Spinner}>
+        <Suspense fallback={<Spinner />}>
           <Switch>
             <Route exact path={publicRoutes}>
               <LayoutPublic>
