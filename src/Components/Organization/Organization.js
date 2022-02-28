@@ -16,10 +16,13 @@ const Organization = ({ data }) => {
           <h5 className="text-center">{data.short_description}</h5>
         </div>
         <div className="d-flex justify-content-between my-3">
-          <Link className="general-btn" to="/backoffice">
+          <Link className="general-btn fill-black-btn text-decoration-none" to="/backoffice">
             Volver
           </Link>
-          <Link className="submit-btn" to={`/backoffice/organization/edit/${data.id}`}>
+          <Link
+            className="general-btn fill-btn text-decoration-none"
+            to={`/backoffice/organization/edit/${data.id}`}
+          >
             Editar
           </Link>
         </div>
