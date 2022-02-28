@@ -130,7 +130,7 @@ const routes = [
     exact: true,
   },
   {
-    path: "/backoffice/organization/edit",
+    path: "/backoffice/organization/edit/:id",
     component: EditOrganization,
     exact: true,
   },
