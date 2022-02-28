@@ -17,7 +17,7 @@ const CardsTestimonials = ({ title, image, description }) => {
           src="\images\placeholder\emptyImage.png"
         />
       )}
-      <div className="card-body testimonials-card-body">
+      <div className="testimonials-card-body">
         <h5 className="card-title text-uppercase">{title}</h5>
         {description && (
           <p className="quote-description">
