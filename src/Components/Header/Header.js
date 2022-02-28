@@ -64,11 +64,12 @@ const Header = () => {
             >
               <i className="fas fa-sign-out-alt" />
             </Link>
-            <Link className="general-btn fill-btn text-decoration-none" to="/backoffice">
-              Backoffice
-            </Link>
-            {role_id === 2 && (
-              <Link className="general-btn stroke-btn text-decoration-none" to="/donar">
+            {role_id === 1 ? (
+              <Link className="general-btn fill-btn text-decoration-none" to="/backoffice">
+                Backoffice
+              </Link>
+            ) : (
+              <Link className="general-btn fill-btn text-decoration-none" to="/donar">
                 Donar
               </Link>
             )}
