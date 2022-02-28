@@ -9,7 +9,7 @@
 .img-testimonials-card {
   display: block;
   width: 250px;
-  height: 250px;
+  height: 100%;
   object-fit: cover;
   border-radius: 6px 0 0 6px;
 }
@@ -33,7 +33,6 @@
   .img-testimonials-card {
     display: block;
     width: 40%;
-    height: 100%;
   }
 }
 @media (max-width: 992px) {
