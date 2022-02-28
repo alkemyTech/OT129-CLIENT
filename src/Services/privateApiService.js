@@ -1,5 +1,7 @@
 import axios from "axios";
 
+import { alerts } from "../utils/alerts";
+
 import config from "./axiosConfig";
 
 export const authenticate = () => {
