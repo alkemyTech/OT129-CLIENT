@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 
 import Title from "../../Components/Titles/Titles";
 import NewsDetails from "../../Components/News/Details/NewsDetails";
-import { getNewsById } from "../../Services/NewsService";
+import { fetchNewsById } from "../../features/News/news-slice";
 
 const NewsDetailsContainer = () => {
   const [news, setNews] = useState({
@@ -16,7 +16,7 @@ const NewsDetailsContainer = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    getNewsById(id)
+    fetchNewsById(id)
       .then((response) => {
         setNews(response.data.data);
       })

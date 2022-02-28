@@ -1,8 +1,8 @@
-.containerActivitiesPage {
-  margin: 3rem auto 6rem auto;
+.containerNewsPage {
+  margin: 3rem auto 4rem auto;
 }
 
-.activitiesCardsContainer {
+.newsCardsContainer {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -10,7 +10,7 @@
 }
 
 @media (min-width: 1200px) {
-  .activitiesCardsContainer {
+  .newsCardsContainer {
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
@@ -19,9 +19,8 @@
 }
 
 @media (min-width: 1400px) {
-  .activitiesCardsContainer {
+  .newsCardsContainer {
     gap: 77px;
   }
 }
-
 

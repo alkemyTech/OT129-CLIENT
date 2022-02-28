@@ -19,12 +19,13 @@ const HomeCards = () => {
   return (
     <div className="container-home-news">
       <h2 className="text-uppercase title-home-news">Últimas Novedades</h2>
-      <>
-        <div className="container-cards">
+      <div className="container">
+        <div className="news-cards">
           {last_news &&
             last_news.map((el) => (
               <Card
                 key={el.id}
+                className="news-card-home"
                 description={el.content}
                 id={el.id}
                 image={el.image}
@@ -34,7 +35,7 @@ const HomeCards = () => {
             ))}
         </div>
         <StatusHandler status={state} />
-      </>
+      </div>
     </div>
   );
 };
