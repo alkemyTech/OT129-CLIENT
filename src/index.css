@@ -18,11 +18,25 @@
   --font-size: 15px;
   --card-shadow: 2px 2px 6px rgb(187, 187, 187);
   --form-shadow: 0 10px 6px -4px rgba(123, 161, 201, 0.5);
+  --bp-medium: 768px;
+  --bp-large: 1024px;
+  --transition: 150ms ease-in-out;
 }
 
 body {
   margin: 0;
   font-family: var(--font-family);
+}
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+input, textarea, select {
+  border: 2px solid var(--blue) !important;
+}
+
+input, textarea, select {
+  border: 2px solid var(--blue) !important;
 }
 
 /* Buttons */
@@ -40,37 +54,31 @@ body {
   text-transform: uppercase;
   transition-duration: 0.4s;
 }
-
 .fill-btn {
   background: var(--blue);
   color: var(--black);
 }
-
 .fill-btn:hover {
   background: var(--dark-blue);
   color: var(--black);
 }
-
 .fill-black-btn {
   background: var(--black);
   border: 2px solid var(--black);
   box-sizing: border-box;
   color: var(--white);
 }
-
 .fill-black-btn:hover {
   border: 2px solid var(--black);
   background: none;
   color: var(--black);
 }
-
 .stroke-btn {
   border: 2px solid var(--blue);
   color: var(--black);
   background: transparent;
   box-sizing: border-box;
 }
-
 .stroke-btn {
   border: 2px solid var(--dark-blue);
   color: var(--dark-blue);
@@ -127,7 +135,6 @@ body {
 .btn-accept:hover {
   background-color: var(--blue-hover) !important;
 }
-
 .btn-decline {
   background-color: var(--red) !important;
   color: var(--white) !important;
@@ -137,7 +144,6 @@ body {
 .btn-decline:hover {
   background-color: var(--red-hover) !important;
 }
-
 .register-btn {
   width: 100%;
   max-width: 450px;
@@ -154,23 +160,58 @@ body {
 /* Cards */
 
 .container-cards {
+  width: 100%;
+  height: auto;
+  margin: 1rem auto;
+  padding: 0 1rem;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 50px;
+  flex-flow: row;
+  align-items: center;
+  gap: 30px;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
 }
-
+@media screen and (min-width: 1024px) {
+  .container-cards {
+    padding: 0 3rem;
+    gap: 50px;
+    flex-flow: row wrap;
+    justify-content: center;
+    overflow: hidden;
+  }
+}
+.container-cards::-webkit-scrollbar {
+  width: 12px;
+}
+.container-cards::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: .5rem;
+  cursor: pointer;
+}
+.container-cards::-webkit-scrollbar-thumb {
+  border-radius: .5rem;
+  -webkit-box-shadow: inset 0 0 6px var(--blue);
+  box-shadow: inset 0 0 6px var(--blue);
+}
 .card {
-  width: 30%;
   box-shadow: var(--card-shadow);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
-
 /* Tablas Listados */
+/*Mobile*/
+.table-container {
+  display: flex;
+  flex-flow: row;
+  overflow-x: scroll;
+}
+/*Desktop and up*/
+@media screen and (min-width: 1024px) {
+  .table-container {
+    flex-flow: column;
+    overflow: hidden;
+  }
+}
 
 .table-list {
   border: 2px solid rgb(207, 207, 207);

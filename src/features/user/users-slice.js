@@ -52,6 +52,7 @@ const usersSlice = createSlice({
     [fetchUsers.fulfilled]: (state, action) => {
       state.status = "success";
       state.users = action.payload;
+      state.user = {};
     },
     [fetchUsers.rejected]: (state) => {
       state.status = "failed";

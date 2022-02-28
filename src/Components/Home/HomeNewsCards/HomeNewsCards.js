@@ -17,14 +17,15 @@ const HomeCards = () => {
   }, [dispatch]);
 
   return (
-    <div className="container-fluid d-grid gap-3 container-home-news">
-      <h2 className="container text-uppercase title-home-news">Últimas Novedades</h2>
-      <div>
-        <div className="container container-cards">
+    <div className="container-home-news">
+      <h2 className="text-uppercase title-home-news">Últimas Novedades</h2>
+      <div className="container">
+        <div className="news-cards">
           {last_news &&
             last_news.map((el) => (
               <Card
                 key={el.id}
+                className="news-card-home"
                 description={el.content}
                 id={el.id}
                 image={el.image}

@@ -1,0 +1,89 @@
+@media screen and (max-width: 1023px) {
+    .modalContainer {
+        width: 90vw;
+        max-width: 600px;
+        height: 80vh;
+        max-height: 600px;
+        padding: 0;
+        display: block;
+        position: relative;
+        background-color: white;
+        box-shadow: var(--form-shadow);
+        border: 1px solid var(--dark-blue);
+        border-radius: 10px;
+        overflow: hidden;
+      }
+    .menuButton {
+        width: 40px;
+        height: 40px;
+        background-color: transparent;
+        border: none;
+    }
+
+    .closeMenu  {
+        width: 40px;
+        height: 40px;
+        display: block;
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        background-color: transparent;
+        border: none;
+    }
+
+    .menuButton > i, .closeMenu > i {
+        font-size: 1.5rem;
+        color: var(--dark-blue);
+    }
+
+    .mobileNav {
+       width: 100%;
+       height: 80%;
+       margin: 10% auto;
+       display: flex;
+       flex-flow: column wrap;
+       justify-content: space-around;
+       align-items: center; 
+    }
+    .menuDivider {
+        width: 80%;
+        height: 3px;
+        background-color: var(--dark-blue);
+        margin: 0 auto;
+        padding: 0;
+    }
+    .navLink {
+        text-decoration: none;
+        color: var(--dark-blue);
+        transition: var(--transition);
+    }
+    .navLink:hover {
+        transform: scale(1.05);
+        color: var(--dark-blue);
+        font-weight: bold;
+    }
+    .authLink {
+        width: 200px;
+        padding: .5rem 0;
+        display: block;
+        text-align: center;
+        background-color: var(--dark-blue);
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        border-radius: 1rem;
+        transition: var(--transition);
+    }
+    .authLink:hover {
+        background-color: var(--blue-hover);
+        color: black;
+    }
+    .active {
+        font-weight: bold;
+    }
+}
+@media screen and (min-width: 1024px) {
+    .menuButton, .modalContainer {
+        display: none;
+    }
+}

@@ -1,7 +1,11 @@
 .header {
+  width: 100%;
+  padding: 0 .5rem;
   display: flex;
+  flex-flow: row;
   justify-content: space-between;
   align-items: center;
+  overflow: hidden;
 }
 
 .menuIcon {
@@ -11,17 +15,16 @@
 }
 
 .nav {
-  width: 65%;
-  display: flex;
-  justify-content: space-between;
+  display: none;
 }
 
 .linkToSection {
+    width: 80px;
     text-decoration: none;
-    align-items:center;
     color: var(--blue);
     transition: color 0.3s ease;
-    justify-content:space-between;
+    font-size: 1rem;
+    text-align: center;
 }
 
 .active {
@@ -29,7 +32,7 @@
 }
 
 .containerButtons {
-  display: flex;
+  display: none;
 }
 
 .iconoBtn {
@@ -50,3 +53,17 @@
   font-size: 22px;
   color: var(--black);
 }
+
+/* BP */
+@media screen and (min-width: 1024px) {
+  .nav {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .containerButtons {
+    display: flex;
+  }
+}
+ 

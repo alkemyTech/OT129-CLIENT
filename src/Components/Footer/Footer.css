@@ -7,8 +7,16 @@
 .nav-footer {
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  flex-flow: column wrap;
   align-items: center;
+  gap: .5rem;
+}
+
+@media screen and (min-width: 1024px) {
+.nav-footer {
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
 }
 
 .link-nav {

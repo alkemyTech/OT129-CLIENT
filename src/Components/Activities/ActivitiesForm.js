@@ -1,13 +1,14 @@
-/* eslint-disable no-console */
 import React, { useState, useEffect } from "react";
 import { Formik, Form, ErrorMessage } from "formik";
 import PropTypes from "prop-types";
 import * as Yup from "yup";
-import "../FormStyles.css";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
+import Alert from "../Alert/Alert";
 import { toBase64 } from "../../utils/toBase64";
+
+import "../BackOfficeForms.css";
 
 const validationSchema = Yup.object({
   name: Yup.string().required("El nombre de la actividad es obligatorio"),
@@ -36,77 +37,87 @@ const ActivitiesForm = ({ activity = {}, decideAction }) => {
   }, [activity]);
 
   return (
-    <div className="container mt-4">
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={async (formData) => {
-          const resultBase = await toBase64(formData.image);
-          const newActivity = { ...formData, image: resultBase };
+    <Formik
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      onSubmit={async (formData) => {
+        const resultBase = await toBase64(formData.image);
+        const newActivity = { ...formData, image: resultBase };
 
-          decideAction(newActivity);
-        }}
-      >
-        {(formik) => (
-          <Form className="row justify-content-center align-items-center">
-            <div className="col-sm-6 ">
-              <div className="input-group mb-3">
-                <input
-                  className="p-2 w-100"
-                  data-testid="inputTitle"
-                  id="name"
-                  name="name"
-                  placeholder={initialValues?.name || "Título"}
-                  type="text"
-                  {...formik.getFieldProps("name")}
-                />
-                <ErrorMessage className="alert-danger" name="name" />
-              </div>
-              <div className="input-group mb-3">
-                <CKEditor
-                  className="p-2 w-75"
-                  config={{ placeholder: "Descripción" }}
-                  data={activity?.description || ""}
-                  data-testid="inputDescription"
-                  editor={ClassicEditor}
-                  id="description"
-                  onChange={(event, editor) => {
-                    const data = editor.getData();
+        decideAction(newActivity);
+      }}
+    >
+      {(formik) => (
+        <Form className="form-backoffice">
+          <div className="form-group">
+            <label className="form-label fw-bold mt-1 fw-bold">Nombre:</label>
+            <input
+              className="form-control form-control-sm w-100 mb-3"
+              data-testid="inputTitle"
+              id="name"
+              name="name"
+              placeholder={initialValues?.name || "Título"}
+              type="text"
+              {...formik.getFieldProps("name")}
+            />
+            <ErrorMessage component={Alert} name="name" />
+          </div>
+          <div className="form-group">
+            <label className="form-label fw-bold mt-1 fw-bold" name="description">
+              Descripción:
+            </label>
+            <CKEditor
+              config={{ placeholder: "Descripción" }}
+              data={activity?.description || ""}
+              data-testid="inputDescription"
+              editor={ClassicEditor}
+              id="description"
+              onChange={(event, editor) => {
+                const data = editor.getData();
 
-                    formik.setFieldValue("description", data);
-                  }}
+                formik.setFieldValue("description", data);
+              }}
+            />
+          </div>
+          <div className="form-group mt-3">
+            <label className="form-label fw-bold mt-1 fw-bold">Imagen:</label>
+            <input
+              accept="image/png, image/jpeg"
+              className="form-control form-control-sm w-100 mb-3"
+              data-testid="inputImage"
+              id="image"
+              name="image"
+              type="file"
+              onChange={(event) => {
+                formik.setFieldValue("image", event.currentTarget.files[0]);
+                setActivityImage(URL.createObjectURL(event.currentTarget.files[0]));
+              }}
+            />
+            <ErrorMessage
+              className="alert-danger"
+              component={Alert}
+              data-testid="imageError"
+              name="image"
+            />
+          </div>
+          <div className="form-group">
+            {activityImage && (
+              <>
+                <label className="form-label fw-bold mt-1 fw-bold mt-1">(Imagen actual)</label>
+                <img
+                  alt="Imagen actual"
+                  className="d-block preview-image mb-3"
+                  src={activityImage}
                 />
-              </div>
-              <div className="mb-3">
-                <input
-                  accept="image/png, image/jpeg"
-                  className="w-100"
-                  data-testid="inputImage"
-                  id="image"
-                  name="image"
-                  type="file"
-                  onChange={(event) => {
-                    formik.setFieldValue("image", event.currentTarget.files[0]);
-                    setActivityImage(URL.createObjectURL(event.currentTarget.files[0]));
-                  }}
-                />
-                <ErrorMessage className="alert-danger" data-testid="imageError" name="image" />
-                {activityImage && (
-                  <img
-                    alt="Imagen actual"
-                    className="d-block current-img mt-3"
-                    src={activityImage}
-                  />
-                )}
-              </div>
-              <button className="submit-btn" data-testid="btnSubmit" type="submit">
-                {activity?.id ? "EDITAR" : "CREAR"}
-              </button>
-            </div>
-          </Form>
-        )}
-      </Formik>
-    </div>
+              </>
+            )}
+          </div>
+          <button className="submit-btn" data-testid="btnSubmit" type="submit">
+            {activity?.id ? "EDITAR" : "CREAR"}
+          </button>
+        </Form>
+      )}
+    </Formik>
   );
 };
 
