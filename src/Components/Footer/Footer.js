@@ -27,7 +27,7 @@ const Footer = ({
             <Link className="link-nav" to="/actividades">
               Actividades
             </Link>
-            {(!auth || (auth && role_id === 2)) && (
+            {auth && role_id === 2 && (
               <Link className="link-nav" to="/donar">
                 Donar
               </Link>
