@@ -42,7 +42,7 @@ const UsersListContainer = () => {
 
   return (
     <div className="container mt-5">
-      <TitleNav link="/backoffice/users/create" linkTitle="Crear" title="Users" />
+      <TitleNav link="/backoffice/users/create" linkTitle="Crear" title="Usuarios" />
       <SearchInput
         handleSearch={handleSearch}
         title="Ingresa el nombre del Usuario que desea buscar"
