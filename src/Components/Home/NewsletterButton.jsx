@@ -19,7 +19,7 @@ const NewsletterButton = () => {
   };
 
   return (
-    <button className="general-btn fill-btn me-4 px-4" onClick={handleClick}>
+    <button className="general-btn fill-btn px-4" onClick={handleClick}>
       Suscribirse al newsletter
     </button>
   );
