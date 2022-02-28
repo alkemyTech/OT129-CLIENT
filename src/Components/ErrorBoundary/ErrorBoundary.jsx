@@ -17,7 +17,7 @@ export default class ErrorBoundary extends React.Component {
   render() {
     if (this.state.errorInfo) {
       return (
-        <div className="container">
+        <div className="container mt-3">
           <div className="alert alert-danger">Ups! Ha ocurrido un error inesperado</div>
           <details style={{ whiteSpace: "pre-wrap" }}>
             {this.state.error && this.state.error.toString()}
