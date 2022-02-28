@@ -15,7 +15,7 @@ const EditOrganization = () => {
   const { id } = useParams();
   const { organization } = useSelector(selectorOrganization);
   const dispatch = useDispatch();
-
+  
   const handleSubmit = (data) => {
     if (!id) {
       dispatch(newOrganization(data))
