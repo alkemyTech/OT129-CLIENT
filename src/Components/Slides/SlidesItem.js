@@ -1,36 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import PropTypes from "prop-types";
-import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { fetchSlides, removeSlide } from "../../features/slides/slidesSlice";
-import { alerts, confirmAlerts } from "../../utils/alerts";
-
-const SlidesItem = ({ slide }) => {
-  const dispatch = useDispatch();
-
-  const onDelete = (id) => {
-    confirmAlerts(
-      "¿Estás seguro?",
-      `El slide id: ${id} se eliminará permanentemente`,
-      function (response) {
-        if (response) {
-          dispatch(removeSlide(id))
-            .then(() => {
-              alerts(`el slide id: ${id} se eliminó correctamente`, "success");
-            })
-            .catch(() => {
-              alerts(`Ocurrió un error al eliminar el slide id: ${id} `, "error");
-            });
-        }
-      }
-    );
-  };
-
-  useEffect(() => {
-    dispatch(fetchSlides());
-  }, [dispatch]);
-
+const SlidesItem = ({ slide, onDelete }) => {
   return (
     <tr>
       <td className="align-middle">{slide.id}</td>
@@ -60,6 +32,7 @@ SlidesItem.propTypes = {
     image: PropTypes.string,
     order: PropTypes.number,
   }),
+  onDelete: PropTypes.func,
 };
 
 export default SlidesItem;
