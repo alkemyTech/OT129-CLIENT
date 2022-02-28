@@ -1,45 +1,34 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ErrorMessage, Form, Formik } from "formik";
 import * as Yup from "yup";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import PropTypes from "prop-types";
 
-import Alert from "../Alert/Alert";
 import { toBase64 } from "../../utils/toBase64";
-import { alerts } from "../../utils/alerts";
-import { createNews, editNews } from "../../Services/NewsService";
-import { getCategories } from "../../Services/CategoriesService";
+import Alert from "../Alert/Alert";
 
-const NewsForm = ({ newId = {} }) => {
+const NewsForm = ({ _new, categories = [], handleSubmit }) => {
+  const [newImage, setNewImage] = useState("");
+
   const initialValues = {
-    name: newId.name || "",
-    content: newId.content || "",
-    image: newId.image || "",
-    category_id: newId.category_id || undefined,
+    name: _new.name || "",
+    content: _new.content || "",
+    image: _new.image || "",
+    category_id: _new.category_id || undefined,
   };
 
-  const [categories, setCategories] = useState([]);
-  const [loading, setLoading] = useState(false);
-
-  // ejecuta la funcion getCategories para traer y mostrar todas las categorias
   useEffect(() => {
-    const data = async () => {
-      const result = await getCategories();
-
-      setCategories(result?.data?.data);
-    };
-
-    data();
-  }, []);
+    if (_new.id) {
+      setNewImage(_new.image);
+    }
+  }, [_new]);
 
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={validationNewSchema}
       onSubmit={async (formData) => {
-        setLoading(true);
-        // Convertirmos la imagen en formato base64
         const resultbase = await toBase64(formData.image);
         const data = {
           name: formData.name,
@@ -48,36 +37,7 @@ const NewsForm = ({ newId = {} }) => {
           image: resultbase,
         };
 
-        // Validamos si el objeto novedad esta vacio o no
-        if (newId.id === undefined) {
-          await createNews(data)
-            .then(() => {
-              alerts("La novedad se creo correctamente", "success");
-            })
-            .catch(() => {
-              alerts("Error al crear novedad", "error");
-            });
-
-          setLoading(false);
-        } else {
-          const resultbase = await toBase64(formData.image);
-          const data = {
-            name: formData.name,
-            content: formData.content,
-            category_id: formData.category_id,
-            image: resultbase,
-          };
-
-          await editNews(data, newId.id)
-            .then(() => {
-              alerts("La novedad se editó correctamente", "success");
-            })
-            .catch(() => {
-              alerts("Error al editar novedad", "error");
-            });
-
-          setLoading(false);
-        }
+        handleSubmit(data);
       }}
     >
       {(formik) => (
@@ -133,23 +93,19 @@ const NewsForm = ({ newId = {} }) => {
               type="file"
               onChange={(event) => {
                 formik.setFieldValue("image", event.currentTarget.files[0]);
+                setNewImage(URL.createObjectURL(event.currentTarget.files[0]));
               }}
             />
           </div>
           <ErrorMessage component={Alert} name="image" />
-          {newId.image && (
+          {newImage && (
             <div className="form-group mb-3">
               <label className="form-label fw-bold mt-1 fw-bold mt-1">(Imagen actual)</label>
-              <img alt="Imagen actual" className="preview-image" src={newId.image} />
+              <img alt="Imagen actual" className="preview-image" src={newImage} />
             </div>
           )}
           <button className="submit-btn" data-testid="btnSubmit" type="submit">
-            <span
-              aria-hidden="true"
-              className={loading ? "spinner-border spinner-border-sm" : null}
-              role="status"
-            />
-            {newId.id === undefined ? "AGREGAR NOVEDAD" : "EDITAR NOTICIA"}
+            {!_new.id ? "AGREGAR" : "EDITAR"}
           </button>
         </Form>
       )}
@@ -158,15 +114,17 @@ const NewsForm = ({ newId = {} }) => {
 };
 const validationNewSchema = Yup.object({
   name: Yup.string()
-    .min(4, "Debe contener al menos 4 caracteres")
-    .required("El titulo es obligatorio"),
+    .required("El titulo es obligatorio.")
+    .min(4, "Debe contener al menos 4 caracteres"),
   content: Yup.string().required("El contenido es obligatorio"),
   category_id: Yup.string().required("La categoría es obligatoria"),
   image: Yup.string().required("La imagen es obligatoria"),
 });
 
 NewsForm.propTypes = {
-  newId: PropTypes.shape({
+  categories: PropTypes.array,
+  handleSubmit: PropTypes.func,
+  _new: PropTypes.shape({
     id: PropTypes.number,
     name: PropTypes.string,
     content: PropTypes.string,

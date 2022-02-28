@@ -16,7 +16,7 @@ import MembersForm from "../../Components/Members/MembersForm";
 const MembersFormContainer = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const { members } = useSelector(selectorMembers);
+  const { member } = useSelector(selectorMembers);
 
   const handleSub = (data) => {
     if (!id) {
@@ -51,7 +51,7 @@ const MembersFormContainer = () => {
   return (
     <div className="container mt-3">
       <TitleNav link="/backoffice/members" linkTitle="Volver" />
-      <MembersForm handleSub={handleSub} member={members} />
+      <MembersForm handleSub={handleSub} member={member} />
     </div>
   );
 };

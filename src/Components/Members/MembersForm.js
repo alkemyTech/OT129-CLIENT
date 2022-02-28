@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
@@ -10,6 +10,7 @@ import { isValidUrl } from "../../utils/isValidUrl";
 import Alert from "../Alert/Alert";
 
 const MembersForm = ({ member = {}, handleSub }) => {
+  const [memberImage, setMemberImage] = useState("");
   const initialValues = {
     name: member.name ?? "",
     description: member.description ?? "",
@@ -23,6 +24,12 @@ const MembersForm = ({ member = {}, handleSub }) => {
 
     handleSub(newMember);
   };
+
+  useEffect(() => {
+    if (member.id) {
+      setMemberImage(member.image);
+    }
+  }, [member]);
 
   return (
     <Formik
@@ -70,14 +77,15 @@ const MembersForm = ({ member = {}, handleSub }) => {
               type="file"
               onChange={(event) => {
                 formik.setFieldValue("image", event.currentTarget.files[0]);
+                setMemberImage(URL.createObjectURL(event.currentTarget.files[0]));
               }}
             />
             <ErrorMessage component={Alert} name="image" />
           </div>
-          {initialValues.image !== "" ? (
+          {memberImage ? (
             <div className="form-group mb-3">
               <label className="form-label fw-bold mt-1 fw-bold mt-1">(Imagen actual)</label>
-              <img alt="Imagen" className="preview-image" src={member?.image} />
+              <img alt="Imagen" className="preview-image" src={memberImage} />
             </div>
           ) : null}
           <div className="form-group">

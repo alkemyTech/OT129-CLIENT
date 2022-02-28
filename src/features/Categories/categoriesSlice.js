@@ -52,6 +52,7 @@ const categoriesSlice = createSlice({
     [fetchCategories.fulfilled]: (state, action) => {
       state.status = "success";
       state.categories = action.payload;
+      state.category = {};
     },
     [fetchCategories.rejected]: (state) => {
       state.status = "failed";

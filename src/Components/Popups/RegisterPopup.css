@@ -4,6 +4,7 @@
   height: auto;
   max-height: 600px;
   margin: auto;
+  padding: 0 !important;
   background-color: white;
   border: none;
   border-radius: 10px;

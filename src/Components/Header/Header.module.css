@@ -17,15 +17,7 @@
 .nav {
   display: none;
 }
-@media screen and (min-width: 1024px) {
-  .nav {
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-  }
-}
- 
+
 .linkToSection {
     width: 80px;
     text-decoration: none;
@@ -40,7 +32,7 @@
 }
 
 .containerButtons {
-  display: flex;
+  display: none;
 }
 
 .iconoBtn {
@@ -61,3 +53,17 @@
   font-size: 22px;
   color: var(--black);
 }
+
+/* BP */
+@media screen and (min-width: 1024px) {
+  .nav {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .containerButtons {
+    display: flex;
+  }
+}
+ 
