@@ -9,6 +9,7 @@ import { publicRoute } from "./Components/Route/publicRoutes";
 import PrivateRoute from "./Components/Route/PrivateRoute";
 import LayoutPublic from "./Components/Layout/LayoutPublic";
 import Error404Page from "./Pages/Error404Page";
+import ErrorBoundary from "./Components/ErrorBoundary/ErrorBoundary";
 const SchoolCampaign = lazy(() =>
   import(/* webpackChunkName: "LazySchoolCampaignPage"*/ "./Campaigns/School/SchoolCampaign")
 );
@@ -37,7 +38,7 @@ function App() {
   const privatesRoutes = ["/backoffice", "/backoffice/*"];
 
   return (
-    <>
+    <ErrorBoundary>
       <Router>
         <Suspense fallback={Spinner}>
           <Switch>
@@ -69,7 +70,7 @@ function App() {
           </Switch>
         </Suspense>
       </Router>
-    </>
+    </ErrorBoundary>
   );
 }
 
