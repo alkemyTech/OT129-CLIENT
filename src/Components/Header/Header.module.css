@@ -22,9 +22,13 @@
     width: 80px;
     text-decoration: none;
     color: var(--blue);
-    transition: color 0.3s ease;
+    transition: var(--transition);
     font-size: 1rem;
     text-align: center;
+}
+.linkToSection:hover {
+  color: var(--dark-blue);
+  font-weight: bold;
 }
 
 .active {
