@@ -15,6 +15,6 @@ export const addOrganization = (data) => {
   return post(ENDPOINT, data);
 };
 
-export const editOrganization = (id, data) => {
+export const editOrganization = (data, id) => {
   return put(ENDPOINT, data, id);
 };
