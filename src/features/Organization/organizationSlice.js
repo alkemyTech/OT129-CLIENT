@@ -1,6 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-import { getOrganizations } from "../../Services/OrganizationService";
+import {
+  getOrganizations,
+  editOrganization,
+  addOrganization,
+} from "../../Services/OrganizationService";
 import { STATUS } from "../../constants";
 
 export const fetchOrganization = createAsyncThunk("organization/get", async () => {
@@ -9,6 +13,14 @@ export const fetchOrganization = createAsyncThunk("organization/get", async () =
   } = await getOrganizations();
 
   return data;
+});
+
+export const newOrganization = createAsyncThunk("organization/post", async (data) => {
+  await addOrganization(data);
+});
+
+export const putOrganization = createAsyncThunk("organization/put", async (data) => {
+  editOrganization(data.data, data.id);
 });
 
 const organizationSlice = createSlice({
@@ -26,6 +38,25 @@ const organizationSlice = createSlice({
       state.organization = action.payload;
     },
     [fetchOrganization.rejected]: (state) => {
+      state.status = STATUS.FAILED;
+    },
+    [newOrganization.pending]: (state) => {
+      state.status = STATUS.PENDING;
+    },
+    [newOrganization.fulfilled]: (state) => {
+      state.status = STATUS.SUCCESSFUL;
+    },
+    [newOrganization.rejected]: (state) => {
+      state.status = STATUS.FAILED;
+    },
+    [putOrganization.pending]: (state) => {
+      state.status = STATUS.PENDING;
+    },
+    [putOrganization.fulfilled]: (state) => {
+      state.status = STATUS.SUCCESSFUL;
+      state.organization = {};
+    },
+    [putOrganization.rejected]: (state) => {
       state.status = STATUS.FAILED;
     },
   },
