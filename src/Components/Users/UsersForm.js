@@ -8,29 +8,13 @@ import { toBase64 } from "../../utils/toBase64";
 import Alert from "../Alert/Alert";
 
 const UsersForm = ({ users, handleSub }) => {
-  const [initialValues, setInitialValues] = useState({
-    name: "",
-    email: "",
-    role_id: undefined,
-    profile_image: "",
-  });
-
-  useEffect(() => {
-    if (users) {
-      setInitialValues({
-        name: users.name,
-        email: users.email,
-        role_id: users.role_id,
-        profile_image: users.profile_image,
-      });
-    }
-  }, [users, setInitialValues]);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-
-    setInitialValues({ ...initialValues, [name]: value });
+  const initialValues = {
+    name: users.name ?? "",
+    email: users.email ?? "",
+    role_id: users.role_id ?? undefined,
+    profile_image: users.profile_image ?? "",
   };
+  const [image, setImage] = useState("");
 
   const onSubmit = async (formData) => {
     const resultBase = await toBase64(formData.profile_image);
@@ -41,6 +25,7 @@ const UsersForm = ({ users, handleSub }) => {
 
   return (
     <Formik
+      enableReinitialize={true}
       initialValues={initialValues}
       validationSchema={validationUserSchema}
       onSubmit={onSubmit}
@@ -54,8 +39,9 @@ const UsersForm = ({ users, handleSub }) => {
               id="name"
               name="name"
               type="text"
-              value={initialValues.name}
-              onChange={handleChange}
+              value={formik.values.name}
+              onChange={formik.handleChange}
+              {...formik.getFieldProps("name")}
             />
             <ErrorMessage component={Alert} name="name" />
           </div>
@@ -65,8 +51,9 @@ const UsersForm = ({ users, handleSub }) => {
               className="form-control form-control-sm w-100 mb-3"
               name="email"
               type="email"
-              value={initialValues.email}
-              onChange={handleChange}
+              value={formik.values.email}
+              onChange={formik.handleChange}
+              {...formik.getFieldProps("email")}
             />
             <ErrorMessage component={Alert} name="email" />
           </div>
@@ -79,16 +66,20 @@ const UsersForm = ({ users, handleSub }) => {
               type="file"
               onChange={(event) => {
                 formik.setFieldValue("profile_image", event.currentTarget.files[0]);
+                setImage(URL.createObjectURL(event.currentTarget.files[0]));
               }}
             />
             <ErrorMessage component={Alert} name="image" />
           </div>
-          {initialValues.profile_image !== null ? (
-            <div className="form-group">
-              <label className="form-label fw-bold mt-1 fw-bold mt-1">(Imagen actual)</label>
-              <img alt="Imagen actual" src={initialValues?.profile_image} />
-            </div>
-          ) : null}
+
+          <div className="form-group">
+            {image && (
+              <>
+                <label className="form-label fw-bold mt-1 fw-bold mt-1">(Imagen actual)</label>
+                <img alt="Imagen actual" className="d-block preview-image mb-3" src={image} />
+              </>
+            )}
+          </div>
           <div className="form-group mb-3">
             <label className="form-label fw-bold mt-1 fw-bold mt-1">Rol:</label>
             <select
