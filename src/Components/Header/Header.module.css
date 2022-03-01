@@ -1,6 +1,6 @@
 .header {
   width: 100%;
-  padding: 0 .5rem;
+  padding: 0 0.5rem;
   display: flex;
   flex-flow: row;
   justify-content: space-between;
@@ -19,16 +19,16 @@
 }
 
 .linkToSection {
-    width: 80px;
-    text-decoration: none;
-    color: var(--blue);
-    transition: color 0.3s ease;
-    font-size: 1rem;
-    text-align: center;
+  width: 80px;
+  text-decoration: none;
+  color: var(--blue);
+  transition: color 0.3s ease;
+  font-size: 1rem;
+  text-align: center;
 }
 
 .active {
-   color: var(--dark-blue);
+  color: var(--dark-blue);
 }
 
 .containerButtons {
@@ -66,4 +66,3 @@
     display: flex;
   }
 }
- 
