@@ -1,13 +1,19 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import DangerouslySetInnerHTML from "../../DangerouslySetInnerHTML/DangerouslySetInnerHTML";
+
+import styles from "./ActivitiesDetail.module.css";
+
 const ActivitiesDetail = ({ data }) => {
   return (
     <div className="container my-5">
-      <div className="d-grid d-md-flex justify-content-md-center py-3">
-        <img alt={data.name} className="mw-100" src={data.image} />
+      <div className={styles.containerActivitiesDetail}>
+        <img alt={data.name} className={styles.imgActivitiesDetail} src={data.image} />
+        <p className={`text-center ${styles.textActivitiesDetail}`}>
+          <DangerouslySetInnerHTML content={data.description} />
+        </p>
       </div>
-      <h5 className="text-center">{data.description}</h5>
     </div>
   );
 };

@@ -71,9 +71,8 @@ const memberSlice = createSlice({
     [newMember.pending]: (state) => {
       state.status = STATUS.PENDING;
     },
-    [newMember.fulfilled]: (state, action) => {
+    [newMember.fulfilled]: (state) => {
       state.status = STATUS.SUCCESSFUL;
-      state.members = action.payload;
     },
     [newMember.rejected]: (state) => {
       state.status = STATUS.FAILED;
@@ -93,7 +92,7 @@ const memberSlice = createSlice({
     },
     [removeMember.fulfilled]: (state, { payload }) => {
       state.status = STATUS.PENDING;
-      state.members = state.users.filter(({ id }) => id !== payload);
+      state.members = state.members.filter(({ id }) => id !== payload);
     },
     [removeMember.rejected]: (state) => {
       state.status = STATUS.PENDING;

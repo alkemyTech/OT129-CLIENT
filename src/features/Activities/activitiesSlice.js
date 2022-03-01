@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
+import { STATUS } from "../../constants";
 import {
   getActivities,
   getActivityByID,
@@ -51,54 +52,54 @@ const activitiesSlice = createSlice({
   },
   extraReducers: {
     [fetchActivities.pending]: (state) => {
-      state.status = "loading";
+      state.status = STATUS.PENDING;
     },
     [fetchActivities.fulfilled]: (state, action) => {
-      state.status = "success";
+      state.status = STATUS.SUCCESSFUL;
       state.activities = action.payload;
       state.activity = {};
     },
     [fetchActivities.rejected]: (state) => {
-      state.status = "failed";
+      state.status = STATUS.FAILED;
     },
     [fetchActivity.pending]: (state) => {
-      state.status = "loading";
+      state.status = STATUS.PENDING;
     },
     [fetchActivity.fulfilled]: (state, { payload }) => {
-      state.status = "success";
+      state.status = STATUS.SUCCESSFUL;
       state.activity = payload;
     },
     [fetchActivity.rejected]: (state) => {
-      state.status = "failed";
+      state.status = STATUS.FAILED;
     },
     [putActivity.pending]: (state) => {
-      state.status = "loading";
+      state.status = STATUS.PENDING;
     },
     [putActivity.fulfilled]: (state) => {
-      state.status = "success";
+      state.status = STATUS.SUCCESSFUL;
       state.activity = {};
     },
     [putActivity.rejected]: (state) => {
-      state.status = "failed";
+      state.status = STATUS.FAILED;
     },
     [postActivity.pending]: (state) => {
-      state.status = "loading";
+      state.status = STATUS.PENDING;
     },
     [postActivity.fulfilled]: (state) => {
-      state.status = "success";
+      state.status = STATUS.SUCCESSFUL;
     },
     [postActivity.rejected]: (state) => {
-      state.status = "failed";
+      state.status = STATUS.FAILED;
     },
     [removeActivity.pending]: (state) => {
-      state.status = "loading";
+      state.status = STATUS.PENDING;
     },
     [removeActivity.fulfilled]: (state, { payload }) => {
-      state.status = "success";
+      state.status = STATUS.SUCCESSFUL;
       state.activities = state.activities.filter(({ id }) => id !== payload);
     },
     [removeActivity.rejected]: (state) => {
-      state.status = "failed";
+      state.status = STATUS.FAILED;
     },
   },
 });
