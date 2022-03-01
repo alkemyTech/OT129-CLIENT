@@ -1,21 +1,54 @@
 # ONG Somos Más!
-## _`Reutilizable Components`_
 
-- ### [***Progress Bar***](./src/Components/Progress/Progress.md)
-- ### [***Search Input***](./src/Components/SearchInput/searchInput.md)
-- ### [***Skeleton***](./src/Components/Skeleton/Skeleton.md)
-- ### [***Spinner***](./src/Components/Spinner/Spinner.md)
+## _**`About the project`**_
 
-## _`Unit Tests`_
-- [***Titles***](./src/Components/Titles/README.test.md)
+This is a website created for a fictional ONG as part of [Alkemy's](https://www.alkemy.org/) React.js acceleration. The web consists of 2 sections, on the one hand a public web for anonymous users. On the other hand, a backoffice for the admin user, who will be able to edit and/or create content for the web.
 
-## _`Utils`_
+## _**`Run this project`**_
+To learn how to start running this project, you can read [*Getting Started with React App*](./public/ReadmeCRA.md).
 
-- ### [***Alerts***](./src/utils/alerts.md)
 
-## _`Hook`_
+## _**`Hook`**_
 
-- ### [***useDebounceEffect***](./src/hooks/useDebounceSearch.md)
-- ### [***useLocalStorage***](./src/hooks/useLocalStorage.md)
+- ### [*useDebounceEffect*](./src/hooks/useDebounceSearch.md)
+- ### [*useLocalStorage*](./src/hooks/useLocalStorage.md)
+## _**`Reusable Components`**_
+
+- ### [*DengerouslySetInnerHTML*](./src/Components/DangerouslySetInnerHTML/Readme.md)
+- ### [*Progress Bar*](./src/Components/Progress/Progress.md)
+- ### [*Search Input*](./src/Components/SearchInput/searchInput.md)
+- ### [*Skeleton*](./src/Components/Skeleton/Skeleton.md)
+- ### [*Spinner*](./src/Components/Spinner/Spinner.md)
+- ### [*TitleNav*](./src/Components/TitleNav/Readme.md)
+
+## _**`Unit Tests`**_
+- ### [*Titles*](./src/Components/Titles/README.test.md)
+- ### [*Activities Form*](./src/Components/Activities/README.test.md)
+- ### [*Contact Form*](./src/Components/Contact/README.test.md)
+- ### [*Members Form*](./src/Components/Members/README.test.md)
+- ### [*News Form*](./src/Components/News/Readme.test.md)
+- ### [*Register Form*](./src/Components/Auth/README.test.md)
+
+
+## _**`Utils`**_
+
+- ### [*Alerts*](./src/utils/alerts.md)
 
 ---
+
+## _**`Created by`**_
+
+### *Menthor:*
+
+- [Antony Fagundez - Linkedin](https://www.linkedin.com/in/antony-fagundez/)
+
+### *Team members:*
+    
+- [Ana Galli - Linkedin](https://www.linkedin.com/in/anamgalli/)
+- [Astrid Mata - Linkedin](https://www.linkedin.com/in/astrid-mata-877343214/)
+- [Emiliano Quiroga - Linkedin](https://www.linkedin.com/in/emquiroga/)
+- [Ezequiel Galardi - Linkedin](https://www.linkedin.com/in/ezequielgalardi/)
+- [Fabricio Capiglioni Dómene - Linkedin](https://www.linkedin.com/in/fabriciocapiglioni/)
+- [Guido Greco - Linkedin](https://www.linkedin.com/in/guido-greco14/)
+- [Ivan Eduardo Salas - Linkedin](https://www.linkedin.com/in/ivan-edu-salas/)
+- [Pablo Rostirolla - Linkedin](https://www.linkedin.com/in/pablo-rostirolla-367248197/)

@@ -31,7 +31,7 @@ This change the height and the shape of the resultant placeholder.
 
 >Valid types: "p", "h1", "h2", "h3", "h4", "h5", "h6", "a", "button".
 
-Example:
+### Example:
 ```javascript
     <Skeleton element="h1" />
 ```
@@ -41,7 +41,7 @@ Example:
 - You can choose the width of the placeholder assigning a percentage or a pixels value.
 >_Element prop support a string value_.
 
-Example:
+### Example:
 
     <Skeleton width="100%" />
 
@@ -51,7 +51,7 @@ Example:
 - You can choose the width of the placeholder assigning a pixels value.
 >_Element prop support a string value_.
 
-Example:
+### Example:
 
     <Skeleton width="20px" />
 
@@ -63,7 +63,7 @@ Example:
 
 >Default value is 4.
 
-Example:
+### Example:
 
     <Skeleton column={4} />
 ***
@@ -74,7 +74,7 @@ Example:
 
 >Size valid values: "xs", "sm", "lg"
 
-Example:
+### Example:
 
     <Skeleton size="md" />
     <Skeleton size="lg" />
@@ -84,13 +84,11 @@ Example:
 - You can add custom classNames using the addClass prop. Skeleton is made with bootstrap classes so you can take advantage of that using bs classes.
 >_Element prop support a string value_.
 
-Example:
+### Example:
 
     <Skeleton element="button" addClass="btn" />
 ---
-***Visual Example:***
-
-![image](https://user-images.githubusercontent.com/71856261/152566785-905c9342-8afc-48be-bcb7-35f3cd65f460.png)
+### Example
 ```javascript
 <div className="container col-4">
     <Skeleton addClass="mx-3" col={12} element="p" height="300px" width="300px" />
@@ -98,4 +96,7 @@ Example:
     <Skeleton addClass="btn m-3" element="button" />
 </div>
 ```
+### Result
+![image](https://user-images.githubusercontent.com/71856261/152566785-905c9342-8afc-48be-bcb7-35f3cd65f460.png)
+
 

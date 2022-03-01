@@ -4,7 +4,8 @@ Spinner is a reutilizable component which receive a serie of props to define its
 
 Bootstrap *`spinners`* was implemented for to show the loading state in the project.
 To invoke te spinner just need to import and add to your code.
-usage (import) example:
+
+### Example
 
 ```javascript
 import { Spinner } from "../Components/Spinner/Spinner";
