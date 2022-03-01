@@ -38,6 +38,7 @@ const ActivitiesForm = ({ activity = {}, decideAction }) => {
 
   return (
     <Formik
+      enableReinitialize={true}
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={async (formData) => {
@@ -56,8 +57,10 @@ const ActivitiesForm = ({ activity = {}, decideAction }) => {
               data-testid="inputTitle"
               id="name"
               name="name"
-              placeholder={initialValues?.name || "Título"}
+              placeholder="Nombre de la actividad"
               type="text"
+              value={formik.values.name}
+              onChange={formik.handleChange}
               {...formik.getFieldProps("name")}
             />
             <ErrorMessage component={Alert} name="name" />

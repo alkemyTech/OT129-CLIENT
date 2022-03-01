@@ -19,8 +19,6 @@ const TestimonialsListContainer = () => {
   const { testimonials } = useSelector(selectorTestimonials);
   const dispatch = useDispatch();
 
-  console.table(testimonials);
-
   const handleSearch = (e) => {
     setSearch(e.target.value);
   };
