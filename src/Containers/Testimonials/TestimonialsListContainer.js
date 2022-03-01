@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 import TestimonialsList from "../../Components/Testimonials/TestimonialsList";
 import TitleNav from "../../Components/TitleNav/TitleNav";
-import { alerts, confirmAlerts } from "../../utils/alerts";
 import {
   fetchTestimonials,
   removeTestimonial,
