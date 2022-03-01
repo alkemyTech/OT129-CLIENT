@@ -32,7 +32,8 @@
 }
 
 .active {
-   color: var(--dark-blue);
+  color: var(--dark-blue);
+  font-weight: bold;
 }
 
 .containerButtons {
