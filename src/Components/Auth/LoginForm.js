@@ -1,7 +1,7 @@
 import React from "react";
 import { Formik, ErrorMessage, Field } from "formik";
 import * as Yup from "yup";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import { getLogged, selectAuth } from "../../features/auth/authSlice";
@@ -24,7 +24,7 @@ const LoginForm = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const { isLoading, auth, user } = useSelector(selectAuth);
+  const { isLoading, auth, user } = selectAuth;
 
   if (auth) {
     if (user.role_id === 1) {
@@ -78,7 +78,11 @@ const LoginForm = () => {
                   <ErrorMessage className="alert-danger" component={Alert} name="password" />
                 </div>
                 <div className="mb-3">
-                  <button className="general-btn register-btn my-3" type="submit">
+                  <button
+                    className="general-btn register-btn my-3"
+                    data-testId="LoggedButton"
+                    type="submit"
+                  >
                     INICIAR SESIÓN
                   </button>
                 </div>
