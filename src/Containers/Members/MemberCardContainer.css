@@ -1,12 +1,16 @@
 .member-card-container {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(auto, 400px);
-  gap: 1rem;
-  padding: 0 0 !important;
-  margin-bottom: 60px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
 }
 
 .row-title {
   margin-bottom: 3rem;
+}
+
+@media (min-width: 1200px) {
+  .member-card-container {
+    justify-content: flex-start;
+  }
 }

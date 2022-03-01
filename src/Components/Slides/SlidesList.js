@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import SlidesItem from "./SlidesItem";
 
-const SlidesList = ({ slides }) => {
+const SlidesList = ({ slides, onDelete }) => {
   return (
     <div className="table-container">
       <table className="table table-striped table-list">
@@ -24,7 +24,7 @@ const SlidesList = ({ slides }) => {
         </thead>
         <tbody>
           {slides?.map((slide) => (
-            <SlidesItem key={slide.id} slide={slide} />
+            <SlidesItem key={slide.id} slide={slide} onDelete={onDelete} />
           ))}
         </tbody>
       </table>
@@ -34,6 +34,7 @@ const SlidesList = ({ slides }) => {
 
 SlidesList.propTypes = {
   slides: PropTypes.array,
+  onDelete: PropTypes.func,
 };
 
 export default SlidesList;
