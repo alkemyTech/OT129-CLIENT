@@ -21,14 +21,14 @@
 }
 
 .link-nav {
-  text-decoration: none !important;
-  color: var(--black) !important;
+  text-decoration: none;
+  color: var(--black);
   font-weight: bold;
   transition: color 0.3s ease;
 }
 
 .link-nav:hover {
-  color: var(--dark-blue) !important;
+  color: var(--dark-blue)
 }
 
 .logo {
@@ -69,7 +69,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  text-decoration: none !important;
   border-radius: 100%;
   transition: all 0.3s ease;
 }
