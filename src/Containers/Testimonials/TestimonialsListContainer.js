@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import TestimonialsList from "../../Components/Testimonials/TestimonialsList";
@@ -9,19 +9,10 @@ import {
   removeTestimonial,
   selectorTestimonials,
 } from "../../features/Testimonials/testimonialsSlice";
-import SearchInput from "../../Components/SearchInput/SearchInput";
-import { useDebounceSearch } from "../../hooks/useDebounceSearch";
 
 const TestimonialsListContainer = () => {
-  const [search, setSearch] = useState("");
-  const searchValue = useDebounceSearch(search, 2);
-
   const { testimonials } = useSelector(selectorTestimonials);
   const dispatch = useDispatch();
-
-  const handleSearch = (e) => {
-    setSearch(e.target.value);
-  };
 
   const onDelete = (id) => {
     confirmAlerts(
@@ -45,13 +36,12 @@ const TestimonialsListContainer = () => {
   };
 
   useEffect(() => {
-    dispatch(fetchTestimonials(searchValue));
-  }, [dispatch, searchValue]);
+    dispatch(fetchTestimonials());
+  }, [dispatch]);
 
   return (
     <div className="container mt-5">
       <TitleNav link="/backoffice/testimonials/create" linkTitle="Crear" title="Testimonios" />
-      <SearchInput handleSearch={handleSearch} title="Busca el nombre del TESTIMONIO" />
       <TestimonialsList data={testimonials} onDelete={onDelete} />
     </div>
   );
