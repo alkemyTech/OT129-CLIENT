@@ -47,6 +47,7 @@
   margin-right: 10px;
   width: 60px;
   height: var(--heigth-button);
+  border: 2px solid var(--blue);
   border-radius: var(--border-radius);
   font-size: 14px;
   font-weight: bold;

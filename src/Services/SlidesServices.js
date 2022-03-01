@@ -15,10 +15,10 @@ export const postSlides = (data) => {
   return post(ENDPOINT, data);
 };
 
-export const putSlides = (id, data) => {
-  return put(`${ENDPOINT}/${id}`, data);
+export const putSlides = (data, id) => {
+  return put(ENDPOINT, data, id);
 };
 
 export const removeSlides = (id) => {
-  return remove(`${ENDPOINT}/${id}`);
+  return remove(ENDPOINT, id);
 };

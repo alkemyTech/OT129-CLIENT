@@ -23,7 +23,7 @@ const CommentContainer = () => {
   });
 
   return (
-    <div ref={observe} className="comment-container mb-3">
+    <div ref={observe} className="comment-container">
       {isLoading ? (
         <>
           {" "}

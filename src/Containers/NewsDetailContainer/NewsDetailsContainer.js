@@ -1,34 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 import Title from "../../Components/Titles/Titles";
 import NewsDetails from "../../Components/News/Details/NewsDetails";
-import { fetchNewsById } from "../../features/News/news-slice";
+import { fetchNewsById, selectorNews } from "../../features/News/news-slice";
+import StatusHandler from "../../Components/StatusHandler/StatusHandler";
 
 const NewsDetailsContainer = () => {
-  const [news, setNews] = useState({
-    name: "",
-    content: "",
-    image: "",
-    id: "",
-  });
-
+  const dispatch = useDispatch();
+  const { _new, status } = useSelector(selectorNews);
   const { id } = useParams();
 
   useEffect(() => {
-    fetchNewsById(id)
-      .then((response) => {
-        setNews(response.data.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    dispatch(fetchNewsById(id));
   }, [id]);
 
   return (
     <>
-      <Title title={news.name} />
-      <NewsDetails data={news} />
+      <Title title={_new.name} />
+      <StatusHandler status={status} />
+      {status === "SUCCESSFUL" && <NewsDetails data={_new} />}
     </>
   );
 };

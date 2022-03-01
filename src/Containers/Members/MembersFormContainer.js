@@ -50,7 +50,7 @@ const MembersFormContainer = () => {
 
   return (
     <div className="container mt-3">
-      <TitleNav link="/backoffice/members" linkTitle="Volver" />
+      <TitleNav link="/backoffice/members" linkTitle="Volver" title="" />
       <MembersForm handleSub={handleSub} member={member} />
     </div>
   );
