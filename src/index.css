@@ -83,10 +83,6 @@ select {
   background: transparent;
   box-sizing: border-box;
 }
-.stroke-btn {
-  border: 2px solid var(--dark-blue);
-  color: var(--dark-blue);
-}
 .register-btn {
   width: 100%;
   max-width: 450px;

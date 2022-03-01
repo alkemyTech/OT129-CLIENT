@@ -15,8 +15,7 @@ const NewsContainer = () => {
   const { categories } = useSelector(selectorCategories);
   const handleSubmit = (data) => {
     if (!id) {
-      dispatch(newNews(data)).then((response) => {
-        console.log(response);
+      dispatch(newNews(data)).then(() => {
         if (status === "SUCCESSFUL") {
           alerts(`Novedad creada correctamente`, "success");
         } else if (status === "FAILED") {

@@ -1,14 +1,15 @@
-.card {
-    margin-top: 0 !important;
+.memberCard {
+    width: 330px;
+    margin-top: 0;
     text-align: center;
-    height: auto !important;
+    height: auto;
 }
 
-.card a {
+.memberCard a {
     text-decoration: none;
 }
 
-.card-img-top {
+.cardImgTop {
     height: 220px;
     object-fit: cover;
     box-shadow: var(--card-shadow);
@@ -28,5 +29,17 @@
 .container-icons {
     display: flex;
     justify-content: space-around;
+}
+
+@media (min-width: 1200px) {
+    .memberCard {
+        width: 345px;
+    }
+}
+
+@media (min-width: 1400px) {
+    .memberCard {
+        width: 294px;
+    }
 }
 

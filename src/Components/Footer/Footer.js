@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { selectAuth } from "../../features/auth/authSlice";
 import "./Footer.css";
 import ONGLogo from "../../assets/onglogo.png";
+import NewsletterButton from "../Home/NewsletterButton";
 
 const Footer = ({
   facebook = "https://facebook.com",
@@ -22,47 +23,56 @@ const Footer = ({
     <footer className="container-fluid container-footer">
       <div className="container">
         <nav className="nav-footer">
-          <Link className="link-nav" to="/actividades">
-            Actividades
-          </Link>
-          {(!auth || (auth && role_id === 2)) && (
-            <Link className="link-nav" to="/donar">
-              Donar
+          <div className="nav-block">
+            <Link className="link-nav" to="/actividades">
+              Actividades
             </Link>
-          )}
-          <Link className="link-nav" to="/nosotros">
-            Nosotros
-          </Link>
+            {auth && role_id === 2 && (
+              <Link className="link-nav" to="/donar">
+                Donar
+              </Link>
+            )}
+            <Link className="link-nav" to="/nosotros">
+              Nosotros
+            </Link>
+          </div>
           <Link className="link-nav" to="/">
             <img className="logo" src={ONGLogo} />
           </Link>
-          <Link className="link-nav" to="/">
-            Testimonios
-          </Link>
-          <Link className="link-nav" to="/novedades">
-            Novedades
-          </Link>
-          {(!auth || (auth && role_id === 2)) && (
-            <Link className="link-nav" to="/contacto">
-              Contacto
+          <div className="nav-block">
+            <Link className="link-nav" to="/">
+              Testimonios
             </Link>
-          )}
+            <Link className="link-nav" to="/novedades">
+              Novedades
+            </Link>
+            {(!auth || (auth && role_id === 2)) && (
+              <Link className="link-nav" to="/contacto">
+                Contacto
+              </Link>
+            )}
+          </div>
         </nav>
         <div className="row row-social">
           <div className="col">
             <div className="social-icon-container">
-              <a className="link-social" href={facebook} rel="noreferrer" target="_blank">
-                <i className="fab fa-facebook-f" />
-              </a>
-              <a className="link-social" href={twitter} rel="noreferrer" target="_blank">
-                <i className="fab fa-twitter" />
-              </a>
-              <a className="link-social" href={instagram} rel="noreferrer" target="_blank">
-                <i className="fab fa-instagram" />
-              </a>
-              <a className="link-social" href={linkedin} rel="noreferrer" target="_blank">
-                <i className="fab fa-linkedin-in" />
-              </a>
+              <div className="social-block">
+                <a className="link-social" href={facebook} rel="noreferrer" target="_blank">
+                  <i className="fab fa-facebook-f" />
+                </a>
+                <a className="link-social" href={twitter} rel="noreferrer" target="_blank">
+                  <i className="fab fa-twitter" />
+                </a>
+              </div>
+              {(!auth || role_id === 2) && <NewsletterButton />}
+              <div className="social-block">
+                <a className="link-social" href={instagram} rel="noreferrer" target="_blank">
+                  <i className="fab fa-instagram" />
+                </a>
+                <a className="link-social" href={linkedin} rel="noreferrer" target="_blank">
+                  <i className="fab fa-linkedin-in" />
+                </a>
+              </div>
             </div>
           </div>
         </div>
