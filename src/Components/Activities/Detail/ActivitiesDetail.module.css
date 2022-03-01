@@ -1,0 +1,45 @@
+.containerActivitiesDetail {
+  border: 1px solid rgb(245, 245, 245);
+  box-shadow: 1px 1px 4px rgb(208, 208, 208);
+}
+
+.imgActivitiesDetail {
+  display: block;
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+}
+
+.textActivitiesDetail {
+  margin-top: 16px;
+  margin-bottom: 0px;
+  padding: 10px 20px;
+}
+
+@media (min-width: 768px) {
+  .imgActivitiesDetail {
+    height: 300px;
+  }
+}
+
+@media (min-width: 992px) {
+  .containerActivitiesDetail {
+    display: flex;
+    justify-content: space-between;
+  }
+  .imgActivitiesDetail {
+    width: 45%;
+    height: 320px;
+  }
+  .textActivitiesDetail {
+    padding: 20px;
+    width: 55%;
+  }
+}
+
+@media (min-width: 1400px) {
+  .imgActivitiesDetail {
+    height: 400px;
+  }
+}
+

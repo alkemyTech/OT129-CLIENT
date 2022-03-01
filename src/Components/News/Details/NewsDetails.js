@@ -1,13 +1,19 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import DangerouslySetInnerHTML from "../../DangerouslySetInnerHTML/DangerouslySetInnerHTML";
+
+import styles from "./NewsDetails.module.css";
+
 const NewsDetails = ({ data }) => {
   return (
     <div className="container mt-5">
-      <div className="d-grid d-md-flex justify-content-md-center py-3">
-        <img alt={data.name} className="mw-100" src={data.image} />
+      <div className={styles.containerNewsDetail}>
+        <img alt={data.name} className={styles.imgNewsDetail} src={data.image} />
+        <p className={`text-center mt-4 ${styles.textNewsDetail}`}>
+          <DangerouslySetInnerHTML content={data.content} />
+        </p>
       </div>
-      <h5 className="text-center">{data.content}</h5>
     </div>
   );
 };

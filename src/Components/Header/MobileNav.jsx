@@ -47,6 +47,9 @@ const MobileNav = () => {
                 >
                   Logout
                 </Link>
+                <Link className={styles.authLink} to="/backoffice">
+                  Backoffice
+                </Link>
                 {role_id === 2 && (
                   <Link
                     className="general-btn stroke-btn text-decoration-none"
