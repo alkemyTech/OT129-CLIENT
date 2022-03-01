@@ -92,7 +92,7 @@ describe("<LoginForm /> ", () => {
 
     waitFor(() => {
       expect(mockAxios.post).toBeCalledWith("login", testUser);
-      expect(screen.getByText("Registro exitoso, inicie sesión.")).toBeInTheDocument();
+      expect(screen.getByText("sesión iniciada.")).toBeInTheDocument();
     });
   });
 });
