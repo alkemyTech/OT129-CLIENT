@@ -7,7 +7,7 @@ const LastEvent = ({ title = "Ultimo Evento" }) => {
     <div className="container d-flex justify-content-center align-items-center banner mb-5">
       <div className="row justify-content-center">
         <h2 className="mb-5 title-banner">{title}</h2>
-        <ReactPlayer controls url={"https://www.youtube.com/watch?v=4YnSk1gI_Oo"} volume="0 a 1" />
+        <ReactPlayer controls url={"https://www.youtube.com/watch?v=4YnSk1gI_Oo"} />
       </div>
     </div>
   );
