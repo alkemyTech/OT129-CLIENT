@@ -53,8 +53,9 @@
         padding: 0;
     }
     .navLink {
-        text-decoration: none;
-        color: var(--dark-blue);
+        text-decoration: none !important;
+        color: var(--dark-blue) !important;
+        border: none !important!;
         transition: var(--transition);
     }
     .navLink:hover {
@@ -68,15 +69,15 @@
         display: block;
         text-align: center;
         background-color: var(--dark-blue);
-        color: white;
-        text-decoration: none;
+        color: white !important;
+        text-decoration: none !important;
         font-weight: bold;
         border-radius: 1rem;
         transition: var(--transition);
     }
     .authLink:hover {
         background-color: var(--blue-hover);
-        color: black;
+        color: black !important;
     }
     .active {
         font-weight: bold;
