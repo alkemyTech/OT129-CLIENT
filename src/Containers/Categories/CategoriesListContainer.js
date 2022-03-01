@@ -47,10 +47,8 @@ const CategoriesListContainer = () => {
 
   return (
     <div className="container mt-5">
-      <div className="mb-3">
-        <SearchInput handleSearch={changeHandler} title="Busca tus categorias por NOMBRE" />
-      </div>
       <TitleNav link="/backoffice/categories/create" linkTitle="Crear" title="Categorías" />
+      <SearchInput handleSearch={changeHandler} title="Busca tus categorias por NOMBRE" />
       <CategoriesList data={categories} onDelete={onDelete} />
       {status === "loading" ? <Spinner /> : null}
     </div>
