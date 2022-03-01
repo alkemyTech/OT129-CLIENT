@@ -25,7 +25,7 @@ export const fetchTestimonialById = createAsyncThunk("testimonial/get", async (i
   return data;
 });
 
-export const fetchLastTestimonials = createAsyncThunk("testimonial/get", async (entries) => {
+export const fetchLastTestimonials = createAsyncThunk("lastTestimonial/get", async (entries) => {
   const {
     data: { data },
   } = await getLastTestimonials(entries);
