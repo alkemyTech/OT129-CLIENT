@@ -8,7 +8,7 @@ This is a website created for a fictional ONG as part of [Alkemy's](https://www.
 To learn how to start running this project, you can read [*Getting Started with React App*](./public/ReadmeCRA.md).
 
 
-## _**`Hook`**_
+## _**`Hooks`**_
 
 - ### [*useDebounceEffect*](./src/hooks/useDebounceSearch.md)
 - ### [*useLocalStorage*](./src/hooks/useLocalStorage.md)
@@ -32,17 +32,16 @@ To learn how to start running this project, you can read [*Getting Started with 
 
 ## _**`Utils`**_
 
-- ### [*Alerts*](./src/utils/alerts.md)
+- ### [*alerts*](./src/utils/alerts.md)
+- ### [*formatDate*](./src/utils/formatDate.md)
 
 ---
 
 ## _**`Created by`**_
 
-### *Menthor:*
 
-- [Antony Fagundez - Linkedin](https://www.linkedin.com/in/antony-fagundez/)
 
-### *Team members:*
+### Team members:
     
 - [Ana Galli - Linkedin](https://www.linkedin.com/in/anamgalli/)
 - [Astrid Mata - Linkedin](https://www.linkedin.com/in/astrid-mata-877343214/)
@@ -52,3 +51,7 @@ To learn how to start running this project, you can read [*Getting Started with 
 - [Guido Greco - Linkedin](https://www.linkedin.com/in/guido-greco14/)
 - [Ivan Eduardo Salas - Linkedin](https://www.linkedin.com/in/ivan-edu-salas/)
 - [Pablo Rostirolla - Linkedin](https://www.linkedin.com/in/pablo-rostirolla-367248197/)
+
+### Menthor:
+
+- [Antony Fagundez - Linkedin](https://www.linkedin.com/in/antony-fagundez/)
