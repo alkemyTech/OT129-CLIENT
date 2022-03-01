@@ -8,10 +8,10 @@ This is a website created for a fictional ONG as part of [Alkemy's](https://www.
 To learn how to start running this project, you can read [*Getting Started with React App*](./public/ReadmeCRA.md).
 
 
-## _**`Hooks`**_
+## _**`Hook`**_
 
 - ### [*useDebounceEffect*](./src/hooks/useDebounceSearch.md)
-- ### [*useLocalStorage*](./src/hooks/useLocalStorage.md)
+
 ## _**`Reusable Components`**_
 
 - ### [*DengerouslySetInnerHTML*](./src/Components/DangerouslySetInnerHTML/Readme.md)
