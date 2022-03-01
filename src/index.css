@@ -161,7 +161,9 @@ input, textarea, select {
 .card {
   box-shadow: var(--card-shadow);
 }
-
+.popup-overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+}
 /* Tablas Listados */
 /*Mobile*/
 .table-container {
