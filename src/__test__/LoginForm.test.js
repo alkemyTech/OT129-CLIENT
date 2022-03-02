@@ -19,7 +19,7 @@ describe("<LoginForm /> ", () => {
 
     render(<LoginForm onSubmit={dispatch} />);
 
-    userEvent.click(screen.getByTestId("LoggedButton"));
+    userEvent.click(screen.getByTestId("loggedButton"));
 
     await waitFor(() => {
       expect(screen.getByText("El campo EMAIL es obligatorio")).toBeInTheDocument();
@@ -32,7 +32,7 @@ describe("<LoginForm /> ", () => {
 
     render(<LoginForm onSubmit={dispatch} />);
 
-    userEvent.click(screen.getByTestId("LoggedButton"));
+    userEvent.click(screen.getByTestId("loggedButton"));
 
     await waitFor(() => {
       expect(dispatch).not.toHaveBeenCalled();
@@ -49,7 +49,7 @@ describe("<LoginForm /> ", () => {
     userEvent.type(screen.getByPlaceholderText("Ingresa tu email"), "Flash123@gmail.com");
     userEvent.type(screen.getByPlaceholderText("Ingresa tu contraseña"), "Flash123@");
 
-    userEvent.click(screen.getByTestId("LoggedButton"));
+    userEvent.click(screen.getByTestId("loggedButton"));
 
     mockAxios.post = jest.fn().mockResolvedValue({
       data: {
@@ -82,7 +82,7 @@ describe("<LoginForm /> ", () => {
 
     userEvent.type(screen.getByPlaceholderText("Ingresa tu email"), "Flash123@gmail.com");
     userEvent.type(screen.getByPlaceholderText("Ingresa tu contraseña"), "Flash123@");
-    userEvent.click(screen.getByTestId("LoggedButton"));
+    userEvent.click(screen.getByTestId("loggedButton"));
 
     mockAxios.post = jest.fn().mockResolvedValue({
       data: {
