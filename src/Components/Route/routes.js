@@ -17,7 +17,6 @@ import EditOrganization from "../../Containers/EditOrganization/EditOrganization
 import TestimonialFormContainer from "../../Containers/Testimonials/TestimonialsFormContainer";
 import TestimonialListContainer from "../../Containers/Testimonials/TestimonialsListContainer";
 import Newsletter from "../../Pages/Newsletter";
-import Error404Page from "../../Pages/Error404Page";
 
 const routes = [
   {
@@ -148,11 +147,6 @@ const routes = [
   {
     path: "/backoffice/testimonials/edit/:id",
     component: TestimonialFormContainer,
-    exact: true,
-  },
-  {
-    path: "/*",
-    component: Error404Page,
     exact: true,
   },
 ];
