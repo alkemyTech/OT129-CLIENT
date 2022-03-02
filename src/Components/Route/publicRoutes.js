@@ -42,12 +42,6 @@ const LoginPage = lazy(() =>
 const Newsletter = lazy(() =>
   import(/* webpackChunkName: "LazyNewsletterPage"*/ "../../Pages/Newsletter")
 );
-const SchoolCampaign = lazy(() =>
-  import(/* webpackChunkName: "LazySchoolCampaignPage"*/ "../../Campaigns/School/SchoolCampaign")
-);
-const ToysCampaign = lazy(() =>
-  import(/* webpackChunkName: "LazyToysCampaignPage"*/ "../../Campaigns/Toys/ToysCampaign")
-);
 
 export const publicRoute = [
   {
@@ -118,16 +112,6 @@ export const publicRoute = [
   {
     path: "/newsletter",
     component: Newsletter,
-    exact: true,
-  },
-  {
-    path: "/toys-campaign",
-    component: ToysCampaign,
-    exact: true,
-  },
-  {
-    path: "/school-campaign",
-    component: SchoolCampaign,
     exact: true,
   },
 ];

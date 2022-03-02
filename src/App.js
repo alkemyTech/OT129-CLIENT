@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React, { Suspense, lazy } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import SuperRoute from "./Components/Route";
@@ -11,6 +11,12 @@ import LayoutPublic from "./Components/Layout/LayoutPublic";
 import LayoutBackoffice from "./Containers/Backoffice/LayoutBackoffice";
 import Error404Page from "./Pages/Error404Page";
 import ErrorBoundary from "./Components/ErrorBoundary/ErrorBoundary";
+const SchoolCampaign = lazy(() =>
+  import(/* webpackChunkName: "LazySchoolCampaignPage"*/ "./Campaigns/School/SchoolCampaign")
+);
+const ToysCampaign = lazy(() =>
+  import(/* webpackChunkName: "LazyToysCampaignPage"*/ "./Campaigns/Toys/ToysCampaign")
+);
 
 function App() {
   const publicRoutes = [
@@ -29,8 +35,6 @@ function App() {
     "/projects/create",
     "/login",
     "/newsletter",
-    "/school-campaign",
-    "/toys-campaign",
   ];
   const privatesRoutes = ["/backoffice", "/backoffice/*"];
 
@@ -55,6 +59,8 @@ function App() {
                 <PrivateRoute />
               </LayoutBackoffice>
             </Route>
+            <Route exact component={SchoolCampaign} path="/school-campaign" />
+            <Route exact component={ToysCampaign} path="/toys-campaign" />
             <Route path="*">
               <LayoutPublic>
                 <Switch>
