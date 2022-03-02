@@ -71,5 +71,14 @@
     "eslint-plugin-react-hooks": "4.3.0",
     "mock-react-redux": "0.4.0",
     "prettier": "2.5.1"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(svg|css)$": "<rootDir>/__test__/__mocks__/fileMock.js"
+    },
+    "transformIgnorePatterns": [
+      "\\\\/node_modules\\\\/(?!@ckeditor).+\\.(js|jsx|ts|tsx)$",
+      "\\.pnp\\.[^\\/]+$"
+    ]
   }
 }
