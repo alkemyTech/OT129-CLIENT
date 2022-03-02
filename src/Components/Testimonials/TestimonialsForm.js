@@ -25,7 +25,6 @@ const TestimonialForm = ({ handleSubmit, testimonial = {} }) => {
       initialValues={initialValues}
       validationSchema={testimonialSchema}
       onSubmit={async (values) => {
-        //Eleccion de ruta para crear o editar
         const resultBase = await toBase64(values.image);
         const newTestimonial = { ...values, image: resultBase };
 
