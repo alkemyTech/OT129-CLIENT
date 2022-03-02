@@ -26,7 +26,7 @@ export const putOrganization = createAsyncThunk("organization/put", async (data)
 const organizationSlice = createSlice({
   name: "organization",
   initialState: {
-    organization: [],
+    organization: {},
     status: null,
   },
   extraReducers: {
