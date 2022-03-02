@@ -8,10 +8,10 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { toBase64 } from "../../utils/toBase64";
 
 const validationSchema = Yup.object({
-  name: Yup.string().required("Este campo es requerido"),
+  name: Yup.string().required("El nombre es requerido"),
   logo: Yup.string().required("Por favor ingrese una imagen"),
-  short_description: Yup.string().required("Este campo es requerido"),
-  long_description: Yup.string().required("Este campo es requerido"),
+  short_description: Yup.string().required("La descripcion corta es requerida"),
+  long_description: Yup.string().required("La descripcion larga es requerida"),
   instagram_url: Yup.string().url("URL invalida"),
   twitter_url: Yup.string().url("URL invalida"),
   facebook_url: Yup.string().url("URL invalida"),
@@ -65,6 +65,7 @@ const EditForm = ({ handleSubmit, organization = {} }) => {
               type="text"
               value={formik.values.name}
               onChange={formik.handleChange}
+              data-testid="name"
             />
             <ErrorMessage component={Alert} name="name" />
           </div>
@@ -81,6 +82,7 @@ const EditForm = ({ handleSubmit, organization = {} }) => {
               onChange={(event) => {
                 formik.setFieldValue("logo", event.currentTarget.files[0]);
               }}
+              data-testid="logo"
             />
             <ErrorMessage component={Alert} name="logo" />
           </div>
@@ -99,6 +101,7 @@ const EditForm = ({ handleSubmit, organization = {} }) => {
               editor={ClassicEditor}
               id="short_description"
               name="short_description"
+              data-testid="description"
               onChange={(event, editor) => {
                 const data = editor.getData();
 
@@ -118,6 +121,7 @@ const EditForm = ({ handleSubmit, organization = {} }) => {
               style={{ maxHeight: "250px", minHeight: "250px" }}
               value={formik.values.long_description}
               onChange={formik.handleChange}
+              data-testid="long_description"
             />
             <ErrorMessage component={Alert} name="long_description" />
           </div>
@@ -177,7 +181,7 @@ const EditForm = ({ handleSubmit, organization = {} }) => {
             />
             <ErrorMessage component={Alert} name="linkedinLink" />
           </div>
-          <button className="submit-btn" type="submit">
+          <button className="submit-btn" type="submit" data-testid="btnSubmit">
             EDITAR
           </button>
         </form>
