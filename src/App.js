@@ -8,7 +8,9 @@ import Spinner from "./Components/Spinner/Spinner";
 import { publicRoute } from "./Components/Route/publicRoutes";
 import PrivateRoute from "./Components/Route/PrivateRoute";
 import LayoutPublic from "./Components/Layout/LayoutPublic";
+import LayoutBackoffice from "./Containers/Backoffice/LayoutBackoffice";
 import Error404Page from "./Pages/Error404Page";
+import ErrorBoundary from "./Components/ErrorBoundary/ErrorBoundary";
 
 function App() {
   const publicRoutes = [
@@ -48,9 +50,10 @@ function App() {
                 </div>
               </LayoutPublic>
             </Route>
-
             <Route path={privatesRoutes}>
-              <PrivateRoute />
+              <LayoutBackoffice>
+                <PrivateRoute />
+              </LayoutBackoffice>
             </Route>
             <Route path="*">
               <LayoutPublic>
