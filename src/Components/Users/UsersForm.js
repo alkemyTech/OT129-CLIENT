@@ -87,7 +87,9 @@ const UsersForm = ({ users, handleSub }) => {
               name="role_id"
               {...formik.getFieldProps("role_id")}
             >
-              <option defaultValue>Choose</option>
+              <option defaultValue disabled>
+                Elige rol
+              </option>
               <option value="1">Admin</option>
               <option value="2">User</option>
             </select>
