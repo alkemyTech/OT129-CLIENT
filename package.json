@@ -43,9 +43,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "test:watch": "react-scripts test --watchAll",
-    "test:coverage": "react-scripts test --watchAll --coverage",
+    "test": "react-scripts test --runInBand",
+    "test:watch": "react-scripts test --watchAll --runInBand",
+    "test:coverage": "react-scripts test --watchAll --coverage --runInBand",
     "eject": "react-scripts eject",
     "lint": "eslint --ext .js,.jsx .",
     "lint:fix": "eslint --fix --ext .js,.jsx ."
