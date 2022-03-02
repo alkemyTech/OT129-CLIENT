@@ -1,5 +1,5 @@
-import React from "react";
-import { Form, ErrorMessage, FormikProvider, useFormik } from "formik";
+import React, { useState, useEffect } from "react";
+import { Form, ErrorMessage, Formik } from "formik";
 import * as Yup from "yup";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
@@ -21,6 +21,7 @@ const validationSchema = Yup.object({
 });
 
 const CategoriesForm = ({ category = {}, handleSubmit }) => {
+  const [image, setImage] = useState("");
   const initialValues = {
     name: category?.name || "",
     description: category?.description || "",
@@ -34,68 +35,75 @@ const CategoriesForm = ({ category = {}, handleSubmit }) => {
     handleSubmit(data);
   };
 
-  const formik = useFormik({ initialValues, onSubmit, validationSchema });
+  useEffect(() => {
+    if (category.id) {
+      setImage(category.image);
+    }
+  }, [category]);
 
   return (
-    <FormikProvider
+    <Formik
+      enableReinitialize={true}
       initialValues={initialValues}
       validationSchema={validationSchema}
-      value={formik}
       onSubmit={onSubmit}
     >
-      <Form className="form-backoffice">
-        <div className="form-group">
-          <label className="form-label fw-bold mt-1 fw-bold mt-1">Nombre:</label>
-          <input
-            className="form-control form-control-sm w-100 mb-3"
-            id="name"
-            name="name"
-            placeholder={initialValues.name || "Título"}
-            type="text"
-            {...formik.getFieldProps("name")}
-          />
-          <ErrorMessage component={Alert} name="name" />
-        </div>
-        <div className="form-group">
-          {initialValues.image ? (
-            <>
-              <label className="form-label fw-bold mt-1 fw-bold mt-1">(Imagen actual)</label>
-              <img
-                alt={initialValues.name}
-                className="preview-image mb-3"
-                src={initialValues.image}
-              />
-            </>
-          ) : null}
-          <label className="form-label fw-bold mt-1 fw-bold mt-1">Imagen:</label>
-          <input
-            className="form-control form-control-sm w-100 mb-3"
-            name="image"
-            type="file"
-            onChange={(e) => {
-              formik.setFieldValue("image", e.currentTarget.files[0]);
-            }}
-          />
-          <ErrorMessage component={Alert} name="image" />
-        </div>
-        <div className="form-group mb-3">
-          <label className="form-label fw-bold mt-1 fw-bold mt-1">Descripción:</label>
-          <CKEditor
-            config={{ placeholder: `${initialValues.description}` }}
-            data={initialValues.description}
-            editor={ClassicEditor}
-            name="description"
-            onChange={(e, editor) => {
-              formik.setFieldValue("description", editor.getData());
-            }}
-          />
-          <ErrorMessage component={Alert} name="description" />
-        </div>
-        <button className="submit-btn" type="submit">
-          ENVIAR
-        </button>
-      </Form>
-    </FormikProvider>
+      {(formik) => (
+        <Form className="form-backoffice">
+          <div className="form-group">
+            <label className="form-label fw-bold mt-1 fw-bold mt-1">Nombre:</label>
+            <input
+              className="form-control form-control-sm w-100 mb-3"
+              id="name"
+              name="name"
+              placeholder="Ingresa el nombre de la categoría"
+              type="text"
+              value={formik.values.name}
+              onChange={formik.handleChange}
+              {...formik.getFieldProps("name")}
+            />
+            <ErrorMessage component={Alert} name="name" />
+          </div>
+          <div className="form-group">
+            <label className="form-label fw-bold mt-1 fw-bold mt-1">Imagen:</label>
+            <input
+              className="form-control form-control-sm w-100 mb-3"
+              name="image"
+              type="file"
+              onChange={(e) => {
+                formik.setFieldValue("image", e.currentTarget.files[0]);
+                setImage(URL.createObjectURL(e.currentTarget.files[0]));
+              }}
+            />
+            <ErrorMessage component={Alert} name="image" />
+          </div>
+          <div className="form-group">
+            {image && (
+              <>
+                <label className="form-label fw-bold mt-1 fw-bold mt-1">(Imagen actual:)</label>
+                <img alt="Imagen actual" className="img-fluid" src={image} />
+              </>
+            )}
+          </div>
+          <div className="form-group mb-3">
+            <label className="form-label fw-bold mt-1 fw-bold mt-1">Descripción:</label>
+            <CKEditor
+              config={{ placeholder: `${initialValues.description}` }}
+              data={initialValues.description}
+              editor={ClassicEditor}
+              name="description"
+              onChange={(e, editor) => {
+                formik.setFieldValue("description", editor.getData());
+              }}
+            />
+            <ErrorMessage component={Alert} name="description" />
+          </div>
+          <button className="submit-btn" type="submit">
+            ENVIAR
+          </button>
+        </Form>
+      )}
+    </Formik>
   );
 };
 

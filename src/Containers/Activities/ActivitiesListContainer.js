@@ -9,6 +9,7 @@ import {
 import { useDebounceSearch } from "../../hooks/useDebounceSearch";
 import ActivitiesList from "../../Components/Activities/Backoffice/ActivitiesList";
 import { confirmAlerts, alerts } from "../../utils/alerts";
+import TitleNav from "../../Components/TitleNav/TitleNav";
 import SearchInput from "../../Components/SearchInput/SearchInput";
 
 function ActivitiesListContainer() {
@@ -42,7 +43,8 @@ function ActivitiesListContainer() {
   }, [dispatch, searchValue]);
 
   return (
-    <div className="container">
+    <div className="container mt-5">
+      <TitleNav link="/backoffice/activities/create" linkTitle="Crear" title="Actividades" />
       <SearchInput handleSearch={changeHandler} title="Busca tus actividades por NOMBRE" />
       <ActivitiesList data={activities} deleteHandler={deleteHandler} />
     </div>

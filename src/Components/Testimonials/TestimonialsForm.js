@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Formik, Form, ErrorMessage } from "formik";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
@@ -7,10 +7,9 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { toBase64 } from "../../utils/toBase64";
 import Alert from "../Alert/Alert";
 
-import PreviewImage from "./PreviewImage";
 import { testimonialSchema } from "./formValidation";
 
-const TestimonialForm = ({ handleSubmit, testimonial = {} }) => {
+const TestimonialForm = ({ handleSubmit, testimonial }) => {
   const [testimonyImage, setTestimonyImage] = useState("");
 
   const initialValues = {
@@ -19,21 +18,28 @@ const TestimonialForm = ({ handleSubmit, testimonial = {} }) => {
     image: testimonial?.image || "",
   };
 
+  const onSubmit = async (values) => {
+    const resultBase = await toBase64(values.image);
+    const newTestimonial = { ...values, image: resultBase };
+
+    handleSubmit(newTestimonial);
+  };
+
+  useEffect(() => {
+    if (testimonial.id) {
+      setTestimonyImage(testimonial.image);
+    }
+  }, [testimonial]);
+
   return (
     <Formik
-      validateOnMount
+      enableReinitialize={true}
       initialValues={initialValues}
       validationSchema={testimonialSchema}
-      onSubmit={async (values) => {
-        //Eleccion de ruta para crear o editar
-        const resultBase = await toBase64(values.image);
-        const newTestimonial = { ...values, image: resultBase };
-
-        handleSubmit(newTestimonial);
-      }}
+      onSubmit={onSubmit}
     >
-      {({ setFieldValue }) => (
-        <Form className="form-backoffice">
+      {(formik) => (
+        <Form className="form-backoffice" onSubmit={formik.handleSubmit}>
           <div className="form-group">
             <label className="form-label fw-bold mt-1" htmlFor="name">
               Nombre
@@ -42,11 +48,10 @@ const TestimonialForm = ({ handleSubmit, testimonial = {} }) => {
               className="form-control form-control-sm w-100 mb-3 mb-3"
               id="name"
               name="name"
-              placeholder="Testimonio Nombre"
+              placeholder="Ingresa autor del testimonio"
               type="text"
-              onChange={(e) => {
-                setFieldValue("name", e.target.value);
-              }}
+              value={formik.values.name}
+              onChange={formik.handleChange}
             />
             <ErrorMessage component={Alert} name="name" />
           </div>
@@ -62,7 +67,7 @@ const TestimonialForm = ({ handleSubmit, testimonial = {} }) => {
               onChange={(event, editor) => {
                 const data = editor.getData();
 
-                setFieldValue("description", data);
+                formik.setFieldValue("description", data);
               }}
             />
             <ErrorMessage component={Alert} name="description" />
@@ -78,12 +83,21 @@ const TestimonialForm = ({ handleSubmit, testimonial = {} }) => {
               name="image"
               type="file"
               onChange={(event) => {
-                setFieldValue("image", event.target.files[0]);
+                formik.setFieldValue("image", event.target.files[0]);
                 setTestimonyImage(URL.createObjectURL(event.currentTarget.files[0]));
               }}
             />
             <ErrorMessage component={Alert} name="file" />
-            {testimonyImage && <PreviewImage file={testimonyImage} />}
+          </div>
+          <div className="form-group mb-3">
+            {testimonyImage && (
+              <>
+                <label className="form-label fw-bold mt-1" htmlFor="image">
+                  (Imagen actual:)
+                </label>
+                <img alt="Imagen actual" className="preview-image" src={testimonyImage} />
+              </>
+            )}
           </div>
           <button className="submit-btn" type="submit">
             Enviar

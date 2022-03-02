@@ -26,6 +26,7 @@ const NewsForm = ({ _new, categories = [], handleSubmit }) => {
 
   return (
     <Formik
+      enableReinitialize={true}
       initialValues={initialValues}
       validationSchema={validationNewSchema}
       onSubmit={async (formData) => {
@@ -48,9 +49,10 @@ const NewsForm = ({ _new, categories = [], handleSubmit }) => {
               autoComplete="off"
               className="form-control form-control-sm w-100 mb-3"
               data-testid="inputTitle"
-              placeholder={initialValues.name}
+              placeholder="Ingresa el título de la noticia"
               type="text"
-              value={initialValues.name}
+              value={formik.values.name}
+              onChange={formik.handleChange}
               {...formik.getFieldProps("name")}
             />
             <ErrorMessage className="text-danger" component={Alert} name="name" />

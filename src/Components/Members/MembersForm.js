@@ -33,6 +33,7 @@ const MembersForm = ({ member = {}, handleSub }) => {
 
   return (
     <Formik
+      enableReinitialize={true}
       initialValues={initialValues}
       validationSchema={validationMemberSchema}
       onSubmit={onSubmit}
@@ -46,6 +47,7 @@ const MembersForm = ({ member = {}, handleSub }) => {
               className="form-control form-control-sm w-100 mb-3 form-control form-control-sm w-100 mb-3-sm w-100 mb-3"
               data-testid="inputName"
               name="name"
+              placeholder="Ingresa el nombre del miembro"
               type="text"
               {...formik.getFieldProps("name")}
             />

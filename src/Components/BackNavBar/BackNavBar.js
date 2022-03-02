@@ -59,7 +59,7 @@ const BackNavBar = () => {
               </li>
               <li className="nav-item space">
                 <NavLink activeClassName="active" className="links" to="/backoffice/categories">
-                  Categories
+                  Categorías
                 </NavLink>
               </li>
               <li className="nav-item space">

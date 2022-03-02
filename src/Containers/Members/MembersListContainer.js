@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import { fetchMembers, selectorMembers, removeMember } from "../../features/Members/membersSlice";
 import MembersList from "../../Components/Members/MembersList";
