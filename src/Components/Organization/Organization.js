@@ -3,11 +3,13 @@ import "./Organization.css";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
+import styles from "./Organization.module.css";
+
 const Organization = ({ data }) => {
   return (
-    <div className="container-bg">
+    <div className={styles.containerBg}>
       <h1 className="pb-2">Organización</h1>
-      <div className="container card-bg">
+      <div className={`container ${styles.cardBg}`}>
         <div className="d-flex flex-column">
           <h2 className="text-center">{data.name}</h2>
           <div className="d-flex justify-content-center">

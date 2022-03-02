@@ -1,14 +1,10 @@
-.container-bg {
+.containerBg {
   background-color: #edf2f7;
   padding: 40px 20px;
 }
-.card-bg {
+.cardBg {
   background-color: #ffffff;
   padding: 40px 20px;
   border-radius: 8px;
   box-shadow: 0 1px 5px 1px #d5d9de;
-}
-.btn-primary {
-  background-color: #319795;
-  border-color: #319795;
 }
