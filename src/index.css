@@ -31,11 +31,15 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-input, textarea, select {
+input,
+textarea,
+select {
   border: 2px solid var(--blue) !important;
 }
 
-input, textarea, select {
+input,
+textarea,
+select {
   border: 2px solid var(--blue) !important;
 }
 
@@ -210,4 +214,8 @@ input, textarea, select {
 /* Others */
 .color-icon-search {
   color: var(--dark-blue);
+}
+
+.inner {
+  position: relative;
 }
