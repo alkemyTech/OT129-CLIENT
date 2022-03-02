@@ -32,14 +32,12 @@ const Organization = ({ data }) => {
 };
 
 Organization.propTypes = {
-  data: PropTypes.objectOf(
-    PropTypes.shape({
-      id: PropTypes.number,
-      name: PropTypes.string.isRequired,
-      logo: PropTypes.string.isRequired,
-      short_description: PropTypes.string.isRequired,
-    })
-  ).isRequired,
+  data: PropTypes.shape({
+    name: PropTypes.string,
+    logo: PropTypes.string,
+    short_description: PropTypes.string,
+    id: PropTypes.number,
+  }).isRequired,
 };
 
 export default Organization;
