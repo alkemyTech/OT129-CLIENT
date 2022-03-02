@@ -81,7 +81,7 @@ input, textarea, select {
 }
 .register-btn {
   width: 100%;
-  max-width: 450px;
+  /* max-width: 450px; */
   height: 50px;
   margin: auto;
   background: var(--blue);
@@ -140,18 +140,7 @@ input, textarea, select {
 .btn-decline:hover {
   background-color: var(--red-hover) !important;
 }
-.register-btn {
-  width: 100%;
-  max-width: 450px;
-  height: 50px;
-  margin: auto;
-  background: var(--blue);
-  color: var(--white);
-  text-transform: uppercase;
-}
-.register-btn:hover {
-  background: var(--dark-blue);
-}
+
 
 /* Cards */
 
