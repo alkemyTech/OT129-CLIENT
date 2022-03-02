@@ -48,9 +48,9 @@ const EditForm = ({ handleSubmit, organization = {} }) => {
     >
       {(formik) => (
         <form
-          enableReinitialized={true}
           noValidate
           className="form-backoffice"
+          enableReinitialized={true}
           id="editOrganizationForm"
           onSubmit={formik.handleSubmit}
         >
