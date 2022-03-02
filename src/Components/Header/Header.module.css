@@ -19,16 +19,21 @@
 }
 
 .linkToSection {
-  width: 80px;
-  text-decoration: none;
-  color: var(--blue);
-  transition: color 0.3s ease;
-  font-size: 1rem;
-  text-align: center;
+    width: 80px;
+    text-decoration: none;
+    color: var(--blue);
+    transition: var(--transition);
+    font-size: 1rem;
+    text-align: center;
+}
+.linkToSection:hover {
+  color: var(--dark-blue);
+  font-weight: bold;
 }
 
 .active {
   color: var(--dark-blue);
+  font-weight: bold;
 }
 
 .containerButtons {
