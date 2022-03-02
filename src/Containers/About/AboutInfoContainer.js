@@ -24,7 +24,7 @@ const AboutInfoContainer = () => {
 
   return (
     <div className="container mt-5 text-center">
-      <h3 className="text-uppercase mb-4">Sobre la ONG</h3>
+      <h3 className="text-uppercase mb-5">Sobre la ONG</h3>
       {long_description && <AboutInfo description={long_description} />}
       <StatusHandler status={status} />
     </div>

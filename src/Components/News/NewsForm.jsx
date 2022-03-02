@@ -12,15 +12,15 @@ const NewsForm = ({ _new, categories = [], handleSubmit }) => {
   const [newImage, setNewImage] = useState("");
 
   const initialValues = {
-    name: _new.name || "",
-    content: _new.content || "",
-    image: _new.image || "",
-    category_id: _new.category_id || undefined,
+    name: _new?.name || "",
+    content: _new?.content || "",
+    image: _new?.image || "",
+    category_id: _new?.category_id || undefined,
   };
 
   useEffect(() => {
-    if (_new.id) {
-      setNewImage(_new.image);
+    if (_new?.id) {
+      setNewImage(_new?.image);
     }
   }, [_new]);
 
@@ -105,7 +105,7 @@ const NewsForm = ({ _new, categories = [], handleSubmit }) => {
             </div>
           )}
           <button className="submit-btn" data-testid="btnSubmit" type="submit">
-            {!_new.id ? "AGREGAR" : "EDITAR"}
+            {!_new?.id ? "AGREGAR" : "EDITAR"}
           </button>
         </Form>
       )}

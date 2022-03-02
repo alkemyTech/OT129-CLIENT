@@ -19,9 +19,9 @@ const ActivitiesDetailsContainer = () => {
 
   return (
     <>
-      <StatusHandler status={status} />
       <Titles title={activity.name} />
-      <ActivitiesDetail data={activity} />;
+      <StatusHandler status={status} />
+      {status === "SUCCESSFUL" && <ActivitiesDetail data={activity} />}
     </>
   );
 };

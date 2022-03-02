@@ -33,7 +33,7 @@ function App() {
   const privatesRoutes = ["/backoffice", "/backoffice/*"];
 
   return (
-    <>
+    <ErrorBoundary>
       <Router>
         <Suspense fallback={<Spinner />}>
           <Switch>
@@ -62,7 +62,7 @@ function App() {
           </Switch>
         </Suspense>
       </Router>
-    </>
+    </ErrorBoundary>
   );
 }
 

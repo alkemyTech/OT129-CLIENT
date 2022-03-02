@@ -43,9 +43,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "test:watch": "react-scripts test --watchAll",
-    "test:coverage": "react-scripts test --watchAll --coverage",
+    "test": "react-scripts test --runInBand",
+    "test:watch": "react-scripts test --watchAll --runInBand",
+    "test:coverage": "react-scripts test --watchAll --coverage --runInBand",
     "eject": "react-scripts eject",
     "lint": "eslint --ext .js,.jsx .",
     "lint:fix": "eslint --fix --ext .js,.jsx ."
@@ -71,5 +71,14 @@
     "eslint-plugin-react-hooks": "4.3.0",
     "mock-react-redux": "0.4.0",
     "prettier": "2.5.1"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(svg|css)$": "<rootDir>/src/__test__/__mocks__/fileMock.js"
+    },
+    "transformIgnorePatterns": [
+      "\\\\/node_modules\\\\/(?!@ckeditor).+\\.(js|jsx|ts|tsx)$",
+      "\\.pnp\\.[^\\/]+$"
+    ]
   }
 }
