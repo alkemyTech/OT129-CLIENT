@@ -78,7 +78,11 @@ const LoginForm = () => {
                   <ErrorMessage className="alert-danger" component={Alert} name="password" />
                 </div>
                 <div className="mb-3">
-                  <button className="general-btn register-btn my-3" type="submit">
+                  <button
+                    className="general-btn register-btn my-3"
+                    data-testid="loggedButton"
+                    type="submit"
+                  >
                     INICIAR SESIÓN
                   </button>
                 </div>

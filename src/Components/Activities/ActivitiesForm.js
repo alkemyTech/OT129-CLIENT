@@ -73,9 +73,11 @@ const ActivitiesForm = ({ activity = {}, decideAction }) => {
               editor={ClassicEditor}
               id="description"
               onChange={(event, editor) => {
-                const data = editor.getData();
+                if (editor) {
+                  const data = editor.getData();
 
-                formik.setFieldValue("description", data);
+                  formik.setFieldValue("description", data);
+                }
               }}
             />
           </div>
