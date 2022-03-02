@@ -18,7 +18,7 @@ const CardsTestimonials = ({ title, image, description }) => {
         />
       )}
       <div className="card-body testimonials-card-body">
-        <h5 className="card-title text-uppercase">{title}</h5>
+        <h5 className="card-title text-uppercase mb-4">{title}</h5>
         {description && (
           <p className="quote-description">
             <DangerouslySetInnerHTML content={description} />
