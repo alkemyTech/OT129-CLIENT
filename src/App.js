@@ -8,6 +8,7 @@ import Spinner from "./Components/Spinner/Spinner";
 import { publicRoute } from "./Components/Route/publicRoutes";
 import PrivateRoute from "./Components/Route/PrivateRoute";
 import LayoutPublic from "./Components/Layout/LayoutPublic";
+import LayoutBackoffice from "./Containers/Backoffice/LayoutBackoffice";
 import Error404Page from "./Pages/Error404Page";
 import ErrorBoundary from "./Components/ErrorBoundary/ErrorBoundary";
 const SchoolCampaign = lazy(() =>
@@ -40,7 +41,7 @@ function App() {
   return (
     <ErrorBoundary>
       <Router>
-        <Suspense fallback={Spinner}>
+        <Suspense fallback={<Spinner />}>
           <Switch>
             <Route exact path={publicRoutes}>
               <LayoutPublic>
@@ -53,14 +54,14 @@ function App() {
                 </div>
               </LayoutPublic>
             </Route>
-
             <Route path={privatesRoutes}>
-              <PrivateRoute />
+              <LayoutBackoffice>
+                <PrivateRoute />
+              </LayoutBackoffice>
             </Route>
-
             <Route exact component={SchoolCampaign} path="/school-campaign" />
             <Route exact component={ToysCampaign} path="/toys-campaign" />
-            <Route path="/">
+            <Route path="*">
               <LayoutPublic>
                 <Switch>
                   <Route component={Error404Page} />
