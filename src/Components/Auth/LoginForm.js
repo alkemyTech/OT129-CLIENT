@@ -80,7 +80,7 @@ const LoginForm = () => {
                 <div className="mb-3">
                   <button
                     className="general-btn register-btn my-3"
-                    data-testId="LoggedButton"
+                    data-testid="loggedButton"
                     type="submit"
                   >
                     INICIAR SESIÓN
