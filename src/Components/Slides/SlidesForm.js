@@ -51,6 +51,7 @@ const SlidesForm = ({ slide = {}, slides = [], handleSubmit }) => {
   return (
     <>
       <Formik
+        enableReinitialize={true}
         initialValues={initialValues}
         validationSchema={validations}
         onSubmit={async (values) => {
@@ -71,10 +72,11 @@ const SlidesForm = ({ slide = {}, slides = [], handleSubmit }) => {
               </label>
               <input
                 className="form-control form-control-sm w-100 mb-3"
+                handleChange={formik.handleChange}
                 name="name"
-                placeholder={initialValues.name || "Título"}
+                placeholder="Ingresa el nombre del slide"
                 type="text"
-                value={initialValues.name}
+                value={formik.values.name}
                 {...formik.getFieldProps("name")}
               />
               <ErrorMessage component={Alert} name="name" />
@@ -99,8 +101,9 @@ const SlidesForm = ({ slide = {}, slides = [], handleSubmit }) => {
                 className="form-control form-control-sm w-100 mb-3"
                 min="0"
                 name="order"
-                placeholder={initialValues.order || "Ingrese un número de orden"}
+                placeholder="Ingrese un número de orden"
                 type="number"
+                value={formik.values.order}
                 onChange={(e) => {
                   formik.setFieldValue("order", parseInt(e.currentTarget.value));
                 }}

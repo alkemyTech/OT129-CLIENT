@@ -6,7 +6,7 @@ import background from "./background-title.jpg";
 
 const Titles = ({ title, description, image = background }) => {
   return (
-    <div className="container-fluid d-flex justify-content-center align-items-center banner py-5">
+    <div className="container-fluid d-flex justify-content-center align-items-center banner">
       <img alt={title} className="image-banner" src={image} />
       <div className="row">
         <div className="container text-banner">

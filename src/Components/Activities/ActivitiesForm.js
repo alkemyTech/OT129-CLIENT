@@ -38,6 +38,7 @@ const ActivitiesForm = ({ activity = {}, decideAction }) => {
 
   return (
     <Formik
+      enableReinitialize={true}
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={async (formData) => {
@@ -56,8 +57,10 @@ const ActivitiesForm = ({ activity = {}, decideAction }) => {
               data-testid="inputTitle"
               id="name"
               name="name"
-              placeholder={initialValues?.name || "Título"}
+              placeholder="Nombre de la actividad"
               type="text"
+              value={formik.values.name}
+              onChange={formik.handleChange}
               {...formik.getFieldProps("name")}
             />
             <ErrorMessage component={Alert} name="name" />
@@ -73,9 +76,11 @@ const ActivitiesForm = ({ activity = {}, decideAction }) => {
               editor={ClassicEditor}
               id="description"
               onChange={(event, editor) => {
-                const data = editor.getData();
+                if (editor) {
+                  const data = editor.getData();
 
-                formik.setFieldValue("description", data);
+                  formik.setFieldValue("description", data);
+                }
               }}
             />
           </div>

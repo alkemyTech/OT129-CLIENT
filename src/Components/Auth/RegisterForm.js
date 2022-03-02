@@ -102,61 +102,79 @@ const RegisterForm = () => {
               data-testid="registerForm"
               onSubmit={formik.handleSubmit}
             >
-              <div className="form-group mb-3">
-                <label className="form-label" htmlFor="name" />
-                <input
-                  className="form-control register-input mb-3"
-                  id="name"
-                  placeholder="Ingresa tu nombre"
-                  type="name"
-                  value={formik.values.name}
-                  onChange={formik.handleChange}
-                />
+              <div className="form-group">
+                <div className="input-group mb-3">
+                  <span className="input-group-text" id="basic-addon1">
+                    <i className="fas fa-user" />
+                  </span>
+                  <input
+                    className="form-control register-input"
+                    id="name"
+                    placeholder="Ingresa tu nombre"
+                    type="name"
+                    value={formik.values.name}
+                    onChange={formik.handleChange}
+                  />
+                </div>
                 <ErrorMessage className="alert-danger" component={Alert} name="name" />
               </div>
-              <div className="form-group mb-3">
-                <label className="form-label" htmlFor="email" />
-                <input
-                  className="form-control register-input mb-3"
-                  id="email"
-                  placeholder="Ingresa tu email"
-                  type="email"
-                  value={formik.values.email}
-                  onChange={formik.handleChange}
-                />
+              <div className="form-group">
+                <div className="input-group mb-3">
+                  <span className="input-group-text" id="basic-addon1">
+                    <i className="fas fa-envelope" />
+                  </span>
+                  <input
+                    className="form-control register-input"
+                    id="email"
+                    placeholder="Ingresa tu email"
+                    type="email"
+                    value={formik.values.email}
+                    onChange={formik.handleChange}
+                  />
+                </div>
                 <ErrorMessage className="alert-danger" component={Alert} name="email" />
               </div>
-              <div className="form-group mb-3">
-                <label className="form-label" htmlFor="password" />
-                <input
-                  autoComplete="on"
-                  className="form-control register-input mb-3"
-                  id="password"
-                  placeholder="Ingresa tu contraseña"
-                  type="password"
-                  value={formik.values.password}
-                  onChange={formik.handleChange}
-                />
+              <div className="form-group">
+                <div className="input-group mb-3">
+                  <span className="input-group-text" id="basic-addon1">
+                    <i className="fas fa-key" />
+                  </span>
+                  <input
+                    autoComplete="on"
+                    className="form-control register-input"
+                    id="password"
+                    placeholder="Ingresa tu contraseña"
+                    type="password"
+                    value={formik.values.password}
+                    onChange={formik.handleChange}
+                  />
+                </div>
                 <ErrorMessage className="alert-danger" component={Alert} name="password" />
               </div>
-              <div className="form-group mb-3">
-                <label className="form-label" htmlFor="confirmPassword" />
-                <input
-                  autoComplete="on"
-                  className="form-control register-input mb-3"
-                  id="confirmPassword"
-                  placeholder="Confirma tu contraseña"
-                  type="password"
-                  value={formik.values.confirmPassword}
-                  onChange={formik.handleChange}
-                />
+              <div className="form-group">
+                <div className="input-group mb-3">
+                  <span className="input-group-text" id="basic-addon1">
+                    <i className="fas fa-key" />
+                  </span>
+                  <input
+                    autoComplete="on"
+                    className="form-control register-input"
+                    id="confirmPassword"
+                    placeholder="Confirma tu contraseña"
+                    type="password"
+                    value={formik.values.confirmPassword}
+                    onChange={formik.handleChange}
+                  />
+                </div>
                 <ErrorMessage component={Alert} name="confirmPassword" />
               </div>
-              <div className="form-group input-group mb-3">
-                <label className="form-label" htmlFor="address" />
-                <div className="input-group">
+              <div className="form-group input-group ">
+                <div className="input-group mb-3">
+                  <span className="input-group-text" id="basic-addon1">
+                    <i className="fas fa-map-marker-alt" />
+                  </span>
                   <input
-                    className="form-control register-input mb-3"
+                    className="form-control register-input"
                     id="address"
                     name="address"
                     placeholder="Ingresa tu dirección"
@@ -168,7 +186,7 @@ const RegisterForm = () => {
                     }}
                   />
                   <button
-                    className="general-btn fill-btn my-1"
+                    className="general-btn fill-btn"
                     type="button"
                     onClick={() => handleSearchClick()}
                   >
@@ -183,7 +201,7 @@ const RegisterForm = () => {
                   onConfirm={() => formik.setFieldValue("conditions", true)}
                   onDecline={() => formik.setFieldValue("conditions", false)}
                 />
-                <label className="form-label" htmlFor="conditions" />
+
                 <input
                   className="conditions-checkbox"
                   data-testid="conditions"
@@ -199,6 +217,7 @@ const RegisterForm = () => {
                 data-testid="registerButton"
                 type="submit"
               >
+                <i className="fas fa-user-plus mx-2" />
                 REGISTRARSE
               </button>
             </form>

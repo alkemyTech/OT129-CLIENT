@@ -13,7 +13,7 @@ const LayoutBackoffice = ({ children }) => {
 };
 
 LayoutBackoffice.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.element),
+  children: PropTypes.element,
 };
 
 export default LayoutBackoffice;

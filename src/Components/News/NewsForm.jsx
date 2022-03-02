@@ -12,20 +12,21 @@ const NewsForm = ({ _new, categories = [], handleSubmit }) => {
   const [newImage, setNewImage] = useState("");
 
   const initialValues = {
-    name: _new.name || "",
-    content: _new.content || "",
-    image: _new.image || "",
-    category_id: _new.category_id || undefined,
+    name: _new?.name || "",
+    content: _new?.content || "",
+    image: _new?.image || "",
+    category_id: _new?.category_id || undefined,
   };
 
   useEffect(() => {
-    if (_new.id) {
-      setNewImage(_new.image);
+    if (_new?.id) {
+      setNewImage(_new?.image);
     }
   }, [_new]);
 
   return (
     <Formik
+      enableReinitialize={true}
       initialValues={initialValues}
       validationSchema={validationNewSchema}
       onSubmit={async (formData) => {
@@ -48,9 +49,10 @@ const NewsForm = ({ _new, categories = [], handleSubmit }) => {
               autoComplete="off"
               className="form-control form-control-sm w-100 mb-3"
               data-testid="inputTitle"
-              placeholder={initialValues.name}
+              placeholder="Ingresa el título de la noticia"
               type="text"
-              value={initialValues.name}
+              value={formik.values.name}
+              onChange={formik.handleChange}
               {...formik.getFieldProps("name")}
             />
             <ErrorMessage className="text-danger" component={Alert} name="name" />
@@ -105,7 +107,7 @@ const NewsForm = ({ _new, categories = [], handleSubmit }) => {
             </div>
           )}
           <button className="submit-btn" data-testid="btnSubmit" type="submit">
-            {!_new.id ? "AGREGAR" : "EDITAR"}
+            {!_new?.id ? "AGREGAR" : "EDITAR"}
           </button>
         </Form>
       )}

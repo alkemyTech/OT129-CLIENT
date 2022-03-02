@@ -13,6 +13,8 @@
 .preview-image {
   width: 100%;
   height: auto;
+  max-height: 300px;
+  object-fit: contain;
   margin: auto;
 }
 .ck-toolbar__items {

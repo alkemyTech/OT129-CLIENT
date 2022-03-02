@@ -5,35 +5,52 @@ import * as Yup from "yup";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
-const IMG_FORMAT_REGEX = new RegExp(".(jpg|png)$");
+import { toBase64 } from "../../utils/toBase64";
 
 const validationSchema = Yup.object({
-  name: Yup.string().required("The field is required"),
-  logo: Yup.string()
-    .required("The field is required")
-    .matches(IMG_FORMAT_REGEX, "Only .png and .jpg images are allowed"),
-  shortDescription: Yup.string().required("The field is required"),
-  longDescription: Yup.string().required("The field is required"),
-  emailLink: Yup.string().email("Invalid email address"),
-  instagramLink: Yup.string().url("Invalid URL"),
-  twitterLink: Yup.string().url("Invalid URL"),
+  name: Yup.string().required("Este campo es requerido"),
+  logo: Yup.string().required("Por favor ingrese una imagen"),
+  short_description: Yup.string().required("Este campo es requerido"),
+  long_description: Yup.string().required("Este campo es requerido"),
+  instagram_url: Yup.string().url("URL invalida"),
+  twitter_url: Yup.string().url("URL invalida"),
+  facebook_url: Yup.string().url("URL invalida"),
+  linkedin_url: Yup.string().url("URL invalida"),
 });
 
 const Alert = ({ children }) => <div className="alert alert-danger">{children}</div>;
 
-const EditForm = ({ data }) => {
-  const IMG_PREVIEW = data.logo;
+const EditForm = ({ handleSubmit, organization = {} }) => {
+  const IMG_PREVIEW = organization.logo;
+
+  const initialValues = {
+    name: organization?.name || "",
+    logo: organization?.logo || "",
+    short_description: organization?.short_description || "",
+    long_description: organization?.long_description || "",
+    instagram_url: organization?.instagram_url || "",
+    twitter_url: organization?.twitter_url || "",
+    facebook_url: organization?.facebook_url || "",
+    linkedin_url: organization?.linkedin_url || "",
+  };
 
   return (
     <Formik
-      initialValues={data}
+      initialValues={initialValues}
       validationSchema={validationSchema}
-      onSubmit={(formData) => console.log(formData)} //Enviar la info al store, redireccionar a backoffice/organization
+      onSubmit={async (values) => {
+        //Eleccion de ruta para crear o editar
+        const resultBase = await toBase64(values.logo);
+        const newOrganization = { ...values, logo: resultBase };
+
+        handleSubmit(newOrganization);
+      }}
     >
       {(formik) => (
         <form
           noValidate
           className="form-backoffice"
+          enableReinitialized={true}
           id="editOrganizationForm"
           onSubmit={formik.handleSubmit}
         >
@@ -61,7 +78,9 @@ const EditForm = ({ data }) => {
               id="logo"
               name="logo"
               type="file"
-              onChange={formik.handleChange}
+              onChange={(event) => {
+                formik.setFieldValue("logo", event.currentTarget.files[0]);
+              }}
             />
             <ErrorMessage component={Alert} name="logo" />
           </div>
@@ -70,51 +89,51 @@ const EditForm = ({ data }) => {
             <img alt="logo" className="preview-image" loading="lazy" src={IMG_PREVIEW} />
           </div>
           <div className="form-group">
-            <label className="form-label fw-bold mt-1" htmlFor="shortDescription">
+            <label className="form-label fw-bold mt-1" htmlFor="short_description">
               Descripción corta:
             </label>
             <CKEditor
               required
               config={{ placeholder: "Descripción corta" }}
-              data={formik.values.shortDescription}
+              data={formik.values.short_description}
               editor={ClassicEditor}
-              id="shortDescription"
-              name="shortDescription"
+              id="short_description"
+              name="short_description"
               onChange={(event, editor) => {
                 const data = editor.getData();
 
-                formik.setFieldValue("shortDescription", data);
+                formik.setFieldValue("short_description", data);
               }}
             />
-            <ErrorMessage component={Alert} name="shortDescription" />
+            <ErrorMessage component={Alert} name="short_description" />
           </div>
           <div className="form-group">
-            <label className="form-label fw-bold mt-1" htmlFor="longDescription">
+            <label className="form-label fw-bold mt-1" htmlFor="long_description">
               Descripción larga:
             </label>
             <textarea
               className="form-control form-control-sm w-100 mb-3"
-              id="longDescription"
-              name="longDescription"
+              id="long_description"
+              name="long_description"
               style={{ maxHeight: "250px", minHeight: "250px" }}
-              value={formik.values.longDescription}
+              value={formik.values.long_description}
               onChange={formik.handleChange}
             />
-            <ErrorMessage component={Alert} name="longDescription" />
+            <ErrorMessage component={Alert} name="long_description" />
           </div>
           <div className="form-group">
-            <label className="form-label fw-bold mt-1" htmlFor="emailLink">
-              Email:
+            <label className="form-label fw-bold mt-1" htmlFor="facebookLink">
+              Facebook:
             </label>
             <input
               className="form-control form-control-sm w-100 mb-3"
-              id="emailLink"
-              name="emailLink"
-              type="email"
-              value={formik.values.emailLink}
+              id="facebookLink"
+              name="facebookLink"
+              type="url"
+              value={formik.values.facebook_url}
               onChange={formik.handleChange}
             />
-            <ErrorMessage component={Alert} name="emailLink" />
+            <ErrorMessage component={Alert} name="facebookLink" />
           </div>
           <div className="form-group">
             <label className="form-label fw-bold mt-1" htmlFor="instagramLink">
@@ -125,7 +144,7 @@ const EditForm = ({ data }) => {
               id="instagramLink"
               name="instagramLink"
               type="url"
-              value={formik.values.instagramLink}
+              value={formik.values.instagram_url}
               onChange={formik.handleChange}
             />
             <ErrorMessage component={Alert} name="instagramLink" />
@@ -139,10 +158,24 @@ const EditForm = ({ data }) => {
               id="twitterLink"
               name="twitterLink"
               type="url"
-              value={formik.values.twitterLink}
+              value={formik.values.twitter_url}
               onChange={formik.handleChange}
             />
             <ErrorMessage component={Alert} name="twitterLink" />
+          </div>
+          <div className="form-group">
+            <label className="form-label fw-bold mt-1" htmlFor="linkedinLink">
+              Twitter:
+            </label>
+            <input
+              className="form-control form-control-sm w-100 mb-3"
+              id="linkedinLink"
+              name="linkedinLink"
+              type="url"
+              value={formik.values.linkedin_url}
+              onChange={formik.handleChange}
+            />
+            <ErrorMessage component={Alert} name="linkedinLink" />
           </div>
           <button className="submit-btn" type="submit">
             EDITAR
@@ -157,14 +190,18 @@ Alert.propTypes = {
   children: PropTypes.string.isRequired,
 };
 EditForm.propTypes = {
-  data: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    logo: PropTypes.string.isRequired,
-    shortDescription: PropTypes.string.isRequired,
-    longDescription: PropTypes.string.isRequired,
-    emailLink: PropTypes.string.isRequired,
-    instagramLink: PropTypes.string.isRequired,
-    twitterLink: PropTypes.string.isRequired,
-  }).isRequired,
+  handleSubmit: PropTypes.func,
+  organization: PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    logo: PropTypes.string,
+    long_description: PropTypes.string,
+    short_description: PropTypes.string,
+    twitter_url: PropTypes.string,
+    instagram_url: PropTypes.string,
+    facebook_url: PropTypes.string,
+    linkedin_url: PropTypes.string,
+  }),
 };
+
 export default EditForm;

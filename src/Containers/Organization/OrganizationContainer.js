@@ -1,23 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 import Organization from "../../Components/Organization/Organization";
-import { getOrganizations } from "../../Services/OrganizationService";
+import {
+  fetchOrganization,
+  selectorOrganization,
+} from "../../features/Organization/organizationSlice";
 
 const OrganizationContainer = () => {
-  const [data, setData] = useState({});
+  const dispatch = useDispatch();
+  const { organization } = useSelector(selectorOrganization);
 
   useEffect(() => {
-    getOrganizations().then((res) => {
-      res = res.json();
-      setData(res.data);
-    });
-  });
+    dispatch(fetchOrganization());
+  }, [dispatch]);
 
-  return (
-    <>
-      <Organization data={data} />
-    </>
-  );
+  return <>{organization && <Organization data={organization} />}</>;
 };
 
 export default OrganizationContainer;

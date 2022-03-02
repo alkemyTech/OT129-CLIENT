@@ -1,11 +1,15 @@
-# Test unitarios
+# Unit Test Title 
 
-## Casos testeados:
+## Cases:
 
-- `Should render without crash`: Render with minimum props `title` y `description`
+1. `Should render without crash:`
+    - Render with minimum props `title` y `description`
 
-- `Should render  title and description`: Render `title` y `description` passed by props.
+2. `Should render  title and description:`
+    - Render `title` y `description` passed by props.
 
-- `Should render image by default`: Render image by default when is not specified.
+3. `Should render image by default:`
+    - Render image by default when is not specified.
 
-- `Should render image by props`: Should render  `image` passed by props.
+4. `Should render image by props:`
+    - Should render  `image` passed by props.

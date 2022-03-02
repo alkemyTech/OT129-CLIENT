@@ -11,7 +11,7 @@ const BackUsersList = ({ data, onDelete }) => {
             <th>Id</th>
             <th>Nombre</th>
             <th>Email</th>
-            <th>Actions</th>
+            <th>Acciones</th>
           </tr>
         </thead>
         <tbody>

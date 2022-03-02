@@ -1,6 +1,12 @@
 .banner {
   position: relative;
   text-align: center;
+  padding: 2rem 0;
+}
+@media screen and (min-width: 768px) {
+  .banner {
+    padding: 4rem 0;
+  }
 }
 
 .image-banner {
@@ -22,5 +28,5 @@
   font-weight: 600;
   font-size: 2.3rem;
   text-transform: uppercase;
+  color: white;
 }
-

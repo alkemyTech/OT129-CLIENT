@@ -3,8 +3,8 @@ import { post, put, remove } from "./privateApiService";
 
 const ENDPOINT = process.env.REACT_APP_API_TESTIMONIES;
 
-export const getTestimonials = () => {
-  return get(ENDPOINT);
+export const getTestimonials = (search = null) => {
+  return get(ENDPOINT, { search: search });
 };
 
 export const getTestimonialById = (id) => {

@@ -47,7 +47,7 @@ const LoginForm = () => {
       {isLoading ? (
         <Spinner />
       ) : (
-        <div className="form-container login-container my-3">
+        <div className="form-container login-container">
           <Formik
             initialValues={startValues}
             validationSchema={validationSchema}
@@ -57,31 +57,39 @@ const LoginForm = () => {
           >
             {({ handleSubmit }) => (
               <form className="form" onSubmit={handleSubmit}>
-                <div className="form-group mb-3">
-                  <label className="form-label" htmlFor="email" />
-                  <Field
-                    className="form-control mb-3 register-input"
-                    name="email"
-                    placeholder="Ingresa tu email"
-                    type="email"
-                  />
+                <div className="form-group">
+                  <div className="input-group mb-3">
+                    <span className="input-group-text" id="basic-addon1">
+                      <i className="fas fa-envelope" />
+                    </span>
+                    <Field
+                      className="form-control register-input"
+                      name="email"
+                      placeholder="Ingresa tu email"
+                      type="email"
+                    />
+                  </div>
                   <ErrorMessage className="alert-danger" component={Alert} name="email" />
                 </div>
                 <div className="form-group mb-3">
-                  <label className="form-label" htmlFor="password" />
-                  <Field
-                    className="form-control register-input mb-3"
-                    name="password"
-                    placeholder="Ingresa tu contraseña"
-                    type="password"
-                  />
+                  <div className="input-group mb-3">
+                    <span className="input-group-text" id="basic-addon1">
+                      <i className="fas fa-key" />
+                    </span>
+                    <Field
+                      className="form-control register-input"
+                      name="password"
+                      placeholder="Ingresa tu contraseña"
+                      type="password"
+                    />
+                  </div>
                   <ErrorMessage className="alert-danger" component={Alert} name="password" />
                 </div>
-                <div className="mb-3">
-                  <button className="general-btn register-btn my-3" type="submit">
-                    INICIAR SESIÓN
-                  </button>
-                </div>
+
+                <button className="general-btn register-btn" type="submit">
+                  <i className="fas fa-sign-in-alt mx-2" />
+                  INICIAR SESIÓN
+                </button>
               </form>
             )}
           </Formik>

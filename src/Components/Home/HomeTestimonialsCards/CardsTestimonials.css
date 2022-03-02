@@ -16,6 +16,7 @@
   border-radius: 6px 0 0 6px;
 }
 .testimonials-card-body {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
