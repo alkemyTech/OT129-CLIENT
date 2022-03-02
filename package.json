@@ -74,7 +74,7 @@
   },
   "jest": {
     "moduleNameMapper": {
-      "\\.(svg|css)$": "<rootDir>/__test__/__mocks__/fileMock.js"
+      "\\.(svg|css)$": "<rootDir>/src/__test__/__mocks__/fileMock.js"
     },
     "transformIgnorePatterns": [
       "\\\\/node_modules\\\\/(?!@ckeditor).+\\.(js|jsx|ts|tsx)$",
