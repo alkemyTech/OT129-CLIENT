@@ -60,12 +60,12 @@ const EditForm = ({ handleSubmit, organization = {} }) => {
             </label>
             <input
               className="form-control form-control-sm w-100 mb-3"
+              data-testid="name"
               id="name"
               name="name"
               type="text"
               value={formik.values.name}
               onChange={formik.handleChange}
-              data-testid="name"
             />
             <ErrorMessage component={Alert} name="name" />
           </div>
@@ -76,13 +76,13 @@ const EditForm = ({ handleSubmit, organization = {} }) => {
             <input
               accept="image/png, image/jpeg"
               className="form-control form-control-sm w-100 mb-3"
+              data-testid="logo"
               id="logo"
               name="logo"
               type="file"
               onChange={(event) => {
                 formik.setFieldValue("logo", event.currentTarget.files[0]);
               }}
-              data-testid="logo"
             />
             <ErrorMessage component={Alert} name="logo" />
           </div>
@@ -98,10 +98,10 @@ const EditForm = ({ handleSubmit, organization = {} }) => {
               required
               config={{ placeholder: "Descripción corta" }}
               data={formik.values.short_description}
+              data-testid="description"
               editor={ClassicEditor}
               id="short_description"
               name="short_description"
-              data-testid="description"
               onChange={(event, editor) => {
                 const data = editor.getData();
 
@@ -116,12 +116,12 @@ const EditForm = ({ handleSubmit, organization = {} }) => {
             </label>
             <textarea
               className="form-control form-control-sm w-100 mb-3"
+              data-testid="long_description"
               id="long_description"
               name="long_description"
               style={{ maxHeight: "250px", minHeight: "250px" }}
               value={formik.values.long_description}
               onChange={formik.handleChange}
-              data-testid="long_description"
             />
             <ErrorMessage component={Alert} name="long_description" />
           </div>
@@ -181,7 +181,7 @@ const EditForm = ({ handleSubmit, organization = {} }) => {
             />
             <ErrorMessage component={Alert} name="linkedinLink" />
           </div>
-          <button className="submit-btn" type="submit" data-testid="btnSubmit">
+          <button className="submit-btn" data-testid="btnSubmit" type="submit">
             EDITAR
           </button>
         </form>

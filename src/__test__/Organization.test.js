@@ -1,9 +1,9 @@
 import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+
 import { putOrganization } from "../features/Organization/organizationSlice";
 import EditForm from "../Components/EditForm/EditForm";
-
 
 const mockdecideAction = jest.fn();
 const mockAxios = require("axios").default;
@@ -19,7 +19,6 @@ const organization = {
 };
 
 test("Should display an error message if an input is empty when submit", async () => {
-
   const handleSubmit = jest.fn();
 
   render(<EditForm onSubmit={handleSubmit} />);
@@ -34,7 +33,6 @@ test("Should display an error message if an input is empty when submit", async (
 });
 
 test("Shouldn't make a put request if form is not validated", async () => {
-
   render(<EditForm decideAction={mockdecideAction} />);
   userEvent.click(screen.getByTestId("btnSubmit"));
 
@@ -44,70 +42,57 @@ test("Shouldn't make a put request if form is not validated", async () => {
 });
 
 test("Should make a put request if form is validated and show a succes message", async () => {
-    render(<EditForm organization={organization} decideAction={mockdecideAction} />);
-    await putOrganization(organization, organization.id);
+  render(<EditForm decideAction={mockdecideAction} organization={organization} />);
+  await putOrganization(organization, organization.id);
 
-    mockAxios.put = jest.fn().mockResolvedValue({
-      data: {
-        success: true,
-      },
-    });
-
-    waitFor(async () => {
-      const inputName = await screen.findByTestId("name");
-      const inputImage = await screen.findByTestId("logo");
-      const inputShortDescription = await screen.findByTestId("short_description");
-      const inputLongDescription = await screen.findByTestId("long_description");
-
-      userEvent.type(inputName, organization.name);
-      userEvent.type(inputImage, organization.logo);
-      userEvent.type(inputShortDescription, organization.short_description);
-      userEvent.type(inputLongDescription, organization.long_description);
-      userEvent.click(screen.getByTestId("btnSubmit"));
-      expect(mockdecideAction).toBeCalled();
-      expect(mockAxios.put).toBeCalledWith(`organization/${organization.id}`, organization);
-      expect(screen.findByText(/La organizacion id: 16 se editó correctamente/i)).toBeInTheDocument();
-    });
+  mockAxios.put = jest.fn().mockResolvedValue({
+    data: {
+      success: true,
+    },
   });
 
-  test("Should make a put request if form is validated and show a error message", async () => {
-    render(<EditForm organization={organization} decideAction={mockdecideAction} />);
-    await putOrganization(organization, organization.id);
+  waitFor(async () => {
+    const inputName = await screen.findByTestId("name");
+    const inputImage = await screen.findByTestId("logo");
+    const inputShortDescription = await screen.findByTestId("short_description");
+    const inputLongDescription = await screen.findByTestId("long_description");
 
-    mockAxios.put = jest.fn().mockResolvedValue({
-      data: {
-        success: false,
-      },
-    });
+    userEvent.type(inputName, organization.name);
+    userEvent.type(inputImage, organization.logo);
+    userEvent.type(inputShortDescription, organization.short_description);
+    userEvent.type(inputLongDescription, organization.long_description);
+    userEvent.click(screen.getByTestId("btnSubmit"));
+    expect(mockdecideAction).toBeCalled();
+    expect(mockAxios.put).toBeCalledWith(`organization/${organization.id}`, organization);
+    expect(screen.findByText(/La organizacion id: 16 se editó correctamente/i)).toBeInTheDocument();
+  });
+});
 
-    waitFor(async () => {
-      const inputName = await screen.findByTestId("name");
-      const inputImage = await screen.findByTestId("logo");
-      const inputShortDescription = await screen.findByTestId("short_description");
-      const inputLongDescription = await screen.findByTestId("long_description");
+test("Should make a put request if form is validated and show a error message", async () => {
+  render(<EditForm decideAction={mockdecideAction} organization={organization} />);
+  await putOrganization(organization, organization.id);
 
-      userEvent.type(inputName, organization.name);
-      userEvent.type(inputImage, organization.logo);
-      userEvent.type(inputShortDescription, organization.short_description);
-      userEvent.type(inputLongDescription, organization.long_description);
-      userEvent.click(screen.getByTestId("btnSubmit"));
-      expect(mockdecideAction).toBeCalled();
-      expect(mockAxios.put).toBeCalledWith(`organization/${organization.id}`, organization);
-      expect(screen.findByText(/Ocurrió un error al editar la organización id: 16/i)).toBeInTheDocument();
-    });
+  mockAxios.put = jest.fn().mockResolvedValue({
+    data: {
+      success: false,
+    },
   });
 
+  waitFor(async () => {
+    const inputName = await screen.findByTestId("name");
+    const inputImage = await screen.findByTestId("logo");
+    const inputShortDescription = await screen.findByTestId("short_description");
+    const inputLongDescription = await screen.findByTestId("long_description");
 
-    // render(<EditForm decideAction={mockdecideAction} />);
-    // userEvent.type(screen.getByTestId("name"),"roberto");
-    // userEvent.type(screen.getByTestId("logo"),"logo");
-    // userEvent.type(screen.getByLabelText("Descripción corta:"),"testingShoty");
-    // userEvent.type(screen.getByTestId("long_description"),"testingLong");
-
-    // userEvent.click(screen.getByTestId("btnSubmit"));
-  
-    // waitFor(() => {
-    //     expect(mockdecideAction).toBeCalled();
-    //     expect(mockAxios.put).toBeCalledWith("organization", organization);
-    // });
-//   });
+    userEvent.type(inputName, organization.name);
+    userEvent.type(inputImage, organization.logo);
+    userEvent.type(inputShortDescription, organization.short_description);
+    userEvent.type(inputLongDescription, organization.long_description);
+    userEvent.click(screen.getByTestId("btnSubmit"));
+    expect(mockdecideAction).toBeCalled();
+    expect(mockAxios.put).toBeCalledWith(`organization/${organization.id}`, organization);
+    expect(
+      screen.findByText(/Ocurrió un error al editar la organización id: 16/i)
+    ).toBeInTheDocument();
+  });
+});
