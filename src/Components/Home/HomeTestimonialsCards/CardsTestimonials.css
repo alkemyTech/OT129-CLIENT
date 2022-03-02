@@ -2,22 +2,24 @@
   background: #fff;
   width: 550px;
   display: flex;
+  background: #f2f3e6;
   box-shadow: 1px 1px 4px rgb(191, 191, 191);
   border-radius: var(--border-radius);
 }
 .img-testimonials-card {
   display: block;
   width: 250px;
-  height: 250px;
+  height: 100%;
   object-fit: cover;
   border-radius: 6px 0 0 6px;
 }
 .testimonials-card-body {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 1rem;
   padding: 30px;
-  background: #f2f3e6;
 }
 .quote-description {
   display: flex;
@@ -31,7 +33,6 @@
   .img-testimonials-card {
     display: block;
     width: 40%;
-    height: 300px;
   }
 }
 @media (max-width: 992px) {

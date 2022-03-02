@@ -15,6 +15,8 @@ const activity = {
 const mockdecideAction = jest.fn();
 const mockAxios = require("axios").default;
 
+global.URL.createObjectURL = jest.fn();
+
 describe("<ActivitiesForm/>", () => {
   test("Should show validation errors", async () => {
     render(<ActivitiesForm />);

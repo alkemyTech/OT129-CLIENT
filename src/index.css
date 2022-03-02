@@ -31,11 +31,15 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-input, textarea, select {
+input,
+textarea,
+select {
   border: 2px solid var(--blue) !important;
 }
 
-input, textarea, select {
+input,
+textarea,
+select {
   border: 2px solid var(--blue) !important;
 }
 
@@ -154,46 +158,12 @@ input, textarea, select {
 }
 
 /* Cards */
-
-.container-cards {
-  width: 100%;
-  height: auto;
-  margin: 1rem auto;
-  padding: 0 1rem;
-  display: flex;
-  flex-flow: row;
-  align-items: center;
-  gap: 30px;
-  overflow-x: scroll;
-  scroll-behavior: smooth;
-}
-@media screen and (min-width: 1024px) {
-  .container-cards {
-    padding: 0 3rem;
-    gap: 50px;
-    flex-flow: row wrap;
-    justify-content: center;
-    overflow: hidden;
-  }
-}
-.container-cards::-webkit-scrollbar {
-  width: 12px;
-}
-.container-cards::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  border-radius: .5rem;
-  cursor: pointer;
-}
-.container-cards::-webkit-scrollbar-thumb {
-  border-radius: .5rem;
-  -webkit-box-shadow: inset 0 0 6px var(--blue);
-  box-shadow: inset 0 0 6px var(--blue);
-}
 .card {
   box-shadow: var(--card-shadow);
 }
-
+.popup-overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+}
 /* Tablas Listados */
 /*Mobile*/
 .table-container {
@@ -202,7 +172,7 @@ input, textarea, select {
   overflow-x: scroll;
 }
 /*Desktop and up*/
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 768px) {
   .table-container {
     flex-flow: column;
     overflow: hidden;
@@ -244,4 +214,8 @@ input, textarea, select {
 /* Others */
 .color-icon-search {
   color: var(--dark-blue);
+}
+
+.inner {
+  position: relative;
 }

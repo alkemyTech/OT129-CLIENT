@@ -24,15 +24,15 @@ const values = {
 
 describe("<NewsForm/>", () => {
   it("Should show create form", async () => {
-    render(<NewsForm newId={undefined} />);
+    render(<NewsForm _new={undefined} />);
     await waitFor(() => {
-      expect(screen.getByText("AGREGAR NOVEDAD")).toBeInTheDocument();
+      expect(screen.getByText("AGREGAR")).toBeInTheDocument();
     });
   });
   it("Should show edit form", async () => {
-    render(<NewsForm newId={newId} />);
+    render(<NewsForm _new={newId} />);
     await waitFor(() => {
-      expect(screen.getByText("EDITAR NOTICIA")).toBeInTheDocument();
+      expect(screen.getByText("EDITAR")).toBeInTheDocument();
     });
   });
   it("Should not submit form if any field is'nt complete", async () => {
