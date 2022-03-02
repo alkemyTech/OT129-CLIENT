@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import mockReactRedux from "mock-react-redux";
+import { mockReactRedux } from "mock-react-redux";
 
 import MembersForm from "../Components/Members/MembersForm";
 import { newMember } from "../features/Members/membersSlice";
