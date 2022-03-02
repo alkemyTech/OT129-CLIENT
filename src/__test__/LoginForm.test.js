@@ -1,10 +1,10 @@
 import React from "react";
+import { mockReactRedux } from "mock-react-redux";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { mockReactRedux } from "mock-react-redux";
 
 import LoginForm from "../Components/Auth/LoginForm";
-import { getLogged } from "../features/auth/authSlice";
+import { getLogged, selectAuth } from "../features/auth/authSlice";
 
 const mockAxios = require("axios").default;
 
@@ -15,7 +15,14 @@ const testUser = {
 
 describe("<LoginForm /> ", () => {
   test("Displaying error messages if required fields are empty", async () => {
-    const { dispatch } = mockReactRedux();
+    const { dispatch, give } = mockReactRedux();
+
+    give(selectAuth, {
+      isLoading: false,
+      auth: false,
+      user: {},
+      token: "",
+    });
 
     render(<LoginForm onSubmit={dispatch} />);
 
@@ -28,7 +35,14 @@ describe("<LoginForm /> ", () => {
   });
 
   test("Preventing submit dispatch if form insn't validated", async () => {
-    const { dispatch } = mockReactRedux();
+    const { dispatch, give } = mockReactRedux();
+
+    give(selectAuth, {
+      isLoading: false,
+      auth: false,
+      user: {},
+      token: "",
+    });
 
     render(<LoginForm onSubmit={dispatch} />);
 
@@ -40,8 +54,15 @@ describe("<LoginForm /> ", () => {
   });
 
   test("If required fields are valid, should dispatch onSubmit", async () => {
-    const { dispatch } = mockReactRedux();
+    const { dispatch, give } = mockReactRedux();
     const getState = jest.fn();
+
+    give(selectAuth, {
+      isLoading: false,
+      auth: false,
+      user: {},
+      token: "",
+    });
 
     await getLogged(testUser)(dispatch, getState);
     render(<LoginForm onSubmit={dispatch} />);
@@ -63,8 +84,15 @@ describe("<LoginForm /> ", () => {
   });
 
   test("Should make request at the right endpoint", async () => {
-    const { dispatch } = mockReactRedux();
+    const { dispatch, give } = mockReactRedux();
     const getState = jest.fn();
+
+    give(selectAuth, {
+      isLoading: false,
+      auth: false,
+      user: {},
+      token: "",
+    });
 
     await getLogged(testUser)(dispatch, getState);
 
@@ -74,9 +102,16 @@ describe("<LoginForm /> ", () => {
   });
 
   test("Should display status messages according to the HTTP request", async () => {
-    const { dispatch } = mockReactRedux();
+    const { dispatch, give } = mockReactRedux();
+
     const getState = jest.fn();
 
+    give(selectAuth, {
+      isLoading: false,
+      auth: false,
+      user: {},
+      token: "",
+    });
     await getLogged(testUser)(dispatch, getState);
     render(<LoginForm onSubmit={dispatch} />);
 
