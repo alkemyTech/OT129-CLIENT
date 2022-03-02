@@ -15,11 +15,7 @@ const OrganizationContainer = () => {
     dispatch(fetchOrganization());
   }, [dispatch]);
 
-  return (
-    <>
-      <Organization data={organization} />
-    </>
-  );
+  return <>{organization && <Organization data={organization} />}</>;
 };
 
 export default OrganizationContainer;
