@@ -1,6 +1,6 @@
 .header {
   width: 100%;
-  padding: 0 .5rem;
+  padding: 0 0.5rem;
   display: flex;
   flex-flow: row;
   justify-content: space-between;
@@ -28,7 +28,7 @@
 }
 
 .active {
-   color: var(--dark-blue);
+  color: var(--dark-blue);
 }
 
 .containerButtons {
@@ -67,4 +67,3 @@
     display: flex;
   }
 }
- 
