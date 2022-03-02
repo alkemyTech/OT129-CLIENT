@@ -15,7 +15,7 @@ const LayoutPublic = ({ children }) => {
 };
 
 LayoutPublic.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.element),
+  children: PropTypes.element,
 };
 
 export default LayoutPublic;

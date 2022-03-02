@@ -23,7 +23,7 @@ const SuperRoute = ({ component: Component, isAuthenticated, ...anotherProps }) 
 };
 
 SuperRoute.propTypes = {
-  component: PropTypes.object,
+  component: PropTypes.elementType,
   isAuthenticated: PropTypes.bool,
 };
 
