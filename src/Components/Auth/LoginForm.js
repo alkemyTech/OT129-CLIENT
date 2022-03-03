@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Formik, ErrorMessage, Field } from "formik";
 import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
@@ -26,13 +26,16 @@ const LoginForm = () => {
 
   const { isLoading, auth, user } = useSelector(selectAuth);
 
-  if (auth) {
-    if (user.role_id === 1) {
-      history.push("/backoffice");
-    } else {
-      history.push("/");
+  useEffect(() => {
+    if (auth) {
+      if (user.role_id === 1) {
+        history.push("/backoffice");
+      } else {
+        history.push("/");
+      }
     }
-  }
+  }, [auth]);
+
   const handleLogin = (values) => {
     const body = {
       email: values.email,
