@@ -38,7 +38,7 @@ const Footer = () => {
                 rel="noreferrer"
                 target="_blank"
               >
-                <i className="fab fa-facebook " />
+                <i className="fab fa-facebook-f " />
               </a>
               <p className="d-none d-md-inline text-blue m-1">facebook</p>
             </div>
@@ -62,7 +62,7 @@ const Footer = () => {
                 rel="noreferrer"
                 target="_blank"
               >
-                <i className="fab fa-instagram-square " />
+                <i className="fab fa-instagram " />
               </a>
               <p className="d-none d-md-inline text-blue m-1">Instagram</p>
             </div>
@@ -74,7 +74,7 @@ const Footer = () => {
                 rel="noreferrer"
                 target="_blank"
               >
-                <i className="fab fa-linkedin " />
+                <i className="fab fa-linkedin-in " />
               </a>
               <p className="d-none d-md-inline text-blue m-1">Linkedin</p>
             </div>
