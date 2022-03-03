@@ -41,7 +41,7 @@ const NewsList = () => {
   }, [dispatch, searchValues]);
 
   return (
-    <div className="container mt-5">
+    <div className="container my-5">
       <TitleNav link="/backoffice/news/create" linkTitle="Crear" title="Novedades" />
       <SearchInput
         handleSearch={handleSearch}

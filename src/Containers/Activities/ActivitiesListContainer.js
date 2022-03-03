@@ -43,7 +43,7 @@ function ActivitiesListContainer() {
   }, [dispatch, searchValue]);
 
   return (
-    <div className="container mt-5">
+    <div className="container my-5">
       <TitleNav link="/backoffice/activities/create" linkTitle="Crear" title="Actividades" />
       <SearchInput handleSearch={changeHandler} title="Busca tus actividades por NOMBRE" />
       <ActivitiesList data={activities} deleteHandler={deleteHandler} />

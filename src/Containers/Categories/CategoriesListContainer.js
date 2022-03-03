@@ -46,7 +46,7 @@ const CategoriesListContainer = () => {
   }, [dispatch, searchValue]);
 
   return (
-    <div className="container mt-5">
+    <div className="container my-5">
       <TitleNav link="/backoffice/categories/create" linkTitle="Crear" title="Categorías" />
       <SearchInput handleSearch={changeHandler} title="Busca tus categorias por NOMBRE" />
       <CategoriesList data={categories} onDelete={onDelete} />

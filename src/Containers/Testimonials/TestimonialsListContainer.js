@@ -39,7 +39,7 @@ const TestimonialsListContainer = () => {
   }, [dispatch]);
 
   return (
-    <div className="container mt-5">
+    <div className="container my-5">
       <TitleNav link="/backoffice/testimonials/create" linkTitle="Crear" title="Testimonios" />
       <TestimonialsList data={testimonials} onDelete={onDelete} />
     </div>
