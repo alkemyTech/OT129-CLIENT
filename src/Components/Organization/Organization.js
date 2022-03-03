@@ -1,32 +1,36 @@
 import React from "react";
-import "./Organization.css";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+
+import DangerouslySetInnerHTML from "../DangerouslySetInnerHTML/DangerouslySetInnerHTML";
 
 import styles from "./Organization.module.css";
 
 const Organization = ({ data }) => {
   return (
-    <div className={styles.containerBg}>
-      <h1 className="pb-2">Organización</h1>
-      <div className={`container ${styles.cardBg}`}>
-        <div className="d-flex flex-column">
-          <h2 className="text-center">{data.name}</h2>
-          <div className="d-flex justify-content-center">
-            <img alt={data.name} className="preview-image" src={data.logo} />
+    <div className={`container-fluid ${styles.containerBg}`}>
+      <div className={styles.containerSm}>
+        <div className={styles.cardBg}>
+          <div className="d-flex flex-column">
+            <h1 className={styles.title}>{data.name}</h1>
+            <div className="d-flex justify-content-center">
+              <img alt={data.name} className={styles.logo} src={data.logo} />
+            </div>
+            <p className={styles.description}>
+              <DangerouslySetInnerHTML content={data.short_description} />
+            </p>
           </div>
-          <h5 className="text-center">{data.short_description}</h5>
-        </div>
-        <div className="d-flex justify-content-between my-3">
-          <Link className="general-btn fill-black-btn text-decoration-none" to="/backoffice">
-            Volver
-          </Link>
-          <Link
-            className="general-btn fill-btn text-decoration-none"
-            to={`/backoffice/organization/edit/${data.id}`}
-          >
-            Editar
-          </Link>
+          <div className="d-flex justify-content-between mt-4">
+            <Link className="general-btn fill-black-btn text-decoration-none" to={"/backoffice"}>
+              Volver
+            </Link>
+            <Link
+              className="general-btn fill-btn text-decoration-none"
+              to={`/backoffice/organization/edit/${data.id}`}
+            >
+              Editar
+            </Link>
+          </div>
         </div>
       </div>
     </div>
