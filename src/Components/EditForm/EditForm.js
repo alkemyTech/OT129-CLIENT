@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -21,8 +21,7 @@ const validationSchema = Yup.object({
 const Alert = ({ children }) => <div className="alert alert-danger">{children}</div>;
 
 const EditForm = ({ handleSubmit, organization = {} }) => {
-  const IMG_PREVIEW = organization.logo;
-
+  const [image, setImage] = useState("");
   const initialValues = {
     name: organization?.name || "",
     logo: organization?.logo || "",
@@ -34,8 +33,15 @@ const EditForm = ({ handleSubmit, organization = {} }) => {
     linkedin_url: organization?.linkedin_url || "",
   };
 
+  useEffect(() => {
+    if (organization.logo) {
+      setImage(organization.logo);
+    }
+  }, [organization]);
+
   return (
     <Formik
+      enableReinitialized={true}
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={async (values) => {
@@ -47,13 +53,7 @@ const EditForm = ({ handleSubmit, organization = {} }) => {
       }}
     >
       {(formik) => (
-        <form
-          noValidate
-          className="form-backoffice"
-          enableReinitialized={true}
-          id="editOrganizationForm"
-          onSubmit={formik.handleSubmit}
-        >
+        <form className="form-backoffice" id="editOrganizationForm" onSubmit={formik.handleSubmit}>
           <div className="form-group">
             <label className="form-label fw-bold mt-1" htmlFor="name">
               Nombre:
@@ -80,13 +80,18 @@ const EditForm = ({ handleSubmit, organization = {} }) => {
               type="file"
               onChange={(event) => {
                 formik.setFieldValue("logo", event.currentTarget.files[0]);
+                setImage(URL.createObjectURL(event.currentTarget.files[0]));
               }}
             />
             <ErrorMessage component={Alert} name="logo" />
           </div>
           <div className="form-group mb-3">
-            <label className="form-label fw-bold mt-1">(Imagen actual)</label>
-            <img alt="logo" className="preview-image" loading="lazy" src={IMG_PREVIEW} />
+            {image && (
+              <>
+                <label className="form-label fw-bold mt-1">(Imagen actual)</label>
+                <img alt="logo" className="preview-image" loading="lazy" src={image} />
+              </>
+            )}
           </div>
           <div className="form-group">
             <label className="form-label fw-bold mt-1" htmlFor="short_description">
@@ -132,6 +137,7 @@ const EditForm = ({ handleSubmit, organization = {} }) => {
               type="url"
               value={formik.values.facebook_url}
               onChange={formik.handleChange}
+              {...formik.getFieldProps("facebook_url")}
             />
             <ErrorMessage component={Alert} name="facebookLink" />
           </div>
@@ -146,6 +152,7 @@ const EditForm = ({ handleSubmit, organization = {} }) => {
               type="url"
               value={formik.values.instagram_url}
               onChange={formik.handleChange}
+              {...formik.getFieldProps("instagram_url")}
             />
             <ErrorMessage component={Alert} name="instagramLink" />
           </div>
@@ -160,12 +167,13 @@ const EditForm = ({ handleSubmit, organization = {} }) => {
               type="url"
               value={formik.values.twitter_url}
               onChange={formik.handleChange}
+              {...formik.getFieldProps("twitter_url")}
             />
             <ErrorMessage component={Alert} name="twitterLink" />
           </div>
           <div className="form-group">
             <label className="form-label fw-bold mt-1" htmlFor="linkedinLink">
-              Twitter:
+              Linkedin:
             </label>
             <input
               className="form-control form-control-sm w-100 mb-3"
@@ -174,6 +182,7 @@ const EditForm = ({ handleSubmit, organization = {} }) => {
               type="url"
               value={formik.values.linkedin_url}
               onChange={formik.handleChange}
+              {...formik.getFieldProps("linkedin_url")}
             />
             <ErrorMessage component={Alert} name="linkedinLink" />
           </div>
