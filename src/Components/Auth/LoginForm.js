@@ -58,7 +58,7 @@ const LoginForm = () => {
             {({ handleSubmit }) => (
               <form className="form" onSubmit={handleSubmit}>
                 <div className="form-group">
-                  <div className="input-group mb-3">
+                  <div className="input-group mb-4">
                     <span className="input-group-text" id="basic-addon1">
                       <i className="fas fa-envelope" />
                     </span>
@@ -71,7 +71,7 @@ const LoginForm = () => {
                   </div>
                   <ErrorMessage className="alert-danger" component={Alert} name="email" />
                 </div>
-                <div className="form-group mb-3">
+                <div className="form-group mb-4">
                   <div className="input-group mb-3">
                     <span className="input-group-text" id="basic-addon1">
                       <i className="fas fa-key" />
