@@ -8,10 +8,10 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { toBase64 } from "../../utils/toBase64";
 
 const validationSchema = Yup.object({
-  name: Yup.string().required("Este campo es requerido"),
+  name: Yup.string().required("El nombre es requerido"),
   logo: Yup.string().required("Por favor ingrese una imagen"),
-  short_description: Yup.string().required("Este campo es requerido"),
-  long_description: Yup.string().required("Este campo es requerido"),
+  short_description: Yup.string().required("La descripcion corta es requerida"),
+  long_description: Yup.string().required("La descripcion larga es requerida"),
   instagram_url: Yup.string().url("URL invalida"),
   twitter_url: Yup.string().url("URL invalida"),
   facebook_url: Yup.string().url("URL invalida"),
@@ -60,6 +60,7 @@ const EditForm = ({ handleSubmit, organization = {} }) => {
             </label>
             <input
               className="form-control form-control-sm w-100 mb-3"
+              data-testid="name"
               id="name"
               name="name"
               type="text"
@@ -75,6 +76,7 @@ const EditForm = ({ handleSubmit, organization = {} }) => {
             <input
               accept="image/png, image/jpeg"
               className="form-control form-control-sm w-100 mb-3"
+              data-testid="logo"
               id="logo"
               name="logo"
               type="file"
@@ -96,6 +98,7 @@ const EditForm = ({ handleSubmit, organization = {} }) => {
               required
               config={{ placeholder: "Descripción corta" }}
               data={formik.values.short_description}
+              data-testid="description"
               editor={ClassicEditor}
               id="short_description"
               name="short_description"
@@ -113,6 +116,7 @@ const EditForm = ({ handleSubmit, organization = {} }) => {
             </label>
             <textarea
               className="form-control form-control-sm w-100 mb-3"
+              data-testid="long_description"
               id="long_description"
               name="long_description"
               style={{ maxHeight: "250px", minHeight: "250px" }}
@@ -177,7 +181,7 @@ const EditForm = ({ handleSubmit, organization = {} }) => {
             />
             <ErrorMessage component={Alert} name="linkedinLink" />
           </div>
-          <button className="submit-btn" type="submit">
+          <button className="submit-btn" data-testid="btnSubmit" type="submit">
             EDITAR
           </button>
         </form>

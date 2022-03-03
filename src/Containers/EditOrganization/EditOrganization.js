@@ -30,10 +30,10 @@ const EditOrganization = () => {
         if (response) {
           dispatch(putOrganization({ data, id: id }))
             .then(() => {
-              alerts(`El organizacion id: ${id} se editó correctamente`, "success");
+              alerts(`La organizacion id: ${id} se editó correctamente`, "success");
             })
             .catch(() => {
-              alerts(`Ocurrió un error al editar el organizacion id: ${id} `, "error");
+              alerts(`Ocurrió un error al editar la organizacion id: ${id} `, "error");
             });
         }
       });
