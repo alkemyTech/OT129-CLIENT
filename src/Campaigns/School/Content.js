@@ -12,7 +12,7 @@ const campaignDate = new Date(date.getTime() + 864000000 + 364);
 const formatedDate = formatDateWithTime(campaignDate);
 const difference = campaignDate.getTime() - date.getTime();
 
-const address = "Calle 123, Localidad, Provincia";
+const address = "Barrio La Cava, Buenos Aires";
 
 const daysLeft = Math.floor(difference / 86400000);
 const hsLeft = Math.floor((difference - daysLeft * 86400000) / 60);
@@ -29,7 +29,7 @@ const Content = () => {
           src={imageA}
         />
         <span className={`text-center fs-3 fw-bolder m-auto ${styles["countdown-text"]}`}>
-          Te quedan: {daysLeft !== 0 && daysLeft + "días"} {hsLeft !== 0 && hsLeft + "h"}{" "}
+          Te quedan: {daysLeft !== 0 && daysLeft + " días"} {hsLeft !== 0 && hsLeft + "h"}{" "}
           {minLeft !== 0 && minLeft + "m"} para participar
         </span>
         <img
@@ -38,10 +38,11 @@ const Content = () => {
           src={imageB}
         />
       </div>
-      <p className={`fs-5 text py-3 ${styles.paragraph}`}>
-        Descripcion de lacampaña lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+      <p className={`fs-5 text-center mt-4 mb-5 ${styles.paragraph}`}>
+        Con el objetivo de recolectar materiales escolares para ayudar a los chicos y chicas de la
+        comunidad en el inicio de un nuevo ciclo lectivo, iniciamos ésta campaña de útiles escolar.
+        Si querés colaborar podés escribirnos un mensaje o seguirnos en nuestras redes sociales
+        donde comunicaremos todas las novedades.
       </p>
       <div
         className={`px-3 d-flex justify-content-between align-items-center ${styles["images-bottom-container"]}`}

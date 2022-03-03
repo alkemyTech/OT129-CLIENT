@@ -87,7 +87,7 @@ const RegisterForm = () => {
 
   return (
     <div className="container">
-      <div className="form-container my-3">
+      <div className="form-container my-5">
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
@@ -223,7 +223,7 @@ const RegisterForm = () => {
             </form>
           )}
         </Formik>
-        <Wrapper apiKey={process.env.REACT_APP_API_GOOGLE_KEY}>
+        <Wrapper apiKey={process.env.REACT_APP_API_GOOGLE_KEY} className="map">
           <Map center={map} zoom={14} />
         </Wrapper>
       </div>

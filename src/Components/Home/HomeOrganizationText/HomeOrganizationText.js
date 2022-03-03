@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import "./HomeOrganizationText.css";
 
+import "./HomeOrganizationText.css";
+import DangerouslySetInnerHTML from "../../DangerouslySetInnerHTML/DangerouslySetInnerHTML";
 import {
   fetchOrganization,
   selectorOrganization,
@@ -15,14 +16,13 @@ const HomeOrganizationText = () => {
     dispatch(fetchOrganization());
   }, []);
 
-  const short_description =
-    "Nuestra ONG busca mejorar la calidad de vida de niños y familias en situación de vulnerabilidad en el barrio La Cava, otorgando un cambio de rumbo en cada individuo a través de la educación, salud, trabajo, deporte, responsabilidad y compromiso.";
-
   return (
-    <div className="container-fluid container-organization-text">
+    <div className="container container-organization-text">
       <h1 className="text-uppercase text-center organization-title">{organization.name}</h1>
       <h2 className="text-center welcome-text">{organization.welcome_text}</h2>
-      <p className="text-center short-description">{short_description}</p>
+      <p className="text-center short-description">
+        <DangerouslySetInnerHTML content={organization.short_description} />
+      </p>
     </div>
   );
 };

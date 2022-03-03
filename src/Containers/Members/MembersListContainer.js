@@ -41,7 +41,7 @@ const MembersListContainer = () => {
   }, [dispatch, searchValues]);
 
   return (
-    <div className="container mt-5">
+    <div className="container my-5">
       <TitleNav link="/backoffice/members/create" linkTitle="Crear" title="Miembros" />
       <SearchInput
         handleSearch={handleSearch}

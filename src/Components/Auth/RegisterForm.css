@@ -8,7 +8,7 @@
   border-radius: 0.5rem;
 }
 .login-container {
-  margin: 5rem auto !important;
+  margin: 4rem auto 10rem !important;
 }
 .register-input {
   font-family: var(--font-family);
@@ -43,4 +43,7 @@
 .conditions-checkbox:checked + .conditions-label {
   background-color: var(--blue);
   color: var(--white);
+}
+.map {
+  height: 300px !important;
 }

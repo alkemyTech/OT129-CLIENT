@@ -32,7 +32,7 @@ const timeRemaining = (date) => {
 const Content = () => {
   return (
     <div className="container">
-      <div className="content-wrapper mt-3">
+      <div className="content-wrapper">
         <div className="content-bg">
           <div className="col left">
             <img alt="BG Image" className="bg-image" src={BG1} />
@@ -47,20 +47,18 @@ const Content = () => {
           </div>
         </div>
         <div className="content-text">
-          <div className="content-text-title">
+          <div className="content-text-title mt-5">
             <span className="__title-date">{date}</span>
             <span className="__title-time"> {time} hs </span>
-            <span className="__title-address">Calle 123, Localidad, Provincia</span>
+            <span className="__title-address">Barrio La Cava, Buenos Aires</span>
           </div>
           <span className="content-text-countdown">
             Te quedan: {timeRemaining(TARGET_DATE)} para participar
           </span>
-          <p className="content-text-description">
-            Descipcion de la campaña Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Quisque nunc eros, bibendum et lobortis viverra, dapibus ut tellus. Cras luctus elit at
-            leo feugiat congue. Aenean ultricies felis in accumsan accumsan. Nullam ut eros lacinia,
-            molestie sem at, congue sapien. Praesent dapibus metus sit amet mi ullamcorper
-            hendrerit.
+          <p className="content-text-description mt-4 mb-5">
+            Recolectamos juguetes para regalar en el día del niño a todos los chicos y chicas que
+            forman parte de nuestra comunidad. Si querés colaborar podés escribirnos un mensaje o
+            seguirnos en nuestras redes sociales donde comunicaremos todas las novedades.
           </p>
         </div>
       </div>

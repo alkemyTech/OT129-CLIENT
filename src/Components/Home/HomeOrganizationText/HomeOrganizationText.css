@@ -15,7 +15,14 @@
 }
 
 .short-description {
-  width: 80%;
+  width: 70%;
   margin: auto;
   margin-bottom: 0;
+  font-size: 1.2rem;
+}
+
+@media (max-width: 576px) {
+  .short-description {
+    width: 90%;
+  }
 }

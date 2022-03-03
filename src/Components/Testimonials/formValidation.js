@@ -1,5 +1,7 @@
 import * as yup from "yup";
 
+const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/png"];
+
 export const testimonialSchema = yup.object({
   name: yup
     .string()
@@ -7,7 +9,14 @@ export const testimonialSchema = yup.object({
     .required("Por favor ingrese un nombre"),
   description: yup
     .string()
-    .max(150, "La descripción no puede superar los 150 carácteres")
+    .max(200, "La descripción no puede superar los 200 carácteres")
     .required("Por favor ingrese una descripción"),
-  image: yup.string().required("Por favor ingrese una imagen"),
+  image: yup
+    .string()
+    .required("Por favor ingrese una imagen")
+    .test(
+      "format",
+      "El formato no es valido",
+      (value) => value || (value && SUPPORTED_FORMATS.includes(value.type))
+    ),
 });

@@ -1,7 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
+import { logout } from "../../features/auth/authSlice";
 
 import BackCards from "./BackCards";
-
 import "./backoffice.css";
 
 const BACK_CARDS = [
@@ -48,8 +51,24 @@ const BACK_CARDS = [
 ];
 
 function Backoffice() {
+  const dispatch = useDispatch();
+
   return (
     <div className="container-fluid bg-container">
+      <div className="container d-flex justify-content-end mb-4">
+        <Link
+          className="stroke-btn text-decoration-none icono-logout"
+          data-bs-placement="bottom"
+          data-bs-toggle="tooltip"
+          title="Cerrar Sesión"
+          to="/"
+          onClick={() => {
+            dispatch(logout());
+          }}
+        >
+          <i className="fas fa-sign-out-alt" />
+        </Link>
+      </div>
       <BackCards data={BACK_CARDS} />
     </div>
   );

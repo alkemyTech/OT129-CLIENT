@@ -40,7 +40,7 @@ const SlidesContainer = () => {
   }, [dispatch, searchValues]);
 
   return (
-    <div className="container mt-5">
+    <div className="container my-5">
       <TitleNav link="/backoffice/slides/create" linkTitle="Crear" title="Slides" />
       <SearchInput
         handleSearch={handleSearch}

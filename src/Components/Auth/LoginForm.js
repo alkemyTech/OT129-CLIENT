@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Formik, ErrorMessage, Field } from "formik";
 import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
@@ -26,13 +26,16 @@ const LoginForm = () => {
 
   const { isLoading, auth, user } = useSelector(selectAuth);
 
-  if (auth) {
-    if (user.role_id === 1) {
-      history.push("/backoffice");
-    } else {
-      history.push("/");
+  useEffect(() => {
+    if (auth) {
+      if (user.role_id === 1) {
+        history.push("/backoffice");
+      } else {
+        history.push("/");
+      }
     }
-  }
+  }, [auth]);
+
   const handleLogin = (values) => {
     const body = {
       email: values.email,
@@ -58,7 +61,7 @@ const LoginForm = () => {
             {({ handleSubmit }) => (
               <form className="form" onSubmit={handleSubmit}>
                 <div className="form-group">
-                  <div className="input-group mb-3">
+                  <div className="input-group mb-4">
                     <span className="input-group-text" id="basic-addon1">
                       <i className="fas fa-envelope" />
                     </span>
@@ -71,7 +74,7 @@ const LoginForm = () => {
                   </div>
                   <ErrorMessage className="alert-danger" component={Alert} name="email" />
                 </div>
-                <div className="form-group mb-3">
+                <div className="form-group mb-4">
                   <div className="input-group mb-3">
                     <span className="input-group-text" id="basic-addon1">
                       <i className="fas fa-key" />
