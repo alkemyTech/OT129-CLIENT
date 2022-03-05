@@ -1,0 +1,16 @@
+.comment-skeleton-row {
+  width: 90%;
+  margin: auto;
+  padding: 1rem 2rem;
+  display: flex;
+  flex-flow: row;
+  gap: 1rem;
+  border: 1px solid #6c757d;
+}
+.comment-skeleton-col {
+  width: 100%;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  justify-content: space-around;
+}

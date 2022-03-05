@@ -1,33 +1,105 @@
-import React, { useState } from 'react';
-import '../FormStyles.css';
+import React, { useEffect } from "react";
+import { Formik, ErrorMessage, Field } from "formik";
+import * as Yup from "yup";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+
+import { getLogged, selectAuth } from "../../features/auth/authSlice";
+import Alert from "../Alert/Alert";
+import Spinner from "../Spinner/Spinner";
+
+import "./RegisterForm.css";
+
+const startValues = {
+  email: "",
+  password: "",
+};
+
+const validationSchema = Yup.object().shape({
+  email: Yup.string().required("El campo EMAIL es obligatorio"),
+  password: Yup.string().required("El campo CONTRASEÑA es obligatorio"),
+});
 
 const LoginForm = () => {
-    const [initialValues, setInitialValues] = useState({
-        email: '',
-        password: ''
-    });
+  const dispatch = useDispatch();
+  const history = useHistory();
 
-    const handleChange = (e) => {
-        if(e.target.name === 'email'){
-            setInitialValues({...initialValues, email: e.target.value})
-        } if(e.target.name === 'password'){
-            setInitialValues({...initialValues, password: e.target.value})
-        }
-    }
-    
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(initialValues);
-        localStorage.setItem('token', 'tokenValueExample')
-    }
+  const { isLoading, auth, user } = useSelector(selectAuth);
 
-    return (
-        <form className="form-container" onSubmit={handleSubmit}>
-            <input className="input-field" type="text" name="email" value={initialValues.name} onChange={handleChange} placeholder="Enter email"></input>
-            <input className="input-field" type="text" name="password" value={initialValues.password} onChange={handleChange} placeholder="Enter password"></input>
-            <button className="submit-btn" type="submit">Log In</button>
-        </form>
-    );
-}
- 
+  useEffect(() => {
+    if (auth) {
+      if (user.role_id === 1) {
+        history.push("/backoffice");
+      } else {
+        history.push("/");
+      }
+    }
+  }, [auth]);
+
+  const handleLogin = (values) => {
+    const body = {
+      email: values.email,
+      password: values.password,
+    };
+
+    dispatch(getLogged(body));
+  };
+
+  return (
+    <div className="container">
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <div className="form-container login-container">
+          <Formik
+            initialValues={startValues}
+            validationSchema={validationSchema}
+            onSubmit={(values) => {
+              handleLogin(values);
+            }}
+          >
+            {({ handleSubmit }) => (
+              <form className="form" onSubmit={handleSubmit}>
+                <div className="form-group">
+                  <div className="input-group mb-4">
+                    <span className="input-group-text" id="basic-addon1">
+                      <i className="fas fa-envelope" />
+                    </span>
+                    <Field
+                      className="form-control register-input"
+                      name="email"
+                      placeholder="Ingresa tu email"
+                      type="email"
+                    />
+                  </div>
+                  <ErrorMessage className="alert-danger" component={Alert} name="email" />
+                </div>
+                <div className="form-group mb-4">
+                  <div className="input-group mb-3">
+                    <span className="input-group-text" id="basic-addon1">
+                      <i className="fas fa-key" />
+                    </span>
+                    <Field
+                      className="form-control register-input"
+                      name="password"
+                      placeholder="Ingresa tu contraseña"
+                      type="password"
+                    />
+                  </div>
+                  <ErrorMessage className="alert-danger" component={Alert} name="password" />
+                </div>
+
+                <button className="general-btn register-btn" type="submit">
+                  <i className="fas fa-sign-in-alt mx-2" />
+                  INICIAR SESIÓN
+                </button>
+              </form>
+            )}
+          </Formik>
+        </div>
+      )}
+    </div>
+  );
+};
+
 export default LoginForm;

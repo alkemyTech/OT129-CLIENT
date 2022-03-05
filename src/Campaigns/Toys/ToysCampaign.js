@@ -1,18 +1,17 @@
-import React from 'react';
-import Header from './Header';
-import Slider from './Slider';
-import Content from './Content';
-import Footer from './Footer';
+import React from "react";
 
-const ToysCampaign = () => {
-  return (
-    <>
-      <Header />
-      <Slider />
-      <Content />
-      <Footer />
-    </>
-  );
-}
- 
+import FooterToysContainer from "./FooterToysContainer";
+import Header from "./Header";
+import Slider from "./Slider";
+import Content from "./Content";
+
+const ToysCampaign = () => (
+  <>
+    <Header />
+    <Slider />
+    <Content />
+    <FooterToysContainer />
+  </>
+);
+
 export default ToysCampaign;

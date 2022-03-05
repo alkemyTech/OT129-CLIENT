@@ -1,0 +1,16 @@
+.member-card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+}
+
+.row-title {
+  margin-bottom: 3rem;
+}
+
+@media (min-width: 1200px) {
+  .member-card-container {
+    justify-content: flex-start;
+  }
+}

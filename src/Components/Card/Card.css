@@ -1,0 +1,41 @@
+.general-card {
+  min-width: 300px;
+  max-width: 300px;
+  margin-top: 0 ;
+  text-align: center;
+  height: auto ;
+}
+
+.general-card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 220px !important;
+}
+
+.img-card {
+  width: 100%;
+  object-fit: cover;
+}
+
+.card-btn {
+  margin: 0 auto;
+}
+
+@media (min-width: 1200px) {
+  .general-card {
+    width: 330px;
+    min-width: 330px;
+    max-width: 330px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .general-card {
+    width: 380px;
+    min-width: 380px;
+    max-width: 380px;
+  }
+}
+
+

@@ -1,0 +1,22 @@
+.links {
+  color: #8dc9ff;
+  text-decoration: none;
+  margin-bottom: 5px;
+}
+
+.links:hover,
+.links.active {
+  padding-bottom: 0.2rem;
+  border-bottom: 2px solid var(--dark-blue);
+  color: #8dc9ff;
+  text-decoration: none;
+}
+
+.space {
+    margin-bottom: 1rem;
+}
+
+#offcanvasNavbar {
+  width: 300px;
+  padding-left: 10px;
+}

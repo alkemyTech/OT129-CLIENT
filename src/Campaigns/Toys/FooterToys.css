@@ -1,0 +1,127 @@
+.container-footer {
+  padding: 40px 0;
+  border-top: 2px solid var(--black);
+  border-top: 2px solid rgb(88, 88, 88);
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.row-social {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem
+}
+
+.socials-icons-container{
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin: 1rem;
+}
+
+.social-link{
+  display: flex;
+  text-decoration: none;
+}
+
+.social-icon {
+  text-decoration: none;
+  background: var(--blue);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+  transition: all 0.3s ease;
+}
+
+.social-icon i {
+  font-size: 20px;
+  color: var(--black);
+  transition: all 0.3s ease;
+}
+
+.social-icon:hover i{
+  color: var(--white);
+}
+
+.copy {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 1px;
+  margin-top: 2rem;
+}
+
+@media screen and (min-width:576px) {
+  .text-access{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+  }
+  .text-access .nav {
+    justify-content: center;
+  }
+  .row-social{
+    margin: 0;
+  }
+  .socials-icons-container {
+    margin: 0;
+    display: flex;
+    align-items: center;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .logo-container{
+    align-items: center;
+  }
+  .text-access-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .text-access {
+    width: auto;
+  }
+  .socials-icons-container {
+    flex-direction: column;
+  }
+  .icon-container {
+    display: flex;
+    align-items: center;
+    margin: 0.2rem 0;
+  }
+  .icon-text {
+    margin: 0;
+    text-align: center;
+    font-size: 1.4rem;
+    margin-left: 0.5rem
+
+  }
+}
+.container-footer {
+  background-color: white
+}
+.containerImage {
+  display: flex;
+  align-items: center;
+  background-color: var(--blue);
+  border-radius: 50%;
+  padding: 15px;
+  border: none;
+  text-decoration: none;
+  color: black;
+}
+.text-blue {
+  color: var(--dark-blue);
+  text-decoration: none;
+}
+

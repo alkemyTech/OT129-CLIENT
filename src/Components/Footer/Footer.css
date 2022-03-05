@@ -1,0 +1,122 @@
+.container-footer {
+  padding: 40px 0;
+  border-top: 2px solid var(--black);
+  border-top: 2px solid rgb(88, 88, 88);
+}
+
+.nav-footer {
+  width: 100%;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  gap: .5rem;
+}
+
+.nav-block {
+  width: 35%;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  gap: .5rem;
+}
+
+.link-nav {
+  text-decoration: none;
+  color: var(--black);
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.link-nav:hover {
+  color: var(--dark-blue)
+}
+
+.logo {
+  display: block;
+  width: 100%;
+}
+
+.row-nav {
+  padding-bottom: 40px;
+  border-bottom: 2px solid rgb(160, 160, 160);
+}
+
+.row-social {
+  padding: 40px 0;
+}
+
+.social-icon-container {
+  width: fit-content;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.social-block {
+  display: flex;
+  justify-content: space-between;
+  width: 100px;
+}
+
+.link-social {
+  text-decoration: none;
+  background: var(--blue);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+  transition: all 0.3s ease;
+}
+
+.link-social:last-child {
+  margin-right: 0;
+}
+
+.link-social i {
+  font-size: 20px;
+  color: var(--black);
+  transition: all 0.3s ease;
+}
+
+.link-social:hover i{
+  color: var(--white);
+}
+
+.row-copyright {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+
+@media screen and (min-width: 1024px) {
+  .nav-footer {
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: .5rem;
+  }
+  .nav-block {
+    width: 35%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+  }
+  .social-icon-container {
+    width: fit-content;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .link-social {
+    margin-right: 1.5rem;
+  }
+}

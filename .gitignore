@@ -6,7 +6,6 @@
 # Node artifact files
 node_modules/
 dist/
-package-lock.json
 .env
 
 # Compiled Java class files
@@ -73,3 +72,4 @@ Thumbs.db
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+package-lock.json

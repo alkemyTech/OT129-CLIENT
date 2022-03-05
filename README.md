@@ -1,30 +1,57 @@
-# Ong Client
+# ONG Somos Más!
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+## _**`About the project`**_
 
-## Available Scripts
+This is a website created for a fictional ONG as part of [Alkemy's](https://www.alkemy.org/) React.js acceleration. The web consists of 2 sections, on the one hand a public web for anonymous users. On the other hand, a backoffice for the admin user, who will be able to edit and/or create content for the web.
 
-In the project directory, you can run:
+## _**`Run this project`**_
+To learn how to start running this project, you can read [*Getting Started with React App*](./public/ReadmeCRA.md).
 
-### `yarn start`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## _**`Hook`**_
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+- ### [*useDebounceEffect*](./src/hooks/useDebounceSearch.md)
 
-### `yarn test`
+## _**`Reusable Components`**_
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- ### [*DengerouslySetInnerHTML*](./src/Components/DangerouslySetInnerHTML/Readme.md)
+- ### [*Progress Bar*](./src/Components/Progress/Progress.md)
+- ### [*Search Input*](./src/Components/SearchInput/searchInput.md)
+- ### [*Skeleton*](./src/Components/Skeleton/Skeleton.md)
+- ### [*Spinner*](./src/Components/Spinner/Spinner.md)
+- ### [*TitleNav*](./src/Components/TitleNav/Readme.md)
 
-### `yarn build`
+## _**`Unit Tests`**_
+- ### [*Titles*](./src/Components/Titles/README.test.md)
+- ### [*Activities Form*](./src/Components/Activities/README.test.md)
+- ### [*Contact Form*](./src/Components/Contact/README.test.md)
+- ### [*Members Form*](./src/Components/Members/README.test.md)
+- ### [*News Form*](./src/Components/News/Readme.test.md)
+- ### [*Register Form*](./src/Components/Auth/README.test.md)
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## _**`Utils`**_
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- ### [*alerts*](./src/utils/alerts.md)
+- ### [*formatDate*](./src/utils/formatDate.md)
+
+---
+
+## _**`Created by`**_
+
+
+
+### Team members:
+    
+- [Ana Galli - Linkedin](https://www.linkedin.com/in/anamgalli/)
+- [Astrid Mata - Linkedin](https://www.linkedin.com/in/astrid-mata-877343214/)
+- [Emiliano Quiroga - Linkedin](https://www.linkedin.com/in/emquiroga/)
+- [Ezequiel Galardi - Linkedin](https://www.linkedin.com/in/ezequielgalardi/)
+- [Fabricio Capiglioni Dómene - Linkedin](https://www.linkedin.com/in/fabriciocapiglioni/)
+- [Guido Greco - Linkedin](https://www.linkedin.com/in/guido-greco14/)
+- [Ivan Eduardo Salas - Linkedin](https://www.linkedin.com/in/ivan-edu-salas/)
+- [Pablo Rostirolla - Linkedin](https://www.linkedin.com/in/pablo-rostirolla-367248197/)
+
+### Menthor:
+
+- [Antony Fagundez - Linkedin](https://www.linkedin.com/in/antony-fagundez/)

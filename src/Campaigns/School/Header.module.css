@@ -1,0 +1,65 @@
+.headerInfo {
+    padding: 0.5rem;
+    display: flex;
+    justify-content: center;
+}
+
+.logoEscolar {
+    display: block;
+    width: auto;
+    height: 100px;
+}
+
+.onglogo {
+    display: none;
+    object-fit: contain;
+}
+
+.slogan {
+    display: none;
+}
+
+/* MEDIA QUERIES */
+
+@media (min-width: 768px) {
+    .headerInfo {
+        display: flex;
+        justify-content: space-between;
+        align-content: center;
+    }
+
+    .logoEscolar {
+        height: 100px;
+    }
+
+    .onglogo {
+        display: block;
+        width: 140px;
+        height: auto;
+    }
+}
+
+@media (min-width: 992px) {
+    .slogan {
+        display: block;
+        margin-bottom: 0;
+        color: #EC4C4B;
+        font-size: 30px;
+        text-align: center;
+    }
+    .spanbreak {
+        display: block;
+        margin-top: -10px;
+    }
+
+   .headerInfo {
+    justify-content: space-between;
+    align-items: center;
+    }
+}
+
+@media (min-width: 1400px) {
+    .headerCtn {
+        background-color: transparent;
+    }
+ }

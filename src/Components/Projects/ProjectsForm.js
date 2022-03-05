@@ -1,32 +1,112 @@
-import React, { useState } from 'react';
-import '../FormStyles.css';
+import React, { useState, useEffect } from "react";
+import { Formik, Field, Form, ErrorMessage } from "formik";
+import PropTypes from "prop-types";
+import * as Yup from "yup";
 
-const ProjectsForm = () => {
-  const [initialValues, setInitialValues] = useState({
-    title: '',
-    description: ''
-  })
+import { createProject, editProject } from "../../Services/ProjectsService";
+import { formatDate } from "../../utils/formatDate";
 
-  const handleChange = (e) => {
-    if(e.target.name === 'title'){
-      setInitialValues({...initialValues, title: e.target.value})
-    } if(e.target.name === 'description'){
-      setInitialValues({...initialValues, description: e.target.value})
+import "../FormStyles.css";
+
+const IMG_FORMAT_REGEX = new RegExp(".(jpg|png)$");
+
+const validationSchema = Yup.object({
+  title: Yup.string().required("El título del proyecto es obligatorio"),
+  description: Yup.string().required("La descripción del proyecto es obligatorio"),
+  image: Yup.string()
+    .required("Debe insertar URL de la imagen")
+    .matches(IMG_FORMAT_REGEX, "Solo el formato .png y .jpg de las imagenes son permitios"),
+});
+
+const ProjectsForm = ({ project = {} }) => {
+  const [projectImage, setProjectImage] = useState("");
+
+  const initialValues = {
+    title: project?.title || "",
+    description: project?.description || "",
+    image: project?.image || "",
+    due_date: project?.due_date ? formatDate(project.due_date) : "",
+  };
+
+  useEffect(() => {
+    if (project.id) {
+      setProjectImage(project.image);
     }
-  }
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(initialValues);
-  }
+  }, []);
 
   return (
-    <form className="form-container" onSubmit={handleSubmit}>
-      <input className="input-field" type="text" name="title" value={initialValues.title} onChange={handleChange} placeholder="Title"></input>
-      <input className="input-field" type="text" name="description" value={initialValues.description} onChange={handleChange} placeholder="Write some description"></input>
-      <button className="submit-btn" type="submit">Send</button>
-    </form>
+    <div className="container mt-4">
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={async (formData) => {
+          if (project.id === undefined) {
+            createProject(formData);
+          } else {
+            editProject({ ...formData, id: project.id });
+          }
+        }}
+      >
+        {(formik) => (
+          <Form className="row justify-content-center align-items-center">
+            <div className="col-sm-6 ">
+              <div className="input-group mb-3">
+                <Field
+                  className="p-2 w-100"
+                  name="title"
+                  placeholder="Título del Proyecto"
+                  type="text"
+                />
+                <ErrorMessage className="alert-danger" name="title" />
+              </div>
+              <div className="input-group mb-3">
+                <Field
+                  className="p-2 w-100"
+                  name="description"
+                  placeholder="Descripción"
+                  type="text"
+                />
+                <ErrorMessage className="alert-danger" name="description" />
+              </div>
+              <div className="mb-3">
+                <Field
+                  className="w-100"
+                  name="image"
+                  placeholder="Inserte URL de la imagen"
+                  type="text"
+                  onChange={(event) => {
+                    formik.setFieldValue("image", event.target.value);
+                    setProjectImage(event.target.value);
+                  }}
+                />
+                <ErrorMessage className="alert-danger" name="image" />
+              </div>
+              <div className="input-group mb-3">
+                <Field className="p-2 w-100" name="due_date" type="date" />
+                <ErrorMessage className="alert-danger" name="due_date" />
+              </div>
+              {projectImage ? (
+                <img alt="Imagen actual" className="row w-25 h-25" src={projectImage} />
+              ) : null}
+              <button className="submit-btn" type="submit">
+                {project?.id ? "EDITAR" : "CREAR"}
+              </button>
+            </div>
+          </Form>
+        )}
+      </Formik>
+    </div>
   );
-}
- 
+};
+
+ProjectsForm.propTypes = {
+  project: PropTypes.shape({
+    id: PropTypes.number,
+    title: PropTypes.string,
+    description: PropTypes.string,
+    image: PropTypes.string,
+    due_date: PropTypes.string,
+  }),
+};
+
 export default ProjectsForm;

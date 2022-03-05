@@ -1,85 +1,77 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import ActivitiesForm from './Components/Activities/ActivitiesForm';
-import CategoriesForm from './Components/Categories/CategoriesForm';
-import NewsForm from './Components/News/NewsForm';
-import SlidesForm from './Components/Slides/SlidesForm';
-import TestimonialForm from './Components/Testimonials/TestimonialsForm';
-import UserForm from './Components/Users/UsersForm';
-import SchoolCampaign from './Campaigns/School/SchoolCampaign';
-import ToysCampaign from './Campaigns/Toys/ToysCampaign';
-import MembersForm from './Components/Members/MembersForm';
-import ProjectsForm from './Components/Projects/ProjectsForm';
+import React, { Suspense, lazy } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
+import SuperRoute from "./Components/Route";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/js/dist/offcanvas";
+import Spinner from "./Components/Spinner/Spinner";
+import { publicRoute } from "./Components/Route/publicRoutes";
+import PrivateRoute from "./Components/Route/PrivateRoute";
+import LayoutPublic from "./Components/Layout/LayoutPublic";
+import LayoutBackoffice from "./Containers/Backoffice/LayoutBackoffice";
+import Error404Page from "./Pages/Error404Page";
+import ErrorBoundary from "./Components/ErrorBoundary/ErrorBoundary";
+const SchoolCampaign = lazy(() =>
+  import(/* webpackChunkName: "LazySchoolCampaignPage"*/ "./Campaigns/School/SchoolCampaign")
+);
+const ToysCampaign = lazy(() =>
+  import(/* webpackChunkName: "LazyToysCampaignPage"*/ "./Campaigns/Toys/ToysCampaign")
+);
 
 function App() {
+  const publicRoutes = [
+    "/",
+    "/contacto",
+    "/donar",
+    "/gracias",
+    "/nosotros",
+    "/actividades",
+    "/actividades/:id",
+    "/novedades",
+    "/novedades/:id",
+    "/registro",
+    "/testimonios",
+    "/testimonials/create",
+    "/projects/create",
+    "/login",
+    "/newsletter",
+  ];
+  const privatesRoutes = ["/backoffice", "/backoffice/*"];
+
   return (
-    <>
-      <BrowserRouter>
-        <Switch>
-          {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
-          <Route path="/create-activity" component={ActivitiesForm} />
-          <Route path="/create-category" component={CategoriesForm} />
-          <Route path="/create-news" component={NewsForm} />
-          <Route path="/backoffice/create-slide" component={SlidesForm} />
-          <Route path="/create-testimonials" component={TestimonialForm} />
-          <Route path="/create-user" component={UserForm} />
-          <Route path="/create-member" component={MembersForm} />
-          <Route path="/create-project" component={ProjectsForm} />
-          <Route path="/school-campaign" component={SchoolCampaign} />
-          <Route path="/toys-campaign" component={ToysCampaign} />
-        </Switch>
-      </BrowserRouter>
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
-    </>
+    <ErrorBoundary>
+      <Router>
+        <Suspense fallback={<Spinner />}>
+          <Switch>
+            <Route exact path={publicRoutes}>
+              <LayoutPublic>
+                <div className="container-app">
+                  {publicRoute.map(({ path, component, exact }) => {
+                    return (
+                      <SuperRoute key={path} component={component} exact={exact} path={path} />
+                    );
+                  })}
+                </div>
+              </LayoutPublic>
+            </Route>
+            <Route path={privatesRoutes}>
+              <LayoutBackoffice>
+                <PrivateRoute />
+              </LayoutBackoffice>
+            </Route>
+            <Route exact component={SchoolCampaign} path="/school-campaign" />
+            <Route exact component={ToysCampaign} path="/toys-campaign" />
+            <Route path="*">
+              <LayoutPublic>
+                <Switch>
+                  <Route component={Error404Page} />
+                </Switch>
+              </LayoutPublic>
+            </Route>
+          </Switch>
+        </Suspense>
+      </Router>
+    </ErrorBoundary>
   );
 }
 
